@@ -20,8 +20,8 @@
 			b.push(
 				'<a ' +
 					'class="link depth-' + indent + '"' +
-					( (typeof target !== 'undefined' && target != '') ? ' target="' + target + '"' : '') +
-					( (typeof href !== 'undefined' && href != '') ? ' href="' + href + '"' : '') +
+					( (typeof target !== '' && target != '') ? ' target="' + target + '"' : '') +
+					( (typeof href !== '' && href != '') ? ' href="' + href + '"' : '') +
 				'>' +
 					'<span class="indent-' + indent + '"></span>' +
 					$this.text() +
@@ -303,7 +303,7 @@
 	$.fn.placeholder = function() {
 
 		// Browser natively supports placeholders? Bail.
-			if (typeof (document.createElement('input')).placeholder != 'undefined')
+			if (typeof (document.createElement('input')).placeholder != '')
 				return $(this);
 
 		// No elements?
