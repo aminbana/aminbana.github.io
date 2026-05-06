@@ -66,6 +66,16 @@
       line-height: 1.1;
     }
 
+    .underlined-generated-word {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    .bar-label.is-hovered {
+      font-weight: 700;
+    }
+
     .fake-link {
       color: var(--blue);
       text-decoration: none;
@@ -174,6 +184,22 @@
     .completed-part.animate-text {
       opacity: 0;
       animation: fadeInText 0.55s ease forwards;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      margin-left: 2px;
+      background: currentColor;
+      vertical-align: -0.12em;
+      animation: blinkCursor 0.75s step-end infinite;
+    }
+
+    @keyframes blinkCursor {
+      50% {
+        opacity: 0;
+      }
     }
 
     @keyframes fadeInText {
@@ -327,7 +353,7 @@
 
     .plot-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 86px;
+      grid-template-columns: minmax(0, 1fr) 112px;
       gap: clamp(10px, 1.8vw, 14px);
       align-items: start;
     }
@@ -396,56 +422,61 @@
     }
 
     .temperature-panel {
-      min-height: calc(var(--chart-height) + 70px);
-      width: 86px;
-      padding: 12px 6px;
-      border-radius: 14px;
-      background: var(--panel-bg);
+      width: 112px;
+      padding: 14px 10px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8faff 0%, #f3f6ff 100%);
       border: 1px solid var(--panel-border);
+      box-shadow: 0 8px 24px rgba(50, 115, 220, 0.08);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      gap: 12px;
     }
 
     .temperature-title {
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       font-weight: 700;
       color: #111;
       text-align: center;
     }
 
-    .temperature-value {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--blue);
-      background: var(--blue-bg);
+    .temperature-pills {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .temperature-pill {
+      width: 100%;
       border: 1px solid var(--blue-border);
       border-radius: 999px;
-      padding: 4px 7px;
-      min-width: 44px;
-      text-align: center;
-    }
-
-    .temperature-slider-wrap {
-      height: 190px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .temperature-slider {
-      width: 190px;
-      transform: rotate(-90deg);
+      background: #fff;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 7px 8px;
       cursor: pointer;
-      accent-color: var(--blue);
+      text-align: center;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
     }
 
-    .temperature-range-text {
-      font-size: 0.7rem;
-      color: #666;
-      text-align: center;
-      line-height: 1.3;
+    .temperature-pill:hover {
+      transform: translateY(-1px);
+      background: var(--blue-bg);
+    }
+
+    .temperature-pill.is-active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(50, 115, 220, 0.24);
     }
 
     .color-pie-panel {
@@ -633,40 +664,28 @@
       }
 
       .temperature-panel {
-        min-height: unset;
-        height: auto;
         width: 100%;
         padding: 12px 14px;
-        border-radius: 14px;
-        display: grid;
-        grid-template-columns: auto auto minmax(120px, 1fr);
-        gap: 12px;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
       }
 
       .temperature-title {
-        font-size: 0.78rem;
         white-space: nowrap;
       }
 
-      .temperature-value {
-        font-size: 0.78rem;
-        min-width: 42px;
-        padding: 4px 8px;
+      .temperature-pills {
+        width: auto;
+        flex: 1;
+        flex-direction: row;
+        justify-content: flex-end;
       }
 
-      .temperature-slider-wrap {
-        height: auto;
-        width: 100%;
-      }
-
-      .temperature-slider {
-        width: 100%;
-        transform: none;
-      }
-
-      .temperature-range-text {
-        display: none;
+      .temperature-pill {
+        width: auto;
+        min-width: 54px;
+        padding: 7px 12px;
       }
     }
 
@@ -737,32 +756,24 @@
       }
 
       .temperature-panel {
-        min-height: unset;
-        height: auto;
-        width: 100%;
-        grid-template-columns: 1fr;
-        justify-items: stretch;
-        text-align: center;
-        gap: 8px;
-        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
       }
 
       .temperature-title {
+        text-align: center;
         font-size: 0.8rem;
       }
 
-      .temperature-value {
-        justify-self: center;
+      .temperature-pills {
+        width: 100%;
+        justify-content: center;
       }
 
-      .temperature-slider-wrap {
-        height: auto;
-        width: 100%;
-      }
-
-      .temperature-slider {
-        width: 100%;
-        transform: none;
+      .temperature-pill {
+        flex: 1;
+        min-width: 0;
       }
 
       .chart-wrapper {
@@ -870,24 +881,7 @@
                 <div class="side-panel">
                   <div class="temperature-panel">
                     <div class="temperature-title">Temperature</div>
-
-                    <div class="temperature-value" id="temperatureValue">0.0</div>
-
-                    <div class="temperature-slider-wrap">
-                      <input
-                        id="temperatureSlider"
-                        class="temperature-slider"
-                        type="range"
-                        min="0"
-                        max="0"
-                        step="1"
-                        value="0"
-                      >
-                    </div>
-
-                    <div class="temperature-range-text" id="temperatureRangeText">
-                      low to high
-                    </div>
+                    <div class="temperature-pills" id="temperaturePills"></div>
                   </div>
                 </div>
               </div>
@@ -907,14 +901,15 @@
   </section>
 
   <script>
+    const TEXT_ANIMATION_MODE = "typing";
+    const TYPING_WORD_DELAY_MS = 50;
+
     const chart = document.getElementById("chart");
     const chartWrapper = document.querySelector(".chart-wrapper");
     const sentenceBox = document.getElementById("sentenceBox");
     const errorBox = document.getElementById("errorBox");
 
-    const temperatureSlider = document.getElementById("temperatureSlider");
-    const temperatureValue = document.getElementById("temperatureValue");
-    const temperatureRangeText = document.getElementById("temperatureRangeText");
+    const temperaturePills = document.getElementById("temperaturePills");
 
     const variantUpButton = document.getElementById("variantUpButton");
     const variantDownButton = document.getElementById("variantDownButton");
@@ -927,6 +922,23 @@
 
     const colorPieChart = document.getElementById("colorPieChart");
     const colorPieLegend = document.getElementById("colorPieLegend");
+
+    const summaryKeys = {
+      valid_and_frequent: {
+        label: "Valid and Frequent",
+        color: "#53A14A"
+      },
+      valid_and_rare: {
+        label: "Valid and Rare",
+        color: "#3D50FF"
+      },
+      invalid: {
+        label: "Invalid",
+        color: "#FF6843"
+      }
+    };
+
+    const summaryKeySet = new Set(Object.keys(summaryKeys));
 
     const colorLabelMap = {
       "#53A14A": "Valid and Frequent",
@@ -955,6 +967,9 @@
     let pieSlicesByColor = new Map();
     let pieLegendItemsByColor = new Map();
 
+    let typingTimerIds = [];
+    let typingRunId = 0;
+
     function normalizeColor(color) {
       return String(color || "#3273dc").toUpperCase();
     }
@@ -964,7 +979,19 @@
       return colorLabelMap[normalizedColor] || color;
     }
 
+    function clearTypingTimers() {
+      typingRunId += 1;
+
+      typingTimerIds.forEach(timerId => {
+        window.clearTimeout(timerId);
+      });
+
+      typingTimerIds = [];
+    }
+
     function showDefaultSentence() {
+      clearTypingTimers();
+
       const startText = selectedStartText || "";
 
       sentenceBox.innerHTML = `
@@ -975,7 +1002,9 @@
 
     async function loadData() {
       try {
-        const response = await fetch("data.json");
+        const response = await fetch(`data.json?v=${Date.now()}`, {
+          cache: "no-store"
+        });
 
         if (!response.ok) {
           throw new Error("Could not load data.json");
@@ -1213,52 +1242,65 @@
         return;
       }
 
-      setupTemperatureSlider();
+      const defaultTemperature = "0.5";
 
-      selectedTemperature = temperatures[0];
-      temperatureSlider.value = 0;
-      temperatureValue.textContent = selectedTemperature;
+      if (temperatures.includes(defaultTemperature)) {
+        selectedTemperature = defaultTemperature;
+      } else {
+        selectedTemperature = temperatures[0];
+      }
+
+      setupTemperatureControl();
 
       renderChart(getCurrentTokenData());
     }
 
-    function setupTemperatureSlider() {
-      temperatureSlider.min = 0;
-      temperatureSlider.max = temperatures.length - 1;
-      temperatureSlider.step = 1;
-      temperatureSlider.value = 0;
+    function setupTemperatureControl() {
+      temperaturePills.innerHTML = "";
 
-      if (temperatures.length === 1) {
-        temperatureRangeText.textContent = temperatures[0];
-      } else {
-        temperatureRangeText.textContent = `${temperatures[0]} to ${temperatures[temperatures.length - 1]}`;
-      }
+      temperatures.forEach((temperature, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "temperature-pill";
+        button.textContent = temperature;
+        button.dataset.temperature = temperature;
+        button.dataset.index = String(index);
+
+        button.addEventListener("click", () => {
+          if (isChangingVariant || isChangingModel) {
+            return;
+          }
+
+          selectedTemperature = temperature;
+          updateTemperaturePills();
+
+          const currentTokenData = getCurrentTokenData();
+
+          if (!currentTokenData) {
+            chart.innerHTML = "";
+            currentTokenOrder = [];
+            currentDataArray = [];
+            showDefaultSentence();
+            clearColorPie();
+            errorBox.textContent = "Selected temperature was not found in data.json.";
+            return;
+          }
+
+          updateChartForTemperature(currentTokenData);
+        });
+
+        temperaturePills.appendChild(button);
+      });
+
+      updateTemperaturePills();
     }
 
-    temperatureSlider.addEventListener("input", () => {
-      if (isChangingVariant || isChangingModel) {
-        return;
-      }
-
-      const index = Number(temperatureSlider.value);
-
-      selectedTemperature = temperatures[index];
-      temperatureValue.textContent = selectedTemperature;
-
-      const currentTokenData = getCurrentTokenData();
-
-      if (!currentTokenData) {
-        chart.innerHTML = "";
-        currentTokenOrder = [];
-        currentDataArray = [];
-        showDefaultSentence();
-        clearColorPie();
-        errorBox.textContent = "Selected temperature was not found in data.json.";
-        return;
-      }
-
-      updateChartForTemperature(currentTokenData);
-    });
+    function updateTemperaturePills() {
+      temperaturePills.querySelectorAll(".temperature-pill").forEach(button => {
+        const isActive = button.dataset.temperature === selectedTemperature;
+        button.classList.toggle("is-active", isActive);
+      });
+    }
 
     function getCurrentTokenData() {
       if (!loadedData || !selectedModelName || !selectedStartText || selectedTemperature === null) {
@@ -1270,6 +1312,7 @@
 
     function toDataArray(data) {
       return Object.entries(data)
+        .filter(([key]) => !summaryKeySet.has(key))
         .map(([word, value]) => ({
           word,
           probability: Number(value.logit_value),
@@ -1324,7 +1367,7 @@
       }
 
       updateBarSizes(dataArray.length);
-      updateColorPie(dataArray);
+      updateColorPie(data);
 
       const probabilities = dataArray.map(item => item.probability);
       const minProbability = Math.min(...probabilities);
@@ -1360,19 +1403,27 @@
         )}px`;
         bar.style.backgroundColor = item.color;
 
+        const label = document.createElement("div");
+        label.className = "bar-label";
+        label.textContent = item.word;
+
         bar.addEventListener("mouseenter", () => {
+          label.classList.add("is-hovered");
           showCompletedSentence(bar);
         });
 
         bar.addEventListener("mouseleave", () => {
+          label.classList.remove("is-hovered");
           showDefaultSentence();
         });
 
         bar.addEventListener("focus", () => {
+          label.classList.add("is-hovered");
           showCompletedSentence(bar);
         });
 
         bar.addEventListener("blur", () => {
+          label.classList.remove("is-hovered");
           showDefaultSentence();
         });
 
@@ -1380,9 +1431,15 @@
           showCompletedSentence(bar);
         });
 
-        const label = document.createElement("div");
-        label.className = "bar-label";
-        label.textContent = item.word;
+        label.addEventListener("mouseenter", () => {
+          label.classList.add("is-hovered");
+          showCompletedSentence(bar);
+        });
+
+        label.addEventListener("mouseleave", () => {
+          label.classList.remove("is-hovered");
+          showDefaultSentence();
+        });
 
         barGroup.appendChild(value);
         barGroup.appendChild(bar);
@@ -1392,12 +1449,108 @@
     }
 
     function showCompletedSentence(bar) {
+      clearTypingTimers();
+
+      const completedSentence = bar.dataset.completedSentence || "";
+      const color = bar.dataset.originalColor || "#111";
+      const startText = selectedStartText || "";
+
+      if (TEXT_ANIMATION_MODE === "typing") {
+        showTypingSentence(startText, completedSentence, color);
+        return;
+      }
+
+      showFadeSentence(startText, completedSentence, color);
+    }
+
+    function showFadeSentence(startText, completedSentence, color) {
+      const words = String(completedSentence).trim().split(/\s+/);
+      const firstWord = words.shift() || "";
+      const restText = words.length > 0 ? ` ${words.join(" ")}` : "";
+
       sentenceBox.innerHTML = `
-        <span class="fixed-sentence">${escapeHTML(selectedStartText)}</span>
-        <span class="completed-part animate-text" style="color: ${escapeHTML(bar.dataset.originalColor)};">
-          ${escapeHTML(bar.dataset.completedSentence)}
+        <span class="fixed-sentence">${escapeHTML(startText)}</span>
+        <span class="completed-part animate-text" style="color: ${escapeHTML(color)};">
+          <span class="underlined-generated-word">${escapeHTML(firstWord)}</span>${escapeHTML(restText)}
         </span>
       `;
+    }
+
+    function showTypingSentence(startText, completedSentence, color) {
+      const runId = typingRunId;
+
+      sentenceBox.innerHTML = `
+        <span class="fixed-sentence">${escapeHTML(startText)}</span>
+        <span class="completed-part" id="typingCompletedPart" style="color: ${escapeHTML(color)};"></span>
+      `;
+
+      const typingCompletedPart = document.getElementById("typingCompletedPart");
+
+      if (!typingCompletedPart) {
+        return;
+      }
+
+      const cleanedSentence = String(completedSentence)
+        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ")
+        .trim();
+
+      const words = cleanedSentence
+        .split(/\s+/)
+        .filter(Boolean);
+
+      if (words.length === 0) {
+        return;
+      }
+
+      const cursor = document.createElement("span");
+      cursor.className = "typing-cursor";
+      cursor.style.color = color;
+
+      typingCompletedPart.appendChild(cursor);
+
+      words.forEach((word, index) => {
+        const timerId = window.setTimeout(() => {
+          if (runId !== typingRunId) {
+            return;
+          }
+
+          typingCompletedPart.innerHTML = "";
+
+          const leadingSpace = document.createTextNode(" ");
+          typingCompletedPart.appendChild(leadingSpace);
+
+          words.slice(0, index + 1).forEach((shownWord, shownIndex) => {
+            if (shownIndex > 0) {
+              typingCompletedPart.appendChild(document.createTextNode(" "));
+            }
+
+            if (shownIndex === 0) {
+              const underlinedWord = document.createElement("span");
+              underlinedWord.className = "underlined-generated-word";
+              underlinedWord.textContent = shownWord;
+              typingCompletedPart.appendChild(underlinedWord);
+            } else {
+              typingCompletedPart.appendChild(document.createTextNode(shownWord));
+            }
+          });
+
+          typingCompletedPart.appendChild(cursor);
+
+          if (index === words.length - 1) {
+            const removeCursorTimerId = window.setTimeout(() => {
+              if (runId !== typingRunId) {
+                return;
+              }
+
+              cursor.remove();
+            }, 350);
+
+            typingTimerIds.push(removeCursorTimerId);
+          }
+        }, index * TYPING_WORD_DELAY_MS);
+
+        typingTimerIds.push(timerId);
+      });
     }
 
     function updateChartForTemperature(data) {
@@ -1409,7 +1562,7 @@
       }
 
       currentDataArray = dataArray;
-      updateColorPie(dataArray);
+      updateColorPie(data);
       updateBarHeights(dataArray);
     }
 
@@ -1455,17 +1608,15 @@
       });
     }
 
-    function updateColorPie(dataArray) {
-      const colorTotals = new Map();
-
-      dataArray.forEach(item => {
-        const color = normalizeColor(item.color || "#3273dc");
-        const oldValue = colorTotals.get(color) || 0;
-        colorTotals.set(color, oldValue + item.probability);
-      });
-
-      const entries = Array.from(colorTotals.entries())
-        .map(([color, value]) => ({ color, value }));
+    function updateColorPie(rawData) {
+      const entries = Object.entries(summaryKeys)
+        .map(([key, meta]) => ({
+          key,
+          color: meta.color,
+          label: meta.label,
+          value: Number(rawData[key])
+        }))
+        .filter(item => Number.isFinite(item.value) && item.value >= 0);
 
       const total = entries.reduce((sum, item) => sum + item.value, 0);
 
@@ -1531,10 +1682,7 @@
 
       colorPieChart.appendChild(svg);
 
-      const maxLegendItems = 6;
-      const shownEntries = entries.slice(0, maxLegendItems);
-
-      shownEntries.forEach(item => {
+      entries.forEach(item => {
         const percent = item.value / total * 100;
 
         const legendItem = document.createElement("div");
@@ -1547,7 +1695,7 @@
 
         const label = document.createElement("div");
         label.className = "pie-legend-label";
-        label.textContent = getColorLabel(item.color);
+        label.textContent = item.label;
 
         const value = document.createElement("div");
         value.className = "pie-legend-value";
@@ -1560,29 +1708,6 @@
         colorPieLegend.appendChild(legendItem);
         pieLegendItemsByColor.set(item.color, legendItem);
       });
-
-      if (entries.length > maxLegendItems) {
-        const extraItem = document.createElement("div");
-        extraItem.className = "pie-legend-item";
-
-        const colorBox = document.createElement("div");
-        colorBox.className = "pie-legend-color";
-        colorBox.style.backgroundColor = "#ddd";
-
-        const label = document.createElement("div");
-        label.className = "pie-legend-label";
-        label.textContent = `${entries.length - maxLegendItems} more`;
-
-        const value = document.createElement("div");
-        value.className = "pie-legend-value";
-        value.textContent = "";
-
-        extraItem.appendChild(colorBox);
-        extraItem.appendChild(label);
-        extraItem.appendChild(value);
-
-        colorPieLegend.appendChild(extraItem);
-      }
     }
 
     function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
