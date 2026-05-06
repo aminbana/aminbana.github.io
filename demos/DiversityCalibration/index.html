@@ -174,11 +174,13 @@
     .fixed-sentence {
       font-weight: 700;
       color: #111;
+      white-space: pre-wrap;
     }
 
     .completed-part {
       font-weight: 700;
       display: inline;
+      white-space: pre-wrap;
     }
 
     .completed-part.animate-text {
@@ -353,8 +355,8 @@
 
     .plot-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 112px;
-      gap: clamp(10px, 1.8vw, 14px);
+      grid-template-columns: minmax(0, 1fr) 100px;
+      gap: clamp(14px, 2vw, 22px);
       align-items: start;
     }
 
@@ -422,61 +424,155 @@
     }
 
     .temperature-panel {
-      width: 112px;
-      padding: 14px 10px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, #f8faff 0%, #f3f6ff 100%);
+      width: 100px;
+      height: calc(var(--chart-height) + 38px);
+      padding: 14px 12px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #f5f7ff 100%);
+      /* background: linear-gradient(180deg, #ffffff 0%, #f5f7ff 100%); */
       border: 1px solid var(--panel-border);
-      box-shadow: 0 8px 24px rgba(50, 115, 220, 0.08);
+      box-shadow:
+        0 14px 32px rgba(50, 115, 220, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 12px;
+      overflow: hidden;
+    }
+
+    .temperature-header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .temperature-title {
       font-size: 0.76rem;
-      font-weight: 700;
+      font-weight: 800;
       color: #111;
       text-align: center;
     }
 
-    .temperature-pills {
+    .temperature-value {
+      min-width: 62px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      border: 1px solid var(--blue);
+      box-shadow: 0 8px 18px rgba(50, 115, 220, 0.24);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .temperature-control {
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .temperature-slider-column {
+      position: relative;
+      width: 56px;
+      min-height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .temperature-slider-column::before {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: calc(100% - 16px);
+      border-radius: 999px;
+      background: #e7ecff;
+      box-shadow: inset 0 0 0 1px rgba(50, 115, 220, 0.12);
+    }
+
+    .temperature-slider-column::after {
+      content: "";
+      position: absolute;
+      bottom: 8px;
+      width: 9px;
+      height: var(--temperature-progress, 50%);
+      border-radius: 999px;
+      background: linear-gradient(180deg, #3d50ff 0%, #3273dc 100%);
+      pointer-events: none;
+    }
+
+    .temperature-slider {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: calc(var(--chart-height) - 74px);
+      max-width: 260px;
+      min-width: 180px;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      transform-origin: center;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .temperature-slider:focus {
+      outline: none;
+    }
+
+    .temperature-slider::-webkit-slider-runnable-track {
+      height: 9px;
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    .temperature-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 23px;
+      height: 23px;
+      margin-top: -7px;
+      border-radius: 50%;
+      background: #fff;
+      border: 5px solid var(--blue);
+      box-shadow:
+        0 7px 16px rgba(50, 115, 220, 0.3),
+        0 0 0 5px rgba(50, 115, 220, 0.12);
+    }
+
+    .temperature-slider::-moz-range-track {
+      height: 9px;
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    .temperature-slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      border: 5px solid var(--blue);
+      box-shadow:
+        0 7px 16px rgba(50, 115, 220, 0.3),
+        0 0 0 5px rgba(50, 115, 220, 0.12);
+    }
+
+    .temperature-caption {
       width: 100%;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .temperature-pill {
-      width: 100%;
-      border: 1px solid var(--blue-border);
-      border-radius: 999px;
-      background: #fff;
-      color: var(--blue);
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 7px 8px;
-      cursor: pointer;
-      text-align: center;
-      transition:
-        background 0.15s ease,
-        color 0.15s ease,
-        border-color 0.15s ease,
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
-    }
-
-    .temperature-pill:hover {
-      transform: translateY(-1px);
-      background: var(--blue-bg);
-    }
-
-    .temperature-pill.is-active {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #fff;
-      box-shadow: 0 8px 18px rgba(50, 115, 220, 0.24);
+      justify-content: space-between;
+      font-size: 0.66rem;
+      color: #737d99;
+      line-height: 1;
+      flex-shrink: 0;
     }
 
     .color-pie-panel {
@@ -665,27 +761,60 @@
 
       .temperature-panel {
         width: 100%;
+        height: auto;
+        min-height: auto;
         padding: 12px 14px;
-        flex-direction: row;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 14px;
         align-items: center;
+      }
+
+      .temperature-header {
+        align-items: flex-start;
+        gap: 6px;
       }
 
       .temperature-title {
         white-space: nowrap;
       }
 
-      .temperature-pills {
-        width: auto;
-        flex: 1;
-        flex-direction: row;
-        justify-content: flex-end;
+      .temperature-control {
+        min-height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
-      .temperature-pill {
-        width: auto;
-        min-width: 54px;
-        padding: 7px 12px;
+      .temperature-slider-column {
+        height: 34px;
+        width: 100%;
+      }
+
+      .temperature-slider-column::before {
+        width: 100%;
+        height: 9px;
+      }
+
+      .temperature-slider-column::after {
+        left: 0;
+        bottom: auto;
+        width: var(--temperature-progress, 50%);
+        height: 9px;
+      }
+
+      .temperature-slider {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        transform: none;
+      }
+
+      .temperature-caption {
+        display: none;
       }
     }
 
@@ -756,24 +885,12 @@
       }
 
       .temperature-panel {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
-      .temperature-title {
-        text-align: center;
-        font-size: 0.8rem;
-      }
-
-      .temperature-pills {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .temperature-pill {
-        flex: 1;
-        min-width: 0;
+      .temperature-header {
+        align-items: center;
       }
 
       .chart-wrapper {
@@ -880,8 +997,30 @@
 
                 <div class="side-panel">
                   <div class="temperature-panel">
-                    <div class="temperature-title">Temperature</div>
-                    <div class="temperature-pills" id="temperaturePills"></div>
+                    <div class="temperature-header">
+                      <div class="temperature-title">Temperature</div>
+                      <div class="temperature-value" id="temperatureValue">0.5</div>
+                    </div>
+
+                    <div class="temperature-control">
+                      <div class="temperature-slider-column">
+                        <input
+                          id="temperatureSlider"
+                          class="temperature-slider"
+                          type="range"
+                          min="0"
+                          max="0"
+                          step="1"
+                          value="0"
+                          aria-label="Temperature"
+                        >
+                      </div>
+                    </div>
+
+                    <div class="temperature-caption">
+                      <!-- <span>Low</span>
+                      <span>High</span> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -909,7 +1048,9 @@
     const sentenceBox = document.getElementById("sentenceBox");
     const errorBox = document.getElementById("errorBox");
 
-    const temperaturePills = document.getElementById("temperaturePills");
+    const temperaturePanel = document.querySelector(".temperature-panel");
+    const temperatureSlider = document.getElementById("temperatureSlider");
+    const temperatureValue = document.getElementById("temperatureValue");
 
     const variantUpButton = document.getElementById("variantUpButton");
     const variantDownButton = document.getElementById("variantDownButton");
@@ -995,8 +1136,7 @@
       const startText = selectedStartText || "";
 
       sentenceBox.innerHTML = `
-        <span class="fixed-sentence">${escapeHTML(startText)}</span>
-        <span class="completed-part" style="color: black;">...</span>
+        <span class="fixed-sentence">${escapeHTML(startText)}</span><span class="completed-part" style="color: black;">...</span>
       `;
     }
 
@@ -1256,51 +1396,48 @@
     }
 
     function setupTemperatureControl() {
-      temperaturePills.innerHTML = "";
+      temperatureSlider.min = 0;
+      temperatureSlider.max = temperatures.length - 1;
+      temperatureSlider.step = 1;
+      temperatureSlider.value = Math.max(0, temperatures.indexOf(selectedTemperature));
 
-      temperatures.forEach((temperature, index) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "temperature-pill";
-        button.textContent = temperature;
-        button.dataset.temperature = temperature;
-        button.dataset.index = String(index);
-
-        button.addEventListener("click", () => {
-          if (isChangingVariant || isChangingModel) {
-            return;
-          }
-
-          selectedTemperature = temperature;
-          updateTemperaturePills();
-
-          const currentTokenData = getCurrentTokenData();
-
-          if (!currentTokenData) {
-            chart.innerHTML = "";
-            currentTokenOrder = [];
-            currentDataArray = [];
-            showDefaultSentence();
-            clearColorPie();
-            errorBox.textContent = "Selected temperature was not found in data.json.";
-            return;
-          }
-
-          updateChartForTemperature(currentTokenData);
-        });
-
-        temperaturePills.appendChild(button);
-      });
-
-      updateTemperaturePills();
+      updateTemperatureControl();
     }
 
-    function updateTemperaturePills() {
-      temperaturePills.querySelectorAll(".temperature-pill").forEach(button => {
-        const isActive = button.dataset.temperature === selectedTemperature;
-        button.classList.toggle("is-active", isActive);
-      });
+    function updateTemperatureControl() {
+      temperatureValue.textContent = selectedTemperature;
+
+      const maxIndex = Math.max(1, temperatures.length - 1);
+      const currentIndex = Math.max(0, temperatures.indexOf(selectedTemperature));
+      const progress = currentIndex / maxIndex * 100;
+
+      temperaturePanel.style.setProperty("--temperature-progress", `${progress}%`);
     }
+
+    temperatureSlider.addEventListener("input", () => {
+      if (isChangingVariant || isChangingModel) {
+        return;
+      }
+
+      const index = Number(temperatureSlider.value);
+      selectedTemperature = temperatures[index];
+
+      updateTemperatureControl();
+
+      const currentTokenData = getCurrentTokenData();
+
+      if (!currentTokenData) {
+        chart.innerHTML = "";
+        currentTokenOrder = [];
+        currentDataArray = [];
+        showDefaultSentence();
+        clearColorPie();
+        errorBox.textContent = "Selected temperature was not found in data.json.";
+        return;
+      }
+
+      updateChartForTemperature(currentTokenData);
+    });
 
     function getCurrentTokenData() {
       if (!loadedData || !selectedModelName || !selectedStartText || selectedTemperature === null) {
@@ -1464,15 +1601,21 @@
     }
 
     function showFadeSentence(startText, completedSentence, color) {
-      const words = String(completedSentence).trim().split(/\s+/);
+      const cleanedSentence = String(completedSentence).trim();
+
+      if (!cleanedSentence) {
+        sentenceBox.innerHTML = `
+          <span class="fixed-sentence">${escapeHTML(startText)}</span>
+        `;
+        return;
+      }
+
+      const words = cleanedSentence.split(/\s+/);
       const firstWord = words.shift() || "";
       const restText = words.length > 0 ? ` ${words.join(" ")}` : "";
 
       sentenceBox.innerHTML = `
-        <span class="fixed-sentence">${escapeHTML(startText)}</span>
-        <span class="completed-part animate-text" style="color: ${escapeHTML(color)};">
-          <span class="underlined-generated-word">${escapeHTML(firstWord)}</span>${escapeHTML(restText)}
-        </span>
+        <span class="fixed-sentence">${escapeHTML(startText)}</span><span class="completed-part animate-text" style="color: ${escapeHTML(color)};"><span class="underlined-generated-word">${escapeHTML(firstWord)}</span>${escapeHTML(restText)}</span>
       `;
     }
 
@@ -1480,8 +1623,7 @@
       const runId = typingRunId;
 
       sentenceBox.innerHTML = `
-        <span class="fixed-sentence">${escapeHTML(startText)}</span>
-        <span class="completed-part" id="typingCompletedPart" style="color: ${escapeHTML(color)};"></span>
+        <span class="fixed-sentence">${escapeHTML(startText)}</span><span class="completed-part" id="typingCompletedPart" style="color: ${escapeHTML(color)};"></span>
       `;
 
       const typingCompletedPart = document.getElementById("typingCompletedPart");
@@ -1515,9 +1657,6 @@
           }
 
           typingCompletedPart.innerHTML = "";
-
-          const leadingSpace = document.createTextNode(" ");
-          typingCompletedPart.appendChild(leadingSpace);
 
           words.slice(0, index + 1).forEach((shownWord, shownIndex) => {
             if (shownIndex > 0) {
@@ -1855,6 +1994,7 @@
 
       updateBarSizes(currentDataArray.length);
       updateBarHeights(currentDataArray);
+      updateTemperatureControl();
     }
 
     const resizeObserver = new ResizeObserver(() => {
