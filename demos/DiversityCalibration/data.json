@@ -1,0 +1,4130 @@
+{
+  "Qwen2.5-VL": {
+    "Hello I am ": {
+      "0.5": {
+        "person": {
+          "logit_value": 30.6394,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.7416,
+          "completed_sentence": "dog appears in the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.2232,
+          "completed_sentence": "cat is clearly visible.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.6767,
+          "completed_sentence": "car is part of the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.0869,
+          "completed_sentence": "tree can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.0318,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.2186,
+          "completed_sentence": "road is part of the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.602,
+          "completed_sentence": "sky is part of the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.1988,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.4195,
+          "completed_sentence": "table can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.5893,
+          "completed_sentence": "phone is clearly visible.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.7588,
+          "completed_sentence": "book appears in the scene.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.6981,
+          "completed_sentence": "flower is near the center.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.2779,
+          "completed_sentence": "bike appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.9572,
+          "completed_sentence": "bus is near the center.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.1022,
+          "completed_sentence": "bird can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.0967,
+          "completed_sentence": "cup is near the center.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.6037,
+          "completed_sentence": "window is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.7297,
+          "completed_sentence": "door is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.1248,
+          "completed_sentence": "shirt can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.0788,
+          "completed_sentence": "shoe is near the center.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.8294,
+          "completed_sentence": "ball is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.8855,
+          "completed_sentence": "bag is near the center.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.5774,
+          "completed_sentence": "computer is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.0458,
+          "completed_sentence": "lamp appears in the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.7731,
+          "completed_sentence": "apple is clearly visible.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.8553,
+          "completed_sentence": "river is clearly visible.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.3801,
+          "completed_sentence": "mountain can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.6357,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.1627,
+          "completed_sentence": "boy is near the center.",
+          "color": "#FF6843"
+        }
+      },
+      "0.1": {
+        "person": {
+          "logit_value": 28.257,
+          "completed_sentence": "person is near the center.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 30.2109,
+          "completed_sentence": "dog is clearly visible.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.6548,
+          "completed_sentence": "cat appears in the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.2048,
+          "completed_sentence": "car appears in the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 23.9804,
+          "completed_sentence": "tree can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 23.6197,
+          "completed_sentence": "house is part of the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 22.3177,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 25.0571,
+          "completed_sentence": "sky is clearly visible.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 20.3743,
+          "completed_sentence": "chair is clearly visible.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 22.8303,
+          "completed_sentence": "table can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 18.6064,
+          "completed_sentence": "phone appears in the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 21.4788,
+          "completed_sentence": "book is part of the scene.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 20.2582,
+          "completed_sentence": "flower is near the center.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 15.2758,
+          "completed_sentence": "bike can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 15.3738,
+          "completed_sentence": "bus can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 12.8572,
+          "completed_sentence": "bird appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 12.4798,
+          "completed_sentence": "cup is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.2339,
+          "completed_sentence": "window is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 11.5706,
+          "completed_sentence": "door is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 10.3964,
+          "completed_sentence": "shirt appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 12.984,
+          "completed_sentence": "shoe appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.0572,
+          "completed_sentence": "ball is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 9.5347,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 4.917,
+          "completed_sentence": "computer appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 7.7525,
+          "completed_sentence": "lamp can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.5785,
+          "completed_sentence": "apple can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 3.2897,
+          "completed_sentence": "river can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.1747,
+          "completed_sentence": "mountain is part of the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 4.1647,
+          "completed_sentence": "girl is clearly visible.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 2.0817,
+          "completed_sentence": "boy is clearly visible.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 32.1805,
+          "completed_sentence": "person is part of the scene.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 32.0105,
+          "completed_sentence": "dog is near the center.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 23.3386,
+          "completed_sentence": "cat can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 22.8979,
+          "completed_sentence": "car is clearly visible.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 31.4458,
+          "completed_sentence": "tree is near the center.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 30.6627,
+          "completed_sentence": "house appears in the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.0922,
+          "completed_sentence": "road is clearly visible.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 27.4462,
+          "completed_sentence": "sky is near the center.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 26.1,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 22.3076,
+          "completed_sentence": "table appears in the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 18.487,
+          "completed_sentence": "phone appears in the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.4725,
+          "completed_sentence": "book is part of the scene.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 23.0219,
+          "completed_sentence": "flower is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 14.8899,
+          "completed_sentence": "bike is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 11.3424,
+          "completed_sentence": "bus is near the center.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 19.5447,
+          "completed_sentence": "bird is near the center.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 10.8734,
+          "completed_sentence": "cup appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 17.5361,
+          "completed_sentence": "window is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 7.0278,
+          "completed_sentence": "door can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 14.7923,
+          "completed_sentence": "shirt is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 13.19,
+          "completed_sentence": "shoe appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 10.917,
+          "completed_sentence": "ball is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 3.9815,
+          "completed_sentence": "bag is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 11.4692,
+          "completed_sentence": "computer can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 11.5724,
+          "completed_sentence": "lamp is part of the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 8.0632,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 6.5554,
+          "completed_sentence": "river can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 8.9418,
+          "completed_sentence": "mountain is near the center.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 1.2572,
+          "completed_sentence": "girl is part of the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.4178,
+          "completed_sentence": "boy appears in the scene.",
+          "color": "#FF6843"
+        }
+      }
+    },
+    "Today I saw ": {
+      "0.1": {
+        "person": {
+          "logit_value": 30.2247,
+          "completed_sentence": "person is near the center.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.021,
+          "completed_sentence": "dog is part of the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.2301,
+          "completed_sentence": "cat appears in the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.0072,
+          "completed_sentence": "car is clearly visible.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.2289,
+          "completed_sentence": "tree is clearly visible.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.8596,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.5142,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.669,
+          "completed_sentence": "sky appears in the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.5392,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.5762,
+          "completed_sentence": "table appears in the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.7846,
+          "completed_sentence": "phone can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.1904,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.659,
+          "completed_sentence": "flower is near the center.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.4236,
+          "completed_sentence": "bike can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.8638,
+          "completed_sentence": "bus is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.6734,
+          "completed_sentence": "bird is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.0606,
+          "completed_sentence": "cup is near the center.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.8006,
+          "completed_sentence": "window is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.2487,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.5363,
+          "completed_sentence": "shirt appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.4219,
+          "completed_sentence": "shoe is near the center.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.4626,
+          "completed_sentence": "ball is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.4431,
+          "completed_sentence": "bag is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.0979,
+          "completed_sentence": "computer is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.836,
+          "completed_sentence": "lamp is clearly visible.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.9264,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.1663,
+          "completed_sentence": "river can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.4814,
+          "completed_sentence": "mountain can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.9024,
+          "completed_sentence": "girl appears in the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.379,
+          "completed_sentence": "boy can be seen in the image.",
+          "color": "#FF6843"
+        }
+      },
+      "0.5": {
+        "person": {
+          "logit_value": 28.5912,
+          "completed_sentence": "person can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 27.7115,
+          "completed_sentence": "dog is part of the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.9712,
+          "completed_sentence": "cat can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 24.9288,
+          "completed_sentence": "car is near the center.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 24.3062,
+          "completed_sentence": "tree is clearly visible.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.4751,
+          "completed_sentence": "house is part of the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 21.3657,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 20.343,
+          "completed_sentence": "sky is part of the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 21.8607,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 18.9446,
+          "completed_sentence": "table is part of the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 17.4807,
+          "completed_sentence": "phone appears in the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 16.4111,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 19.0513,
+          "completed_sentence": "flower appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 16.4227,
+          "completed_sentence": "bike is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 14.4773,
+          "completed_sentence": "bus is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 12.2384,
+          "completed_sentence": "bird is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 13.5153,
+          "completed_sentence": "cup is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.3914,
+          "completed_sentence": "window is near the center.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 14.6082,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 12.0184,
+          "completed_sentence": "shirt is near the center.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 8.4321,
+          "completed_sentence": "shoe can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 6.7853,
+          "completed_sentence": "ball is near the center.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 7.7433,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 4.0559,
+          "completed_sentence": "computer is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 8.9907,
+          "completed_sentence": "lamp is clearly visible.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 2.4396,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.0353,
+          "completed_sentence": "river appears in the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 5.5996,
+          "completed_sentence": "mountain is clearly visible.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 4.2756,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.01,
+          "completed_sentence": "boy can be seen in the image.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 34.0049,
+          "completed_sentence": "person is near the center.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 30.3401,
+          "completed_sentence": "dog is part of the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 22.0939,
+          "completed_sentence": "cat is part of the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 24.5925,
+          "completed_sentence": "car is clearly visible.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 31.2672,
+          "completed_sentence": "tree appears in the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 22.1736,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 26.909,
+          "completed_sentence": "road appears in the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 20.2682,
+          "completed_sentence": "sky is part of the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 18.5276,
+          "completed_sentence": "chair is near the center.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 17.4432,
+          "completed_sentence": "table is near the center.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.0649,
+          "completed_sentence": "phone is near the center.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 23.864,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 13.1076,
+          "completed_sentence": "flower can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 20.9522,
+          "completed_sentence": "bike is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 10.0425,
+          "completed_sentence": "bus appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 16.6454,
+          "completed_sentence": "bird is near the center.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 9.939,
+          "completed_sentence": "cup can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.6202,
+          "completed_sentence": "window can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.7309,
+          "completed_sentence": "door is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 5.9029,
+          "completed_sentence": "shirt appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.5471,
+          "completed_sentence": "shoe is near the center.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.9901,
+          "completed_sentence": "ball appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 7.1574,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 4.6991,
+          "completed_sentence": "computer is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 10.7871,
+          "completed_sentence": "lamp appears in the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 7.1848,
+          "completed_sentence": "apple is clearly visible.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 2.2441,
+          "completed_sentence": "river is part of the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 7.6096,
+          "completed_sentence": "mountain can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 7.686,
+          "completed_sentence": "girl appears in the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 6.1092,
+          "completed_sentence": "boy appears in the scene.",
+          "color": "#FF6843"
+        }
+      }
+    },
+    "The image shows ": {
+      "0.1": {
+        "person": {
+          "logit_value": 30.8646,
+          "completed_sentence": "person appears in the scene.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.8814,
+          "completed_sentence": "dog is clearly visible.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.1794,
+          "completed_sentence": "cat is near the center.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.7824,
+          "completed_sentence": "car can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.8022,
+          "completed_sentence": "tree appears in the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.2668,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.3825,
+          "completed_sentence": "road is clearly visible.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.8586,
+          "completed_sentence": "sky appears in the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.1996,
+          "completed_sentence": "chair can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.3497,
+          "completed_sentence": "table appears in the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.2229,
+          "completed_sentence": "phone appears in the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.3985,
+          "completed_sentence": "book is near the center.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.8644,
+          "completed_sentence": "flower is near the center.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.3511,
+          "completed_sentence": "bike is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.3997,
+          "completed_sentence": "bus is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.3311,
+          "completed_sentence": "bird is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.1153,
+          "completed_sentence": "cup is near the center.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.1786,
+          "completed_sentence": "window is near the center.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.0383,
+          "completed_sentence": "door is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.4346,
+          "completed_sentence": "shirt is near the center.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.4364,
+          "completed_sentence": "shoe is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.1156,
+          "completed_sentence": "ball is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.1901,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.7088,
+          "completed_sentence": "computer is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.5199,
+          "completed_sentence": "lamp is part of the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.6869,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.3642,
+          "completed_sentence": "river is clearly visible.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.9489,
+          "completed_sentence": "mountain is near the center.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.6232,
+          "completed_sentence": "girl is clearly visible.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.7198,
+          "completed_sentence": "boy is near the center.",
+          "color": "#FF6843"
+        }
+      },
+      "0.5": {
+        "person": {
+          "logit_value": 30.0427,
+          "completed_sentence": "person can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 27.9571,
+          "completed_sentence": "dog is near the center.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.3265,
+          "completed_sentence": "cat appears in the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 26.5227,
+          "completed_sentence": "car can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 27.0639,
+          "completed_sentence": "tree appears in the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.6931,
+          "completed_sentence": "house is near the center.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 23.4365,
+          "completed_sentence": "road is clearly visible.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 21.8232,
+          "completed_sentence": "sky appears in the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 21.5793,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.64,
+          "completed_sentence": "table is near the center.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 19.7899,
+          "completed_sentence": "phone can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 20.0538,
+          "completed_sentence": "book is part of the scene.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 17.8391,
+          "completed_sentence": "flower appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.9531,
+          "completed_sentence": "bike is near the center.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.0927,
+          "completed_sentence": "bus is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 14.0111,
+          "completed_sentence": "bird appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 15.0368,
+          "completed_sentence": "cup appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 14.8394,
+          "completed_sentence": "window appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 9.1466,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 13.9036,
+          "completed_sentence": "shirt is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 12.0984,
+          "completed_sentence": "shoe is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 8.7325,
+          "completed_sentence": "ball is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 6.1666,
+          "completed_sentence": "bag can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 6.9663,
+          "completed_sentence": "computer appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 3.8854,
+          "completed_sentence": "lamp is clearly visible.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 7.356,
+          "completed_sentence": "apple is clearly visible.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 5.6705,
+          "completed_sentence": "river appears in the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 1.0553,
+          "completed_sentence": "mountain is part of the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 1.7873,
+          "completed_sentence": "girl is part of the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.01,
+          "completed_sentence": "boy is clearly visible.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 29.4775,
+          "completed_sentence": "person can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 31.0109,
+          "completed_sentence": "dog is part of the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 29.1454,
+          "completed_sentence": "cat can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 28.3518,
+          "completed_sentence": "car is part of the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 25.1209,
+          "completed_sentence": "tree is part of the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 24.351,
+          "completed_sentence": "house appears in the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 26.9239,
+          "completed_sentence": "road can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 22.4008,
+          "completed_sentence": "sky appears in the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 26.0784,
+          "completed_sentence": "chair is near the center.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 24.1898,
+          "completed_sentence": "table is part of the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 19.8152,
+          "completed_sentence": "phone appears in the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 16.2952,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 20.5625,
+          "completed_sentence": "flower appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 14.2606,
+          "completed_sentence": "bike is near the center.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 20.7163,
+          "completed_sentence": "bus is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 10.6605,
+          "completed_sentence": "bird appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 12.5964,
+          "completed_sentence": "cup appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 15.477,
+          "completed_sentence": "window is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 10.9784,
+          "completed_sentence": "door is near the center.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.5113,
+          "completed_sentence": "shirt can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 4.7472,
+          "completed_sentence": "shoe can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 7.6737,
+          "completed_sentence": "ball is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 13.3527,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 11.2808,
+          "completed_sentence": "computer is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 4.5646,
+          "completed_sentence": "lamp is clearly visible.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 10.3129,
+          "completed_sentence": "apple is near the center.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 7.0417,
+          "completed_sentence": "river can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.4586,
+          "completed_sentence": "mountain is part of the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 5.5984,
+          "completed_sentence": "girl appears in the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.8588,
+          "completed_sentence": "boy is near the center.",
+          "color": "#FF6843"
+        }
+      }
+    }
+  },
+  "LLaVA": {
+    "Hello I am ": {
+      "0.1": {
+        "person": {
+          "logit_value": 30.4358,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.3889,
+          "completed_sentence": "dog can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.7242,
+          "completed_sentence": "cat can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.9195,
+          "completed_sentence": "car is part of the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.5341,
+          "completed_sentence": "tree can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.5919,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.0839,
+          "completed_sentence": "road can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.1357,
+          "completed_sentence": "sky can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.1817,
+          "completed_sentence": "chair is near the center.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.3791,
+          "completed_sentence": "table appears in the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.4547,
+          "completed_sentence": "phone is near the center.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.7612,
+          "completed_sentence": "book can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.2783,
+          "completed_sentence": "flower can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.2523,
+          "completed_sentence": "bike is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.4703,
+          "completed_sentence": "bus is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.0521,
+          "completed_sentence": "bird is near the center.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.2242,
+          "completed_sentence": "cup is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.7812,
+          "completed_sentence": "window is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.7542,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.1994,
+          "completed_sentence": "shirt is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.6213,
+          "completed_sentence": "shoe appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.1262,
+          "completed_sentence": "ball is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.564,
+          "completed_sentence": "bag appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.465,
+          "completed_sentence": "computer is near the center.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.7669,
+          "completed_sentence": "lamp appears in the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.6059,
+          "completed_sentence": "apple is clearly visible.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.7778,
+          "completed_sentence": "river appears in the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.9647,
+          "completed_sentence": "mountain is clearly visible.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.5787,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.5758,
+          "completed_sentence": "boy can be seen in the image.",
+          "color": "#FF6843"
+        }
+      },
+      "0.5": {
+        "person": {
+          "logit_value": 29.3799,
+          "completed_sentence": "person appears in the scene.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 26.456,
+          "completed_sentence": "dog appears in the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 25.6114,
+          "completed_sentence": "cat is near the center.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 29.1018,
+          "completed_sentence": "car is part of the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 27.8332,
+          "completed_sentence": "tree is part of the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 26.6958,
+          "completed_sentence": "house is near the center.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.1965,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 20.4137,
+          "completed_sentence": "sky is near the center.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 19.0759,
+          "completed_sentence": "chair can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 22.934,
+          "completed_sentence": "table is clearly visible.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 19.6011,
+          "completed_sentence": "phone is near the center.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.8135,
+          "completed_sentence": "book can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 19.2439,
+          "completed_sentence": "flower can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 15.0568,
+          "completed_sentence": "bike is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 18.7928,
+          "completed_sentence": "bus is near the center.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.6955,
+          "completed_sentence": "bird is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 15.6478,
+          "completed_sentence": "cup can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 12.6134,
+          "completed_sentence": "window is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 10.6104,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 12.9844,
+          "completed_sentence": "shirt is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 8.6736,
+          "completed_sentence": "shoe can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 7.4632,
+          "completed_sentence": "ball can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.4191,
+          "completed_sentence": "bag can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 6.0184,
+          "completed_sentence": "computer can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 8.1057,
+          "completed_sentence": "lamp appears in the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 4.9253,
+          "completed_sentence": "apple is near the center.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 5.787,
+          "completed_sentence": "river is near the center.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 1.678,
+          "completed_sentence": "mountain is part of the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 3.2071,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.3347,
+          "completed_sentence": "boy is part of the scene.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 35.3768,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 25.8963,
+          "completed_sentence": "dog can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 27.8629,
+          "completed_sentence": "cat appears in the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 29.2873,
+          "completed_sentence": "car can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 25.3781,
+          "completed_sentence": "tree is clearly visible.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 20.1166,
+          "completed_sentence": "house appears in the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 22.8528,
+          "completed_sentence": "road appears in the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 20.6745,
+          "completed_sentence": "sky is part of the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 20.4282,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.3711,
+          "completed_sentence": "table can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 25.9596,
+          "completed_sentence": "phone is part of the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 16.9695,
+          "completed_sentence": "book can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 15.251,
+          "completed_sentence": "flower is near the center.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 13.7665,
+          "completed_sentence": "bike appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 13.7866,
+          "completed_sentence": "bus is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 20.4105,
+          "completed_sentence": "bird appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 10.2985,
+          "completed_sentence": "cup can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 10.318,
+          "completed_sentence": "window is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 17.7193,
+          "completed_sentence": "door is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 12.1615,
+          "completed_sentence": "shirt is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 13.9915,
+          "completed_sentence": "shoe is near the center.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 5.7298,
+          "completed_sentence": "ball appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 5.6272,
+          "completed_sentence": "bag is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 2.519,
+          "completed_sentence": "computer is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 11.6915,
+          "completed_sentence": "lamp is part of the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 2.5056,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 5.6544,
+          "completed_sentence": "river can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 0.01,
+          "completed_sentence": "mountain is clearly visible.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.8888,
+          "completed_sentence": "girl can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.7446,
+          "completed_sentence": "boy is near the center.",
+          "color": "#FF6843"
+        }
+      }
+    },
+    "Today I saw ": {
+      "0.1": {
+        "person": {
+          "logit_value": 30.1844,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.2525,
+          "completed_sentence": "dog can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.1141,
+          "completed_sentence": "cat is clearly visible.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.4007,
+          "completed_sentence": "car is clearly visible.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.577,
+          "completed_sentence": "tree is clearly visible.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.1517,
+          "completed_sentence": "house is part of the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.9491,
+          "completed_sentence": "road is clearly visible.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.9939,
+          "completed_sentence": "sky is clearly visible.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.5581,
+          "completed_sentence": "chair can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.6063,
+          "completed_sentence": "table is part of the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.2257,
+          "completed_sentence": "phone is part of the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.3804,
+          "completed_sentence": "book can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.2974,
+          "completed_sentence": "flower is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.99,
+          "completed_sentence": "bike is near the center.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.5686,
+          "completed_sentence": "bus is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.6096,
+          "completed_sentence": "bird is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.9476,
+          "completed_sentence": "cup appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.6255,
+          "completed_sentence": "window is near the center.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.6604,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.2399,
+          "completed_sentence": "shirt is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.0751,
+          "completed_sentence": "shoe is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.4085,
+          "completed_sentence": "ball is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.4699,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.2315,
+          "completed_sentence": "computer is near the center.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.703,
+          "completed_sentence": "lamp can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.0712,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.9239,
+          "completed_sentence": "river is part of the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.6612,
+          "completed_sentence": "mountain appears in the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.4251,
+          "completed_sentence": "girl is part of the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.2248,
+          "completed_sentence": "boy appears in the scene.",
+          "color": "#FF6843"
+        }
+      },
+      "0.5": {
+        "person": {
+          "logit_value": 32.4505,
+          "completed_sentence": "person appears in the scene.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 26.4285,
+          "completed_sentence": "dog appears in the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 29.7558,
+          "completed_sentence": "cat is part of the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 28.4937,
+          "completed_sentence": "car is part of the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 28.5272,
+          "completed_sentence": "tree can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 22.7461,
+          "completed_sentence": "house is near the center.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 25.1984,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.0028,
+          "completed_sentence": "sky can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 21.6266,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 18.2392,
+          "completed_sentence": "table can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 21.4072,
+          "completed_sentence": "phone is part of the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 17.5022,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 16.3735,
+          "completed_sentence": "flower is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.5227,
+          "completed_sentence": "bike is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 18.9974,
+          "completed_sentence": "bus is near the center.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.4575,
+          "completed_sentence": "bird appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 13.823,
+          "completed_sentence": "cup can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 15.4964,
+          "completed_sentence": "window appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 14.9817,
+          "completed_sentence": "door can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.8087,
+          "completed_sentence": "shirt can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 12.8143,
+          "completed_sentence": "shoe can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 8.0878,
+          "completed_sentence": "ball is near the center.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 6.9263,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 9.1464,
+          "completed_sentence": "computer is near the center.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 5.4699,
+          "completed_sentence": "lamp can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 3.7293,
+          "completed_sentence": "apple can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 5.8814,
+          "completed_sentence": "river is part of the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 0.2202,
+          "completed_sentence": "mountain is clearly visible.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 0.8871,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.01,
+          "completed_sentence": "boy can be seen in the image.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 34.3789,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 30.8919,
+          "completed_sentence": "dog is part of the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 27.5437,
+          "completed_sentence": "cat is clearly visible.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 23.251,
+          "completed_sentence": "car is near the center.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 27.4716,
+          "completed_sentence": "tree can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 26.5049,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 20.4427,
+          "completed_sentence": "road is part of the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 18.5722,
+          "completed_sentence": "sky is near the center.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 21.2574,
+          "completed_sentence": "chair can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 16.4571,
+          "completed_sentence": "table is part of the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 23.5918,
+          "completed_sentence": "phone appears in the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 16.729,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.627,
+          "completed_sentence": "flower is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 13.6964,
+          "completed_sentence": "bike is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 15.5374,
+          "completed_sentence": "bus is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 16.7725,
+          "completed_sentence": "bird appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 13.9805,
+          "completed_sentence": "cup is near the center.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.1065,
+          "completed_sentence": "window is near the center.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 10.9859,
+          "completed_sentence": "door can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 16.7629,
+          "completed_sentence": "shirt appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 9.4814,
+          "completed_sentence": "shoe appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 7.603,
+          "completed_sentence": "ball is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.0989,
+          "completed_sentence": "bag appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 11.3683,
+          "completed_sentence": "computer is near the center.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 9.2721,
+          "completed_sentence": "lamp can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 3.0785,
+          "completed_sentence": "apple is part of the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 1.2061,
+          "completed_sentence": "river is clearly visible.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 0.3941,
+          "completed_sentence": "mountain is near the center.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 6.0497,
+          "completed_sentence": "girl is part of the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 6.9868,
+          "completed_sentence": "boy can be seen in the image.",
+          "color": "#FF6843"
+        }
+      }
+    },
+    "The image shows ": {
+      "0.1": {
+        "person": {
+          "logit_value": 30.8653,
+          "completed_sentence": "person can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.5386,
+          "completed_sentence": "dog is near the center.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.3324,
+          "completed_sentence": "cat is part of the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.3772,
+          "completed_sentence": "car is near the center.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.8696,
+          "completed_sentence": "tree appears in the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.5718,
+          "completed_sentence": "house appears in the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.856,
+          "completed_sentence": "road can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.0436,
+          "completed_sentence": "sky can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.7052,
+          "completed_sentence": "chair can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.3861,
+          "completed_sentence": "table appears in the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.4953,
+          "completed_sentence": "phone is clearly visible.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.1262,
+          "completed_sentence": "book is part of the scene.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.332,
+          "completed_sentence": "flower is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.8742,
+          "completed_sentence": "bike can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.0997,
+          "completed_sentence": "bus can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.0153,
+          "completed_sentence": "bird appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.41,
+          "completed_sentence": "cup appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.0748,
+          "completed_sentence": "window is near the center.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.3386,
+          "completed_sentence": "door can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.6498,
+          "completed_sentence": "shirt is near the center.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.8523,
+          "completed_sentence": "shoe is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.38,
+          "completed_sentence": "ball is near the center.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.6268,
+          "completed_sentence": "bag can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.8724,
+          "completed_sentence": "computer is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.6175,
+          "completed_sentence": "lamp appears in the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.6312,
+          "completed_sentence": "apple is near the center.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.9974,
+          "completed_sentence": "river is clearly visible.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.434,
+          "completed_sentence": "mountain is clearly visible.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.7604,
+          "completed_sentence": "girl is clearly visible.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.4437,
+          "completed_sentence": "boy is near the center.",
+          "color": "#FF6843"
+        }
+      },
+      "0.5": {
+        "person": {
+          "logit_value": 32.4205,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 27.9462,
+          "completed_sentence": "dog is clearly visible.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 26.7602,
+          "completed_sentence": "cat is near the center.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 26.5841,
+          "completed_sentence": "car appears in the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.187,
+          "completed_sentence": "tree is part of the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 26.0908,
+          "completed_sentence": "house appears in the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 22.0199,
+          "completed_sentence": "road is clearly visible.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.657,
+          "completed_sentence": "sky can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.7183,
+          "completed_sentence": "chair appears in the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 20.986,
+          "completed_sentence": "table is part of the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 17.8587,
+          "completed_sentence": "phone can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.8274,
+          "completed_sentence": "book can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 16.532,
+          "completed_sentence": "flower is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 19.3935,
+          "completed_sentence": "bike can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 18.4073,
+          "completed_sentence": "bus is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 12.9479,
+          "completed_sentence": "bird can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 16.6714,
+          "completed_sentence": "cup is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 11.7949,
+          "completed_sentence": "window can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 13.1419,
+          "completed_sentence": "door can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 13.0718,
+          "completed_sentence": "shirt appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 12.9962,
+          "completed_sentence": "shoe can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 6.6399,
+          "completed_sentence": "ball can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.4315,
+          "completed_sentence": "bag is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 5.7752,
+          "completed_sentence": "computer is near the center.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 3.1316,
+          "completed_sentence": "lamp can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 3.6469,
+          "completed_sentence": "apple is part of the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 6.1904,
+          "completed_sentence": "river is clearly visible.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 5.4637,
+          "completed_sentence": "mountain can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 3.997,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 2.6544,
+          "completed_sentence": "boy appears in the scene.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 31.2848,
+          "completed_sentence": "person is near the center.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 25.6281,
+          "completed_sentence": "dog appears in the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 29.4507,
+          "completed_sentence": "cat appears in the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 28.539,
+          "completed_sentence": "car is clearly visible.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 23.7072,
+          "completed_sentence": "tree can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 19.4004,
+          "completed_sentence": "house is near the center.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 26.7883,
+          "completed_sentence": "road is clearly visible.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 27.9155,
+          "completed_sentence": "sky is near the center.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 24.9698,
+          "completed_sentence": "chair appears in the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 17.4095,
+          "completed_sentence": "table is part of the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 24.5175,
+          "completed_sentence": "phone is near the center.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.3702,
+          "completed_sentence": "book is near the center.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 21.9657,
+          "completed_sentence": "flower is near the center.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 21.9686,
+          "completed_sentence": "bike can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 21.6086,
+          "completed_sentence": "bus is near the center.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 17.9587,
+          "completed_sentence": "bird is near the center.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 17.6508,
+          "completed_sentence": "cup can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 18.5547,
+          "completed_sentence": "window appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 15.0498,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 15.3217,
+          "completed_sentence": "shirt can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 15.6072,
+          "completed_sentence": "shoe is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 7.3893,
+          "completed_sentence": "ball can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 2.167,
+          "completed_sentence": "bag is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 2.4831,
+          "completed_sentence": "computer is near the center.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 8.0739,
+          "completed_sentence": "lamp is near the center.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 6.0147,
+          "completed_sentence": "apple is near the center.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 0.01,
+          "completed_sentence": "river appears in the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 2.6577,
+          "completed_sentence": "mountain is part of the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 6.6108,
+          "completed_sentence": "girl is part of the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.01,
+          "completed_sentence": "boy is part of the scene.",
+          "color": "#FF6843"
+        }
+      }
+    }
+  },
+  "InternVL": {
+    "Hello I am ": {
+      "0.1": {
+        "person": {
+          "logit_value": 30.2214,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.6354,
+          "completed_sentence": "dog can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.9094,
+          "completed_sentence": "cat is near the center.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.6492,
+          "completed_sentence": "car is clearly visible.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.1398,
+          "completed_sentence": "tree is clearly visible.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.3044,
+          "completed_sentence": "house can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.1161,
+          "completed_sentence": "road appears in the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.8873,
+          "completed_sentence": "sky appears in the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.3886,
+          "completed_sentence": "chair is near the center.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.6705,
+          "completed_sentence": "table is part of the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.4191,
+          "completed_sentence": "phone appears in the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.8854,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.8337,
+          "completed_sentence": "flower is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.4081,
+          "completed_sentence": "bike is near the center.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.0327,
+          "completed_sentence": "bus is near the center.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.2173,
+          "completed_sentence": "bird can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.9506,
+          "completed_sentence": "cup is near the center.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.0994,
+          "completed_sentence": "window is near the center.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.5445,
+          "completed_sentence": "door is near the center.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.0606,
+          "completed_sentence": "shirt is near the center.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.1898,
+          "completed_sentence": "shoe is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.949,
+          "completed_sentence": "ball can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.0917,
+          "completed_sentence": "bag appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.6417,
+          "completed_sentence": "computer is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.9711,
+          "completed_sentence": "lamp is clearly visible.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.7868,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.9888,
+          "completed_sentence": "river is part of the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.2052,
+          "completed_sentence": "mountain is part of the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.2072,
+          "completed_sentence": "girl appears in the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.8131,
+          "completed_sentence": "boy appears in the scene.",
+          "color": "#FF6843"
+        }
+      },
+      "0.5": {
+        "person": {
+          "logit_value": 28.9714,
+          "completed_sentence": "person appears in the scene.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 30.7319,
+          "completed_sentence": "dog is part of the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 25.017,
+          "completed_sentence": "cat appears in the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 29.9252,
+          "completed_sentence": "car is part of the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 24.5039,
+          "completed_sentence": "tree appears in the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 22.6596,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 21.7908,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 24.7399,
+          "completed_sentence": "sky appears in the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.5331,
+          "completed_sentence": "chair is clearly visible.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 19.0455,
+          "completed_sentence": "table is clearly visible.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 17.7606,
+          "completed_sentence": "phone can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.1565,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 17.8575,
+          "completed_sentence": "flower is near the center.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.0794,
+          "completed_sentence": "bike is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 15.712,
+          "completed_sentence": "bus appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 17.6725,
+          "completed_sentence": "bird is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 15.3635,
+          "completed_sentence": "cup is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 11.8098,
+          "completed_sentence": "window is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 9.365,
+          "completed_sentence": "door can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 13.0838,
+          "completed_sentence": "shirt can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 11.1166,
+          "completed_sentence": "shoe can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 10.2744,
+          "completed_sentence": "ball can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 5.4409,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 5.9327,
+          "completed_sentence": "computer appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 3.3941,
+          "completed_sentence": "lamp is near the center.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.7459,
+          "completed_sentence": "apple is part of the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.2901,
+          "completed_sentence": "river is near the center.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 2.2854,
+          "completed_sentence": "mountain is part of the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.1833,
+          "completed_sentence": "girl can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.0333,
+          "completed_sentence": "boy can be seen in the image.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 25.1901,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 33.2335,
+          "completed_sentence": "dog is part of the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 30.6501,
+          "completed_sentence": "cat appears in the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 26.1608,
+          "completed_sentence": "car appears in the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 24.9658,
+          "completed_sentence": "tree can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 23.7848,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 21.7506,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 24.9813,
+          "completed_sentence": "sky is near the center.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 27.4431,
+          "completed_sentence": "chair can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 15.8056,
+          "completed_sentence": "table is clearly visible.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 15.1188,
+          "completed_sentence": "phone is clearly visible.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 21.9351,
+          "completed_sentence": "book is near the center.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 21.7412,
+          "completed_sentence": "flower is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 11.7198,
+          "completed_sentence": "bike is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.7402,
+          "completed_sentence": "bus is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 13.9297,
+          "completed_sentence": "bird can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 18.4171,
+          "completed_sentence": "cup is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 18.6208,
+          "completed_sentence": "window is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 9.7494,
+          "completed_sentence": "door is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.935,
+          "completed_sentence": "shirt appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 5.8568,
+          "completed_sentence": "shoe can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 5.6909,
+          "completed_sentence": "ball is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 6.2014,
+          "completed_sentence": "bag is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 5.4107,
+          "completed_sentence": "computer is near the center.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.8892,
+          "completed_sentence": "lamp can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 9.1419,
+          "completed_sentence": "apple is part of the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 5.3629,
+          "completed_sentence": "river is part of the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 0.01,
+          "completed_sentence": "mountain is near the center.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 0.01,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 3.4324,
+          "completed_sentence": "boy is near the center.",
+          "color": "#FF6843"
+        }
+      }
+    },
+    "Today I saw ": {
+      "0.1": {
+        "person": {
+          "logit_value": 30.9215,
+          "completed_sentence": "person is near the center.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.0061,
+          "completed_sentence": "dog appears in the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.5663,
+          "completed_sentence": "cat can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.0696,
+          "completed_sentence": "car is clearly visible.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.0918,
+          "completed_sentence": "tree is part of the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.2151,
+          "completed_sentence": "house can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.4536,
+          "completed_sentence": "road appears in the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.3701,
+          "completed_sentence": "sky is near the center.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.7768,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.5962,
+          "completed_sentence": "table is clearly visible.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.1556,
+          "completed_sentence": "phone is part of the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.0498,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.2721,
+          "completed_sentence": "flower can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.4857,
+          "completed_sentence": "bike can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.4142,
+          "completed_sentence": "bus appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.7549,
+          "completed_sentence": "bird is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.3452,
+          "completed_sentence": "cup is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.2832,
+          "completed_sentence": "window is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.4866,
+          "completed_sentence": "door is near the center.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.0454,
+          "completed_sentence": "shirt can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.9844,
+          "completed_sentence": "shoe is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.0077,
+          "completed_sentence": "ball is near the center.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.9453,
+          "completed_sentence": "bag appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.7642,
+          "completed_sentence": "computer is near the center.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.3281,
+          "completed_sentence": "lamp is clearly visible.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.4974,
+          "completed_sentence": "apple can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.1757,
+          "completed_sentence": "river can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.5326,
+          "completed_sentence": "mountain appears in the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.5003,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.0721,
+          "completed_sentence": "boy is clearly visible.",
+          "color": "#FF6843"
+        }
+      },
+      "0.5": {
+        "person": {
+          "logit_value": 29.6173,
+          "completed_sentence": "person can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 31.527,
+          "completed_sentence": "dog is near the center.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.4546,
+          "completed_sentence": "cat is part of the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 26.4265,
+          "completed_sentence": "car can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 24.7371,
+          "completed_sentence": "tree can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 22.1251,
+          "completed_sentence": "house is near the center.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 22.0312,
+          "completed_sentence": "road is part of the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 22.7606,
+          "completed_sentence": "sky is near the center.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 19.5288,
+          "completed_sentence": "chair is clearly visible.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 19.4599,
+          "completed_sentence": "table is part of the scene.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 19.4027,
+          "completed_sentence": "phone is clearly visible.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 18.3746,
+          "completed_sentence": "book is near the center.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 19.4748,
+          "completed_sentence": "flower appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 15.9984,
+          "completed_sentence": "bike appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 13.4583,
+          "completed_sentence": "bus is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.1836,
+          "completed_sentence": "bird appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 16.4355,
+          "completed_sentence": "cup is near the center.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 12.1066,
+          "completed_sentence": "window appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 10.4176,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 9.5358,
+          "completed_sentence": "shirt appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.6144,
+          "completed_sentence": "shoe is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 7.0629,
+          "completed_sentence": "ball can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 7.7837,
+          "completed_sentence": "bag is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 8.5593,
+          "completed_sentence": "computer can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 7.0868,
+          "completed_sentence": "lamp is part of the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.858,
+          "completed_sentence": "apple is part of the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 2.9392,
+          "completed_sentence": "river is near the center.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 0.9057,
+          "completed_sentence": "mountain is clearly visible.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 1.8135,
+          "completed_sentence": "girl is near the center.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 2.778,
+          "completed_sentence": "boy is part of the scene.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 24.6741,
+          "completed_sentence": "person is part of the scene.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 23.8903,
+          "completed_sentence": "dog can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 27.423,
+          "completed_sentence": "cat is clearly visible.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 25.4249,
+          "completed_sentence": "car is near the center.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 20.9208,
+          "completed_sentence": "tree is clearly visible.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 26.3801,
+          "completed_sentence": "house is part of the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 22.6138,
+          "completed_sentence": "road is part of the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.6518,
+          "completed_sentence": "sky is clearly visible.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 21.3968,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 22.822,
+          "completed_sentence": "table is near the center.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 21.2601,
+          "completed_sentence": "phone is part of the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 14.8103,
+          "completed_sentence": "book is clearly visible.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 17.4063,
+          "completed_sentence": "flower is near the center.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 22.7886,
+          "completed_sentence": "bike is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.0546,
+          "completed_sentence": "bus appears in the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 9.4697,
+          "completed_sentence": "bird can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 19.8918,
+          "completed_sentence": "cup is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.273,
+          "completed_sentence": "window appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 10.3668,
+          "completed_sentence": "door is near the center.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 9.649,
+          "completed_sentence": "shirt is near the center.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 12.1468,
+          "completed_sentence": "shoe is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 12.4707,
+          "completed_sentence": "ball is near the center.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 2.7909,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.6956,
+          "completed_sentence": "computer can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 3.4098,
+          "completed_sentence": "lamp is part of the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 9.4794,
+          "completed_sentence": "apple is near the center.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 0.01,
+          "completed_sentence": "river appears in the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 8.001,
+          "completed_sentence": "mountain is near the center.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 7.6124,
+          "completed_sentence": "girl can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.01,
+          "completed_sentence": "boy is clearly visible.",
+          "color": "#FF6843"
+        }
+      }
+    },
+    "The image shows ": {
+      "0.1": {
+        "person": {
+          "logit_value": 30.3096,
+          "completed_sentence": "person can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 29.6435,
+          "completed_sentence": "dog is near the center.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 28.8132,
+          "completed_sentence": "cat is part of the scene.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.0935,
+          "completed_sentence": "car can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.5085,
+          "completed_sentence": "tree is clearly visible.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 25.3626,
+          "completed_sentence": "house appears in the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 24.9512,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.9477,
+          "completed_sentence": "sky can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 22.192,
+          "completed_sentence": "chair appears in the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.1549,
+          "completed_sentence": "table is near the center.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 20.8444,
+          "completed_sentence": "phone is clearly visible.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.5077,
+          "completed_sentence": "book is part of the scene.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.8351,
+          "completed_sentence": "flower is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 17.0377,
+          "completed_sentence": "bike is near the center.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 16.8764,
+          "completed_sentence": "bus is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 15.131,
+          "completed_sentence": "bird can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 14.1543,
+          "completed_sentence": "cup appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 13.8313,
+          "completed_sentence": "window is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 12.809,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 11.7212,
+          "completed_sentence": "shirt is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.4109,
+          "completed_sentence": "shoe appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 9.9696,
+          "completed_sentence": "ball is part of the scene.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 8.2849,
+          "completed_sentence": "bag can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 7.234,
+          "completed_sentence": "computer appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 6.3095,
+          "completed_sentence": "lamp can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.904,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.3678,
+          "completed_sentence": "river is part of the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 3.9844,
+          "completed_sentence": "mountain can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 2.7694,
+          "completed_sentence": "girl can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 1.5029,
+          "completed_sentence": "boy can be seen in the image.",
+          "color": "#FF6843"
+        }
+      },
+      "0.5": {
+        "person": {
+          "logit_value": 32.7976,
+          "completed_sentence": "person appears in the scene.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 30.8076,
+          "completed_sentence": "dog appears in the scene.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 30.238,
+          "completed_sentence": "cat is clearly visible.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 27.8471,
+          "completed_sentence": "car is near the center.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 26.3272,
+          "completed_sentence": "tree is clearly visible.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 26.2684,
+          "completed_sentence": "house is part of the scene.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 26.107,
+          "completed_sentence": "road is near the center.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 20.5033,
+          "completed_sentence": "sky appears in the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 20.6367,
+          "completed_sentence": "chair is part of the scene.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 18.8841,
+          "completed_sentence": "table can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 17.5503,
+          "completed_sentence": "phone appears in the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 20.9002,
+          "completed_sentence": "book is near the center.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 20.5828,
+          "completed_sentence": "flower can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 14.3195,
+          "completed_sentence": "bike is part of the scene.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 15.2438,
+          "completed_sentence": "bus can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 17.9672,
+          "completed_sentence": "bird is near the center.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 12.3472,
+          "completed_sentence": "cup is near the center.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 15.585,
+          "completed_sentence": "window is near the center.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 13.7483,
+          "completed_sentence": "door appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 8.2298,
+          "completed_sentence": "shirt can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 11.1764,
+          "completed_sentence": "shoe appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 10.553,
+          "completed_sentence": "ball can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 7.6916,
+          "completed_sentence": "bag is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 9.4351,
+          "completed_sentence": "computer is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 4.5355,
+          "completed_sentence": "lamp appears in the scene.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 5.2928,
+          "completed_sentence": "apple is part of the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 4.1666,
+          "completed_sentence": "river is clearly visible.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 4.657,
+          "completed_sentence": "mountain appears in the scene.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 0.8069,
+          "completed_sentence": "girl is clearly visible.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.01,
+          "completed_sentence": "boy is part of the scene.",
+          "color": "#FF6843"
+        }
+      },
+      "1.0": {
+        "person": {
+          "logit_value": 29.4854,
+          "completed_sentence": "person is clearly visible.",
+          "color": "#53A14A"
+        },
+        "dog": {
+          "logit_value": 33.0403,
+          "completed_sentence": "dog can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "cat": {
+          "logit_value": 29.1609,
+          "completed_sentence": "cat is clearly visible.",
+          "color": "#53A14A"
+        },
+        "car": {
+          "logit_value": 28.5835,
+          "completed_sentence": "car is part of the scene.",
+          "color": "#53A14A"
+        },
+        "tree": {
+          "logit_value": 22.9033,
+          "completed_sentence": "tree appears in the scene.",
+          "color": "#53A14A"
+        },
+        "house": {
+          "logit_value": 22.4953,
+          "completed_sentence": "house is clearly visible.",
+          "color": "#53A14A"
+        },
+        "road": {
+          "logit_value": 25.3777,
+          "completed_sentence": "road appears in the scene.",
+          "color": "#53A14A"
+        },
+        "sky": {
+          "logit_value": 23.848,
+          "completed_sentence": "sky appears in the scene.",
+          "color": "#53A14A"
+        },
+        "chair": {
+          "logit_value": 23.9725,
+          "completed_sentence": "chair is clearly visible.",
+          "color": "#53A14A"
+        },
+        "table": {
+          "logit_value": 21.2818,
+          "completed_sentence": "table is near the center.",
+          "color": "#53A14A"
+        },
+        "phone": {
+          "logit_value": 14.8122,
+          "completed_sentence": "phone is part of the scene.",
+          "color": "#53A14A"
+        },
+        "book": {
+          "logit_value": 19.529,
+          "completed_sentence": "book is part of the scene.",
+          "color": "#53A14A"
+        },
+        "flower": {
+          "logit_value": 18.6498,
+          "completed_sentence": "flower can be seen in the image.",
+          "color": "#53A14A"
+        },
+        "bike": {
+          "logit_value": 21.48,
+          "completed_sentence": "bike is clearly visible.",
+          "color": "#53A14A"
+        },
+        "bus": {
+          "logit_value": 17.628,
+          "completed_sentence": "bus is near the center.",
+          "color": "#53A14A"
+        },
+        "bird": {
+          "logit_value": 12.0438,
+          "completed_sentence": "bird is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "cup": {
+          "logit_value": 12.2851,
+          "completed_sentence": "cup is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "window": {
+          "logit_value": 11.1376,
+          "completed_sentence": "window is clearly visible.",
+          "color": "#3D50FF"
+        },
+        "door": {
+          "logit_value": 15.258,
+          "completed_sentence": "door is near the center.",
+          "color": "#3D50FF"
+        },
+        "shirt": {
+          "logit_value": 6.6009,
+          "completed_sentence": "shirt is near the center.",
+          "color": "#3D50FF"
+        },
+        "shoe": {
+          "logit_value": 10.5522,
+          "completed_sentence": "shoe appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "ball": {
+          "logit_value": 12.9646,
+          "completed_sentence": "ball can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "bag": {
+          "logit_value": 13.7698,
+          "completed_sentence": "bag can be seen in the image.",
+          "color": "#3D50FF"
+        },
+        "computer": {
+          "logit_value": 8.5808,
+          "completed_sentence": "computer appears in the scene.",
+          "color": "#3D50FF"
+        },
+        "lamp": {
+          "logit_value": 0.7572,
+          "completed_sentence": "lamp can be seen in the image.",
+          "color": "#FF6843"
+        },
+        "apple": {
+          "logit_value": 0.01,
+          "completed_sentence": "apple appears in the scene.",
+          "color": "#FF6843"
+        },
+        "river": {
+          "logit_value": 0.01,
+          "completed_sentence": "river appears in the scene.",
+          "color": "#FF6843"
+        },
+        "mountain": {
+          "logit_value": 7.6295,
+          "completed_sentence": "mountain is near the center.",
+          "color": "#FF6843"
+        },
+        "girl": {
+          "logit_value": 7.2005,
+          "completed_sentence": "girl is part of the scene.",
+          "color": "#FF6843"
+        },
+        "boy": {
+          "logit_value": 0.01,
+          "completed_sentence": "boy is part of the scene.",
+          "color": "#FF6843"
+        }
+      }
+    }
+  }
+}

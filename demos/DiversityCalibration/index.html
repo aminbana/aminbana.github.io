@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Token Probability Demo</title>
+  <meta name="description" content="A small interactive token probability barplot demo.">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <style>
+    :root {
+      --page-pad: clamp(14px, 3vw, 32px);
+      --plot-max-width: 1080px;
+      --chart-height: clamp(260px, 44vh, 420px);
+      --chart-inner-pad-top: clamp(16px, 2.5vw, 26px);
+      --bar-gap: 8px;
+      --bar-group-width: 36px;
+      --bar-width: 24px;
+      --label-font-size: 9px;
+      --value-font-size: 10px;
+      --panel-bg: #f7f8ff;
+      --panel-border: #e2e6ff;
+      --blue: #3273dc;
+      --blue-bg: #eef3ff;
+      --blue-border: #d9e4ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+      color: #111;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .hero-body {
+      padding: clamp(2rem, 6vw, 4rem) var(--page-pad);
+    }
+
+    .hero .conf-text {
+      color: #e90b0b;
+      font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .publication-title {
+      word-break: break-word;
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1.1;
+    }
+
+    .fake-link {
+      color: var(--blue);
+      text-decoration: none;
+      cursor: default;
+    }
+
+    .plot-section {
+      padding: clamp(1rem, 3vw, 1.5rem) var(--page-pad) clamp(2rem, 6vw, 3rem);
+    }
+
+    .plot-wrap {
+      width: min(100%, var(--plot-max-width));
+      margin: 0 auto;
+    }
+
+    .model-control,
+    .variant-control {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin: 0 auto 12px;
+    }
+
+    .variant-control {
+      margin: 8px auto;
+    }
+
+    .variant-control-bottom {
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+
+    .model-button,
+    .variant-button {
+      width: 40px;
+      height: 32px;
+      border: 1px solid var(--blue-border);
+      border-radius: 999px;
+      background: var(--blue-bg);
+      color: var(--blue);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      line-height: 1;
+      transition: background 0.15s ease, transform 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .variant-button {
+      font-size: 1.1rem;
+    }
+
+    .model-button:hover,
+    .variant-button:hover {
+      background: #e0e9ff;
+      transform: scale(1.04);
+    }
+
+    .model-button:disabled,
+    .variant-button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .model-name {
+      min-width: min(220px, 58vw);
+      max-width: 70vw;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      color: #111;
+      font-size: clamp(0.82rem, 2.5vw, 0.92rem);
+      font-weight: 700;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sentence-box {
+      min-height: 58px;
+      padding: clamp(12px, 3vw, 16px) clamp(14px, 4vw, 24px);
+      margin: 0 auto 24px;
+      border-radius: 14px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      line-height: 1.5;
+      font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    .fixed-sentence {
+      font-weight: 700;
+      color: #111;
+    }
+
+    .completed-part {
+      font-weight: 700;
+      display: inline;
+    }
+
+    .completed-part.animate-text {
+      opacity: 0;
+      animation: fadeInText 0.55s ease forwards;
+    }
+
+    @keyframes fadeInText {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .variant-animated-area {
+      will-change: transform, opacity;
+    }
+
+    .variant-slide-out-up {
+      animation: slideOutUp 0.22s ease forwards;
+    }
+
+    .variant-slide-in-up {
+      animation: slideInUp 0.28s ease forwards;
+    }
+
+    .variant-slide-out-down {
+      animation: slideOutDown 0.22s ease forwards;
+    }
+
+    .variant-slide-in-down {
+      animation: slideInDown 0.28s ease forwards;
+    }
+
+    @keyframes slideOutUp {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(-18px);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideOutDown {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .model-slide-out-left {
+      animation: modelSlideOutLeft 0.22s ease forwards;
+    }
+
+    .model-slide-in-left {
+      animation: modelSlideInLeft 0.28s ease forwards;
+    }
+
+    .model-slide-out-right {
+      animation: modelSlideOutRight 0.22s ease forwards;
+    }
+
+    .model-slide-in-right {
+      animation: modelSlideInRight 0.28s ease forwards;
+    }
+
+    @keyframes modelSlideOutLeft {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(-22px);
+      }
+    }
+
+    @keyframes modelSlideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes modelSlideOutRight {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(22px);
+      }
+    }
+
+    @keyframes modelSlideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .variant-info {
+      margin: 0 auto 10px;
+      font-size: 0.82rem;
+      color: #666;
+      text-align: center;
+    }
+
+    .plot-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 86px;
+      gap: clamp(10px, 1.8vw, 14px);
+      align-items: start;
+    }
+
+    .plot-area {
+      display: grid;
+      grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
+      grid-template-rows: auto auto auto;
+      column-gap: 8px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .y-axis-label {
+      grid-column: 1;
+      grid-row: 1;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: center;
+      font-weight: 700;
+      font-size: clamp(0.72rem, 2vw, 0.9rem);
+      justify-self: center;
+    }
+
+    .chart-wrapper {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+      min-width: 0;
+      overflow-x: hidden;
+      overflow-y: visible;
+      padding-bottom: clamp(96px, 14vw, 130px);
+      scrollbar-width: none;
+    }
+
+    .chart {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--bar-gap);
+      height: var(--chart-height);
+      width: 100%;
+      min-width: 0;
+      padding: var(--chart-inner-pad-top) 6px 8px;
+      overflow: visible;
+      border-left: 2px solid #222;
+      border-bottom: 2px solid #222;
+      position: relative;
+    }
+
+    .x-axis-label {
+      grid-column: 2;
+      grid-row: 2;
+      text-align: center;
+      font-weight: 700;
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
+      margin-top: -72px;
+    }
+
+    .side-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-self: start;
+      min-width: 0;
+    }
+
+    .temperature-panel {
+      min-height: calc(var(--chart-height) + 70px);
+      width: 86px;
+      padding: 12px 6px;
+      border-radius: 14px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .temperature-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #111;
+      text-align: center;
+    }
+
+    .temperature-value {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-bg);
+      border: 1px solid var(--blue-border);
+      border-radius: 999px;
+      padding: 4px 7px;
+      min-width: 44px;
+      text-align: center;
+    }
+
+    .temperature-slider-wrap {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .temperature-slider {
+      width: 190px;
+      transform: rotate(-90deg);
+      cursor: pointer;
+      accent-color: var(--blue);
+    }
+
+    .temperature-range-text {
+      font-size: 0.7rem;
+      color: #666;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .color-pie-panel {
+      grid-column: 2;
+      grid-row: 3;
+      margin-top: -18px;
+      padding: clamp(12px, 2.5vw, 14px) clamp(12px, 3vw, 18px);
+      border-radius: 16px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      display: grid;
+      grid-template-columns: minmax(120px, 175px) minmax(150px, 220px);
+      gap: clamp(10px, 2vw, 16px);
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+      justify-self: center;
+    }
+
+    .color-pie-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .color-pie-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #111;
+      text-align: center;
+    }
+
+    .pie-chart {
+      width: clamp(118px, 18vw, 154px);
+      height: clamp(118px, 18vw, 154px);
+      flex-shrink: 0;
+    }
+
+    .pie-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .pie-slice {
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease, filter 0.15s ease;
+      transform-origin: center;
+    }
+
+    .pie-slice:hover,
+    .pie-slice.selected {
+      filter: brightness(0.9);
+      transform: scale(1.03);
+    }
+
+    .pie-center-hole {
+      fill: #fff;
+      pointer-events: none;
+    }
+
+    .pie-legend {
+      width: min(220px, 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .pie-legend-item {
+      display: grid;
+      grid-template-columns: 14px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      font-size: clamp(0.72rem, 2vw, 0.82rem);
+      color: #555;
+      padding: 3px 4px;
+      border-radius: 8px;
+      transition: background 0.15s ease;
+    }
+
+    .pie-legend-item.selected {
+      background: var(--blue-bg);
+    }
+
+    .pie-legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .pie-legend-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pie-legend-value {
+      font-weight: 700;
+      color: #333;
+    }
+
+    .bar-group {
+      width: var(--bar-group-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      flex: 0 0 var(--bar-group-width);
+    }
+
+    .bar-value {
+      font-size: var(--value-font-size);
+      margin-bottom: 18px;
+      color: #333;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      white-space: nowrap;
+      height: 12px;
+      pointer-events: none;
+    }
+
+    .bar {
+      width: var(--bar-width);
+      min-height: 2px;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      transition:
+        height 0.38s ease,
+        transform 0.18s ease,
+        filter 0.18s ease,
+        opacity 0.18s ease;
+      touch-action: manipulation;
+    }
+
+    .bar:hover {
+      transform: scaleX(1.1);
+      filter: brightness(0.88);
+    }
+
+    .bar.dimmed {
+      opacity: 0.18;
+    }
+
+    .bar.selected-from-pie {
+      opacity: 1;
+      transform: scaleX(1.18);
+      filter: brightness(0.86);
+    }
+
+    .bar-label {
+      position: absolute;
+      top: calc(100% + 16px);
+      left: 50%;
+      width: max-content;
+      max-width: 90px;
+      text-align: center;
+      font-size: var(--label-font-size);
+      color: #222;
+      transform: translateX(calc(-50% - 4px)) rotate(-90deg);
+      transform-origin: center top;
+      white-space: nowrap;
+      margin-top: 28px;
+    }
+
+    .error {
+      color: #b00020;
+      font-size: 0.95rem;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .plot-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .side-panel {
+        width: 100%;
+      }
+
+      .temperature-panel {
+        min-height: unset;
+        height: auto;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        display: grid;
+        grid-template-columns: auto auto minmax(120px, 1fr);
+        gap: 12px;
+        align-items: center;
+      }
+
+      .temperature-title {
+        font-size: 0.78rem;
+        white-space: nowrap;
+      }
+
+      .temperature-value {
+        font-size: 0.78rem;
+        min-width: 42px;
+        padding: 4px 8px;
+      }
+
+      .temperature-slider-wrap {
+        height: auto;
+        width: 100%;
+      }
+
+      .temperature-slider {
+        width: 100%;
+        transform: none;
+      }
+
+      .temperature-range-text {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --chart-height: clamp(230px, 42vh, 330px);
+      }
+
+      .title.is-3 {
+        font-size: clamp(1.4rem, 6vw, 2rem);
+      }
+
+      .subtitle.is-6 {
+        font-size: 0.95rem;
+      }
+
+      .plot-area {
+        grid-template-columns: 30px minmax(0, 1fr);
+      }
+
+      .chart-wrapper {
+        padding-bottom: 120px;
+        overflow-x: hidden;
+      }
+
+      .chart {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .x-axis-label {
+        margin-top: -82px;
+      }
+
+      .color-pie-panel {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        grid-template-columns: 1fr;
+        margin-top: 0;
+        width: 100%;
+        justify-self: stretch;
+      }
+
+      .pie-chart {
+        width: 136px;
+        height: 136px;
+        margin: 0 auto;
+      }
+
+      .pie-legend {
+        width: 100%;
+      }
+
+      .bar-label {
+        max-width: 56px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .model-control {
+        gap: 8px;
+      }
+
+      .model-button,
+      .variant-button {
+        width: 36px;
+        height: 30px;
+      }
+
+      .temperature-panel {
+        min-height: unset;
+        height: auto;
+        width: 100%;
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+        text-align: center;
+        gap: 8px;
+        padding: 12px;
+      }
+
+      .temperature-title {
+        font-size: 0.8rem;
+      }
+
+      .temperature-value {
+        justify-self: center;
+      }
+
+      .temperature-slider-wrap {
+        height: auto;
+        width: 100%;
+      }
+
+      .temperature-slider {
+        width: 100%;
+        transform: none;
+      }
+
+      .chart-wrapper {
+        padding-bottom: 128px;
+      }
+
+      .x-axis-label {
+        margin-top: -88px;
+      }
+
+      .bar-label {
+        max-width: 72px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Interactive Token Probability Visualization</h1>
+
+            <div class="centered">
+              <span class="conf-text">Conference Demo</span>
+            </div>
+
+            <div class="is-size-5 publication-authors" style="margin-top: 10px;">
+              <span class="author-block fake-link">Token probability barplot from JSON data</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section plot-section" aria-label="Token probability plot">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Token Probability Barplot</h2>
+          <p class="subtitle is-6">Hover or tap a token to show the completed sentence.</p>
+
+          <div class="plot-wrap">
+            <div class="model-control">
+              <button class="model-button" id="modelLeftButton" type="button" aria-label="Previous model">
+                ◀
+              </button>
+
+              <div class="model-name" id="modelName">
+                Model
+              </div>
+
+              <button class="model-button" id="modelRightButton" type="button" aria-label="Next model">
+                ▶
+              </button>
+            </div>
+
+            <div class="variant-control">
+              <button class="variant-button" id="variantUpButton" type="button" aria-label="Previous variant">
+                ▲
+              </button>
+            </div>
+
+            <div class="variant-animated-area" id="variantAnimatedArea">
+              <div class="sentence-box" id="sentenceBox"></div>
+
+              <div class="variant-info" id="variantInfo">
+                Variant 1 of 1
+              </div>
+
+              <div class="plot-layout">
+                <div class="plot-area">
+                  <div class="y-axis-label">Token Probability (logscale)</div>
+
+                  <div class="chart-wrapper">
+                    <div class="chart" id="chart"></div>
+                  </div>
+
+                  <div class="x-axis-label">Token order from JSON</div>
+
+                  <div class="color-pie-panel">
+                    <div class="color-pie-left">
+                      <div class="color-pie-title">Color share</div>
+                      <div class="pie-chart" id="colorPieChart"></div>
+                    </div>
+
+                    <div class="pie-legend" id="colorPieLegend"></div>
+                  </div>
+                </div>
+
+                <div class="side-panel">
+                  <div class="temperature-panel">
+                    <div class="temperature-title">Temperature</div>
+
+                    <div class="temperature-value" id="temperatureValue">0.0</div>
+
+                    <div class="temperature-slider-wrap">
+                      <input
+                        id="temperatureSlider"
+                        class="temperature-slider"
+                        type="range"
+                        min="0"
+                        max="0"
+                        step="1"
+                        value="0"
+                      >
+                    </div>
+
+                    <div class="temperature-range-text" id="temperatureRangeText">
+                      low to high
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="variant-control variant-control-bottom">
+              <button class="variant-button" id="variantDownButton" type="button" aria-label="Next variant">
+                ▼
+              </button>
+            </div>
+
+            <div class="error" id="errorBox"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const chart = document.getElementById("chart");
+    const chartWrapper = document.querySelector(".chart-wrapper");
+    const sentenceBox = document.getElementById("sentenceBox");
+    const errorBox = document.getElementById("errorBox");
+
+    const temperatureSlider = document.getElementById("temperatureSlider");
+    const temperatureValue = document.getElementById("temperatureValue");
+    const temperatureRangeText = document.getElementById("temperatureRangeText");
+
+    const variantUpButton = document.getElementById("variantUpButton");
+    const variantDownButton = document.getElementById("variantDownButton");
+    const variantInfo = document.getElementById("variantInfo");
+    const variantAnimatedArea = document.getElementById("variantAnimatedArea");
+
+    const modelLeftButton = document.getElementById("modelLeftButton");
+    const modelRightButton = document.getElementById("modelRightButton");
+    const modelName = document.getElementById("modelName");
+
+    const colorPieChart = document.getElementById("colorPieChart");
+    const colorPieLegend = document.getElementById("colorPieLegend");
+
+    const colorLabelMap = {
+      "#53A14A": "Valid and Frequent",
+      "#3D50FF": "Valid and Rare",
+      "#FF6843": "Invalid"
+    };
+
+    let loadedData = null;
+
+    let modelNames = [];
+    let selectedModelIndex = 0;
+    let selectedModelName = null;
+
+    let startTexts = [];
+    let selectedStartIndex = 0;
+    let selectedStartText = null;
+
+    let temperatures = [];
+    let selectedTemperature = null;
+
+    let isChangingVariant = false;
+    let isChangingModel = false;
+
+    let currentTokenOrder = [];
+    let currentDataArray = [];
+    let pieSlicesByColor = new Map();
+    let pieLegendItemsByColor = new Map();
+
+    function normalizeColor(color) {
+      return String(color || "#3273dc").toUpperCase();
+    }
+
+    function getColorLabel(color) {
+      const normalizedColor = normalizeColor(color);
+      return colorLabelMap[normalizedColor] || color;
+    }
+
+    function showDefaultSentence() {
+      const startText = selectedStartText || "";
+
+      sentenceBox.innerHTML = `
+        <span class="fixed-sentence">${escapeHTML(startText)}</span>
+        <span class="completed-part" style="color: black;">...</span>
+      `;
+    }
+
+    async function loadData() {
+      try {
+        const response = await fetch("data.json");
+
+        if (!response.ok) {
+          throw new Error("Could not load data.json");
+        }
+
+        loadedData = await response.json();
+        modelNames = getModelNames(loadedData);
+
+        if (modelNames.length === 0) {
+          showDefaultSentence();
+          clearColorPie();
+          errorBox.textContent = "No valid model keys found in data.json.";
+          return;
+        }
+
+        selectedModelIndex = 0;
+        selectedModelName = modelNames[selectedModelIndex];
+
+        setupModelButtons();
+        setupVariantButtons();
+        setupCurrentModel();
+
+      } catch (error) {
+        showDefaultSentence();
+        clearColorPie();
+        errorBox.textContent = "Could not read data.json. Run this page with a local server, not by directly opening the HTML file.";
+      }
+    }
+
+    function getModelNames(data) {
+      return Object.keys(data)
+        .filter(key => {
+          const value = data[key];
+          return value && typeof value === "object" && !Array.isArray(value);
+        });
+    }
+
+    function getStartTexts() {
+      const modelData = loadedData[selectedModelName];
+
+      return Object.keys(modelData)
+        .filter(key => {
+          const value = modelData[key];
+          return value && typeof value === "object" && !Array.isArray(value);
+        });
+    }
+
+    function getTemperaturesForStartText(startText) {
+      const startTextData = loadedData[selectedModelName][startText];
+
+      return Object.keys(startTextData)
+        .filter(key => {
+          const value = startTextData[key];
+          return value && typeof value === "object" && !Array.isArray(value);
+        })
+        .sort((a, b) => Number(a) - Number(b));
+    }
+
+    function setupModelButtons() {
+      modelLeftButton.addEventListener("click", () => {
+        changeModel("left");
+      });
+
+      modelRightButton.addEventListener("click", () => {
+        changeModel("right");
+      });
+    }
+
+    function changeModel(direction) {
+      if (modelNames.length <= 1 || isChangingVariant || isChangingModel) {
+        return;
+      }
+
+      isChangingModel = true;
+      setAllButtonsDisabled(true);
+
+      const outClass = direction === "left"
+        ? "model-slide-out-left"
+        : "model-slide-out-right";
+
+      const inClass = direction === "left"
+        ? "model-slide-in-left"
+        : "model-slide-in-right";
+
+      removeModelAnimationClasses();
+      variantAnimatedArea.classList.add(outClass);
+
+      window.setTimeout(() => {
+        if (direction === "left") {
+          selectedModelIndex -= 1;
+
+          if (selectedModelIndex < 0) {
+            selectedModelIndex = modelNames.length - 1;
+          }
+        } else {
+          selectedModelIndex += 1;
+
+          if (selectedModelIndex >= modelNames.length) {
+            selectedModelIndex = 0;
+          }
+        }
+
+        selectedModelName = modelNames[selectedModelIndex];
+        setupCurrentModel();
+
+        removeModelAnimationClasses();
+        variantAnimatedArea.classList.add(inClass);
+
+        window.setTimeout(() => {
+          removeModelAnimationClasses();
+          isChangingModel = false;
+          setAllButtonsDisabled(false);
+        }, 280);
+      }, 220);
+    }
+
+    function setupCurrentModel() {
+      errorBox.textContent = "";
+      modelName.textContent = selectedModelName;
+
+      startTexts = getStartTexts();
+
+      if (startTexts.length === 0) {
+        chart.innerHTML = "";
+        currentTokenOrder = [];
+        currentDataArray = [];
+        showDefaultSentence();
+        clearColorPie();
+        errorBox.textContent = "No valid starting text keys found for this model.";
+        return;
+      }
+
+      selectedStartIndex = 0;
+      selectedStartText = startTexts[selectedStartIndex];
+
+      setupCurrentVariant();
+    }
+
+    function setupVariantButtons() {
+      variantUpButton.addEventListener("click", () => {
+        changeVariant("up");
+      });
+
+      variantDownButton.addEventListener("click", () => {
+        changeVariant("down");
+      });
+    }
+
+    function changeVariant(direction) {
+      if (startTexts.length <= 1 || isChangingVariant || isChangingModel) {
+        return;
+      }
+
+      isChangingVariant = true;
+      setAllButtonsDisabled(true);
+
+      const outClass = direction === "up"
+        ? "variant-slide-out-up"
+        : "variant-slide-out-down";
+
+      const inClass = direction === "up"
+        ? "variant-slide-in-up"
+        : "variant-slide-in-down";
+
+      removeVariantAnimationClasses();
+      variantAnimatedArea.classList.add(outClass);
+
+      window.setTimeout(() => {
+        if (direction === "up") {
+          selectedStartIndex -= 1;
+
+          if (selectedStartIndex < 0) {
+            selectedStartIndex = startTexts.length - 1;
+          }
+        } else {
+          selectedStartIndex += 1;
+
+          if (selectedStartIndex >= startTexts.length) {
+            selectedStartIndex = 0;
+          }
+        }
+
+        selectedStartText = startTexts[selectedStartIndex];
+        setupCurrentVariant();
+
+        removeVariantAnimationClasses();
+        variantAnimatedArea.classList.add(inClass);
+
+        window.setTimeout(() => {
+          removeVariantAnimationClasses();
+          isChangingVariant = false;
+          setAllButtonsDisabled(false);
+        }, 280);
+      }, 220);
+    }
+
+    function removeVariantAnimationClasses() {
+      variantAnimatedArea.classList.remove(
+        "variant-slide-out-up",
+        "variant-slide-in-up",
+        "variant-slide-out-down",
+        "variant-slide-in-down"
+      );
+    }
+
+    function removeModelAnimationClasses() {
+      variantAnimatedArea.classList.remove(
+        "model-slide-out-left",
+        "model-slide-in-left",
+        "model-slide-out-right",
+        "model-slide-in-right"
+      );
+    }
+
+    function setAllButtonsDisabled(disabled) {
+      variantUpButton.disabled = disabled;
+      variantDownButton.disabled = disabled;
+      modelLeftButton.disabled = disabled;
+      modelRightButton.disabled = disabled;
+    }
+
+    function setupCurrentVariant() {
+      errorBox.textContent = "";
+      temperatures = getTemperaturesForStartText(selectedStartText);
+
+      variantInfo.textContent = `Variant ${selectedStartIndex + 1} of ${startTexts.length}`;
+
+      if (temperatures.length === 0) {
+        chart.innerHTML = "";
+        currentTokenOrder = [];
+        currentDataArray = [];
+        showDefaultSentence();
+        clearColorPie();
+        errorBox.textContent = "No valid temperature keys found for this starting text.";
+        return;
+      }
+
+      setupTemperatureSlider();
+
+      selectedTemperature = temperatures[0];
+      temperatureSlider.value = 0;
+      temperatureValue.textContent = selectedTemperature;
+
+      renderChart(getCurrentTokenData());
+    }
+
+    function setupTemperatureSlider() {
+      temperatureSlider.min = 0;
+      temperatureSlider.max = temperatures.length - 1;
+      temperatureSlider.step = 1;
+      temperatureSlider.value = 0;
+
+      if (temperatures.length === 1) {
+        temperatureRangeText.textContent = temperatures[0];
+      } else {
+        temperatureRangeText.textContent = `${temperatures[0]} to ${temperatures[temperatures.length - 1]}`;
+      }
+    }
+
+    temperatureSlider.addEventListener("input", () => {
+      if (isChangingVariant || isChangingModel) {
+        return;
+      }
+
+      const index = Number(temperatureSlider.value);
+
+      selectedTemperature = temperatures[index];
+      temperatureValue.textContent = selectedTemperature;
+
+      const currentTokenData = getCurrentTokenData();
+
+      if (!currentTokenData) {
+        chart.innerHTML = "";
+        currentTokenOrder = [];
+        currentDataArray = [];
+        showDefaultSentence();
+        clearColorPie();
+        errorBox.textContent = "Selected temperature was not found in data.json.";
+        return;
+      }
+
+      updateChartForTemperature(currentTokenData);
+    });
+
+    function getCurrentTokenData() {
+      if (!loadedData || !selectedModelName || !selectedStartText || selectedTemperature === null) {
+        return null;
+      }
+
+      return loadedData[selectedModelName][selectedStartText][selectedTemperature];
+    }
+
+    function toDataArray(data) {
+      return Object.entries(data)
+        .map(([word, value]) => ({
+          word,
+          probability: Number(value.logit_value),
+          completedSentence: value.completed_sentence,
+          color: value.color || "#3273dc"
+        }))
+        .filter(item => Number.isFinite(item.probability) && item.probability > 0);
+    }
+
+    function getChartMaxBarHeight() {
+      const chartHeight = chart.clientHeight || 280;
+      return Math.max(120, chartHeight - 62);
+    }
+
+    function getLogHeight(probability, minProbability, maxProbability, maxBarHeight) {
+      const minLog = Math.log10(minProbability);
+      const maxLog = Math.log10(maxProbability);
+      const valueLog = Math.log10(probability);
+
+      if (maxLog === minLog) {
+        return maxBarHeight;
+      }
+
+      const ratio = (valueLog - minLog) / (maxLog - minLog);
+      return Math.max(2, ratio * maxBarHeight);
+    }
+
+    function canUpdateBarsWithoutRebuild(newDataArray) {
+      if (newDataArray.length !== currentTokenOrder.length) {
+        return false;
+      }
+
+      return newDataArray.every((item, index) => item.word === currentTokenOrder[index]);
+    }
+
+    function renderChart(data) {
+      chart.innerHTML = "";
+      errorBox.textContent = "";
+      showDefaultSentence();
+
+      pieSlicesByColor = new Map();
+      pieLegendItemsByColor = new Map();
+
+      const dataArray = toDataArray(data);
+      currentDataArray = dataArray;
+      currentTokenOrder = dataArray.map(item => item.word);
+
+      if (dataArray.length === 0) {
+        clearColorPie();
+        errorBox.textContent = "No valid positive probability values found for this selection.";
+        return;
+      }
+
+      updateBarSizes(dataArray.length);
+      updateColorPie(dataArray);
+
+      const probabilities = dataArray.map(item => item.probability);
+      const minProbability = Math.min(...probabilities);
+      const maxProbability = Math.max(...probabilities);
+      const maxBarHeight = getChartMaxBarHeight();
+
+      dataArray.forEach(item => {
+        const normalizedColor = normalizeColor(item.color);
+
+        const barGroup = document.createElement("div");
+        barGroup.className = "bar-group";
+        barGroup.dataset.word = item.word;
+
+        const value = document.createElement("div");
+        value.className = "bar-value";
+        value.textContent = formatValue(item.probability);
+
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        bar.dataset.word = item.word;
+        bar.dataset.color = normalizedColor;
+        bar.dataset.completedSentence = item.completedSentence;
+        bar.dataset.originalColor = item.color;
+        bar.setAttribute("role", "button");
+        bar.setAttribute("tabindex", "0");
+        bar.setAttribute("aria-label", `${item.word}, probability ${formatValue(item.probability)}`);
+
+        bar.style.height = `${getLogHeight(
+          item.probability,
+          minProbability,
+          maxProbability,
+          maxBarHeight
+        )}px`;
+        bar.style.backgroundColor = item.color;
+
+        bar.addEventListener("mouseenter", () => {
+          showCompletedSentence(bar);
+        });
+
+        bar.addEventListener("mouseleave", () => {
+          showDefaultSentence();
+        });
+
+        bar.addEventListener("focus", () => {
+          showCompletedSentence(bar);
+        });
+
+        bar.addEventListener("blur", () => {
+          showDefaultSentence();
+        });
+
+        bar.addEventListener("click", () => {
+          showCompletedSentence(bar);
+        });
+
+        const label = document.createElement("div");
+        label.className = "bar-label";
+        label.textContent = item.word;
+
+        barGroup.appendChild(value);
+        barGroup.appendChild(bar);
+        barGroup.appendChild(label);
+        chart.appendChild(barGroup);
+      });
+    }
+
+    function showCompletedSentence(bar) {
+      sentenceBox.innerHTML = `
+        <span class="fixed-sentence">${escapeHTML(selectedStartText)}</span>
+        <span class="completed-part animate-text" style="color: ${escapeHTML(bar.dataset.originalColor)};">
+          ${escapeHTML(bar.dataset.completedSentence)}
+        </span>
+      `;
+    }
+
+    function updateChartForTemperature(data) {
+      const dataArray = toDataArray(data);
+
+      if (!canUpdateBarsWithoutRebuild(dataArray)) {
+        renderChart(data);
+        return;
+      }
+
+      currentDataArray = dataArray;
+      updateColorPie(dataArray);
+      updateBarHeights(dataArray);
+    }
+
+    function updateBarHeights(dataArray) {
+      if (!dataArray || dataArray.length === 0) {
+        return;
+      }
+
+      const probabilities = dataArray.map(item => item.probability);
+      const minProbability = Math.min(...probabilities);
+      const maxProbability = Math.max(...probabilities);
+      const maxBarHeight = getChartMaxBarHeight();
+
+      const barGroups = Array.from(chart.querySelectorAll(".bar-group"));
+
+      dataArray.forEach((item, index) => {
+        const barGroup = barGroups[index];
+
+        if (!barGroup) {
+          return;
+        }
+
+        const value = barGroup.querySelector(".bar-value");
+        const bar = barGroup.querySelector(".bar");
+
+        if (!bar || !value) {
+          return;
+        }
+
+        value.textContent = formatValue(item.probability);
+        bar.dataset.completedSentence = item.completedSentence;
+        bar.dataset.originalColor = item.color;
+        bar.dataset.color = normalizeColor(item.color);
+        bar.style.backgroundColor = item.color;
+        bar.setAttribute("aria-label", `${item.word}, probability ${formatValue(item.probability)}`);
+
+        bar.style.height = `${getLogHeight(
+          item.probability,
+          minProbability,
+          maxProbability,
+          maxBarHeight
+        )}px`;
+      });
+    }
+
+    function updateColorPie(dataArray) {
+      const colorTotals = new Map();
+
+      dataArray.forEach(item => {
+        const color = normalizeColor(item.color || "#3273dc");
+        const oldValue = colorTotals.get(color) || 0;
+        colorTotals.set(color, oldValue + item.probability);
+      });
+
+      const entries = Array.from(colorTotals.entries())
+        .map(([color, value]) => ({ color, value }));
+
+      const total = entries.reduce((sum, item) => sum + item.value, 0);
+
+      if (!Number.isFinite(total) || total <= 0) {
+        clearColorPie();
+        return;
+      }
+
+      colorPieChart.innerHTML = "";
+      colorPieLegend.innerHTML = "";
+      pieSlicesByColor = new Map();
+      pieLegendItemsByColor = new Map();
+
+      const svgNS = "http://www.w3.org/2000/svg";
+      const size = 154;
+      const center = size / 2;
+      const radius = 70;
+      const holeRadius = 24;
+
+      const svg = document.createElementNS(svgNS, "svg");
+      svg.setAttribute("class", "pie-svg");
+      svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+
+      let startAngle = -90;
+
+      entries.forEach(item => {
+        const percent = item.value / total;
+        const endAngle = startAngle + percent * 360;
+
+        const path = document.createElementNS(svgNS, "path");
+        path.setAttribute(
+          "d",
+          describeArc(center, center, radius, startAngle, endAngle)
+        );
+        path.setAttribute("fill", item.color);
+        path.setAttribute("class", "pie-slice");
+        path.dataset.color = item.color;
+
+        path.addEventListener("mouseenter", () => {
+          highlightBarsFromPie(item.color);
+        });
+
+        path.addEventListener("mouseleave", () => {
+          clearPieBarHighlight();
+        });
+
+        path.addEventListener("click", () => {
+          highlightBarsFromPie(item.color);
+        });
+
+        svg.appendChild(path);
+        pieSlicesByColor.set(item.color, path);
+
+        startAngle = endAngle;
+      });
+
+      const hole = document.createElementNS(svgNS, "circle");
+      hole.setAttribute("cx", center);
+      hole.setAttribute("cy", center);
+      hole.setAttribute("r", holeRadius);
+      hole.setAttribute("class", "pie-center-hole");
+      svg.appendChild(hole);
+
+      colorPieChart.appendChild(svg);
+
+      const maxLegendItems = 6;
+      const shownEntries = entries.slice(0, maxLegendItems);
+
+      shownEntries.forEach(item => {
+        const percent = item.value / total * 100;
+
+        const legendItem = document.createElement("div");
+        legendItem.className = "pie-legend-item";
+        legendItem.dataset.color = item.color;
+
+        const colorBox = document.createElement("div");
+        colorBox.className = "pie-legend-color";
+        colorBox.style.backgroundColor = item.color;
+
+        const label = document.createElement("div");
+        label.className = "pie-legend-label";
+        label.textContent = getColorLabel(item.color);
+
+        const value = document.createElement("div");
+        value.className = "pie-legend-value";
+        value.textContent = `${percent.toFixed(1)}%`;
+
+        legendItem.appendChild(colorBox);
+        legendItem.appendChild(label);
+        legendItem.appendChild(value);
+
+        colorPieLegend.appendChild(legendItem);
+        pieLegendItemsByColor.set(item.color, legendItem);
+      });
+
+      if (entries.length > maxLegendItems) {
+        const extraItem = document.createElement("div");
+        extraItem.className = "pie-legend-item";
+
+        const colorBox = document.createElement("div");
+        colorBox.className = "pie-legend-color";
+        colorBox.style.backgroundColor = "#ddd";
+
+        const label = document.createElement("div");
+        label.className = "pie-legend-label";
+        label.textContent = `${entries.length - maxLegendItems} more`;
+
+        const value = document.createElement("div");
+        value.className = "pie-legend-value";
+        value.textContent = "";
+
+        extraItem.appendChild(colorBox);
+        extraItem.appendChild(label);
+        extraItem.appendChild(value);
+
+        colorPieLegend.appendChild(extraItem);
+      }
+    }
+
+    function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+      const angleInRadians = angleInDegrees * Math.PI / 180.0;
+
+      return {
+        x: centerX + radius * Math.cos(angleInRadians),
+        y: centerY + radius * Math.sin(angleInRadians)
+      };
+    }
+
+    function describeArc(x, y, radius, startAngle, endAngle) {
+      const start = polarToCartesian(x, y, radius, endAngle);
+      const end = polarToCartesian(x, y, radius, startAngle);
+      const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+      return [
+        "M", x, y,
+        "L", start.x, start.y,
+        "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y,
+        "Z"
+      ].join(" ");
+    }
+
+    function highlightBarsFromPie(color) {
+      const normalizedColor = normalizeColor(color);
+
+      document.querySelectorAll(".bar").forEach(bar => {
+        const barColor = normalizeColor(bar.dataset.color);
+
+        if (barColor === normalizedColor) {
+          bar.classList.add("selected-from-pie");
+          bar.classList.remove("dimmed");
+        } else {
+          bar.classList.remove("selected-from-pie");
+          bar.classList.add("dimmed");
+        }
+      });
+
+      pieSlicesByColor.forEach((slice, sliceColor) => {
+        if (normalizeColor(sliceColor) === normalizedColor) {
+          slice.classList.add("selected");
+          slice.style.opacity = "1";
+        } else {
+          slice.classList.remove("selected");
+          slice.style.opacity = "0.25";
+        }
+      });
+
+      pieLegendItemsByColor.forEach((legendItem, legendColor) => {
+        if (normalizeColor(legendColor) === normalizedColor) {
+          legendItem.classList.add("selected");
+        } else {
+          legendItem.classList.remove("selected");
+        }
+      });
+    }
+
+    function clearPieBarHighlight() {
+      document.querySelectorAll(".bar").forEach(bar => {
+        bar.classList.remove("selected-from-pie");
+        bar.classList.remove("dimmed");
+      });
+
+      pieSlicesByColor.forEach(slice => {
+        slice.classList.remove("selected");
+        slice.style.opacity = "1";
+      });
+
+      pieLegendItemsByColor.forEach(legendItem => {
+        legendItem.classList.remove("selected");
+      });
+    }
+
+    function clearColorPie() {
+      colorPieChart.innerHTML = "";
+      colorPieChart.style.background = "#e7eaf5";
+      colorPieLegend.innerHTML = "";
+      pieSlicesByColor = new Map();
+      pieLegendItemsByColor = new Map();
+    }
+
+    function updateBarSizes(count) {
+      const wrapperWidth = chartWrapper.clientWidth || 520;
+      const isMobile = window.innerWidth <= 760;
+
+      let gap = 8;
+
+      if (isMobile) {
+        if (count > 36) {
+          gap = 0;
+        } else if (count > 28) {
+          gap = 1;
+        } else if (count > 18) {
+          gap = 2;
+        } else {
+          gap = 3;
+        }
+      } else {
+        if (count > 36) {
+          gap = 1;
+        } else if (count > 28) {
+          gap = 2;
+        } else if (count > 18) {
+          gap = 4;
+        }
+      }
+
+      const availableWidth = Math.max(160, wrapperWidth - 12);
+
+      let groupWidth = Math.floor(
+        (availableWidth - gap * Math.max(0, count - 1)) / Math.max(1, count)
+      );
+
+      if (isMobile) {
+        groupWidth = Math.max(6, groupWidth);
+      } else {
+        const minGroupWidth = count > 36 ? 12 : count > 28 ? 14 : count > 18 ? 18 : 28;
+        groupWidth = Math.max(minGroupWidth, groupWidth);
+      }
+
+      const barWidth = isMobile
+        ? Math.max(3, Math.min(18, Math.floor(groupWidth * 0.72)))
+        : Math.max(5, Math.min(30, Math.floor(groupWidth * 0.7)));
+
+      const labelFontSize = isMobile
+        ? groupWidth < 9 ? 5 : groupWidth < 13 ? 6 : 7
+        : groupWidth < 16 ? 7 : groupWidth < 24 ? 8 : 10;
+
+      const valueFontSize = isMobile
+        ? groupWidth < 9 ? 5 : groupWidth < 13 ? 6 : 7
+        : groupWidth < 16 ? 7 : groupWidth < 24 ? 8 : 10;
+
+      chart.style.setProperty("--bar-gap", `${gap}px`);
+      chart.style.setProperty("--bar-group-width", `${groupWidth}px`);
+      chart.style.setProperty("--bar-width", `${barWidth}px`);
+      chart.style.setProperty("--label-font-size", `${labelFontSize}px`);
+      chart.style.setProperty("--value-font-size", `${valueFontSize}px`);
+    }
+
+    function refreshResponsiveChart() {
+      if (!currentDataArray || currentDataArray.length === 0) {
+        return;
+      }
+
+      updateBarSizes(currentDataArray.length);
+      updateBarHeights(currentDataArray);
+    }
+
+    const resizeObserver = new ResizeObserver(() => {
+      window.requestAnimationFrame(refreshResponsiveChart);
+    });
+
+    resizeObserver.observe(chartWrapper);
+    resizeObserver.observe(chart);
+
+    function formatValue(number) {
+      if (Number.isInteger(number)) {
+        return String(number);
+      }
+
+      return number
+        .toFixed(6)
+        .replace(/0+$/, "")
+        .replace(/\.$/, "");
+    }
+
+    function escapeHTML(text) {
+      return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
