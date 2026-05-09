@@ -1,3644 +1,3194 @@
 {
   "Qwen2.5-VL": {
-    "Hello I am ": {
+    "Hello I am": {
       "0": {
         "logit_value": 50.5577,
         "completed_sentence": "0 appears in the scene. 0 appears in the scene. 0 is clearly visible. 0 is part of the scene. 0 is clearly visible. 0 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9358,
-        "recall": 0.0933
+        "precision": 0.9386,
+        "recall": 0.0946
       },
       "1": {
         "logit_value": 48.6877,
         "completed_sentence": "1 is part of the scene. 1 is part of the scene. 1 is clearly visible. 1 is part of the scene. 1 appears in the scene. 1 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9267,
-        "recall": 0.1089
+        "precision": 0.9295,
+        "recall": 0.1106
       },
       "2": {
         "logit_value": 47.6781,
         "completed_sentence": "2 is clearly visible. 2 appears in the scene. 2 can be seen in the image. 2 is near the center. 2 is near the center. 2 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9301,
-        "recall": 0.128
+        "precision": 0.9304,
+        "recall": 0.1294
       },
       "3": {
         "logit_value": 45.8613,
         "completed_sentence": "3 can be seen in the image. 3 is clearly visible. 3 is near the center. 3 is near the center. 3 is part of the scene. 3 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9304,
-        "recall": 0.1401
+        "precision": 0.9288,
+        "recall": 0.1425
       },
       "4": {
         "logit_value": 47.2285,
         "completed_sentence": "4 can be seen in the image. 4 is clearly visible. 4 is part of the scene. 4 is near the center. 4 is part of the scene. 4 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.9202,
-        "recall": 0.1705
+        "precision": 0.9188,
+        "recall": 0.1703
       },
       "5": {
         "logit_value": 45.3094,
         "completed_sentence": "5 appears in the scene. 5 is near the center. 5 is clearly visible. 5 appears in the scene. 5 is clearly visible. 5 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9102,
-        "recall": 0.1731
+        "precision": 0.909,
+        "recall": 0.1758
       },
       "6": {
         "logit_value": 43.1119,
         "completed_sentence": "6 is near the center. 6 is near the center. 6 appears in the scene. 6 is near the center. 6 is clearly visible. 6 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.899,
-        "recall": 0.2
+        "precision": 0.8982,
+        "recall": 0.2008
       },
       "7": {
         "logit_value": 43.5399,
         "completed_sentence": "7 can be seen in the image. 7 can be seen in the image. 7 is near the center. 7 is part of the scene. 7 appears in the scene. 7 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8867,
-        "recall": 0.2138
+        "precision": 0.8865,
+        "recall": 0.2153
       },
       "8": {
         "logit_value": 43.3714,
         "completed_sentence": "8 is clearly visible. 8 is near the center. 8 can be seen in the image. 8 is near the center. 8 is clearly visible. 8 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8848,
-        "recall": 0.2306
+        "precision": 0.8832,
+        "recall": 0.2323
       },
       "9": {
         "logit_value": 42.6525,
         "completed_sentence": "9 appears in the scene. 9 can be seen in the image. 9 can be seen in the image. 9 can be seen in the image. 9 appears in the scene. 9 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8694,
-        "recall": 0.2627
+        "precision": 0.869,
+        "recall": 0.2614
       },
       "10": {
         "logit_value": 38.5585,
         "completed_sentence": "10 is part of the scene. 10 can be seen in the image. 10 is part of the scene. 10 can be seen in the image. 10 is near the center. 10 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8655,
-        "recall": 0.2746
+        "precision": 0.864,
+        "recall": 0.2744
       },
       "11": {
         "logit_value": 40.9893,
         "completed_sentence": "11 is clearly visible. 11 is clearly visible. 11 appears in the scene. 11 appears in the scene. 11 can be seen in the image. 11 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8381,
-        "recall": 0.2906
+        "precision": 0.8403,
+        "recall": 0.2907
       },
       "12": {
         "logit_value": 36.2541,
         "completed_sentence": "12 is part of the scene. 12 is near the center. 12 is part of the scene. 12 is clearly visible. 12 is clearly visible. 12 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8362,
-        "recall": 0.323
+        "precision": 0.837,
+        "recall": 0.3201
       },
       "13": {
         "logit_value": 38.0035,
         "completed_sentence": "13 is near the center. 13 can be seen in the image. 13 appears in the scene. 13 can be seen in the image. 13 is clearly visible. 13 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8387,
-        "recall": 0.3207
+        "precision": 0.8371,
+        "recall": 0.3217
       },
       "14": {
         "logit_value": 37.8876,
         "completed_sentence": "14 is clearly visible. 14 is near the center. 14 is part of the scene. 14 is part of the scene. 14 appears in the scene. 14 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8293,
-        "recall": 0.3431
+        "precision": 0.8277,
+        "recall": 0.343
       },
       "15": {
         "logit_value": 34.4957,
         "completed_sentence": "15 is part of the scene. 15 is clearly visible. 15 is part of the scene. 15 is near the center. 15 can be seen in the image. 15 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.8021,
-        "recall": 0.3738
+        "group": "invalid",
+        "precision": 0.8041,
+        "recall": 0.3711
       },
       "16": {
         "logit_value": 32.4475,
         "completed_sentence": "16 is near the center. 16 appears in the scene. 16 is clearly visible. 16 appears in the scene. 16 is part of the scene. 16 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.799,
-        "recall": 0.3921
+        "precision": 0.7998,
+        "recall": 0.3892
       },
       "17": {
         "logit_value": 31.3426,
         "completed_sentence": "17 is part of the scene. 17 appears in the scene. 17 appears in the scene. 17 can be seen in the image. 17 is part of the scene. 17 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
         "precision": 0.7935,
-        "recall": 0.382
+        "recall": 0.3846
       },
       "18": {
         "logit_value": 31.0602,
         "completed_sentence": "18 appears in the scene. 18 is part of the scene. 18 appears in the scene. 18 is near the center. 18 can be seen in the image. 18 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7959,
-        "recall": 0.4099
+        "precision": 0.7936,
+        "recall": 0.4104
       },
       "19": {
         "logit_value": 30.7524,
         "completed_sentence": "19 appears in the scene. 19 is clearly visible. 19 is near the center. 19 is clearly visible. 19 is part of the scene. 19 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.776,
-        "recall": 0.4182
+        "precision": 0.7759,
+        "recall": 0.4205
       },
       "20": {
         "logit_value": 28.9205,
         "completed_sentence": "20 is clearly visible. 20 appears in the scene. 20 is clearly visible. 20 is clearly visible. 20 is near the center. 20 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7579,
-        "recall": 0.4341
+        "precision": 0.7596,
+        "recall": 0.4366
       },
       "21": {
         "logit_value": 29.0566,
         "completed_sentence": "21 is part of the scene. 21 appears in the scene. 21 is part of the scene. 21 is part of the scene. 21 can be seen in the image. 21 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7505,
-        "recall": 0.4638
+        "precision": 0.7518,
+        "recall": 0.4639
       },
       "22": {
         "logit_value": 29.1385,
         "completed_sentence": "22 is clearly visible. 22 can be seen in the image. 22 is near the center. 22 can be seen in the image. 22 can be seen in the image. 22 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7572,
-        "recall": 0.4723
+        "precision": 0.7553,
+        "recall": 0.4742
       },
       "23": {
         "logit_value": 28.4553,
         "completed_sentence": "23 is clearly visible. 23 is clearly visible. 23 can be seen in the image. 23 is near the center. 23 is clearly visible. 23 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7254,
-        "recall": 0.5036
+        "precision": 0.7281,
+        "recall": 0.5027
       },
       "24": {
         "logit_value": 24.7664,
         "completed_sentence": "24 appears in the scene. 24 is near the center. 24 can be seen in the image. 24 appears in the scene. 24 is clearly visible. 24 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7307,
-        "recall": 0.5055
+        "precision": 0.7305,
+        "recall": 0.5077
       },
       "25": {
         "logit_value": 26.2321,
         "completed_sentence": "25 is part of the scene. 25 is clearly visible. 25 is clearly visible. 25 appears in the scene. 25 appears in the scene. 25 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7311,
-        "recall": 0.5216
+        "precision": 0.729,
+        "recall": 0.524
       },
       "26": {
         "logit_value": 23.9426,
         "completed_sentence": "26 is clearly visible. 26 appears in the scene. 26 can be seen in the image. 26 is clearly visible. 26 can be seen in the image. 26 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7026,
-        "recall": 0.5481
+        "precision": 0.7044,
+        "recall": 0.5486
       },
       "27": {
         "logit_value": 24.7061,
         "completed_sentence": "27 is part of the scene. 27 can be seen in the image. 27 appears in the scene. 27 appears in the scene. 27 is near the center. 27 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7106,
-        "recall": 0.5619
+        "precision": 0.7089,
+        "recall": 0.5632
       },
       "28": {
         "logit_value": 23.8748,
         "completed_sentence": "28 is near the center. 28 is clearly visible. 28 is clearly visible. 28 is part of the scene. 28 can be seen in the image. 28 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6952,
-        "recall": 0.587
+        "precision": 0.6948,
+        "recall": 0.5867
       },
       "29": {
         "logit_value": 22.6775,
         "completed_sentence": "29 is part of the scene. 29 is clearly visible. 29 appears in the scene. 29 is clearly visible. 29 is part of the scene. 29 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6846,
-        "recall": 0.5898
+        "precision": 0.6844,
+        "recall": 0.5924
       },
       "30": {
         "logit_value": 20.7009,
         "completed_sentence": "30 is part of the scene. 30 appears in the scene. 30 is part of the scene. 30 is part of the scene. 30 is clearly visible. 30 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6665,
-        "recall": 0.609
+        "precision": 0.6681,
+        "recall": 0.6113
       },
       "31": {
         "logit_value": 17.3279,
         "completed_sentence": "31 is near the center. 31 is near the center. 31 appears in the scene. 31 is near the center. 31 appears in the scene. 31 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.67,
-        "recall": 0.6397
+        "precision": 0.6691,
+        "recall": 0.6393
       },
       "32": {
         "logit_value": 17.5831,
         "completed_sentence": "32 is near the center. 32 is clearly visible. 32 is clearly visible. 32 can be seen in the image. 32 is part of the scene. 32 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6613,
-        "recall": 0.6491
+        "precision": 0.6602,
+        "recall": 0.6503
       },
       "33": {
         "logit_value": 18.9844,
         "completed_sentence": "33 is near the center. 33 appears in the scene. 33 is near the center. 33 is clearly visible. 33 appears in the scene. 33 is near the center.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6341,
-        "recall": 0.6638
+        "group": "invalid",
+        "precision": 0.6367,
+        "recall": 0.6656
       },
       "34": {
         "logit_value": 15.1399,
         "completed_sentence": "34 is near the center. 34 is part of the scene. 34 is part of the scene. 34 is clearly visible. 34 is part of the scene. 34 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6359,
-        "recall": 0.6911
+        "precision": 0.6363,
+        "recall": 0.6908
       },
       "35": {
         "logit_value": 16.727,
         "completed_sentence": "35 is near the center. 35 is clearly visible. 35 is clearly visible. 35 is part of the scene. 35 appears in the scene. 35 is near the center.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6167,
-        "recall": 0.7185
+        "group": "invalid",
+        "precision": 0.6191,
+        "recall": 0.7162
       },
       "36": {
         "logit_value": 13.127,
         "completed_sentence": "36 is near the center. 36 is part of the scene. 36 can be seen in the image. 36 is near the center. 36 is clearly visible. 36 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6107,
-        "recall": 0.7198
+        "precision": 0.6124,
+        "recall": 0.7207
       },
       "37": {
         "logit_value": 13.5371,
         "completed_sentence": "37 is near the center. 37 appears in the scene. 37 is near the center. 37 appears in the scene. 37 can be seen in the image. 37 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6201,
-        "recall": 0.7282
+        "precision": 0.6181,
+        "recall": 0.7309
       },
       "38": {
         "logit_value": 12.8227,
         "completed_sentence": "38 appears in the scene. 38 is part of the scene. 38 is clearly visible. 38 is near the center. 38 is part of the scene. 38 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6028,
-        "recall": 0.7475
+        "precision": 0.6025,
+        "recall": 0.7499
       },
       "39": {
         "logit_value": 9.5924,
         "completed_sentence": "39 is clearly visible. 39 is near the center. 39 appears in the scene. 39 appears in the scene. 39 is clearly visible. 39 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5807,
-        "recall": 0.7708
+        "precision": 0.5829,
+        "recall": 0.7719
       },
       "40": {
         "logit_value": 11.1205,
         "completed_sentence": "40 is part of the scene. 40 appears in the scene. 40 appears in the scene. 40 appears in the scene. 40 appears in the scene. 40 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5942,
-        "recall": 0.7911
+        "group": "invalid",
+        "precision": 0.5919,
+        "recall": 0.7916
       },
       "41": {
         "logit_value": 7.0991,
         "completed_sentence": "41 can be seen in the image. 41 appears in the scene. 41 is near the center. 41 appears in the scene. 41 is clearly visible. 41 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5806,
-        "recall": 0.8062
+        "precision": 0.5791,
+        "recall": 0.8072
       },
       "42": {
         "logit_value": 9.4887,
         "completed_sentence": "42 can be seen in the image. 42 is near the center. 42 is near the center. 42 appears in the scene. 42 appears in the scene. 42 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.575,
-        "recall": 0.8202
+        "precision": 0.5729,
+        "recall": 0.8219
       },
       "43": {
         "logit_value": 7.6401,
         "completed_sentence": "43 is clearly visible. 43 is near the center. 43 is near the center. 43 is part of the scene. 43 can be seen in the image. 43 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5521,
-        "recall": 0.8393
+        "precision": 0.5527,
+        "recall": 0.8406
       },
       "44": {
         "logit_value": 5.3246,
         "completed_sentence": "44 is near the center. 44 appears in the scene. 44 is part of the scene. 44 is near the center. 44 is clearly visible. 44 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5317,
-        "recall": 0.8746
+        "group": "invalid",
+        "precision": 0.5346,
+        "recall": 0.8723
       },
       "45": {
         "logit_value": 5.3863,
         "completed_sentence": "45 can be seen in the image. 45 is part of the scene. 45 is part of the scene. 45 is clearly visible. 45 can be seen in the image. 45 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5321,
-        "recall": 0.8892
+        "precision": 0.533,
+        "recall": 0.8875
       },
       "46": {
         "logit_value": 2.7603,
         "completed_sentence": "46 is part of the scene. 46 is part of the scene. 46 appears in the scene. 46 is near the center. 46 can be seen in the image. 46 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5139,
-        "recall": 0.896
+        "precision": 0.5166,
+        "recall": 0.8964
       },
       "47": {
         "logit_value": 4.7955,
         "completed_sentence": "47 is clearly visible. 47 is near the center. 47 is part of the scene. 47 is near the center. 47 can be seen in the image. 47 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.531,
-        "recall": 0.919
+        "precision": 0.5285,
+        "recall": 0.9183
       },
       "48": {
         "logit_value": 1.6096,
         "completed_sentence": "48 can be seen in the image. 48 can be seen in the image. 48 appears in the scene. 48 is part of the scene. 48 is part of the scene. 48 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5031,
-        "recall": 0.9215
+        "precision": 0.5043,
+        "recall": 0.9237
       },
       "49": {
         "logit_value": 0.6243,
         "completed_sentence": "49 appears in the scene. 49 can be seen in the image. 49 is part of the scene. 49 is part of the scene. 49 is near the center. 49 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.51,
-        "recall": 0.9441
+        "group": "invalid",
+        "precision": 0.508,
+        "recall": 0.9453
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     },
     "Today I saw ": {
       "0": {
         "logit_value": 49.7671,
         "completed_sentence": "0 appears in the scene. 0 is clearly visible. 0 is near the center. 0 is part of the scene. 0 is part of the scene. 0 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9553,
+        "precision": 0.9542,
         "recall": 0.1003
       },
       "1": {
         "logit_value": 47.3735,
         "completed_sentence": "1 is near the center. 1 appears in the scene. 1 appears in the scene. 1 appears in the scene. 1 is clearly visible. 1 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9544,
-        "recall": 0.1094
+        "precision": 0.9517,
+        "recall": 0.111
       },
       "2": {
         "logit_value": 46.9794,
         "completed_sentence": "2 is clearly visible. 2 can be seen in the image. 2 can be seen in the image. 2 is part of the scene. 2 appears in the scene. 2 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9309,
-        "recall": 0.1452
+        "precision": 0.931,
+        "recall": 0.1431
       },
       "3": {
         "logit_value": 46.9775,
         "completed_sentence": "3 is clearly visible. 3 is clearly visible. 3 can be seen in the image. 3 appears in the scene. 3 appears in the scene. 3 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9148,
-        "recall": 0.1567
+        "precision": 0.9163,
+        "recall": 0.1558
       },
       "4": {
         "logit_value": 45.8582,
         "completed_sentence": "4 is clearly visible. 4 can be seen in the image. 4 appears in the scene. 4 can be seen in the image. 4 is part of the scene. 4 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.915,
-        "recall": 0.1819
+        "precision": 0.9146,
+        "recall": 0.1794
       },
       "5": {
         "logit_value": 45.3818,
         "completed_sentence": "5 is part of the scene. 5 is part of the scene. 5 can be seen in the image. 5 is part of the scene. 5 can be seen in the image. 5 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9176,
-        "recall": 0.1985
+        "precision": 0.9149,
+        "recall": 0.1961
       },
       "6": {
         "logit_value": 44.9746,
         "completed_sentence": "6 appears in the scene. 6 is near the center. 6 is part of the scene. 6 can be seen in the image. 6 appears in the scene. 6 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8941,
-        "recall": 0.1969
+        "precision": 0.8943,
+        "recall": 0.1983
       },
       "7": {
         "logit_value": 42.7595,
         "completed_sentence": "7 is near the center. 7 is near the center. 7 is part of the scene. 7 is clearly visible. 7 appears in the scene. 7 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8921,
-        "recall": 0.2135
+        "precision": 0.8908,
+        "recall": 0.2151
       },
       "8": {
         "logit_value": 40.925,
         "completed_sentence": "8 is clearly visible. 8 can be seen in the image. 8 can be seen in the image. 8 is near the center. 8 is part of the scene. 8 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8823,
-        "recall": 0.245
+        "precision": 0.8812,
+        "recall": 0.2437
       },
       "9": {
         "logit_value": 40.6631,
         "completed_sentence": "9 is part of the scene. 9 is clearly visible. 9 is part of the scene. 9 can be seen in the image. 9 can be seen in the image. 9 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8586,
-        "recall": 0.2537
+        "precision": 0.8603,
+        "recall": 0.2542
       },
       "10": {
         "logit_value": 41.771,
         "completed_sentence": "10 can be seen in the image. 10 is part of the scene. 10 is part of the scene. 10 is part of the scene. 10 appears in the scene. 10 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8521,
-        "recall": 0.2702
+        "precision": 0.8533,
+        "recall": 0.2708
       },
       "11": {
         "logit_value": 37.8777,
         "completed_sentence": "11 is near the center. 11 can be seen in the image. 11 appears in the scene. 11 can be seen in the image. 11 appears in the scene. 11 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8471,
-        "recall": 0.2767
+        "precision": 0.8474,
+        "recall": 0.2795
       },
       "12": {
         "logit_value": 38.1365,
         "completed_sentence": "12 is clearly visible. 12 is clearly visible. 12 can be seen in the image. 12 appears in the scene. 12 can be seen in the image. 12 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.852,
-        "recall": 0.3109
+        "precision": 0.8496,
+        "recall": 0.3104
       },
       "13": {
         "logit_value": 35.2011,
         "completed_sentence": "13 is near the center. 13 is near the center. 13 can be seen in the image. 13 is near the center. 13 can be seen in the image. 13 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.827,
-        "recall": 0.3169
+        "precision": 0.8277,
+        "recall": 0.3186
       },
       "14": {
         "logit_value": 37.3396,
         "completed_sentence": "14 is clearly visible. 14 is near the center. 14 appears in the scene. 14 is clearly visible. 14 is clearly visible. 14 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8205,
-        "recall": 0.3503
+        "precision": 0.8207,
+        "recall": 0.3488
       },
       "15": {
         "logit_value": 36.7984,
         "completed_sentence": "15 appears in the scene. 15 appears in the scene. 15 appears in the scene. 15 can be seen in the image. 15 is clearly visible. 15 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.8032,
-        "recall": 0.3458
+        "group": "invalid",
+        "precision": 0.805,
+        "recall": 0.3487
       },
       "16": {
         "logit_value": 35.791,
         "completed_sentence": "16 is near the center. 16 appears in the scene. 16 is part of the scene. 16 is part of the scene. 16 is clearly visible. 16 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.802,
-        "recall": 0.3702
+        "precision": 0.8022,
+        "recall": 0.3717
       },
       "17": {
         "logit_value": 34.8589,
         "completed_sentence": "17 is near the center. 17 is part of the scene. 17 can be seen in the image. 17 can be seen in the image. 17 appears in the scene. 17 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7821,
-        "recall": 0.3807
+        "precision": 0.7845,
+        "recall": 0.3835
       },
       "18": {
         "logit_value": 32.3684,
         "completed_sentence": "18 is near the center. 18 is part of the scene. 18 is clearly visible. 18 is part of the scene. 18 is clearly visible. 18 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7946,
-        "recall": 0.4045
+        "precision": 0.7926,
+        "recall": 0.4061
       },
       "19": {
         "logit_value": 31.131,
         "completed_sentence": "19 is near the center. 19 is clearly visible. 19 can be seen in the image. 19 can be seen in the image. 19 is clearly visible. 19 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7804,
-        "recall": 0.4167
+        "precision": 0.7794,
+        "recall": 0.4192
       },
       "20": {
         "logit_value": 31.8432,
         "completed_sentence": "20 appears in the scene. 20 can be seen in the image. 20 appears in the scene. 20 is part of the scene. 20 is near the center. 20 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7704,
-        "recall": 0.4568
+        "precision": 0.7696,
+        "recall": 0.4548
       },
       "21": {
         "logit_value": 30.2328,
         "completed_sentence": "21 can be seen in the image. 21 is part of the scene. 21 is near the center. 21 is near the center. 21 appears in the scene. 21 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7583,
-        "recall": 0.4638
+        "precision": 0.7581,
+        "recall": 0.4639
       },
       "22": {
         "logit_value": 27.1157,
         "completed_sentence": "22 is part of the scene. 22 is part of the scene. 22 can be seen in the image. 22 is near the center. 22 is clearly visible. 22 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7465,
-        "recall": 0.4891
+        "precision": 0.7468,
+        "recall": 0.4876
       },
       "23": {
         "logit_value": 28.4038,
         "completed_sentence": "23 is near the center. 23 is near the center. 23 is near the center. 23 is part of the scene. 23 is near the center. 23 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7292,
-        "recall": 0.4903
+        "precision": 0.7311,
+        "recall": 0.4921
       },
       "24": {
         "logit_value": 24.0406,
         "completed_sentence": "24 can be seen in the image. 24 can be seen in the image. 24 is part of the scene. 24 appears in the scene. 24 can be seen in the image. 24 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.743,
-        "recall": 0.5039
+        "precision": 0.7403,
+        "recall": 0.5064
       },
       "25": {
         "logit_value": 24.7927,
         "completed_sentence": "25 can be seen in the image. 25 appears in the scene. 25 is near the center. 25 is part of the scene. 25 is near the center. 25 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7059,
-        "recall": 0.5275
+        "precision": 0.7088,
+        "recall": 0.5287
       },
       "26": {
         "logit_value": 24.2139,
         "completed_sentence": "26 is part of the scene. 26 is near the center. 26 is near the center. 26 can be seen in the image. 26 is near the center. 26 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7065,
-        "recall": 0.5659
+        "precision": 0.7075,
+        "recall": 0.5629
       },
       "27": {
         "logit_value": 22.0056,
         "completed_sentence": "27 is clearly visible. 27 is part of the scene. 27 appears in the scene. 27 appears in the scene. 27 appears in the scene. 27 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.6907,
-        "recall": 0.5591
+        "precision": 0.6929,
+        "recall": 0.561
       },
       "28": {
         "logit_value": 21.106,
         "completed_sentence": "28 is part of the scene. 28 is near the center. 28 is clearly visible. 28 appears in the scene. 28 is near the center. 28 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6955,
-        "recall": 0.5935
+        "precision": 0.695,
+        "recall": 0.592
       },
       "29": {
         "logit_value": 20.4435,
         "completed_sentence": "29 appears in the scene. 29 is near the center. 29 is clearly visible. 29 is clearly visible. 29 is part of the scene. 29 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6777,
-        "recall": 0.6093
+        "precision": 0.6789,
+        "recall": 0.6081
       },
       "30": {
         "logit_value": 20.7897,
         "completed_sentence": "30 can be seen in the image. 30 is clearly visible. 30 is clearly visible. 30 is part of the scene. 30 is near the center. 30 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6633,
-        "recall": 0.6315
+        "precision": 0.6655,
+        "recall": 0.6293
       },
       "31": {
         "logit_value": 18.9149,
         "completed_sentence": "31 is near the center. 31 can be seen in the image. 31 is clearly visible. 31 is clearly visible. 31 can be seen in the image. 31 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6605,
-        "recall": 0.6517
+        "precision": 0.6615,
+        "recall": 0.6489
       },
       "32": {
         "logit_value": 16.2963,
         "completed_sentence": "32 appears in the scene. 32 is part of the scene. 32 is near the center. 32 is clearly visible. 32 appears in the scene. 32 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.66,
-        "recall": 0.6417
+        "precision": 0.6592,
+        "recall": 0.6444
       },
       "33": {
         "logit_value": 17.2323,
         "completed_sentence": "33 is part of the scene. 33 appears in the scene. 33 is part of the scene. 33 can be seen in the image. 33 can be seen in the image. 33 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6444,
-        "recall": 0.6753
+        "group": "invalid",
+        "precision": 0.6449,
+        "recall": 0.6748
       },
       "34": {
         "logit_value": 15.1894,
         "completed_sentence": "34 is part of the scene. 34 is part of the scene. 34 is clearly visible. 34 is part of the scene. 34 is clearly visible. 34 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6404,
-        "recall": 0.6877
+        "precision": 0.6399,
+        "recall": 0.6881
       },
       "35": {
         "logit_value": 15.5021,
         "completed_sentence": "35 appears in the scene. 35 appears in the scene. 35 is part of the scene. 35 is clearly visible. 35 appears in the scene. 35 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6215,
-        "recall": 0.6946
+        "group": "invalid",
+        "precision": 0.6229,
+        "recall": 0.6971
       },
       "36": {
         "logit_value": 13.6341,
         "completed_sentence": "36 is clearly visible. 36 appears in the scene. 36 is near the center. 36 is near the center. 36 can be seen in the image. 36 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6251,
-        "recall": 0.7236
+        "precision": 0.6239,
+        "recall": 0.7238
       },
       "37": {
         "logit_value": 13.7495,
         "completed_sentence": "37 is part of the scene. 37 appears in the scene. 37 can be seen in the image. 37 is clearly visible. 37 is part of the scene. 37 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6229,
-        "recall": 0.7505
+        "precision": 0.6204,
+        "recall": 0.7487
       },
       "38": {
         "logit_value": 12.5905,
         "completed_sentence": "38 is clearly visible. 38 is clearly visible. 38 appears in the scene. 38 is near the center. 38 is part of the scene. 38 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6133,
-        "recall": 0.769
+        "precision": 0.6108,
+        "recall": 0.767
       },
       "39": {
         "logit_value": 12.6848,
         "completed_sentence": "39 is near the center. 39 can be seen in the image. 39 is near the center. 39 is part of the scene. 39 is part of the scene. 39 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.59,
-        "recall": 0.7756
+        "precision": 0.5904,
+        "recall": 0.7758
       },
       "40": {
         "logit_value": 9.751,
         "completed_sentence": "40 is near the center. 40 is part of the scene. 40 is near the center. 40 is clearly visible. 40 is clearly visible. 40 appears in the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5856,
-        "recall": 0.8056
+        "group": "invalid",
+        "precision": 0.585,
+        "recall": 0.8032
       },
       "41": {
         "logit_value": 10.8476,
         "completed_sentence": "41 is clearly visible. 41 is near the center. 41 is part of the scene. 41 is clearly visible. 41 appears in the scene. 41 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5835,
-        "recall": 0.8135
+        "precision": 0.5815,
+        "recall": 0.813
       },
       "42": {
         "logit_value": 8.0759,
         "completed_sentence": "42 is part of the scene. 42 can be seen in the image. 42 can be seen in the image. 42 is clearly visible. 42 can be seen in the image. 42 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5626,
-        "recall": 0.8219
+        "precision": 0.5629,
+        "recall": 0.8232
       },
       "43": {
         "logit_value": 6.6334,
         "completed_sentence": "43 appears in the scene. 43 is near the center. 43 can be seen in the image. 43 can be seen in the image. 43 is near the center. 43 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5497,
-        "recall": 0.8341
+        "precision": 0.5508,
+        "recall": 0.8364
       },
       "44": {
         "logit_value": 7.2543,
         "completed_sentence": "44 is near the center. 44 is near the center. 44 is near the center. 44 is clearly visible. 44 can be seen in the image. 44 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5474,
-        "recall": 0.8619
+        "group": "invalid",
+        "precision": 0.5471,
+        "recall": 0.8622
       },
       "45": {
         "logit_value": 6.2997,
         "completed_sentence": "45 can be seen in the image. 45 can be seen in the image. 45 is clearly visible. 45 appears in the scene. 45 is part of the scene. 45 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5218,
-        "recall": 0.8917
+        "precision": 0.5248,
+        "recall": 0.8895
       },
       "46": {
         "logit_value": 4.4905,
         "completed_sentence": "46 is clearly visible. 46 appears in the scene. 46 is near the center. 46 is part of the scene. 46 appears in the scene. 46 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
         "precision": 0.5275,
-        "recall": 0.8962
+        "recall": 0.8966
       },
       "47": {
         "logit_value": 2.7525,
         "completed_sentence": "47 is part of the scene. 47 appears in the scene. 47 appears in the scene. 47 is near the center. 47 is part of the scene. 47 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5243,
-        "recall": 0.9039
+        "precision": 0.5231,
+        "recall": 0.9062
       },
       "48": {
         "logit_value": 2.209,
         "completed_sentence": "48 is clearly visible. 48 can be seen in the image. 48 is clearly visible. 48 appears in the scene. 48 can be seen in the image. 48 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.497,
-        "recall": 0.9474
+        "precision": 0.4994,
+        "recall": 0.9445
       },
       "49": {
         "logit_value": 1.0355,
         "completed_sentence": "49 can be seen in the image. 49 appears in the scene. 49 can be seen in the image. 49 is part of the scene. 49 appears in the scene. 49 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.4932,
-        "recall": 0.96
+        "group": "invalid",
+        "precision": 0.4946,
+        "recall": 0.958
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     },
     "The image shows ": {
       "0": {
         "logit_value": 48.7624,
         "completed_sentence": "0 appears in the scene. 0 is clearly visible. 0 is near the center. 0 can be seen in the image. 0 is near the center. 0 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.953,
-        "recall": 0.1074
+        "precision": 0.9524,
+        "recall": 0.1059
       },
       "1": {
         "logit_value": 48.0687,
         "completed_sentence": "1 is part of the scene. 1 is part of the scene. 1 can be seen in the image. 1 appears in the scene. 1 can be seen in the image. 1 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9259,
-        "recall": 0.1241
+        "precision": 0.9289,
+        "recall": 0.1228
       },
       "2": {
         "logit_value": 47.9374,
         "completed_sentence": "2 can be seen in the image. 2 can be seen in the image. 2 is near the center. 2 appears in the scene. 2 appears in the scene. 2 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9266,
-        "recall": 0.1426
+        "precision": 0.9276,
+        "recall": 0.141
       },
       "3": {
         "logit_value": 46.5319,
         "completed_sentence": "3 is near the center. 3 can be seen in the image. 3 can be seen in the image. 3 can be seen in the image. 3 appears in the scene. 3 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9331,
-        "recall": 0.1494
+        "precision": 0.931,
+        "recall": 0.1499
       },
       "4": {
         "logit_value": 47.8593,
         "completed_sentence": "4 is near the center. 4 is clearly visible. 4 can be seen in the image. 4 is clearly visible. 4 is part of the scene. 4 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.9021,
-        "recall": 0.1833
+        "precision": 0.9043,
+        "recall": 0.1806
       },
       "5": {
         "logit_value": 43.0614,
         "completed_sentence": "5 appears in the scene. 5 is clearly visible. 5 can be seen in the image. 5 is near the center. 5 is near the center. 5 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8934,
-        "recall": 0.1979
+        "precision": 0.8955,
+        "recall": 0.1956
       },
       "6": {
         "logit_value": 44.7708,
         "completed_sentence": "6 is part of the scene. 6 can be seen in the image. 6 is near the center. 6 can be seen in the image. 6 is part of the scene. 6 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8994,
-        "recall": 0.2146
+        "precision": 0.8985,
+        "recall": 0.2125
       },
       "7": {
         "logit_value": 43.4698,
         "completed_sentence": "7 is near the center. 7 appears in the scene. 7 is clearly visible. 7 can be seen in the image. 7 is clearly visible. 7 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8778,
-        "recall": 0.227
+        "precision": 0.8793,
+        "recall": 0.2259
       },
       "8": {
         "logit_value": 41.7747,
         "completed_sentence": "8 is clearly visible. 8 is near the center. 8 is clearly visible. 8 is near the center. 8 is near the center. 8 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8824,
-        "recall": 0.2509
+        "precision": 0.8812,
+        "recall": 0.2485
       },
       "9": {
         "logit_value": 40.7227,
         "completed_sentence": "9 appears in the scene. 9 appears in the scene. 9 appears in the scene. 9 is clearly visible. 9 is part of the scene. 9 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8597,
-        "recall": 0.2535
+        "precision": 0.8612,
+        "recall": 0.254
       },
       "10": {
         "logit_value": 40.4788,
         "completed_sentence": "10 appears in the scene. 10 appears in the scene. 10 can be seen in the image. 10 is near the center. 10 can be seen in the image. 10 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8504,
-        "recall": 0.2859
+        "precision": 0.8519,
+        "recall": 0.2834
       },
       "11": {
         "logit_value": 39.6674,
         "completed_sentence": "11 is near the center. 11 is part of the scene. 11 appears in the scene. 11 is clearly visible. 11 can be seen in the image. 11 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8609,
-        "recall": 0.2898
+        "precision": 0.8586,
+        "recall": 0.29
       },
       "12": {
         "logit_value": 39.9506,
         "completed_sentence": "12 is near the center. 12 can be seen in the image. 12 is near the center. 12 appears in the scene. 12 can be seen in the image. 12 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8338,
-        "recall": 0.322
+        "precision": 0.835,
+        "recall": 0.3193
       },
       "13": {
         "logit_value": 35.4266,
         "completed_sentence": "13 is near the center. 13 is near the center. 13 is clearly visible. 13 can be seen in the image. 13 is near the center. 13 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8271,
-        "recall": 0.3213
+        "precision": 0.8278,
+        "recall": 0.3221
       },
       "14": {
         "logit_value": 36.2637,
         "completed_sentence": "14 is clearly visible. 14 is part of the scene. 14 can be seen in the image. 14 is near the center. 14 appears in the scene. 14 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.827,
-        "recall": 0.3502
+        "precision": 0.8259,
+        "recall": 0.3487
       },
       "15": {
         "logit_value": 36.2077,
         "completed_sentence": "15 is near the center. 15 appears in the scene. 15 is clearly visible. 15 is clearly visible. 15 is near the center. 15 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.8038,
-        "recall": 0.3509
+        "group": "invalid",
+        "precision": 0.8055,
+        "recall": 0.3528
       },
       "16": {
         "logit_value": 32.1335,
         "completed_sentence": "16 is near the center. 16 is near the center. 16 can be seen in the image. 16 appears in the scene. 16 appears in the scene. 16 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.799,
-        "recall": 0.3665
+        "precision": 0.7998,
+        "recall": 0.3687
       },
       "17": {
         "logit_value": 34.1461,
         "completed_sentence": "17 is part of the scene. 17 is near the center. 17 appears in the scene. 17 is near the center. 17 can be seen in the image. 17 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8052,
-        "recall": 0.3909
+        "precision": 0.8029,
+        "recall": 0.3917
       },
       "18": {
         "logit_value": 32.9862,
         "completed_sentence": "18 is clearly visible. 18 appears in the scene. 18 appears in the scene. 18 can be seen in the image. 18 is part of the scene. 18 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7799,
-        "recall": 0.4007
+        "precision": 0.7808,
+        "recall": 0.403
       },
       "19": {
         "logit_value": 29.3612,
         "completed_sentence": "19 is clearly visible. 19 can be seen in the image. 19 is near the center. 19 is near the center. 19 is part of the scene. 19 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7723,
-        "recall": 0.4225
+        "precision": 0.773,
+        "recall": 0.4239
       },
       "20": {
         "logit_value": 31.2897,
         "completed_sentence": "20 appears in the scene. 20 can be seen in the image. 20 is clearly visible. 20 is part of the scene. 20 is part of the scene. 20 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7795,
-        "recall": 0.4352
+        "precision": 0.7769,
+        "recall": 0.4375
       },
       "21": {
         "logit_value": 30.661,
         "completed_sentence": "21 can be seen in the image. 21 is near the center. 21 can be seen in the image. 21 is clearly visible. 21 appears in the scene. 21 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7488,
-        "recall": 0.4512
+        "precision": 0.7505,
+        "recall": 0.4538
       },
       "22": {
         "logit_value": 29.785,
         "completed_sentence": "22 is clearly visible. 22 appears in the scene. 22 is part of the scene. 22 appears in the scene. 22 can be seen in the image. 22 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7421,
-        "recall": 0.4814
+        "precision": 0.7433,
+        "recall": 0.4815
       },
       "23": {
         "logit_value": 26.484,
         "completed_sentence": "23 is part of the scene. 23 can be seen in the image. 23 is part of the scene. 23 appears in the scene. 23 can be seen in the image. 23 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7523,
-        "recall": 0.5049
+        "precision": 0.7496,
+        "recall": 0.5037
       },
       "24": {
         "logit_value": 27.3348,
         "completed_sentence": "24 is near the center. 24 is clearly visible. 24 is near the center. 24 appears in the scene. 24 can be seen in the image. 24 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7331,
-        "recall": 0.5295
+        "precision": 0.7324,
+        "recall": 0.5269
       },
       "25": {
         "logit_value": 26.8022,
         "completed_sentence": "25 is near the center. 25 is part of the scene. 25 is near the center. 25 is clearly visible. 25 can be seen in the image. 25 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7311,
-        "recall": 0.5217
+        "precision": 0.7289,
+        "recall": 0.5241
       },
       "26": {
         "logit_value": 22.7592,
         "completed_sentence": "26 can be seen in the image. 26 is clearly visible. 26 appears in the scene. 26 is part of the scene. 26 is clearly visible. 26 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6999,
-        "recall": 0.5615
+        "precision": 0.7022,
+        "recall": 0.5594
       },
       "27": {
         "logit_value": 24.1472,
         "completed_sentence": "27 is part of the scene. 27 appears in the scene. 27 is clearly visible. 27 is part of the scene. 27 appears in the scene. 27 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.6943,
-        "recall": 0.5571
+        "precision": 0.6959,
+        "recall": 0.5594
       },
       "28": {
         "logit_value": 20.8638,
         "completed_sentence": "28 appears in the scene. 28 is part of the scene. 28 is clearly visible. 28 is near the center. 28 appears in the scene. 28 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7039,
-        "recall": 0.5806
+        "precision": 0.7017,
+        "recall": 0.5816
       },
       "29": {
         "logit_value": 21.1609,
         "completed_sentence": "29 is clearly visible. 29 appears in the scene. 29 is clearly visible. 29 is near the center. 29 appears in the scene. 29 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6926,
-        "recall": 0.5914
+        "precision": 0.6908,
+        "recall": 0.5937
       },
       "30": {
         "logit_value": 19.2951,
         "completed_sentence": "30 can be seen in the image. 30 is part of the scene. 30 is clearly visible. 30 is clearly visible. 30 can be seen in the image. 30 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6647,
-        "recall": 0.607
+        "precision": 0.6667,
+        "recall": 0.6097
       },
       "31": {
         "logit_value": 20.1121,
         "completed_sentence": "31 is part of the scene. 31 appears in the scene. 31 is part of the scene. 31 is clearly visible. 31 is part of the scene. 31 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6657,
-        "recall": 0.626
+        "precision": 0.6656,
+        "recall": 0.6284
       },
       "32": {
         "logit_value": 17.8322,
         "completed_sentence": "32 can be seen in the image. 32 can be seen in the image. 32 can be seen in the image. 32 is clearly visible. 32 can be seen in the image. 32 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.67,
-        "recall": 0.6419
+        "precision": 0.6673,
+        "recall": 0.6446
       },
       "33": {
         "logit_value": 15.294,
         "completed_sentence": "33 is clearly visible. 33 appears in the scene. 33 is near the center. 33 is part of the scene. 33 is part of the scene. 33 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6344,
-        "recall": 0.6757
+        "group": "invalid",
+        "precision": 0.6369,
+        "recall": 0.675
       },
       "34": {
         "logit_value": 16.8486,
         "completed_sentence": "34 is near the center. 34 can be seen in the image. 34 is part of the scene. 34 is part of the scene. 34 can be seen in the image. 34 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6342,
-        "recall": 0.6927
+        "precision": 0.6349,
+        "recall": 0.6921
       },
       "35": {
         "logit_value": 16.1724,
         "completed_sentence": "35 is part of the scene. 35 appears in the scene. 35 can be seen in the image. 35 can be seen in the image. 35 appears in the scene. 35 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.617,
-        "recall": 0.7118
+        "group": "invalid",
+        "precision": 0.6193,
+        "recall": 0.7109
       },
       "36": {
         "logit_value": 13.3557,
         "completed_sentence": "36 is clearly visible. 36 is near the center. 36 can be seen in the image. 36 is near the center. 36 is near the center. 36 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.618,
-        "recall": 0.722
+        "precision": 0.6183,
+        "recall": 0.7225
       },
       "37": {
         "logit_value": 14.8144,
         "completed_sentence": "37 is clearly visible. 37 is clearly visible. 37 is clearly visible. 37 can be seen in the image. 37 is clearly visible. 37 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6158,
-        "recall": 0.7411
+        "precision": 0.6147,
+        "recall": 0.7412
       },
       "38": {
         "logit_value": 13.2471,
         "completed_sentence": "38 is part of the scene. 38 is part of the scene. 38 is near the center. 38 is clearly visible. 38 can be seen in the image. 38 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6027,
-        "recall": 0.7618
+        "precision": 0.6024,
+        "recall": 0.7613
       },
       "39": {
         "logit_value": 12.4944,
         "completed_sentence": "39 is clearly visible. 39 is near the center. 39 is part of the scene. 39 is near the center. 39 is near the center. 39 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6051,
-        "recall": 0.7742
+        "precision": 0.6024,
+        "recall": 0.7747
       },
       "40": {
         "logit_value": 10.3117,
         "completed_sentence": "40 appears in the scene. 40 is clearly visible. 40 is near the center. 40 is part of the scene. 40 is near the center. 40 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.574,
-        "recall": 0.7986
+        "group": "invalid",
+        "precision": 0.5758,
+        "recall": 0.7976
       },
       "41": {
         "logit_value": 10.0504,
         "completed_sentence": "41 is part of the scene. 41 is part of the scene. 41 is part of the scene. 41 is part of the scene. 41 is clearly visible. 41 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5757,
-        "recall": 0.8204
+        "precision": 0.5752,
+        "recall": 0.8186
       },
       "42": {
         "logit_value": 9.7163,
         "completed_sentence": "42 appears in the scene. 42 is near the center. 42 is near the center. 42 is near the center. 42 is near the center. 42 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5742,
-        "recall": 0.8216
+        "precision": 0.5722,
+        "recall": 0.823
       },
       "43": {
         "logit_value": 5.7256,
         "completed_sentence": "43 is clearly visible. 43 appears in the scene. 43 is clearly visible. 43 is clearly visible. 43 is part of the scene. 43 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5444,
-        "recall": 0.8506
+        "precision": 0.5465,
+        "recall": 0.8497
       },
       "44": {
         "logit_value": 5.5048,
         "completed_sentence": "44 is near the center. 44 is near the center. 44 is part of the scene. 44 is part of the scene. 44 is clearly visible. 44 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5445,
-        "recall": 0.853
+        "group": "invalid",
+        "precision": 0.5448,
+        "recall": 0.855
       },
       "45": {
         "logit_value": 3.6223,
         "completed_sentence": "45 is clearly visible. 45 is near the center. 45 can be seen in the image. 45 can be seen in the image. 45 can be seen in the image. 45 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5444,
-        "recall": 0.8671
+        "precision": 0.5428,
+        "recall": 0.8698
       },
       "46": {
         "logit_value": 3.7682,
         "completed_sentence": "46 is clearly visible. 46 is near the center. 46 can be seen in the image. 46 is clearly visible. 46 is near the center. 46 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5207,
-        "recall": 0.9056
+        "precision": 0.5221,
+        "recall": 0.9041
       },
       "47": {
         "logit_value": 2.9465,
         "completed_sentence": "47 can be seen in the image. 47 is part of the scene. 47 is clearly visible. 47 is clearly visible. 47 appears in the scene. 47 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5234,
-        "recall": 0.9017
+        "precision": 0.5224,
+        "recall": 0.9044
       },
       "48": {
         "logit_value": 3.7813,
         "completed_sentence": "48 is near the center. 48 is near the center. 48 is clearly visible. 48 is clearly visible. 48 can be seen in the image. 48 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5172,
-        "recall": 0.9406
+        "precision": 0.5156,
+        "recall": 0.939
       },
       "49": {
         "logit_value": 0.01,
         "completed_sentence": "49 is part of the scene. 49 is part of the scene. 49 is near the center. 49 is clearly visible. 49 can be seen in the image. 49 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.4964,
-        "recall": 0.9561
+        "group": "invalid",
+        "precision": 0.4971,
+        "recall": 0.9549
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     }
   },
   "LLaVA": {
-    "Hello I am ": {
+    "Hello I am": {
       "0": {
         "logit_value": 49.7449,
         "completed_sentence": "0 is near the center. 0 is part of the scene. 0 can be seen in the image. 0 is part of the scene. 0 can be seen in the image. 0 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9488,
-        "recall": 0.0873
+        "precision": 0.949,
+        "recall": 0.0899
       },
       "1": {
         "logit_value": 48.1581,
         "completed_sentence": "1 appears in the scene. 1 is part of the scene. 1 can be seen in the image. 1 is near the center. 1 is clearly visible. 1 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.938,
-        "recall": 0.1313
+        "precision": 0.9385,
+        "recall": 0.1285
       },
       "2": {
         "logit_value": 49.3779,
         "completed_sentence": "2 is part of the scene. 2 is clearly visible. 2 can be seen in the image. 2 is near the center. 2 is near the center. 2 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9239,
-        "recall": 0.1374
+        "precision": 0.9255,
+        "recall": 0.1368
       },
       "3": {
         "logit_value": 46.3323,
         "completed_sentence": "3 is clearly visible. 3 is part of the scene. 3 is part of the scene. 3 appears in the scene. 3 is near the center. 3 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9125,
-        "recall": 0.1524
+        "precision": 0.9145,
+        "recall": 0.1523
       },
       "4": {
         "logit_value": 46.9095,
         "completed_sentence": "4 appears in the scene. 4 is clearly visible. 4 appears in the scene. 4 is near the center. 4 appears in the scene. 4 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.9228,
-        "recall": 0.1788
+        "precision": 0.9209,
+        "recall": 0.1769
       },
       "5": {
         "logit_value": 45.4096,
         "completed_sentence": "5 appears in the scene. 5 can be seen in the image. 5 can be seen in the image. 5 is part of the scene. 5 is part of the scene. 5 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9119,
-        "recall": 0.1914
+        "precision": 0.9103,
+        "recall": 0.1905
       },
       "6": {
         "logit_value": 44.7245,
         "completed_sentence": "6 is part of the scene. 6 is near the center. 6 is near the center. 6 appears in the scene. 6 can be seen in the image. 6 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9064,
-        "recall": 0.2084
+        "precision": 0.9041,
+        "recall": 0.2075
       },
       "7": {
         "logit_value": 42.8757,
         "completed_sentence": "7 is part of the scene. 7 is clearly visible. 7 is near the center. 7 is part of the scene. 7 is clearly visible. 7 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8897,
-        "recall": 0.2303
+        "precision": 0.8889,
+        "recall": 0.2285
       },
       "8": {
         "logit_value": 41.847,
         "completed_sentence": "8 is near the center. 8 is clearly visible. 8 is clearly visible. 8 is part of the scene. 8 is part of the scene. 8 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8627,
-        "recall": 0.2348
+        "precision": 0.8654,
+        "recall": 0.2356
       },
       "9": {
         "logit_value": 40.5379,
         "completed_sentence": "9 is clearly visible. 9 can be seen in the image. 9 is part of the scene. 9 appears in the scene. 9 is near the center. 9 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8698,
-        "recall": 0.2697
+        "precision": 0.8693,
+        "recall": 0.267
       },
       "10": {
         "logit_value": 39.9025,
         "completed_sentence": "10 is clearly visible. 10 is near the center. 10 is clearly visible. 10 is part of the scene. 10 appears in the scene. 10 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8477,
-        "recall": 0.2603
+        "precision": 0.8498,
+        "recall": 0.263
       },
       "11": {
         "logit_value": 37.991,
         "completed_sentence": "11 is part of the scene. 11 is part of the scene. 11 appears in the scene. 11 is near the center. 11 is near the center. 11 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8471,
-        "recall": 0.289
+        "precision": 0.8475,
+        "recall": 0.2894
       },
       "12": {
         "logit_value": 37.5497,
         "completed_sentence": "12 is clearly visible. 12 is near the center. 12 is clearly visible. 12 is near the center. 12 is clearly visible. 12 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.848,
-        "recall": 0.3135
+        "precision": 0.8464,
+        "recall": 0.3125
       },
       "13": {
         "logit_value": 37.7135,
         "completed_sentence": "13 is part of the scene. 13 appears in the scene. 13 is near the center. 13 is clearly visible. 13 is part of the scene. 13 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8241,
-        "recall": 0.3322
+        "precision": 0.8254,
+        "recall": 0.3309
       },
       "14": {
         "logit_value": 37.667,
         "completed_sentence": "14 can be seen in the image. 14 appears in the scene. 14 is part of the scene. 14 is clearly visible. 14 is near the center. 14 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8157,
-        "recall": 0.3475
+        "precision": 0.8169,
+        "recall": 0.3466
       },
       "15": {
         "logit_value": 34.5067,
         "completed_sentence": "15 is part of the scene. 15 is clearly visible. 15 can be seen in the image. 15 is part of the scene. 15 is near the center. 15 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.821,
-        "recall": 0.3696
+        "group": "invalid",
+        "precision": 0.8192,
+        "recall": 0.3677
       },
       "16": {
         "logit_value": 33.4504,
         "completed_sentence": "16 can be seen in the image. 16 appears in the scene. 16 appears in the scene. 16 appears in the scene. 16 appears in the scene. 16 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7935,
-        "recall": 0.369
+        "precision": 0.7954,
+        "recall": 0.3707
       },
       "17": {
         "logit_value": 32.1832,
         "completed_sentence": "17 is part of the scene. 17 is part of the scene. 17 is clearly visible. 17 is near the center. 17 is part of the scene. 17 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8025,
+        "precision": 0.8008,
         "recall": 0.3951
       },
       "18": {
         "logit_value": 32.389,
         "completed_sentence": "18 is part of the scene. 18 appears in the scene. 18 can be seen in the image. 18 is clearly visible. 18 can be seen in the image. 18 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7743,
-        "recall": 0.4027
+        "precision": 0.7764,
+        "recall": 0.4046
       },
       "19": {
         "logit_value": 31.7055,
         "completed_sentence": "19 is near the center. 19 can be seen in the image. 19 appears in the scene. 19 is part of the scene. 19 appears in the scene. 19 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7676,
-        "recall": 0.4279
+        "precision": 0.7692,
+        "recall": 0.4283
       },
       "20": {
         "logit_value": 31.8624,
         "completed_sentence": "20 appears in the scene. 20 is near the center. 20 is part of the scene. 20 can be seen in the image. 20 can be seen in the image. 20 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7749,
-        "recall": 0.4591
+        "precision": 0.7732,
+        "recall": 0.4566
       },
       "21": {
         "logit_value": 30.1125,
         "completed_sentence": "21 appears in the scene. 21 appears in the scene. 21 is part of the scene. 21 appears in the scene. 21 is near the center. 21 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
         "precision": 0.7572,
-        "recall": 0.4618
+        "recall": 0.4623
       },
       "22": {
         "logit_value": 28.5647,
         "completed_sentence": "22 is clearly visible. 22 is part of the scene. 22 is clearly visible. 22 is near the center. 22 is clearly visible. 22 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7592,
-        "recall": 0.4833
+        "precision": 0.7569,
+        "recall": 0.4829
       },
       "23": {
         "logit_value": 26.0912,
         "completed_sentence": "23 can be seen in the image. 23 is clearly visible. 23 appears in the scene. 23 can be seen in the image. 23 is near the center. 23 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7509,
-        "recall": 0.4884
+        "precision": 0.7485,
+        "recall": 0.4905
       },
       "24": {
         "logit_value": 25.6596,
         "completed_sentence": "24 can be seen in the image. 24 is clearly visible. 24 is near the center. 24 appears in the scene. 24 is clearly visible. 24 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7265,
-        "recall": 0.5125
+        "precision": 0.7271,
+        "recall": 0.5133
       },
       "25": {
         "logit_value": 26.7233,
         "completed_sentence": "25 appears in the scene. 25 appears in the scene. 25 is clearly visible. 25 is near the center. 25 can be seen in the image. 25 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7306,
-        "recall": 0.5382
+        "precision": 0.7285,
+        "recall": 0.5373
       },
       "26": {
         "logit_value": 25.0354,
         "completed_sentence": "26 is clearly visible. 26 is clearly visible. 26 is near the center. 26 appears in the scene. 26 appears in the scene. 26 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7103,
-        "recall": 0.5545
+        "precision": 0.7105,
+        "recall": 0.5538
       },
       "27": {
         "logit_value": 24.7609,
         "completed_sentence": "27 is near the center. 27 appears in the scene. 27 is near the center. 27 is clearly visible. 27 is clearly visible. 27 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7053,
-        "recall": 0.5661
+        "precision": 0.7047,
+        "recall": 0.5665
       },
       "28": {
         "logit_value": 21.6793,
         "completed_sentence": "28 is clearly visible. 28 can be seen in the image. 28 is part of the scene. 28 is part of the scene. 28 is clearly visible. 28 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7017,
-        "recall": 0.5844
+        "precision": 0.6999,
+        "recall": 0.5847
       },
       "29": {
         "logit_value": 21.3002,
         "completed_sentence": "29 is clearly visible. 29 is part of the scene. 29 is near the center. 29 appears in the scene. 29 is part of the scene. 29 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6902,
-        "recall": 0.5968
+        "precision": 0.6889,
+        "recall": 0.5981
       },
       "30": {
         "logit_value": 18.7493,
         "completed_sentence": "30 is near the center. 30 is clearly visible. 30 is part of the scene. 30 is part of the scene. 30 is part of the scene. 30 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6795,
-        "recall": 0.6211
+        "precision": 0.6785,
+        "recall": 0.621
       },
       "31": {
         "logit_value": 19.2166,
         "completed_sentence": "31 can be seen in the image. 31 is near the center. 31 is near the center. 31 is clearly visible. 31 is near the center. 31 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.662,
-        "recall": 0.6369
+        "precision": 0.6627,
+        "recall": 0.637
       },
       "32": {
         "logit_value": 17.3792,
         "completed_sentence": "32 is part of the scene. 32 is near the center. 32 appears in the scene. 32 is clearly visible. 32 is near the center. 32 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6631,
-        "recall": 0.6589
+        "precision": 0.6617,
+        "recall": 0.6582
       },
       "33": {
         "logit_value": 16.3542,
         "completed_sentence": "33 can be seen in the image. 33 can be seen in the image. 33 appears in the scene. 33 appears in the scene. 33 is clearly visible. 33 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6512,
-        "recall": 0.6824
+        "group": "invalid",
+        "precision": 0.6504,
+        "recall": 0.6804
       },
       "34": {
         "logit_value": 14.1479,
         "completed_sentence": "34 is clearly visible. 34 is near the center. 34 is near the center. 34 is part of the scene. 34 can be seen in the image. 34 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6288,
-        "recall": 0.6985
+        "precision": 0.6306,
+        "recall": 0.6968
       },
       "35": {
         "logit_value": 14.8936,
         "completed_sentence": "35 is near the center. 35 is near the center. 35 is clearly visible. 35 is near the center. 35 is near the center. 35 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6147,
-        "recall": 0.7115
+        "group": "invalid",
+        "precision": 0.6175,
+        "recall": 0.7107
       },
       "36": {
         "logit_value": 15.1974,
         "completed_sentence": "36 can be seen in the image. 36 can be seen in the image. 36 is near the center. 36 appears in the scene. 36 can be seen in the image. 36 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6175,
-        "recall": 0.7215
+        "precision": 0.6179,
+        "recall": 0.7221
       },
       "37": {
         "logit_value": 12.4694,
         "completed_sentence": "37 is clearly visible. 37 can be seen in the image. 37 is clearly visible. 37 can be seen in the image. 37 is part of the scene. 37 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6191,
-        "recall": 0.7348
+        "precision": 0.6173,
+        "recall": 0.7362
       },
       "38": {
         "logit_value": 12.1819,
         "completed_sentence": "38 is near the center. 38 is near the center. 38 can be seen in the image. 38 is part of the scene. 38 can be seen in the image. 38 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5957,
-        "recall": 0.7466
+        "precision": 0.5967,
+        "recall": 0.7491
       },
       "39": {
         "logit_value": 11.7591,
         "completed_sentence": "39 is near the center. 39 is part of the scene. 39 can be seen in the image. 39 is near the center. 39 is clearly visible. 39 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5874,
-        "recall": 0.7628
+        "precision": 0.5883,
+        "recall": 0.7655
       },
       "40": {
         "logit_value": 10.6847,
         "completed_sentence": "40 appears in the scene. 40 is clearly visible. 40 appears in the scene. 40 is part of the scene. 40 can be seen in the image. 40 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5798,
-        "recall": 0.7943
+        "group": "invalid",
+        "precision": 0.5804,
+        "recall": 0.7942
       },
       "41": {
         "logit_value": 7.5049,
         "completed_sentence": "41 is near the center. 41 can be seen in the image. 41 is part of the scene. 41 is clearly visible. 41 is part of the scene. 41 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5655,
-        "recall": 0.8156
+        "precision": 0.5671,
+        "recall": 0.8147
       },
       "42": {
         "logit_value": 8.7162,
         "completed_sentence": "42 is clearly visible. 42 is part of the scene. 42 appears in the scene. 42 is part of the scene. 42 is near the center. 42 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5778,
-        "recall": 0.8247
+        "precision": 0.5751,
+        "recall": 0.8255
       },
       "43": {
         "logit_value": 6.2575,
         "completed_sentence": "43 is clearly visible. 43 appears in the scene. 43 can be seen in the image. 43 is part of the scene. 43 can be seen in the image. 43 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5485,
-        "recall": 0.8597
+        "precision": 0.5498,
+        "recall": 0.857
       },
       "44": {
         "logit_value": 4.471,
         "completed_sentence": "44 appears in the scene. 44 is part of the scene. 44 is near the center. 44 can be seen in the image. 44 appears in the scene. 44 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5542,
-        "recall": 0.8694
+        "group": "invalid",
+        "precision": 0.5525,
+        "recall": 0.8682
       },
       "45": {
         "logit_value": 3.5429,
         "completed_sentence": "45 can be seen in the image. 45 is clearly visible. 45 is near the center. 45 is near the center. 45 is clearly visible. 45 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.524,
-        "recall": 0.8708
+        "precision": 0.5265,
+        "recall": 0.8728
       },
       "46": {
         "logit_value": 4.1687,
         "completed_sentence": "46 appears in the scene. 46 is near the center. 46 is part of the scene. 46 appears in the scene. 46 is clearly visible. 46 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5393,
-        "recall": 0.9085
+        "precision": 0.5369,
+        "recall": 0.9064
       },
       "47": {
         "logit_value": 4.1683,
         "completed_sentence": "47 is near the center. 47 is part of the scene. 47 is part of the scene. 47 is near the center. 47 can be seen in the image. 47 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5105,
-        "recall": 0.9151
+        "precision": 0.512,
+        "recall": 0.9152
       },
       "48": {
         "logit_value": 0.5191,
         "completed_sentence": "48 can be seen in the image. 48 can be seen in the image. 48 is part of the scene. 48 can be seen in the image. 48 can be seen in the image. 48 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5207,
-        "recall": 0.9196
+        "precision": 0.5184,
+        "recall": 0.9222
       },
       "49": {
         "logit_value": 0.01,
         "completed_sentence": "49 can be seen in the image. 49 can be seen in the image. 49 is part of the scene. 49 is near the center. 49 appears in the scene. 49 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5142,
-        "recall": 0.9543
+        "group": "invalid",
+        "precision": 0.5113,
+        "recall": 0.9534
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     },
     "Today I saw ": {
       "0": {
         "logit_value": 50.5592,
         "completed_sentence": "0 can be seen in the image. 0 is part of the scene. 0 is clearly visible. 0 is clearly visible. 0 is part of the scene. 0 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9405,
-        "recall": 0.114
+        "precision": 0.9424,
+        "recall": 0.1112
       },
       "1": {
         "logit_value": 48.2165,
         "completed_sentence": "1 appears in the scene. 1 is near the center. 1 is part of the scene. 1 is near the center. 1 is clearly visible. 1 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9307,
-        "recall": 0.1304
+        "precision": 0.9327,
+        "recall": 0.1278
       },
       "2": {
         "logit_value": 46.7852,
         "completed_sentence": "2 is near the center. 2 is part of the scene. 2 is part of the scene. 2 is clearly visible. 2 is part of the scene. 2 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9453,
-        "recall": 0.1279
+        "precision": 0.9426,
+        "recall": 0.1293
       },
       "3": {
         "logit_value": 47.3672,
         "completed_sentence": "3 is part of the scene. 3 is part of the scene. 3 is near the center. 3 is part of the scene. 3 is clearly visible. 3 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9249,
-        "recall": 0.1422
+        "precision": 0.9244,
+        "recall": 0.1441
       },
       "4": {
         "logit_value": 44.3249,
         "completed_sentence": "4 is near the center. 4 appears in the scene. 4 is part of the scene. 4 can be seen in the image. 4 is part of the scene. 4 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.9267,
-        "recall": 0.1775
+        "precision": 0.924,
+        "recall": 0.1759
       },
       "5": {
         "logit_value": 44.9922,
         "completed_sentence": "5 is near the center. 5 can be seen in the image. 5 appears in the scene. 5 can be seen in the image. 5 is near the center. 5 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9079,
-        "recall": 0.1804
+        "precision": 0.9071,
+        "recall": 0.1817
       },
       "6": {
         "logit_value": 42.2919,
         "completed_sentence": "6 can be seen in the image. 6 can be seen in the image. 6 appears in the scene. 6 is near the center. 6 is part of the scene. 6 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8817,
-        "recall": 0.2023
+        "precision": 0.8843,
+        "recall": 0.2026
       },
       "7": {
         "logit_value": 42.2503,
         "completed_sentence": "7 is near the center. 7 can be seen in the image. 7 appears in the scene. 7 is near the center. 7 is part of the scene. 7 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8923,
-        "recall": 0.2285
+        "precision": 0.891,
+        "recall": 0.227
       },
       "8": {
         "logit_value": 40.4247,
         "completed_sentence": "8 can be seen in the image. 8 appears in the scene. 8 appears in the scene. 8 is clearly visible. 8 is clearly visible. 8 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8688,
-        "recall": 0.2275
+        "precision": 0.8703,
+        "recall": 0.2297
       },
       "9": {
         "logit_value": 42.7815,
         "completed_sentence": "9 appears in the scene. 9 is near the center. 9 is part of the scene. 9 is near the center. 9 appears in the scene. 9 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8783,
-        "recall": 0.2537
+        "precision": 0.8761,
+        "recall": 0.2542
       },
       "10": {
         "logit_value": 39.9931,
         "completed_sentence": "10 is near the center. 10 can be seen in the image. 10 is clearly visible. 10 is clearly visible. 10 can be seen in the image. 10 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8586,
+        "precision": 0.8585,
         "recall": 0.2734
       },
       "11": {
         "logit_value": 38.8289,
         "completed_sentence": "11 is clearly visible. 11 is clearly visible. 11 is near the center. 11 can be seen in the image. 11 is part of the scene. 11 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8412,
-        "recall": 0.2933
+        "precision": 0.8428,
+        "recall": 0.2928
       },
       "12": {
         "logit_value": 37.143,
         "completed_sentence": "12 appears in the scene. 12 is near the center. 12 is near the center. 12 can be seen in the image. 12 is near the center. 12 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.825,
-        "recall": 0.2964
+        "precision": 0.828,
+        "recall": 0.2987
       },
       "13": {
         "logit_value": 36.6023,
         "completed_sentence": "13 is part of the scene. 13 is near the center. 13 is clearly visible. 13 can be seen in the image. 13 is part of the scene. 13 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8327,
-        "recall": 0.3163
+        "precision": 0.8323,
+        "recall": 0.3182
       },
       "14": {
         "logit_value": 37.0576,
         "completed_sentence": "14 is part of the scene. 14 is clearly visible. 14 appears in the scene. 14 is clearly visible. 14 can be seen in the image. 14 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8148,
-        "recall": 0.3575
+        "precision": 0.8161,
+        "recall": 0.3546
       },
       "15": {
         "logit_value": 36.1796,
         "completed_sentence": "15 appears in the scene. 15 appears in the scene. 15 is part of the scene. 15 is part of the scene. 15 can be seen in the image. 15 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.8074,
-        "recall": 0.3734
+        "group": "invalid",
+        "precision": 0.8084,
+        "recall": 0.3707
       },
       "16": {
         "logit_value": 32.161,
         "completed_sentence": "16 can be seen in the image. 16 is part of the scene. 16 can be seen in the image. 16 appears in the scene. 16 is part of the scene. 16 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7892,
-        "recall": 0.384
+        "precision": 0.792,
+        "recall": 0.3827
       },
       "17": {
         "logit_value": 31.5591,
         "completed_sentence": "17 can be seen in the image. 17 is part of the scene. 17 is near the center. 17 is part of the scene. 17 is near the center. 17 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8068,
-        "recall": 0.3895
+        "precision": 0.8042,
+        "recall": 0.3905
       },
       "18": {
         "logit_value": 33.3132,
         "completed_sentence": "18 is near the center. 18 can be seen in the image. 18 is clearly visible. 18 is near the center. 18 is near the center. 18 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7857,
-        "recall": 0.4185
+        "precision": 0.7855,
+        "recall": 0.4173
       },
       "19": {
         "logit_value": 32.9196,
         "completed_sentence": "19 is clearly visible. 19 is part of the scene. 19 can be seen in the image. 19 is near the center. 19 is part of the scene. 19 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.778,
-        "recall": 0.4385
+        "precision": 0.7775,
+        "recall": 0.4367
       },
       "20": {
         "logit_value": 28.9102,
         "completed_sentence": "20 is part of the scene. 20 is part of the scene. 20 can be seen in the image. 20 appears in the scene. 20 appears in the scene. 20 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7529,
-        "recall": 0.4464
+        "precision": 0.7556,
+        "recall": 0.4465
       },
       "21": {
         "logit_value": 29.2903,
         "completed_sentence": "21 can be seen in the image. 21 is near the center. 21 can be seen in the image. 21 appears in the scene. 21 can be seen in the image. 21 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7632,
-        "recall": 0.455
+        "precision": 0.762,
+        "recall": 0.4569
       },
       "22": {
         "logit_value": 27.6415,
         "completed_sentence": "22 is clearly visible. 22 appears in the scene. 22 is part of the scene. 22 appears in the scene. 22 is part of the scene. 22 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7562,
-        "recall": 0.4942
+        "precision": 0.7546,
+        "recall": 0.4917
       },
       "23": {
         "logit_value": 28.9925,
         "completed_sentence": "23 appears in the scene. 23 can be seen in the image. 23 is part of the scene. 23 is near the center. 23 is part of the scene. 23 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7381,
-        "recall": 0.4953
+        "precision": 0.7383,
+        "recall": 0.496
       },
       "24": {
         "logit_value": 26.7035,
         "completed_sentence": "24 is near the center. 24 is part of the scene. 24 can be seen in the image. 24 appears in the scene. 24 appears in the scene. 24 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7406,
-        "recall": 0.5217
+        "precision": 0.7384,
+        "recall": 0.5207
       },
       "25": {
         "logit_value": 25.2323,
         "completed_sentence": "25 is near the center. 25 is near the center. 25 appears in the scene. 25 can be seen in the image. 25 is near the center. 25 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7122,
-        "recall": 0.5479
+        "precision": 0.7138,
+        "recall": 0.545
       },
       "26": {
         "logit_value": 23.3952,
         "completed_sentence": "26 is near the center. 26 is near the center. 26 is clearly visible. 26 is part of the scene. 26 is part of the scene. 26 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7242,
-        "recall": 0.5599
+        "precision": 0.7216,
+        "recall": 0.5581
       },
       "27": {
         "logit_value": 24.583,
         "completed_sentence": "27 appears in the scene. 27 is near the center. 27 is clearly visible. 27 is near the center. 27 is clearly visible. 27 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.6989,
-        "recall": 0.5637
+        "precision": 0.6995,
+        "recall": 0.5647
       },
       "28": {
         "logit_value": 23.696,
         "completed_sentence": "28 appears in the scene. 28 appears in the scene. 28 is part of the scene. 28 is near the center. 28 is part of the scene. 28 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6975,
-        "recall": 0.5931
+        "precision": 0.6966,
+        "recall": 0.5917
       },
       "29": {
         "logit_value": 19.5491,
         "completed_sentence": "29 appears in the scene. 29 is clearly visible. 29 is part of the scene. 29 appears in the scene. 29 appears in the scene. 29 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6871,
-        "recall": 0.6057
+        "precision": 0.6864,
+        "recall": 0.6051
       },
       "30": {
         "logit_value": 18.4008,
         "completed_sentence": "30 appears in the scene. 30 is clearly visible. 30 is part of the scene. 30 appears in the scene. 30 can be seen in the image. 30 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6694,
-        "recall": 0.6196
+        "precision": 0.6704,
+        "recall": 0.6197
       },
       "31": {
         "logit_value": 18.9098,
         "completed_sentence": "31 is near the center. 31 is near the center. 31 is clearly visible. 31 is clearly visible. 31 is part of the scene. 31 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6563,
-        "recall": 0.6517
+        "precision": 0.6581,
+        "recall": 0.6489
       },
       "32": {
         "logit_value": 18.1406,
         "completed_sentence": "32 appears in the scene. 32 can be seen in the image. 32 appears in the scene. 32 is clearly visible. 32 can be seen in the image. 32 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6628,
-        "recall": 0.6682
+        "precision": 0.6615,
+        "recall": 0.6656
       },
       "33": {
         "logit_value": 15.7452,
         "completed_sentence": "33 is near the center. 33 is clearly visible. 33 is clearly visible. 33 is near the center. 33 is part of the scene. 33 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6544,
-        "recall": 0.6836
+        "group": "invalid",
+        "precision": 0.6529,
+        "recall": 0.6814
       },
       "34": {
         "logit_value": 14.4292,
         "completed_sentence": "34 is part of the scene. 34 is part of the scene. 34 can be seen in the image. 34 appears in the scene. 34 is part of the scene. 34 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6522,
-        "recall": 0.6833
+        "precision": 0.6493,
+        "recall": 0.6846
       },
       "35": {
         "logit_value": 14.0913,
         "completed_sentence": "35 can be seen in the image. 35 is near the center. 35 appears in the scene. 35 is clearly visible. 35 is near the center. 35 is near the center.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6378,
-        "recall": 0.7021
+        "group": "invalid",
+        "precision": 0.636,
+        "recall": 0.7031
       },
       "36": {
         "logit_value": 14.2711,
         "completed_sentence": "36 can be seen in the image. 36 can be seen in the image. 36 is part of the scene. 36 is near the center. 36 is clearly visible. 36 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6271,
-        "recall": 0.7148
+        "precision": 0.6256,
+        "recall": 0.7167
       },
       "37": {
         "logit_value": 13.677,
         "completed_sentence": "37 is near the center. 37 appears in the scene. 37 is clearly visible. 37 is near the center. 37 can be seen in the image. 37 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6007,
-        "recall": 0.7311
+        "precision": 0.6026,
+        "recall": 0.7332
       },
       "38": {
         "logit_value": 11.7869,
         "completed_sentence": "38 is part of the scene. 38 is part of the scene. 38 is clearly visible. 38 is near the center. 38 is near the center. 38 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.594,
-        "recall": 0.7541
+        "precision": 0.5954,
+        "recall": 0.7551
       },
       "39": {
         "logit_value": 9.2485,
         "completed_sentence": "39 can be seen in the image. 39 is part of the scene. 39 is near the center. 39 is clearly visible. 39 is near the center. 39 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5804,
-        "recall": 0.7707
+        "precision": 0.5827,
+        "recall": 0.7719
       },
       "40": {
         "logit_value": 10.4585,
         "completed_sentence": "40 appears in the scene. 40 can be seen in the image. 40 is part of the scene. 40 is near the center. 40 can be seen in the image. 40 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5742,
-        "recall": 0.7829
+        "group": "invalid",
+        "precision": 0.5759,
+        "recall": 0.7851
       },
       "41": {
         "logit_value": 10.6512,
         "completed_sentence": "41 appears in the scene. 41 appears in the scene. 41 is part of the scene. 41 is clearly visible. 41 is part of the scene. 41 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5812,
-        "recall": 0.8203
+        "precision": 0.5796,
+        "recall": 0.8185
       },
       "42": {
         "logit_value": 8.1127,
         "completed_sentence": "42 is clearly visible. 42 is clearly visible. 42 is part of the scene. 42 is part of the scene. 42 appears in the scene. 42 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5601,
-        "recall": 0.8411
+        "precision": 0.561,
+        "recall": 0.8386
       },
       "43": {
         "logit_value": 7.1466,
         "completed_sentence": "43 can be seen in the image. 43 is clearly visible. 43 appears in the scene. 43 is part of the scene. 43 can be seen in the image. 43 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.545,
-        "recall": 0.8566
+        "precision": 0.5471,
+        "recall": 0.8544
       },
       "44": {
         "logit_value": 7.5956,
         "completed_sentence": "44 appears in the scene. 44 is part of the scene. 44 can be seen in the image. 44 can be seen in the image. 44 is part of the scene. 44 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5443,
-        "recall": 0.8499
+        "group": "invalid",
+        "precision": 0.5446,
+        "recall": 0.8526
       },
       "45": {
         "logit_value": 5.2352,
         "completed_sentence": "45 is clearly visible. 45 can be seen in the image. 45 is near the center. 45 is clearly visible. 45 appears in the scene. 45 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5419,
-        "recall": 0.8749
+        "precision": 0.5409,
+        "recall": 0.876
       },
       "46": {
         "logit_value": 2.2921,
         "completed_sentence": "46 is part of the scene. 46 is clearly visible. 46 is clearly visible. 46 can be seen in the image. 46 is clearly visible. 46 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5253,
-        "recall": 0.904
+        "precision": 0.5257,
+        "recall": 0.9028
       },
       "47": {
         "logit_value": 2.6355,
         "completed_sentence": "47 can be seen in the image. 47 is near the center. 47 can be seen in the image. 47 can be seen in the image. 47 can be seen in the image. 47 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5264,
-        "recall": 0.9233
+        "precision": 0.5248,
+        "recall": 0.9217
       },
       "48": {
         "logit_value": 0.321,
         "completed_sentence": "48 appears in the scene. 48 is near the center. 48 is clearly visible. 48 appears in the scene. 48 is part of the scene. 48 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5231,
-        "recall": 0.9439
+        "precision": 0.5203,
+        "recall": 0.9416
       },
       "49": {
         "logit_value": 1.1154,
         "completed_sentence": "49 is clearly visible. 49 is clearly visible. 49 is near the center. 49 can be seen in the image. 49 is part of the scene. 49 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5068,
-        "recall": 0.9417
+        "group": "invalid",
+        "precision": 0.5055,
+        "recall": 0.9433
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     },
     "The image shows ": {
       "0": {
         "logit_value": 50.1277,
         "completed_sentence": "0 is near the center. 0 appears in the scene. 0 is near the center. 0 appears in the scene. 0 is clearly visible. 0 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9597,
-        "recall": 0.0924
+        "precision": 0.9578,
+        "recall": 0.0939
       },
       "1": {
         "logit_value": 50.2379,
         "completed_sentence": "1 is clearly visible. 1 appears in the scene. 1 appears in the scene. 1 is clearly visible. 1 is clearly visible. 1 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9384,
-        "recall": 0.1253
+        "precision": 0.9389,
+        "recall": 0.1237
       },
       "2": {
         "logit_value": 46.1343,
         "completed_sentence": "2 is clearly visible. 2 appears in the scene. 2 is clearly visible. 2 can be seen in the image. 2 can be seen in the image. 2 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9346,
-        "recall": 0.1408
+        "precision": 0.934,
+        "recall": 0.1396
       },
       "3": {
         "logit_value": 47.159,
         "completed_sentence": "3 appears in the scene. 3 is part of the scene. 3 is near the center. 3 appears in the scene. 3 is part of the scene. 3 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9301,
-        "recall": 0.1603
+        "precision": 0.9286,
+        "recall": 0.1587
       },
       "4": {
         "logit_value": 46.3099,
         "completed_sentence": "4 appears in the scene. 4 is near the center. 4 appears in the scene. 4 is part of the scene. 4 appears in the scene. 4 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.9214,
-        "recall": 0.1789
+        "precision": 0.9198,
+        "recall": 0.177
       },
       "5": {
         "logit_value": 44.202,
         "completed_sentence": "5 appears in the scene. 5 can be seen in the image. 5 is part of the scene. 5 can be seen in the image. 5 is clearly visible. 5 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8909,
-        "recall": 0.2002
+        "precision": 0.8935,
+        "recall": 0.1975
       },
       "6": {
         "logit_value": 45.7663,
         "completed_sentence": "6 is near the center. 6 can be seen in the image. 6 can be seen in the image. 6 appears in the scene. 6 is near the center. 6 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9,
-        "recall": 0.2127
+        "precision": 0.899,
+        "recall": 0.2109
       },
       "7": {
         "logit_value": 41.7355,
         "completed_sentence": "7 appears in the scene. 7 is near the center. 7 appears in the scene. 7 can be seen in the image. 7 is clearly visible. 7 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8869,
-        "recall": 0.2137
+        "precision": 0.8866,
+        "recall": 0.2152
       },
       "8": {
         "logit_value": 41.6507,
         "completed_sentence": "8 can be seen in the image. 8 appears in the scene. 8 is near the center. 8 appears in the scene. 8 is near the center. 8 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.874,
-        "recall": 0.2397
+        "precision": 0.8745,
+        "recall": 0.2395
       },
       "9": {
         "logit_value": 42.6889,
         "completed_sentence": "9 appears in the scene. 9 is clearly visible. 9 is near the center. 9 can be seen in the image. 9 is part of the scene. 9 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8778,
-        "recall": 0.2439
+        "precision": 0.8757,
+        "recall": 0.2463
       },
       "10": {
         "logit_value": 38.1582,
         "completed_sentence": "10 is part of the scene. 10 is part of the scene. 10 appears in the scene. 10 can be seen in the image. 10 appears in the scene. 10 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8453,
-        "recall": 0.2826
+        "precision": 0.8479,
+        "recall": 0.2808
       },
       "11": {
         "logit_value": 38.2128,
         "completed_sentence": "11 appears in the scene. 11 is clearly visible. 11 can be seen in the image. 11 appears in the scene. 11 is part of the scene. 11 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8612,
-        "recall": 0.2822
+        "precision": 0.8588,
+        "recall": 0.2839
       },
       "12": {
         "logit_value": 37.5865,
         "completed_sentence": "12 is near the center. 12 can be seen in the image. 12 can be seen in the image. 12 is part of the scene. 12 is near the center. 12 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.832,
-        "recall": 0.3028
+        "precision": 0.8335,
+        "recall": 0.3039
       },
       "13": {
         "logit_value": 36.0462,
         "completed_sentence": "13 is clearly visible. 13 can be seen in the image. 13 is near the center. 13 appears in the scene. 13 is near the center. 13 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.831,
+        "precision": 0.8309,
         "recall": 0.3254
       },
       "14": {
         "logit_value": 35.6557,
         "completed_sentence": "14 appears in the scene. 14 is clearly visible. 14 is near the center. 14 is part of the scene. 14 is part of the scene. 14 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8233,
-        "recall": 0.3345
+        "precision": 0.8229,
+        "recall": 0.3362
       },
       "15": {
         "logit_value": 35.88,
         "completed_sentence": "15 appears in the scene. 15 can be seen in the image. 15 is part of the scene. 15 appears in the scene. 15 can be seen in the image. 15 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.8061,
-        "recall": 0.3511
+        "group": "invalid",
+        "precision": 0.8073,
+        "recall": 0.3529
       },
       "16": {
         "logit_value": 34.6184,
         "completed_sentence": "16 can be seen in the image. 16 can be seen in the image. 16 can be seen in the image. 16 appears in the scene. 16 is near the center. 16 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8086,
-        "recall": 0.3703
+        "precision": 0.8075,
+        "recall": 0.3717
       },
       "17": {
         "logit_value": 31.5598,
         "completed_sentence": "17 is part of the scene. 17 is clearly visible. 17 is part of the scene. 17 is clearly visible. 17 is clearly visible. 17 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7953,
-        "recall": 0.3854
+        "precision": 0.795,
+        "recall": 0.3873
       },
       "18": {
         "logit_value": 33.0574,
         "completed_sentence": "18 appears in the scene. 18 is clearly visible. 18 appears in the scene. 18 is clearly visible. 18 appears in the scene. 18 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7821,
-        "recall": 0.4225
+        "precision": 0.7826,
+        "recall": 0.4205
       },
       "19": {
         "logit_value": 30.824,
         "completed_sentence": "19 is part of the scene. 19 can be seen in the image. 19 can be seen in the image. 19 is clearly visible. 19 is clearly visible. 19 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7623,
-        "recall": 0.4337
+        "precision": 0.765,
+        "recall": 0.4329
       },
       "20": {
         "logit_value": 30.2066,
         "completed_sentence": "20 is near the center. 20 is part of the scene. 20 is near the center. 20 is clearly visible. 20 is part of the scene. 20 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7517,
-        "recall": 0.4478
+        "precision": 0.7546,
+        "recall": 0.4476
       },
       "21": {
         "logit_value": 30.2247,
         "completed_sentence": "21 is clearly visible. 21 is part of the scene. 21 appears in the scene. 21 appears in the scene. 21 appears in the scene. 21 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7694,
-        "recall": 0.4525
+        "precision": 0.767,
+        "recall": 0.4549
       },
       "22": {
         "logit_value": 28.1058,
         "completed_sentence": "22 can be seen in the image. 22 is clearly visible. 22 is near the center. 22 can be seen in the image. 22 can be seen in the image. 22 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7574,
-        "recall": 0.4747
+        "precision": 0.7555,
+        "recall": 0.476
       },
       "23": {
         "logit_value": 25.9728,
         "completed_sentence": "23 is clearly visible. 23 is clearly visible. 23 is clearly visible. 23 can be seen in the image. 23 can be seen in the image. 23 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7447,
-        "recall": 0.493
+        "precision": 0.7435,
+        "recall": 0.4942
       },
       "24": {
         "logit_value": 26.2108,
         "completed_sentence": "24 appears in the scene. 24 is clearly visible. 24 can be seen in the image. 24 can be seen in the image. 24 is near the center. 24 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7163,
-        "recall": 0.5016
+        "precision": 0.7189,
+        "recall": 0.5046
       },
       "25": {
         "logit_value": 26.9093,
         "completed_sentence": "25 is clearly visible. 25 appears in the scene. 25 appears in the scene. 25 is part of the scene. 25 can be seen in the image. 25 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7346,
-        "recall": 0.5455
+        "precision": 0.7318,
+        "recall": 0.5431
       },
       "26": {
         "logit_value": 22.1862,
         "completed_sentence": "26 is part of the scene. 26 is part of the scene. 26 is clearly visible. 26 appears in the scene. 26 is near the center. 26 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6985,
-        "recall": 0.5638
+        "precision": 0.701,
+        "recall": 0.5612
       },
       "27": {
         "logit_value": 24.8459,
         "completed_sentence": "27 can be seen in the image. 27 is clearly visible. 27 is near the center. 27 appears in the scene. 27 is part of the scene. 27 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7047,
-        "recall": 0.5759
+        "precision": 0.7041,
+        "recall": 0.5744
       },
       "28": {
         "logit_value": 22.2668,
         "completed_sentence": "28 is part of the scene. 28 is near the center. 28 can be seen in the image. 28 appears in the scene. 28 is clearly visible. 28 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7033,
-        "recall": 0.591
+        "precision": 0.7012,
+        "recall": 0.59
       },
       "29": {
         "logit_value": 21.9818,
         "completed_sentence": "29 appears in the scene. 29 is clearly visible. 29 is near the center. 29 is part of the scene. 29 is part of the scene. 29 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.679,
-        "recall": 0.591
+        "precision": 0.68,
+        "recall": 0.5934
       },
       "30": {
         "logit_value": 19.5868,
         "completed_sentence": "30 is near the center. 30 can be seen in the image. 30 can be seen in the image. 30 appears in the scene. 30 is near the center. 30 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6827,
-        "recall": 0.6063
+        "precision": 0.6811,
+        "recall": 0.6091
       },
       "31": {
         "logit_value": 20.7646,
         "completed_sentence": "31 can be seen in the image. 31 is clearly visible. 31 is part of the scene. 31 is near the center. 31 appears in the scene. 31 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6633,
-        "recall": 0.6431
+        "precision": 0.6637,
+        "recall": 0.6421
       },
       "32": {
         "logit_value": 16.3282,
         "completed_sentence": "32 appears in the scene. 32 can be seen in the image. 32 is near the center. 32 is near the center. 32 is clearly visible. 32 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6457,
-        "recall": 0.6615
+        "precision": 0.6478,
+        "recall": 0.6602
       },
       "33": {
         "logit_value": 15.0208,
         "completed_sentence": "33 is near the center. 33 is clearly visible. 33 appears in the scene. 33 is clearly visible. 33 appears in the scene. 33 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6412,
-        "recall": 0.6682
+        "group": "invalid",
+        "precision": 0.6423,
+        "recall": 0.6691
       },
       "34": {
         "logit_value": 15.7954,
         "completed_sentence": "34 is clearly visible. 34 is clearly visible. 34 is near the center. 34 is part of the scene. 34 is clearly visible. 34 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6394,
-        "recall": 0.687
+        "precision": 0.6391,
+        "recall": 0.6876
       },
       "35": {
         "logit_value": 15.3922,
         "completed_sentence": "35 is near the center. 35 can be seen in the image. 35 can be seen in the image. 35 is clearly visible. 35 is part of the scene. 35 appears in the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6233,
-        "recall": 0.7037
+        "group": "invalid",
+        "precision": 0.6244,
+        "recall": 0.7044
       },
       "36": {
         "logit_value": 14.2878,
         "completed_sentence": "36 appears in the scene. 36 is near the center. 36 is near the center. 36 is near the center. 36 can be seen in the image. 36 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6095,
-        "recall": 0.7209
+        "precision": 0.6115,
+        "recall": 0.7216
       },
       "37": {
         "logit_value": 11.2531,
         "completed_sentence": "37 can be seen in the image. 37 is clearly visible. 37 is near the center. 37 is near the center. 37 appears in the scene. 37 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6082,
-        "recall": 0.7395
+        "precision": 0.6086,
+        "recall": 0.7399
       },
       "38": {
         "logit_value": 12.3752,
         "completed_sentence": "38 is near the center. 38 is clearly visible. 38 can be seen in the image. 38 is near the center. 38 is part of the scene. 38 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5919,
-        "recall": 0.7474
+        "precision": 0.5937,
+        "recall": 0.7498
       },
       "39": {
         "logit_value": 12.2163,
         "completed_sentence": "39 is part of the scene. 39 appears in the scene. 39 is near the center. 39 is near the center. 39 is part of the scene. 39 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5867,
-        "recall": 0.7716
+        "precision": 0.5877,
+        "recall": 0.7726
       },
       "40": {
         "logit_value": 9.916,
         "completed_sentence": "40 is near the center. 40 is near the center. 40 can be seen in the image. 40 is part of the scene. 40 appears in the scene. 40 is near the center.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.573,
-        "recall": 0.7908
+        "group": "invalid",
+        "precision": 0.5749,
+        "recall": 0.7914
       },
       "41": {
         "logit_value": 8.5042,
         "completed_sentence": "41 is clearly visible. 41 is part of the scene. 41 appears in the scene. 41 is part of the scene. 41 is part of the scene. 41 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.583,
-        "recall": 0.808
+        "precision": 0.5811,
+        "recall": 0.8087
       },
       "42": {
         "logit_value": 8.7269,
         "completed_sentence": "42 can be seen in the image. 42 appears in the scene. 42 can be seen in the image. 42 is near the center. 42 is clearly visible. 42 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5658,
-        "recall": 0.8422
+        "precision": 0.5655,
+        "recall": 0.8394
       },
       "43": {
         "logit_value": 7.6919,
         "completed_sentence": "43 is near the center. 43 appears in the scene. 43 can be seen in the image. 43 can be seen in the image. 43 is clearly visible. 43 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5443,
-        "recall": 0.84
+        "precision": 0.5464,
+        "recall": 0.8412
       },
       "44": {
         "logit_value": 7.9628,
         "completed_sentence": "44 is part of the scene. 44 can be seen in the image. 44 is part of the scene. 44 is clearly visible. 44 is near the center. 44 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5453,
-        "recall": 0.8603
+        "group": "invalid",
+        "precision": 0.5454,
+        "recall": 0.8609
       },
       "45": {
         "logit_value": 5.3753,
         "completed_sentence": "45 appears in the scene. 45 is near the center. 45 appears in the scene. 45 is part of the scene. 45 is clearly visible. 45 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5492,
-        "recall": 0.8689
+        "precision": 0.5467,
+        "recall": 0.8712
       },
       "46": {
         "logit_value": 5.9344,
         "completed_sentence": "46 is near the center. 46 can be seen in the image. 46 is clearly visible. 46 is clearly visible. 46 is clearly visible. 46 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5329,
-        "recall": 0.8949
+        "precision": 0.5318,
+        "recall": 0.8956
       },
       "47": {
         "logit_value": 1.888,
         "completed_sentence": "47 is part of the scene. 47 appears in the scene. 47 can be seen in the image. 47 is near the center. 47 can be seen in the image. 47 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5258,
-        "recall": 0.917
+        "precision": 0.5243,
+        "recall": 0.9167
       },
       "48": {
         "logit_value": 3.0894,
         "completed_sentence": "48 is near the center. 48 is clearly visible. 48 can be seen in the image. 48 is clearly visible. 48 is near the center. 48 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5118,
+        "precision": 0.5113,
         "recall": 0.9327
       },
       "49": {
         "logit_value": 2.6822,
         "completed_sentence": "49 appears in the scene. 49 is near the center. 49 is near the center. 49 is near the center. 49 can be seen in the image. 49 appears in the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.4876,
-        "recall": 0.9599
+        "group": "invalid",
+        "precision": 0.4901,
+        "recall": 0.958
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     }
   },
   "InternVL": {
-    "Hello I am ": {
+    "Hello I am": {
       "0": {
         "logit_value": 50.0845,
         "completed_sentence": "0 can be seen in the image. 0 is near the center. 0 is clearly visible. 0 is near the center. 0 is clearly visible. 0 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9454,
-        "recall": 0.0879
+        "precision": 0.9464,
+        "recall": 0.0903
       },
       "1": {
         "logit_value": 47.0903,
         "completed_sentence": "1 appears in the scene. 1 appears in the scene. 1 is part of the scene. 1 appears in the scene. 1 is part of the scene. 1 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9361,
-        "recall": 0.1056
+        "precision": 0.9371,
+        "recall": 0.108
       },
       "2": {
         "logit_value": 47.324,
         "completed_sentence": "2 can be seen in the image. 2 appears in the scene. 2 appears in the scene. 2 can be seen in the image. 2 can be seen in the image. 2 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9294,
-        "recall": 0.1336
+        "precision": 0.9299,
+        "recall": 0.1338
       },
       "3": {
         "logit_value": 47.9496,
         "completed_sentence": "3 can be seen in the image. 3 can be seen in the image. 3 is clearly visible. 3 appears in the scene. 3 appears in the scene. 3 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9339,
-        "recall": 0.1505
+        "precision": 0.9316,
+        "recall": 0.1508
       },
       "4": {
         "logit_value": 47.0093,
         "completed_sentence": "4 is clearly visible. 4 is part of the scene. 4 appears in the scene. 4 is near the center. 4 is near the center. 4 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.9225,
-        "recall": 0.1563
+        "precision": 0.9207,
+        "recall": 0.1589
       },
       "5": {
         "logit_value": 44.8302,
         "completed_sentence": "5 is part of the scene. 5 is near the center. 5 is part of the scene. 5 can be seen in the image. 5 is part of the scene. 5 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.897,
-        "recall": 0.1976
+        "precision": 0.8984,
+        "recall": 0.1954
       },
       "6": {
         "logit_value": 44.348,
         "completed_sentence": "6 is part of the scene. 6 appears in the scene. 6 is near the center. 6 is part of the scene. 6 is part of the scene. 6 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8903,
-        "recall": 0.2144
+        "precision": 0.8912,
+        "recall": 0.2124
       },
       "7": {
         "logit_value": 43.6884,
         "completed_sentence": "7 is clearly visible. 7 appears in the scene. 7 is near the center. 7 appears in the scene. 7 is part of the scene. 7 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8801,
-        "recall": 0.2136
+        "precision": 0.8812,
+        "recall": 0.2152
       },
       "8": {
         "logit_value": 41.673,
         "completed_sentence": "8 appears in the scene. 8 can be seen in the image. 8 is part of the scene. 8 appears in the scene. 8 is part of the scene. 8 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8657,
-        "recall": 0.2353
+        "precision": 0.8678,
+        "recall": 0.236
       },
       "9": {
         "logit_value": 40.9586,
         "completed_sentence": "9 can be seen in the image. 9 is part of the scene. 9 is clearly visible. 9 is near the center. 9 is clearly visible. 9 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8566,
-        "recall": 0.2506
+        "precision": 0.8587,
+        "recall": 0.2517
       },
       "10": {
         "logit_value": 38.5461,
         "completed_sentence": "10 is part of the scene. 10 can be seen in the image. 10 can be seen in the image. 10 can be seen in the image. 10 can be seen in the image. 10 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8676,
-        "recall": 0.2874
+        "precision": 0.8657,
+        "recall": 0.2846
       },
       "11": {
         "logit_value": 38.9548,
         "completed_sentence": "11 appears in the scene. 11 is near the center. 11 is clearly visible. 11 is near the center. 11 appears in the scene. 11 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8365,
-        "recall": 0.2767
+        "precision": 0.839,
+        "recall": 0.2796
       },
       "12": {
         "logit_value": 37.1547,
         "completed_sentence": "12 can be seen in the image. 12 is part of the scene. 12 is part of the scene. 12 is clearly visible. 12 is part of the scene. 12 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8482,
-        "recall": 0.3101
+        "precision": 0.8465,
+        "recall": 0.3097
       },
       "13": {
         "logit_value": 36.0716,
         "completed_sentence": "13 is part of the scene. 13 is clearly visible. 13 can be seen in the image. 13 is part of the scene. 13 appears in the scene. 13 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8319,
-        "recall": 0.3402
+        "precision": 0.8316,
+        "recall": 0.3373
       },
       "14": {
         "logit_value": 34.4097,
         "completed_sentence": "14 is near the center. 14 is clearly visible. 14 can be seen in the image. 14 is near the center. 14 is near the center. 14 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8313,
-        "recall": 0.3504
+        "precision": 0.8294,
+        "recall": 0.3489
       },
       "15": {
         "logit_value": 34.7563,
         "completed_sentence": "15 appears in the scene. 15 appears in the scene. 15 is part of the scene. 15 is near the center. 15 is part of the scene. 15 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.8271,
-        "recall": 0.3685
+        "group": "invalid",
+        "precision": 0.8241,
+        "recall": 0.3668
       },
       "16": {
         "logit_value": 32.6639,
         "completed_sentence": "16 appears in the scene. 16 is clearly visible. 16 is part of the scene. 16 is near the center. 16 is part of the scene. 16 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7922,
-        "recall": 0.3687
+        "precision": 0.7944,
+        "recall": 0.3705
       },
       "17": {
         "logit_value": 33.3874,
         "completed_sentence": "17 is near the center. 17 is near the center. 17 is part of the scene. 17 is near the center. 17 is part of the scene. 17 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7839,
-        "recall": 0.4093
+        "precision": 0.7859,
+        "recall": 0.4064
       },
       "18": {
         "logit_value": 30.5424,
         "completed_sentence": "18 is clearly visible. 18 is near the center. 18 appears in the scene. 18 appears in the scene. 18 appears in the scene. 18 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7922,
-        "recall": 0.4096
+        "precision": 0.7907,
+        "recall": 0.4101
       },
       "19": {
         "logit_value": 31.8456,
         "completed_sentence": "19 can be seen in the image. 19 can be seen in the image. 19 appears in the scene. 19 is part of the scene. 19 is near the center. 19 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7854,
-        "recall": 0.4374
+        "precision": 0.7834,
+        "recall": 0.4359
       },
       "20": {
         "logit_value": 29.5007,
         "completed_sentence": "20 is clearly visible. 20 can be seen in the image. 20 is part of the scene. 20 is near the center. 20 is near the center. 20 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7536,
-        "recall": 0.4558
+        "precision": 0.7561,
+        "recall": 0.454
       },
       "21": {
         "logit_value": 30.801,
         "completed_sentence": "21 is clearly visible. 21 can be seen in the image. 21 is near the center. 21 is clearly visible. 21 is part of the scene. 21 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.752,
-        "recall": 0.4494
+        "precision": 0.753,
+        "recall": 0.4523
       },
       "22": {
         "logit_value": 26.8713,
         "completed_sentence": "22 is near the center. 22 is near the center. 22 is near the center. 22 is near the center. 22 is part of the scene. 22 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7458,
-        "recall": 0.473
+        "precision": 0.7463,
+        "recall": 0.4747
       },
       "23": {
         "logit_value": 25.5224,
         "completed_sentence": "23 is clearly visible. 23 is clearly visible. 23 is clearly visible. 23 can be seen in the image. 23 is clearly visible. 23 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7493,
-        "recall": 0.5076
+        "precision": 0.7472,
+        "recall": 0.5059
       },
       "24": {
         "logit_value": 27.7177,
         "completed_sentence": "24 can be seen in the image. 24 appears in the scene. 24 appears in the scene. 24 is near the center. 24 appears in the scene. 24 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7193,
-        "recall": 0.515
+        "precision": 0.7214,
+        "recall": 0.5153
       },
       "25": {
         "logit_value": 23.3734,
         "completed_sentence": "25 appears in the scene. 25 is clearly visible. 25 can be seen in the image. 25 is near the center. 25 appears in the scene. 25 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7162,
-        "recall": 0.5211
+        "precision": 0.7171,
+        "recall": 0.5237
       },
       "26": {
         "logit_value": 24.6219,
         "completed_sentence": "26 can be seen in the image. 26 is clearly visible. 26 appears in the scene. 26 is part of the scene. 26 appears in the scene. 26 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7173,
-        "recall": 0.5361
+        "precision": 0.7161,
+        "recall": 0.539
       },
       "27": {
         "logit_value": 23.7199,
         "completed_sentence": "27 is clearly visible. 27 can be seen in the image. 27 appears in the scene. 27 can be seen in the image. 27 is clearly visible. 27 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.6873,
-        "recall": 0.5742
+        "precision": 0.6903,
+        "recall": 0.5731
       },
       "28": {
         "logit_value": 21.5323,
         "completed_sentence": "28 is near the center. 28 is near the center. 28 is near the center. 28 appears in the scene. 28 can be seen in the image. 28 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6998,
-        "recall": 0.5738
+        "precision": 0.6984,
+        "recall": 0.5762
       },
       "29": {
         "logit_value": 21.5663,
         "completed_sentence": "29 is part of the scene. 29 is clearly visible. 29 is part of the scene. 29 appears in the scene. 29 can be seen in the image. 29 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.689,
-        "recall": 0.5901
+        "precision": 0.6879,
+        "recall": 0.5927
       },
       "30": {
         "logit_value": 20.8897,
         "completed_sentence": "30 can be seen in the image. 30 is part of the scene. 30 can be seen in the image. 30 appears in the scene. 30 is clearly visible. 30 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6783,
-        "recall": 0.6099
+        "precision": 0.6776,
+        "recall": 0.612
       },
       "31": {
         "logit_value": 17.5601,
         "completed_sentence": "31 is near the center. 31 can be seen in the image. 31 is near the center. 31 appears in the scene. 31 appears in the scene. 31 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.654,
-        "recall": 0.6447
+        "precision": 0.6563,
+        "recall": 0.6433
       },
       "32": {
         "logit_value": 18.5785,
         "completed_sentence": "32 is part of the scene. 32 is near the center. 32 is clearly visible. 32 is near the center. 32 appears in the scene. 32 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6486,
-        "recall": 0.6581
+        "precision": 0.6501,
+        "recall": 0.6575
       },
       "33": {
         "logit_value": 17.4277,
         "completed_sentence": "33 is clearly visible. 33 appears in the scene. 33 can be seen in the image. 33 can be seen in the image. 33 is clearly visible. 33 appears in the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6376,
-        "recall": 0.6692
+        "group": "invalid",
+        "precision": 0.6395,
+        "recall": 0.6699
       },
       "34": {
         "logit_value": 15.9983,
         "completed_sentence": "34 is clearly visible. 34 is near the center. 34 is near the center. 34 appears in the scene. 34 can be seen in the image. 34 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6406,
-        "recall": 0.6906
+        "precision": 0.64,
+        "recall": 0.6905
       },
       "35": {
         "logit_value": 14.6835,
         "completed_sentence": "35 can be seen in the image. 35 is clearly visible. 35 is clearly visible. 35 is part of the scene. 35 is clearly visible. 35 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.63,
-        "recall": 0.6973
+        "group": "invalid",
+        "precision": 0.6297,
+        "recall": 0.6993
       },
       "36": {
         "logit_value": 13.0487,
         "completed_sentence": "36 can be seen in the image. 36 is part of the scene. 36 is near the center. 36 is part of the scene. 36 can be seen in the image. 36 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6056,
-        "recall": 0.7113
+        "precision": 0.6083,
+        "recall": 0.7139
       },
       "37": {
         "logit_value": 13.8072,
         "completed_sentence": "37 is part of the scene. 37 appears in the scene. 37 is near the center. 37 is clearly visible. 37 is near the center. 37 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5977,
-        "recall": 0.7429
+        "precision": 0.6002,
+        "recall": 0.7427
       },
       "38": {
         "logit_value": 12.0452,
         "completed_sentence": "38 is part of the scene. 38 is near the center. 38 can be seen in the image. 38 is part of the scene. 38 is clearly visible. 38 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5921,
-        "recall": 0.7684
+        "precision": 0.5939,
+        "recall": 0.7666
       },
       "39": {
         "logit_value": 11.7947,
         "completed_sentence": "39 is clearly visible. 39 appears in the scene. 39 is clearly visible. 39 can be seen in the image. 39 is clearly visible. 39 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5987,
-        "recall": 0.7869
+        "precision": 0.5974,
+        "recall": 0.7848
       },
       "40": {
         "logit_value": 10.4492,
         "completed_sentence": "40 appears in the scene. 40 is clearly visible. 40 is clearly visible. 40 appears in the scene. 40 is clearly visible. 40 appears in the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5693,
-        "recall": 0.7989
+        "group": "invalid",
+        "precision": 0.572,
+        "recall": 0.7979
       },
       "41": {
         "logit_value": 8.9857,
         "completed_sentence": "41 is near the center. 41 appears in the scene. 41 is near the center. 41 appears in the scene. 41 is near the center. 41 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5689,
-        "recall": 0.8117
+        "precision": 0.5698,
+        "recall": 0.8116
       },
       "42": {
         "logit_value": 9.0857,
         "completed_sentence": "42 is near the center. 42 is part of the scene. 42 is clearly visible. 42 is near the center. 42 is part of the scene. 42 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5502,
-        "recall": 0.8378
+        "precision": 0.553,
+        "recall": 0.8359
       },
       "43": {
         "logit_value": 6.9846,
         "completed_sentence": "43 is part of the scene. 43 appears in the scene. 43 is near the center. 43 appears in the scene. 43 is near the center. 43 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
         "precision": 0.5554,
-        "recall": 0.8326
+        "recall": 0.8352
       },
       "44": {
         "logit_value": 7.5771,
         "completed_sentence": "44 is part of the scene. 44 is clearly visible. 44 is clearly visible. 44 is clearly visible. 44 appears in the scene. 44 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5511,
-        "recall": 0.8517
+        "group": "invalid",
+        "precision": 0.5501,
+        "recall": 0.854
       },
       "45": {
         "logit_value": 4.8871,
         "completed_sentence": "45 is clearly visible. 45 is part of the scene. 45 can be seen in the image. 45 appears in the scene. 45 is near the center. 45 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5332,
-        "recall": 0.8701
+        "precision": 0.5339,
+        "recall": 0.8722
       },
       "46": {
         "logit_value": 3.665,
         "completed_sentence": "46 is clearly visible. 46 is part of the scene. 46 is near the center. 46 is clearly visible. 46 is part of the scene. 46 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5342,
-        "recall": 0.8911
+        "precision": 0.5328,
+        "recall": 0.8925
       },
       "47": {
         "logit_value": 1.7174,
         "completed_sentence": "47 can be seen in the image. 47 is clearly visible. 47 can be seen in the image. 47 is near the center. 47 is near the center. 47 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5275,
-        "recall": 0.9297
+        "precision": 0.5257,
+        "recall": 0.9269
       },
       "48": {
         "logit_value": 0.3455,
         "completed_sentence": "48 is near the center. 48 is part of the scene. 48 is near the center. 48 is part of the scene. 48 appears in the scene. 48 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5079,
-        "recall": 0.9287
+        "precision": 0.5081,
+        "recall": 0.9295
       },
       "49": {
         "logit_value": 0.4731,
         "completed_sentence": "49 appears in the scene. 49 is part of the scene. 49 appears in the scene. 49 appears in the scene. 49 is clearly visible. 49 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5142,
-        "recall": 0.9649
+        "group": "invalid",
+        "precision": 0.5113,
+        "recall": 0.9619
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     },
     "Today I saw ": {
       "0": {
         "logit_value": 48.0956,
         "completed_sentence": "0 is clearly visible. 0 is near the center. 0 is clearly visible. 0 can be seen in the image. 0 is near the center. 0 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9512,
-        "recall": 0.1041
+        "precision": 0.951,
+        "recall": 0.1033
       },
       "1": {
         "logit_value": 47.8208,
         "completed_sentence": "1 is clearly visible. 1 appears in the scene. 1 is near the center. 1 is clearly visible. 1 is clearly visible. 1 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9553,
-        "recall": 0.1149
+        "precision": 0.9524,
+        "recall": 0.1154
       },
       "2": {
         "logit_value": 49.5891,
         "completed_sentence": "2 is near the center. 2 can be seen in the image. 2 is clearly visible. 2 is part of the scene. 2 is clearly visible. 2 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9322,
-        "recall": 0.1407
+        "precision": 0.9321,
+        "recall": 0.1395
       },
       "3": {
         "logit_value": 45.5341,
         "completed_sentence": "3 is part of the scene. 3 is clearly visible. 3 can be seen in the image. 3 appears in the scene. 3 appears in the scene. 3 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.932,
-        "recall": 0.1393
+        "precision": 0.9301,
+        "recall": 0.1418
       },
       "4": {
         "logit_value": 45.044,
         "completed_sentence": "4 is near the center. 4 is near the center. 4 can be seen in the image. 4 is near the center. 4 appears in the scene. 4 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.9077,
-        "recall": 0.1784
+        "precision": 0.9088,
+        "recall": 0.1766
       },
       "5": {
         "logit_value": 46.7742,
         "completed_sentence": "5 is clearly visible. 5 appears in the scene. 5 is clearly visible. 5 appears in the scene. 5 can be seen in the image. 5 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8932,
-        "recall": 0.1948
+        "precision": 0.8953,
+        "recall": 0.1932
       },
       "6": {
         "logit_value": 43.2561,
         "completed_sentence": "6 appears in the scene. 6 can be seen in the image. 6 is near the center. 6 can be seen in the image. 6 is near the center. 6 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8835,
-        "recall": 0.1998
+        "precision": 0.8858,
+        "recall": 0.2007
       },
       "7": {
         "logit_value": 41.3617,
         "completed_sentence": "7 is part of the scene. 7 is clearly visible. 7 appears in the scene. 7 is near the center. 7 appears in the scene. 7 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8949,
-        "recall": 0.2156
+        "precision": 0.8931,
+        "recall": 0.2167
       },
       "8": {
         "logit_value": 42.8446,
         "completed_sentence": "8 is clearly visible. 8 is near the center. 8 is near the center. 8 appears in the scene. 8 is clearly visible. 8 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8906,
-        "recall": 0.2357
+        "precision": 0.8878,
+        "recall": 0.2363
       },
       "9": {
         "logit_value": 42.4184,
         "completed_sentence": "9 is clearly visible. 9 can be seen in the image. 9 is clearly visible. 9 appears in the scene. 9 is clearly visible. 9 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.869,
-        "recall": 0.2576
+        "precision": 0.8687,
+        "recall": 0.2573
       },
       "10": {
         "logit_value": 38.2467,
         "completed_sentence": "10 appears in the scene. 10 can be seen in the image. 10 is near the center. 10 is clearly visible. 10 is part of the scene. 10 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8666,
-        "recall": 0.2651
+        "precision": 0.8649,
+        "recall": 0.2668
       },
       "11": {
         "logit_value": 38.0353,
         "completed_sentence": "11 is clearly visible. 11 appears in the scene. 11 can be seen in the image. 11 appears in the scene. 11 is clearly visible. 11 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8584,
-        "recall": 0.2765
+        "precision": 0.8565,
+        "recall": 0.2793
       },
       "12": {
         "logit_value": 36.4901,
         "completed_sentence": "12 is part of the scene. 12 can be seen in the image. 12 can be seen in the image. 12 can be seen in the image. 12 is clearly visible. 12 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8531,
-        "recall": 0.2947
+        "precision": 0.8504,
+        "recall": 0.2974
       },
       "13": {
         "logit_value": 37.7329,
         "completed_sentence": "13 appears in the scene. 13 is near the center. 13 is near the center. 13 can be seen in the image. 13 appears in the scene. 13 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8208,
-        "recall": 0.317
+        "precision": 0.8228,
+        "recall": 0.3187
       },
       "14": {
         "logit_value": 36.4564,
         "completed_sentence": "14 can be seen in the image. 14 can be seen in the image. 14 is part of the scene. 14 can be seen in the image. 14 is clearly visible. 14 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8249,
-        "recall": 0.3473
+        "precision": 0.8242,
+        "recall": 0.3464
       },
       "15": {
         "logit_value": 34.1191,
         "completed_sentence": "15 is part of the scene. 15 appears in the scene. 15 is part of the scene. 15 is clearly visible. 15 can be seen in the image. 15 is near the center.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.8014,
-        "recall": 0.3512
+        "group": "invalid",
+        "precision": 0.8035,
+        "recall": 0.353
       },
       "16": {
         "logit_value": 33.9187,
         "completed_sentence": "16 is part of the scene. 16 is part of the scene. 16 is near the center. 16 can be seen in the image. 16 is near the center. 16 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8115,
-        "recall": 0.3729
+        "precision": 0.8098,
+        "recall": 0.3738
       },
       "17": {
         "logit_value": 31.1043,
         "completed_sentence": "17 is near the center. 17 is clearly visible. 17 can be seen in the image. 17 is part of the scene. 17 is near the center. 17 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7968,
-        "recall": 0.3808
+        "precision": 0.7962,
+        "recall": 0.3836
       },
       "18": {
         "logit_value": 33.9984,
         "completed_sentence": "18 appears in the scene. 18 is near the center. 18 is part of the scene. 18 is clearly visible. 18 appears in the scene. 18 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7989,
-        "recall": 0.4002
+        "precision": 0.7961,
+        "recall": 0.4026
       },
       "19": {
         "logit_value": 32.386,
         "completed_sentence": "19 appears in the scene. 19 appears in the scene. 19 appears in the scene. 19 is part of the scene. 19 is near the center. 19 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7844,
-        "recall": 0.4252
+        "precision": 0.7826,
+        "recall": 0.4261
       },
       "20": {
         "logit_value": 31.6559,
         "completed_sentence": "20 is part of the scene. 20 is part of the scene. 20 appears in the scene. 20 is part of the scene. 20 appears in the scene. 20 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7522,
-        "recall": 0.453
+        "precision": 0.755,
+        "recall": 0.4518
       },
       "21": {
         "logit_value": 29.1685,
         "completed_sentence": "21 is clearly visible. 21 appears in the scene. 21 is part of the scene. 21 appears in the scene. 21 is clearly visible. 21 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7474,
-        "recall": 0.4504
+        "precision": 0.7494,
+        "recall": 0.4532
       },
       "22": {
         "logit_value": 27.912,
         "completed_sentence": "22 appears in the scene. 22 is near the center. 22 appears in the scene. 22 is near the center. 22 is clearly visible. 22 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7429,
-        "recall": 0.4851
+        "precision": 0.7439,
+        "recall": 0.4844
       },
       "23": {
         "logit_value": 25.5908,
         "completed_sentence": "23 is clearly visible. 23 is part of the scene. 23 is near the center. 23 is clearly visible. 23 is near the center. 23 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7449,
-        "recall": 0.4882
+        "precision": 0.7437,
+        "recall": 0.4904
       },
       "24": {
         "logit_value": 26.3441,
         "completed_sentence": "24 appears in the scene. 24 can be seen in the image. 24 can be seen in the image. 24 is near the center. 24 appears in the scene. 24 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7247,
-        "recall": 0.511
+        "precision": 0.7257,
+        "recall": 0.5121
       },
       "25": {
         "logit_value": 25.7742,
         "completed_sentence": "25 appears in the scene. 25 is part of the scene. 25 appears in the scene. 25 can be seen in the image. 25 is near the center. 25 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7333,
-        "recall": 0.5423
+        "precision": 0.7307,
+        "recall": 0.5406
       },
       "26": {
         "logit_value": 22.5094,
         "completed_sentence": "26 is part of the scene. 26 can be seen in the image. 26 is part of the scene. 26 is clearly visible. 26 appears in the scene. 26 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7181,
-        "recall": 0.5645
+        "precision": 0.7167,
+        "recall": 0.5618
       },
       "27": {
         "logit_value": 22.2729,
         "completed_sentence": "27 is part of the scene. 27 is clearly visible. 27 can be seen in the image. 27 appears in the scene. 27 is near the center. 27 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7113,
-        "recall": 0.5717
+        "precision": 0.7095,
+        "recall": 0.571
       },
       "28": {
         "logit_value": 20.952,
         "completed_sentence": "28 is clearly visible. 28 is near the center. 28 can be seen in the image. 28 is clearly visible. 28 is near the center. 28 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7073,
-        "recall": 0.5758
+        "precision": 0.7044,
+        "recall": 0.5777
       },
       "29": {
         "logit_value": 19.9982,
         "completed_sentence": "29 is clearly visible. 29 is clearly visible. 29 is clearly visible. 29 can be seen in the image. 29 can be seen in the image. 29 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6707,
-        "recall": 0.5958
+        "precision": 0.6733,
+        "recall": 0.5972
       },
       "30": {
         "logit_value": 21.8764,
         "completed_sentence": "30 can be seen in the image. 30 is near the center. 30 is part of the scene. 30 can be seen in the image. 30 is clearly visible. 30 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.686,
+        "precision": 0.6837,
         "recall": 0.6202
       },
       "31": {
         "logit_value": 20.1549,
         "completed_sentence": "31 appears in the scene. 31 appears in the scene. 31 can be seen in the image. 31 is clearly visible. 31 is clearly visible. 31 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6676,
-        "recall": 0.6455
+        "precision": 0.6672,
+        "recall": 0.644
       },
       "32": {
         "logit_value": 16.0803,
         "completed_sentence": "32 is near the center. 32 appears in the scene. 32 can be seen in the image. 32 appears in the scene. 32 is clearly visible. 32 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.649,
-        "recall": 0.6432
+        "precision": 0.6504,
+        "recall": 0.6456
       },
       "33": {
         "logit_value": 18.7673,
         "completed_sentence": "33 is part of the scene. 33 can be seen in the image. 33 is clearly visible. 33 can be seen in the image. 33 appears in the scene. 33 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6613,
-        "recall": 0.6676
+        "group": "invalid",
+        "precision": 0.6584,
+        "recall": 0.6686
       },
       "34": {
         "logit_value": 17.559,
         "completed_sentence": "34 appears in the scene. 34 appears in the scene. 34 can be seen in the image. 34 is part of the scene. 34 is part of the scene. 34 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6275,
-        "recall": 0.6778
+        "precision": 0.6295,
+        "recall": 0.6802
       },
       "35": {
         "logit_value": 15.6424,
         "completed_sentence": "35 can be seen in the image. 35 is part of the scene. 35 is part of the scene. 35 can be seen in the image. 35 appears in the scene. 35 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6225,
-        "recall": 0.695
+        "group": "invalid",
+        "precision": 0.6237,
+        "recall": 0.6974
       },
       "36": {
         "logit_value": 13.4433,
         "completed_sentence": "36 is part of the scene. 36 can be seen in the image. 36 appears in the scene. 36 is clearly visible. 36 is clearly visible. 36 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6172,
-        "recall": 0.7183
+        "precision": 0.6177,
+        "recall": 0.7196
       },
       "37": {
         "logit_value": 11.6833,
         "completed_sentence": "37 is clearly visible. 37 is near the center. 37 can be seen in the image. 37 can be seen in the image. 37 can be seen in the image. 37 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.604,
-        "recall": 0.7293
+        "precision": 0.6052,
+        "recall": 0.7318
       },
       "38": {
         "logit_value": 10.3645,
         "completed_sentence": "38 can be seen in the image. 38 is near the center. 38 appears in the scene. 38 can be seen in the image. 38 is clearly visible. 38 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6023,
-        "recall": 0.7497
+        "precision": 0.6021,
+        "recall": 0.7516
       },
       "39": {
         "logit_value": 10.759,
         "completed_sentence": "39 is part of the scene. 39 is clearly visible. 39 appears in the scene. 39 is clearly visible. 39 is clearly visible. 39 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5847,
-        "recall": 0.7866
+        "precision": 0.5862,
+        "recall": 0.7846
       },
       "40": {
         "logit_value": 11.2327,
         "completed_sentence": "40 appears in the scene. 40 is part of the scene. 40 is clearly visible. 40 can be seen in the image. 40 is part of the scene. 40 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5801,
-        "recall": 0.8016
+        "group": "invalid",
+        "precision": 0.5806,
+        "recall": 0.8
       },
       "41": {
         "logit_value": 10.8625,
         "completed_sentence": "41 is part of the scene. 41 appears in the scene. 41 can be seen in the image. 41 is near the center. 41 is clearly visible. 41 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5791,
-        "recall": 0.8243
+        "precision": 0.578,
+        "recall": 0.8217
       },
       "42": {
         "logit_value": 9.6111,
         "completed_sentence": "42 is part of the scene. 42 is part of the scene. 42 is part of the scene. 42 appears in the scene. 42 is clearly visible. 42 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5707,
+        "precision": 0.5694,
         "recall": 0.8286
       },
       "43": {
         "logit_value": 5.6915,
         "completed_sentence": "43 appears in the scene. 43 appears in the scene. 43 is clearly visible. 43 can be seen in the image. 43 is clearly visible. 43 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5696,
-        "recall": 0.8601
+        "precision": 0.5667,
+        "recall": 0.8573
       },
       "44": {
         "logit_value": 4.8077,
         "completed_sentence": "44 is part of the scene. 44 is near the center. 44 is near the center. 44 is clearly visible. 44 is clearly visible. 44 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5556,
-        "recall": 0.8527
+        "group": "invalid",
+        "precision": 0.5537,
+        "recall": 0.8548
       },
       "45": {
         "logit_value": 5.2255,
         "completed_sentence": "45 is part of the scene. 45 can be seen in the image. 45 is clearly visible. 45 is part of the scene. 45 is part of the scene. 45 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5383,
-        "recall": 0.8913
+        "precision": 0.538,
+        "recall": 0.8892
       },
       "46": {
         "logit_value": 5.1267,
         "completed_sentence": "46 is part of the scene. 46 is part of the scene. 46 is part of the scene. 46 is clearly visible. 46 is clearly visible. 46 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5159,
-        "recall": 0.8874
+        "precision": 0.5183,
+        "recall": 0.8896
       },
       "47": {
         "logit_value": 4.1182,
         "completed_sentence": "47 is near the center. 47 can be seen in the image. 47 is near the center. 47 can be seen in the image. 47 can be seen in the image. 47 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5269,
-        "recall": 0.9263
+        "precision": 0.5252,
+        "recall": 0.9241
       },
       "48": {
         "logit_value": 2.4358,
         "completed_sentence": "48 appears in the scene. 48 is part of the scene. 48 is part of the scene. 48 can be seen in the image. 48 is clearly visible. 48 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.4953,
-        "recall": 0.9259
+        "precision": 0.4981,
+        "recall": 0.9273
       },
       "49": {
         "logit_value": 2.5583,
         "completed_sentence": "49 can be seen in the image. 49 is near the center. 49 is near the center. 49 is clearly visible. 49 is near the center. 49 is near the center.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.4949,
-        "recall": 0.9421
+        "group": "invalid",
+        "precision": 0.496,
+        "recall": 0.9437
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     },
     "The image shows ": {
       "0": {
         "logit_value": 49.2438,
         "completed_sentence": "0 is clearly visible. 0 appears in the scene. 0 appears in the scene. 0 is near the center. 0 can be seen in the image. 0 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9603,
-        "recall": 0.1107
+        "precision": 0.9582,
+        "recall": 0.1086
       },
       "1": {
         "logit_value": 48.0777,
         "completed_sentence": "1 appears in the scene. 1 can be seen in the image. 1 appears in the scene. 1 can be seen in the image. 1 can be seen in the image. 1 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9383,
-        "recall": 0.1217
+        "precision": 0.9388,
+        "recall": 0.1208
       },
       "2": {
         "logit_value": 49.4688,
         "completed_sentence": "2 appears in the scene. 2 is clearly visible. 2 is near the center. 2 is part of the scene. 2 can be seen in the image. 2 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9413,
-        "recall": 0.1352
+        "precision": 0.9393,
+        "recall": 0.1351
       },
       "3": {
         "logit_value": 48.1221,
         "completed_sentence": "3 appears in the scene. 3 appears in the scene. 3 appears in the scene. 3 is clearly visible. 3 appears in the scene. 3 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.9232,
-        "recall": 0.1541
+        "precision": 0.923,
+        "recall": 0.1537
       },
       "4": {
         "logit_value": 45.8258,
         "completed_sentence": "4 is near the center. 4 is near the center. 4 can be seen in the image. 4 is part of the scene. 4 can be seen in the image. 4 is clearly visible.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.9258,
-        "recall": 0.1755
+        "precision": 0.9233,
+        "recall": 0.1743
       },
       "5": {
         "logit_value": 45.7247,
         "completed_sentence": "5 can be seen in the image. 5 appears in the scene. 5 can be seen in the image. 5 is part of the scene. 5 is part of the scene. 5 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8963,
-        "recall": 0.1864
+        "precision": 0.8979,
+        "recall": 0.1865
       },
       "6": {
         "logit_value": 43.377,
         "completed_sentence": "6 is clearly visible. 6 is near the center. 6 is clearly visible. 6 can be seen in the image. 6 is clearly visible. 6 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.905,
-        "recall": 0.1968
+        "precision": 0.903,
+        "recall": 0.1983
       },
       "7": {
         "logit_value": 44.4153,
         "completed_sentence": "7 appears in the scene. 7 appears in the scene. 7 appears in the scene. 7 is near the center. 7 can be seen in the image. 7 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8941,
-        "recall": 0.2129
+        "precision": 0.8924,
+        "recall": 0.2146
       },
       "8": {
         "logit_value": 40.0802,
         "completed_sentence": "8 is clearly visible. 8 can be seen in the image. 8 appears in the scene. 8 appears in the scene. 8 is part of the scene. 8 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8849,
-        "recall": 0.2468
+        "precision": 0.8833,
+        "recall": 0.2452
       },
       "9": {
         "logit_value": 39.8951,
         "completed_sentence": "9 is near the center. 9 can be seen in the image. 9 can be seen in the image. 9 is near the center. 9 can be seen in the image. 9 is near the center.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8706,
-        "recall": 0.2694
+        "precision": 0.8699,
+        "recall": 0.2668
       },
       "10": {
         "logit_value": 38.8728,
         "completed_sentence": "10 is part of the scene. 10 can be seen in the image. 10 is part of the scene. 10 is clearly visible. 10 is clearly visible. 10 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8522,
-        "recall": 0.2741
+        "precision": 0.8534,
+        "recall": 0.274
       },
       "11": {
         "logit_value": 40.9977,
         "completed_sentence": "11 is part of the scene. 11 is part of the scene. 11 is part of the scene. 11 is near the center. 11 is near the center. 11 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.863,
-        "recall": 0.301
+        "precision": 0.8602,
+        "recall": 0.299
       },
       "12": {
         "logit_value": 37.927,
         "completed_sentence": "12 is near the center. 12 is near the center. 12 is near the center. 12 is near the center. 12 appears in the scene. 12 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8349,
-        "recall": 0.3015
+        "precision": 0.8359,
+        "recall": 0.3028
       },
       "13": {
         "logit_value": 37.0692,
         "completed_sentence": "13 is part of the scene. 13 can be seen in the image. 13 is near the center. 13 appears in the scene. 13 is clearly visible. 13 can be seen in the image.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.8228,
-        "recall": 0.3122
+        "precision": 0.8244,
+        "recall": 0.3149
       },
       "14": {
         "logit_value": 37.9899,
         "completed_sentence": "14 can be seen in the image. 14 is clearly visible. 14 is part of the scene. 14 is part of the scene. 14 appears in the scene. 14 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8142,
-        "recall": 0.3404
+        "precision": 0.8157,
+        "recall": 0.3409
       },
       "15": {
         "logit_value": 35.9062,
         "completed_sentence": "15 can be seen in the image. 15 is near the center. 15 is part of the scene. 15 is near the center. 15 appears in the scene. 15 is part of the scene.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.8039,
-        "recall": 0.3612
+        "group": "invalid",
+        "precision": 0.8056,
+        "recall": 0.361
       },
       "16": {
         "logit_value": 32.7245,
         "completed_sentence": "16 is near the center. 16 is part of the scene. 16 appears in the scene. 16 is near the center. 16 is clearly visible. 16 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.791,
-        "recall": 0.3664
+        "precision": 0.7934,
+        "recall": 0.3686
       },
       "17": {
         "logit_value": 32.4211,
         "completed_sentence": "17 is near the center. 17 is near the center. 17 is near the center. 17 is part of the scene. 17 is near the center. 17 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.8012,
-        "recall": 0.3891
+        "precision": 0.7997,
+        "recall": 0.3903
       },
       "18": {
         "logit_value": 33.4049,
         "completed_sentence": "18 is part of the scene. 18 is part of the scene. 18 is part of the scene. 18 is clearly visible. 18 can be seen in the image. 18 appears in the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7838,
-        "recall": 0.4232
+        "precision": 0.784,
+        "recall": 0.421
       },
       "19": {
         "logit_value": 31.0019,
         "completed_sentence": "19 is near the center. 19 can be seen in the image. 19 is clearly visible. 19 appears in the scene. 19 appears in the scene. 19 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7865,
-        "recall": 0.426
+        "precision": 0.7843,
+        "recall": 0.4268
       },
       "20": {
         "logit_value": 29.3707,
         "completed_sentence": "20 can be seen in the image. 20 appears in the scene. 20 is near the center. 20 appears in the scene. 20 is clearly visible. 20 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7809,
-        "recall": 0.4587
+        "precision": 0.778,
+        "recall": 0.4564
       },
       "21": {
         "logit_value": 28.3305,
         "completed_sentence": "21 is clearly visible. 21 is clearly visible. 21 can be seen in the image. 21 is near the center. 21 appears in the scene. 21 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7717,
-        "recall": 0.4587
+        "precision": 0.7688,
+        "recall": 0.4598
       },
       "22": {
         "logit_value": 28.3051,
         "completed_sentence": "22 is clearly visible. 22 appears in the scene. 22 is part of the scene. 22 can be seen in the image. 22 can be seen in the image. 22 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7377,
-        "recall": 0.4902
+        "precision": 0.7398,
+        "recall": 0.4885
       },
       "23": {
         "logit_value": 26.7161,
         "completed_sentence": "23 is part of the scene. 23 appears in the scene. 23 is near the center. 23 is clearly visible. 23 is near the center. 23 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7381,
-        "recall": 0.4841
+        "precision": 0.7382,
+        "recall": 0.4871
       },
       "24": {
         "logit_value": 24.7623,
         "completed_sentence": "24 appears in the scene. 24 appears in the scene. 24 is near the center. 24 is near the center. 24 appears in the scene. 24 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7349,
-        "recall": 0.5201
+        "precision": 0.7338,
+        "recall": 0.5194
       },
       "25": {
         "logit_value": 24.5342,
         "completed_sentence": "25 is clearly visible. 25 is near the center. 25 is near the center. 25 can be seen in the image. 25 is part of the scene. 25 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7231,
-        "recall": 0.5237
+        "precision": 0.7225,
+        "recall": 0.5257
       },
       "26": {
         "logit_value": 24.0965,
         "completed_sentence": "26 appears in the scene. 26 is near the center. 26 can be seen in the image. 26 is near the center. 26 appears in the scene. 26 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.7092,
-        "recall": 0.5566
+        "precision": 0.7096,
+        "recall": 0.5555
       },
       "27": {
         "logit_value": 24.7923,
         "completed_sentence": "27 appears in the scene. 27 appears in the scene. 27 appears in the scene. 27 appears in the scene. 27 is clearly visible. 27 is part of the scene.",
-        "color": "#FF6843",
         "group": "invalid",
-        "precision": 0.7146,
-        "recall": 0.5655
+        "precision": 0.7121,
+        "recall": 0.566
       },
       "28": {
         "logit_value": 22.0185,
         "completed_sentence": "28 is clearly visible. 28 can be seen in the image. 28 is near the center. 28 is part of the scene. 28 is part of the scene. 28 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6816,
-        "recall": 0.592
+        "precision": 0.6838,
+        "recall": 0.5908
       },
       "29": {
         "logit_value": 21.3757,
         "completed_sentence": "29 is clearly visible. 29 is clearly visible. 29 is clearly visible. 29 can be seen in the image. 29 can be seen in the image. 29 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6701,
-        "recall": 0.5913
+        "precision": 0.6728,
+        "recall": 0.5937
       },
       "30": {
         "logit_value": 18.4944,
         "completed_sentence": "30 appears in the scene. 30 is clearly visible. 30 is near the center. 30 can be seen in the image. 30 is clearly visible. 30 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6671,
-        "recall": 0.6265
+        "precision": 0.6686,
+        "recall": 0.6253
       },
       "31": {
         "logit_value": 18.0799,
         "completed_sentence": "31 is clearly visible. 31 is part of the scene. 31 is part of the scene. 31 is clearly visible. 31 is near the center. 31 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6685,
-        "recall": 0.6269
+        "precision": 0.6678,
+        "recall": 0.629
       },
       "32": {
         "logit_value": 19.139,
         "completed_sentence": "32 is near the center. 32 is part of the scene. 32 appears in the scene. 32 is near the center. 32 can be seen in the image. 32 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
         "precision": 0.6561,
-        "recall": 0.6584
+        "recall": 0.6577
       },
       "33": {
         "logit_value": 15.6415,
         "completed_sentence": "33 can be seen in the image. 33 is near the center. 33 appears in the scene. 33 is clearly visible. 33 is clearly visible. 33 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6484,
-        "recall": 0.6848
+        "group": "invalid",
+        "precision": 0.6481,
+        "recall": 0.6823
       },
       "34": {
         "logit_value": 17.6275,
         "completed_sentence": "34 appears in the scene. 34 is clearly visible. 34 is part of the scene. 34 is clearly visible. 34 is clearly visible. 34 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6478,
-        "recall": 0.6949
+        "precision": 0.6458,
+        "recall": 0.6939
       },
       "35": {
         "logit_value": 15.5773,
         "completed_sentence": "35 is near the center. 35 can be seen in the image. 35 is clearly visible. 35 is clearly visible. 35 appears in the scene. 35 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.6273,
-        "recall": 0.7215
+        "group": "invalid",
+        "precision": 0.6275,
+        "recall": 0.7186
       },
       "36": {
         "logit_value": 15.409,
         "completed_sentence": "36 can be seen in the image. 36 is clearly visible. 36 is clearly visible. 36 is clearly visible. 36 is clearly visible. 36 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6152,
-        "recall": 0.7298
+        "precision": 0.616,
+        "recall": 0.7287
       },
       "37": {
         "logit_value": 13.6534,
         "completed_sentence": "37 can be seen in the image. 37 is part of the scene. 37 is near the center. 37 is clearly visible. 37 is near the center. 37 is near the center.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.6003,
-        "recall": 0.7376
+        "precision": 0.6023,
+        "recall": 0.7384
       },
       "38": {
         "logit_value": 10.7315,
         "completed_sentence": "38 is near the center. 38 can be seen in the image. 38 can be seen in the image. 38 can be seen in the image. 38 appears in the scene. 38 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.598,
-        "recall": 0.7731
+        "precision": 0.5986,
+        "recall": 0.7703
       },
       "39": {
         "logit_value": 9.53,
         "completed_sentence": "39 appears in the scene. 39 is clearly visible. 39 can be seen in the image. 39 is part of the scene. 39 can be seen in the image. 39 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5986,
-        "recall": 0.791
+        "precision": 0.5973,
+        "recall": 0.7881
       },
       "40": {
         "logit_value": 10.7136,
         "completed_sentence": "40 is near the center. 40 is part of the scene. 40 is clearly visible. 40 appears in the scene. 40 can be seen in the image. 40 can be seen in the image.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.5731,
-        "recall": 0.7903
+        "group": "invalid",
+        "precision": 0.575,
+        "recall": 0.791
       },
       "41": {
         "logit_value": 7.4517,
         "completed_sentence": "41 is near the center. 41 is near the center. 41 is clearly visible. 41 is part of the scene. 41 is part of the scene. 41 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5708,
-        "recall": 0.7976
+        "precision": 0.5713,
+        "recall": 0.8003
       },
       "42": {
         "logit_value": 6.8959,
         "completed_sentence": "42 is part of the scene. 42 is part of the scene. 42 is part of the scene. 42 is clearly visible. 42 can be seen in the image. 42 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.578,
-        "recall": 0.8398
+        "precision": 0.5752,
+        "recall": 0.8375
       },
       "43": {
         "logit_value": 6.9277,
         "completed_sentence": "43 appears in the scene. 43 is part of the scene. 43 is part of the scene. 43 is clearly visible. 43 is clearly visible. 43 appears in the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.56,
-        "recall": 0.8502
+        "precision": 0.559,
+        "recall": 0.8493
       },
       "44": {
         "logit_value": 6.0223,
         "completed_sentence": "44 appears in the scene. 44 is clearly visible. 44 can be seen in the image. 44 is near the center. 44 appears in the scene. 44 is near the center.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.545,
-        "recall": 0.8631
+        "group": "invalid",
+        "precision": 0.5452,
+        "recall": 0.8632
       },
       "45": {
         "logit_value": 6.8806,
         "completed_sentence": "45 can be seen in the image. 45 can be seen in the image. 45 appears in the scene. 45 is clearly visible. 45 can be seen in the image. 45 can be seen in the image.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5232,
-        "recall": 0.8723
+        "precision": 0.5259,
+        "recall": 0.874
       },
       "46": {
         "logit_value": 5.205,
         "completed_sentence": "46 can be seen in the image. 46 is near the center. 46 is clearly visible. 46 can be seen in the image. 46 is clearly visible. 46 is clearly visible.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.526,
-        "recall": 0.9087
+        "precision": 0.5263,
+        "recall": 0.9065
       },
       "47": {
         "logit_value": 2.6138,
         "completed_sentence": "47 is clearly visible. 47 is part of the scene. 47 is part of the scene. 47 is near the center. 47 is part of the scene. 47 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5044,
-        "recall": 0.9168
+        "precision": 0.5072,
+        "recall": 0.9165
       },
       "48": {
         "logit_value": 0.8274,
         "completed_sentence": "48 is near the center. 48 is clearly visible. 48 appears in the scene. 48 can be seen in the image. 48 is near the center. 48 is part of the scene.",
-        "color": "#53A14A",
         "group": "valid",
-        "precision": 0.5143,
-        "recall": 0.9462
+        "precision": 0.5133,
+        "recall": 0.9435
       },
       "49": {
         "logit_value": 2.0697,
         "completed_sentence": "49 is near the center. 49 can be seen in the image. 49 is clearly visible. 49 is clearly visible. 49 appears in the scene. 49 is clearly visible.",
-        "color": "#53A14A",
-        "group": "valid",
-        "precision": 0.503,
-        "recall": 0.9565
+        "group": "invalid",
+        "precision": 0.5024,
+        "recall": 0.9552
       },
-      "valid": 0.88,
-      "invalid": 0.12
+      "valid": 0.76,
+      "invalid": 0.24
     }
   }
 }

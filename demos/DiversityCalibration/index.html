@@ -4,1690 +4,3882 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Token Probability Demo</title>
-  <meta name="description" content="A small interactive token probability barplot demo.">
+  <title>Merged Token Probability Demo</title>
+  <meta name="description" content="Merged upper and lower token probability visualizations.">
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
   <style>
-    :root {
-      --page-pad: clamp(14px, 3vw, 32px);
-      --plot-max-width: 1080px;
-      --chart-height: clamp(260px, 44vh, 420px);
-      --chart-inner-pad-top: clamp(16px, 2.5vw, 26px);
-      --bar-gap: 8px;
-      --bar-group-width: 36px;
-      --bar-width: 24px;
-      --value-font-size: 10px;
-      --panel-bg: #f7f8ff;
-      --panel-border: #e2e6ff;
-      --blue: #3273dc;
-      --blue-bg: #eef3ff;
-      --blue-border: #d9e4ff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      overflow-x: hidden;
-    }
-
     body {
       margin: 0;
-      font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
-      color: #111;
       background: #fff;
-      overflow-x: hidden;
     }
 
-    button,
-    input {
-      font: inherit;
-    }
-
-    .hero-body {
-      padding: clamp(2rem, 6vw, 4rem) var(--page-pad);
-    }
-
-    .hero .conf-text {
-      color: #e90b0b;
-      font-size: clamp(1.2rem, 3.5vw, 2.2rem);
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .publication-title {
-      word-break: break-word;
-      font-size: clamp(2rem, 6vw, 3rem);
-      line-height: 1.1;
-    }
-
-    .underlined-generated-word {
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
-    }
-
-    .fake-link {
-      color: var(--blue);
-      text-decoration: none;
-      cursor: default;
-    }
-
-    .plot-section {
-      padding: clamp(1rem, 3vw, 1.5rem) var(--page-pad) clamp(2rem, 6vw, 3rem);
-    }
-
-    .plot-wrap {
-      width: min(100%, var(--plot-max-width));
-      margin: 0 auto;
-    }
-
-    .model-control,
-    .variant-control {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      margin: 0 auto 12px;
-    }
-
-    .variant-control {
-      margin: 8px auto;
-    }
-
-    .variant-control-bottom {
-      margin-top: 5px;
-      margin-bottom: 0;
-    }
-
-    .model-button,
-    .variant-button {
-      width: 40px;
-      height: 32px;
-      border: 1px solid var(--blue-border);
-      border-radius: 999px;
-      background: var(--blue-bg);
-      color: var(--blue);
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      line-height: 1;
-      transition: background 0.15s ease, transform 0.15s ease;
-      touch-action: manipulation;
-    }
-
-    .variant-button {
-      font-size: 1.1rem;
-    }
-
-    .model-button:hover,
-    .variant-button:hover {
-      background: #e0e9ff;
-      transform: scale(1.04);
-    }
-
-    .model-button:disabled,
-    .variant-button:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .model-name {
-      min-width: min(220px, 58vw);
-      max-width: 70vw;
-      padding: 7px 14px;
-      border-radius: 999px;
-      background: var(--panel-bg);
-      border: 1px solid var(--panel-border);
-      color: #111;
-      font-size: clamp(0.82rem, 2.5vw, 0.92rem);
-      font-weight: 700;
-      text-align: center;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .sentence-box {
-      min-height: 58px;
-      padding: clamp(12px, 3vw, 16px) clamp(14px, 4vw, 24px);
-      margin: 0 auto 24px;
-      border-radius: 14px;
-      background: var(--panel-bg);
-      border: 1px solid var(--panel-border);
-      line-height: 1.5;
-      font-size: clamp(0.95rem, 2.8vw, 1.05rem);
-      text-align: left;
-      overflow-wrap: anywhere;
-    }
-
-    .fixed-sentence {
-      font-weight: 700;
-      color: #111;
-      white-space: pre-wrap;
-    }
-
-    .completed-part {
-      font-weight: 700;
-      display: inline;
-      white-space: pre-wrap;
-    }
-
-    .completed-part.animate-text {
-      opacity: 0;
-      animation: fadeInText 0.55s ease forwards;
-    }
-
-    .typing-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      margin-left: 2px;
-      background: currentColor;
-      vertical-align: -0.12em;
-      animation: blinkCursor 0.75s step-end infinite;
-    }
-
-    @keyframes blinkCursor {
-      50% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes fadeInText {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .variant-animated-area {
-      will-change: transform, opacity;
-    }
-
-    .variant-slide-out-up {
-      animation: slideOutUp 0.22s ease forwards;
-    }
-
-    .variant-slide-in-up {
-      animation: slideInUp 0.28s ease forwards;
-    }
-
-    .variant-slide-out-down {
-      animation: slideOutDown 0.22s ease forwards;
-    }
-
-    .variant-slide-in-down {
-      animation: slideInDown 0.28s ease forwards;
-    }
-
-    @keyframes slideOutUp {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      to {
-        opacity: 0;
-        transform: translateY(-18px);
-      }
-    }
-
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideOutDown {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      to {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-    }
-
-    @keyframes slideInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .model-slide-out-left {
-      animation: modelSlideOutLeft 0.22s ease forwards;
-    }
-
-    .model-slide-in-left {
-      animation: modelSlideInLeft 0.28s ease forwards;
-    }
-
-    .model-slide-out-right {
-      animation: modelSlideOutRight 0.22s ease forwards;
-    }
-
-    .model-slide-in-right {
-      animation: modelSlideInRight 0.28s ease forwards;
-    }
-
-    @keyframes modelSlideOutLeft {
-      from {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      to {
-        opacity: 0;
-        transform: translateX(-22px);
-      }
-    }
-
-    @keyframes modelSlideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(22px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes modelSlideOutRight {
-      from {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      to {
-        opacity: 0;
-        transform: translateX(22px);
-      }
-    }
-
-    @keyframes modelSlideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(-22px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .variant-info {
-      margin: 0 auto 10px;
-      font-size: 0.82rem;
-      color: #666;
-      text-align: center;
-    }
-
-    .plot-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: clamp(14px, 2vw, 22px);
-      align-items: start;
-    }
-
-    .plot-area {
-      display: grid;
-      grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
-      grid-template-rows: auto auto auto;
-      column-gap: 8px;
-      align-items: center;
-      min-width: 0;
-    }
-
-    .y-axis-label {
-      grid-column: 1;
-      grid-row: 1;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      text-align: center;
-      font-weight: 700;
-      font-size: clamp(0.72rem, 2vw, 0.9rem);
-      justify-self: center;
-    }
-
-    .chart-wrapper {
-      grid-column: 2;
-      grid-row: 1;
-      width: 100%;
-      min-width: 0;
-      overflow-x: hidden;
-      overflow-y: visible;
-      padding-bottom: 36px;
-      scrollbar-width: none;
-    }
-
-    .chart {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: var(--bar-gap);
-      height: var(--chart-height);
-      width: 100%;
-      min-width: 0;
-      padding: var(--chart-inner-pad-top) 6px 8px;
-      overflow: visible;
-      border-left: 2px solid #222;
-      border-bottom: 2px solid #222;
-      position: relative;
-    }
-
-    .cutoff-slider-panel {
-      grid-column: 2;
-      grid-row: 2;
-      width: 100%;
-      margin-top: 0;
-      padding: 12px 6px 4px;
-      position: relative;
-    }
-
-    .cutoff-side-label {
-      position: absolute;
-      left: -42px;
-      top: 50%;
-      transform: translateY(-50%) rotate(270deg);
-      transform-origin: center;
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: #333;
-      white-space: nowrap;
-    }
-
-    .cutoff-slider {
-      width: 100%;
-      appearance: none;
-      background: transparent;
-      cursor: pointer;
-      display: block;
-    }
-
-    .cutoff-slider:focus {
-      outline: none;
-    }
-
-    .cutoff-slider::-webkit-slider-runnable-track {
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(
-        90deg,
-        var(--blue) 0%,
-        var(--blue) var(--cutoff-progress, 0%),
-        #e7ecff var(--cutoff-progress, 0%),
-        #e7ecff 100%
-      );
-    }
-
-    .cutoff-slider::-webkit-slider-thumb {
-      appearance: none;
-      width: 22px;
-      height: 22px;
-      margin-top: -7px;
-      border-radius: 50%;
-      background: #fff;
-      border: 5px solid var(--blue);
-      box-shadow: 0 6px 14px rgba(50, 115, 220, 0.28);
-    }
-
-    .cutoff-slider::-moz-range-track {
-      height: 8px;
-      border-radius: 999px;
-      background: #e7ecff;
-    }
-
-    .cutoff-slider::-moz-range-progress {
-      height: 8px;
-      border-radius: 999px;
-      background: var(--blue);
-    }
-
-    .cutoff-slider::-moz-range-thumb {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: #fff;
-      border: 5px solid var(--blue);
-      box-shadow: 0 6px 14px rgba(50, 115, 220, 0.28);
-    }
-
-    .pr-panel {
-      grid-column: 2;
-      grid-row: 3;
-      width: 100%;
-      margin-top: 10px;
-      padding: clamp(12px, 2.5vw, 14px);
-      border-radius: 16px;
-      background: var(--panel-bg);
-      border: 1px solid var(--panel-border);
-    }
-
-    .pr-title {
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .pr-chart {
-      width: 100%;
-      height: 260px;
-    }
-
-    .pr-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .pr-axis {
-      stroke: #222;
-      stroke-width: 1.5;
-    }
-
-    .pr-grid {
-      stroke: #d9deef;
-      stroke-width: 1;
-    }
-
-    .pr-line {
-      fill: none;
-      stroke-width: 3;
-    }
-
-    .pr-line-precision {
-      stroke: #3273dc;
-    }
-
-    .pr-line-recall {
-      stroke: #FF6843;
-    }
-
-    .pr-point {
-      stroke: #fff;
-      stroke-width: 2;
-    }
-
-    .pr-label {
-      font-size: 11px;
-      fill: #333;
-    }
-
-    .pr-legend {
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .bar-group {
-      width: var(--bar-group-width);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      position: relative;
-      flex: 0 0 var(--bar-group-width);
-    }
-
-    .bar-value {
-      font-size: var(--value-font-size);
-      margin-bottom: 18px;
-      color: #333;
-      transform: rotate(-90deg);
-      transform-origin: center;
-      white-space: nowrap;
-      height: 12px;
-      pointer-events: none;
-    }
-
-    .bar {
-      width: var(--bar-width);
-      min-height: 2px;
-      border-radius: 4px 4px 0 0;
-      cursor: pointer;
-      transition:
-        height 0.38s ease,
-        transform 0.18s ease,
-        filter 0.18s ease,
-        opacity 0.18s ease,
-        background-color 0.18s ease;
-      touch-action: manipulation;
-    }
-
-    .bar:hover {
-      transform: scaleX(1.1);
-      filter: brightness(0.88);
-    }
-
-    .error {
-      color: #b00020;
-      font-size: 0.95rem;
-      margin-top: 12px;
-      text-align: center;
-    }
-
-    @media (max-width: 760px) {
-      :root {
-        --chart-height: clamp(230px, 42vh, 330px);
-      }
-
-      .title.is-3 {
-        font-size: clamp(1.4rem, 6vw, 2rem);
-      }
-
-      .subtitle.is-6 {
-        font-size: 0.95rem;
-      }
-
-      .plot-area {
-        grid-template-columns: 30px minmax(0, 1fr);
-      }
-
-      .chart-wrapper {
-        padding-bottom: 42px;
-        overflow-x: hidden;
-      }
-
-      .chart {
-        width: 100%;
-        min-width: 0;
-      }
-
-      .cutoff-side-label {
-        left: -38px;
-        font-size: 0.72rem;
-      }
-
-      .pr-panel {
-        grid-column: 1 / -1;
-        grid-row: 3;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .model-control {
-        gap: 8px;
-      }
-
-      .model-button,
-      .variant-button {
-        width: 36px;
-        height: 30px;
-      }
-
-      .chart-wrapper {
-        padding-bottom: 42px;
-      }
-
-      .cutoff-side-label {
-        left: -34px;
-        font-size: 0.68rem;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.001ms !important;
-      }
-    }
+    .merged-demo-divider {
+      width: min(1080px, calc(100% - 32px));
+      margin: 24px auto 34px;
+      border: 0;
+      border-top: 1px solid #e2e6ff;
+    }
+  </style>
+
+  <!-- Styles from index_up.html -->
+  <style>
+
+        #up-token-demo {
+          --up-page-pad: clamp(14px, 3vw, 32px);
+          --up-plot-max-width: 1080px;
+          --up-chart-height: clamp(260px, 44vh, 420px);
+          --up-chart-inner-pad-top: clamp(16px, 2.5vw, 26px);
+          --up-bar-gap: 8px;
+          --up-bar-group-width: 36px;
+          --up-bar-width: 24px;
+          --up-panel-bg: #f7f8ff;
+          --up-panel-border: #e2e6ff;
+          --up-blue: #3273dc;
+          --up-blue-bg: #eef3ff;
+          --up-blue-border: #d9e4ff;
+          --up-valid-color: #ACDB7A;
+          --up-invalid-color: #FF5D5D;
+          --up-valid-muted-color: #CFCFCF;
+          --up-invalid-muted-color: #A2A2A2;
+
+          margin: 0;
+          font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+          color: #111;
+          background: #fff;
+          overflow-x: hidden;
+        }
+
+        #up-token-demo * {
+          box-sizing: border-box;
+        }
+
+        #up-token-demo button,
+        #up-token-demo input {
+          font: inherit;
+        }
+
+        #up-token-demo .up-hero-body {
+          padding: clamp(2rem, 6vw, 4rem) var(--up-page-pad);
+        }
+
+        #up-token-demo .up-conf-text {
+          color: #e90b0b;
+          font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+          font-weight: 700;
+          letter-spacing: 0.5px;
+        }
+
+        #up-token-demo .up-publication-title {
+          word-break: break-word;
+          font-size: clamp(2rem, 6vw, 3rem);
+          line-height: 1.1;
+        }
+
+        #up-token-demo .up-underlined-generated-word {
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+          text-underline-offset: 4px;
+        }
+
+        #up-token-demo .up-fake-link {
+          color: var(--up-blue);
+          text-decoration: none;
+          cursor: default;
+        }
+
+        #up-token-demo .up-plot-section {
+          padding: clamp(1rem, 3vw, 1.5rem) var(--up-page-pad) clamp(2rem, 6vw, 3rem);
+        }
+
+        #up-token-demo .up-plot-wrap {
+          width: min(100%, var(--up-plot-max-width));
+          margin: 0 auto;
+        }
+
+        #up-token-demo .up-model-control {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 14px;
+          margin: 0 auto 12px;
+        }
+
+        #up-token-demo .up-variant-control {
+          display: grid;
+          grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
+          column-gap: 8px;
+          align-items: center;
+          width: 100%;
+          margin: 8px auto;
+        }
+
+        #up-token-demo .up-variant-control-bottom {
+          margin-top: 5px;
+          margin-bottom: 0;
+        }
+
+        #up-token-demo .up-variant-control .up-variant-button {
+          grid-column: 2;
+          justify-self: center;
+        }
+
+        #up-token-demo .up-model-button,
+        #up-token-demo .up-variant-button {
+          width: 40px;
+          height: 32px;
+          border: 1px solid var(--up-blue-border);
+          border-radius: 999px;
+          background: var(--up-blue-bg);
+          color: var(--up-blue);
+          font-size: 1rem;
+          font-weight: 700;
+          cursor: pointer;
+          line-height: 1;
+          transition: background 0.15s ease, transform 0.15s ease;
+          touch-action: manipulation;
+        }
+
+        #up-token-demo .up-variant-button {
+          font-size: 1.1rem;
+        }
+
+        #up-token-demo .up-model-button:hover,
+        #up-token-demo .up-variant-button:hover {
+          background: #e0e9ff;
+          transform: scale(1.04);
+        }
+
+        #up-token-demo .up-model-button:disabled,
+        #up-token-demo .up-variant-button:disabled {
+          opacity: 0.55;
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        #up-token-demo .up-model-name {
+          min-width: min(220px, 58vw);
+          max-width: 70vw;
+          padding: 7px 14px;
+          border-radius: 999px;
+          background: var(--up-panel-bg);
+          border: 1px solid var(--up-panel-border);
+          color: #111;
+          font-size: clamp(0.82rem, 2.5vw, 0.92rem);
+          font-weight: 700;
+          text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        #up-token-demo .up-sentence-box {
+          min-height: 58px;
+          padding: clamp(12px, 3vw, 16px) clamp(14px, 4vw, 24px);
+          margin: 0 auto 24px;
+          border-radius: 14px;
+          background: var(--up-panel-bg);
+          border: 1px solid var(--up-panel-border);
+          line-height: 1.5;
+          font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+          text-align: left;
+          overflow-wrap: anywhere;
+        }
+
+        #up-token-demo .up-fixed-sentence {
+          font-weight: 700;
+          color: #111;
+          white-space: pre-wrap;
+        }
+
+        #up-token-demo .up-completed-part {
+          font-weight: 700;
+          display: inline;
+          white-space: pre-wrap;
+        }
+
+        #up-token-demo .up-completed-part.up-animate-text {
+          opacity: 0;
+          animation: upFadeInText 0.55s ease forwards;
+        }
+
+        #up-token-demo .up-typing-cursor {
+          display: inline-block;
+          width: 2px;
+          height: 1em;
+          margin-left: 2px;
+          background: currentColor;
+          vertical-align: -0.12em;
+          animation: upBlinkCursor 0.75s step-end infinite;
+        }
+
+        @keyframes upBlinkCursor {
+          50% {
+            opacity: 0;
+          }
+        }
+
+        @keyframes upFadeInText {
+          from {
+            opacity: 0;
+          }
+
+          to {
+            opacity: 1;
+          }
+        }
+
+        #up-token-demo .up-variant-animated-area {
+          will-change: transform, opacity;
+        }
+
+        #up-token-demo .up-variant-slide-out-up {
+          animation: upVariantSlideOutUp 0.22s ease forwards;
+        }
+
+        #up-token-demo .up-variant-slide-in-up {
+          animation: upVariantSlideInUp 0.28s ease forwards;
+        }
+
+        #up-token-demo .up-variant-slide-out-down {
+          animation: upVariantSlideOutDown 0.22s ease forwards;
+        }
+
+        #up-token-demo .up-variant-slide-in-down {
+          animation: upVariantSlideInDown 0.28s ease forwards;
+        }
+
+        @keyframes upVariantSlideOutUp {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateY(-18px);
+          }
+        }
+
+        @keyframes upVariantSlideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes upVariantSlideOutDown {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+        }
+
+        @keyframes upVariantSlideInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-18px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        #up-token-demo .up-model-slide-out-left {
+          animation: upModelSlideOutLeft 0.22s ease forwards;
+        }
+
+        #up-token-demo .up-model-slide-in-left {
+          animation: upModelSlideInLeft 0.28s ease forwards;
+        }
+
+        #up-token-demo .up-model-slide-out-right {
+          animation: upModelSlideOutRight 0.22s ease forwards;
+        }
+
+        #up-token-demo .up-model-slide-in-right {
+          animation: upModelSlideInRight 0.28s ease forwards;
+        }
+
+        @keyframes upModelSlideOutLeft {
+          from {
+            opacity: 1;
+            transform: translateX(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateX(-22px);
+          }
+        }
+
+        @keyframes upModelSlideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(22px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes upModelSlideOutRight {
+          from {
+            opacity: 1;
+            transform: translateX(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateX(22px);
+          }
+        }
+
+        @keyframes upModelSlideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(-22px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        #up-token-demo .up-variant-info {
+          margin: 0 auto 10px;
+          font-size: 0.82rem;
+          color: #666;
+          text-align: center;
+        }
+
+        #up-token-demo .up-plot-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          gap: clamp(14px, 2vw, 22px);
+          align-items: start;
+        }
+
+        #up-token-demo .up-plot-area {
+          display: grid;
+          grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
+          grid-template-rows: auto auto auto auto;
+          column-gap: 8px;
+          align-items: center;
+          min-width: 0;
+        }
+
+        #up-token-demo .up-y-axis-label {
+          grid-column: 1;
+          grid-row: 1;
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+          text-align: center;
+          font-weight: 700;
+          font-size: clamp(0.72rem, 2vw, 0.9rem);
+          justify-self: center;
+        }
+
+        #up-token-demo .up-chart-wrapper {
+          grid-column: 2;
+          grid-row: 1;
+          width: 100%;
+          min-width: 0;
+          overflow-x: hidden;
+          overflow-y: visible;
+          padding-bottom: 20px;
+          scrollbar-width: none;
+        }
+
+        #up-token-demo .up-chart {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: var(--up-bar-gap);
+          height: var(--up-chart-height);
+          width: 100%;
+          min-width: 0;
+          padding: var(--up-chart-inner-pad-top) 6px 8px;
+          overflow: visible;
+          border-left: 2px solid #222;
+          border-bottom: 2px solid #222;
+          position: relative;
+        }
+
+        #up-token-demo .up-bar-legend {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          z-index: 5;
+          padding: 8px 10px;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.88);
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 5px;
+          pointer-events: none;
+        }
+
+        #up-token-demo .up-bar-legend-item {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #333;
+          white-space: nowrap;
+        }
+
+        #up-token-demo .up-bar-legend-color {
+          width: 11px;
+          height: 11px;
+          border-radius: 3px;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          flex-shrink: 0;
+        }
+
+        #up-token-demo .up-bar-x-title {
+          grid-column: 2;
+          grid-row: 2;
+          text-align: center;
+          font-weight: 700;
+          font-size: clamp(0.76rem, 2vw, 0.92rem);
+          margin-top: -8px;
+          margin-bottom: 4px;
+        }
+
+        #up-token-demo .up-cutoff-slider-panel {
+          grid-column: 2;
+          grid-row: 3;
+          width: 100%;
+          margin-top: 0;
+          padding: 12px 6px 4px;
+          position: relative;
+        }
+
+        #up-token-demo .up-cutoff-side-label {
+          position: absolute;
+          left: -42px;
+          top: 50%;
+          transform: translateY(-50%) rotate(270deg);
+          transform-origin: center;
+          font-size: 0.78rem;
+          font-weight: 800;
+          color: #333;
+          white-space: nowrap;
+        }
+
+        #up-token-demo .up-cutoff-slider {
+          width: 100%;
+          appearance: none;
+          background: transparent;
+          cursor: pointer;
+          display: block;
+        }
+
+        #up-token-demo .up-cutoff-slider:focus {
+          outline: none;
+        }
+
+        #up-token-demo .up-cutoff-slider::-webkit-slider-runnable-track {
+          height: 8px;
+          border-radius: 999px;
+          background: linear-gradient(
+            90deg,
+            var(--up-blue) 0%,
+            var(--up-blue) var(--up-cutoff-progress, 0%),
+            #e7ecff var(--up-cutoff-progress, 0%),
+            #e7ecff 100%
+          );
+        }
+
+        #up-token-demo .up-cutoff-slider::-webkit-slider-thumb {
+          appearance: none;
+          width: 22px;
+          height: 22px;
+          margin-top: -7px;
+          border-radius: 50%;
+          background: #fff;
+          border: 5px solid var(--up-blue);
+          box-shadow: 0 6px 14px rgba(50, 115, 220, 0.28);
+        }
+
+        #up-token-demo .up-cutoff-slider::-moz-range-track {
+          height: 8px;
+          border-radius: 999px;
+          background: #e7ecff;
+        }
+
+        #up-token-demo .up-cutoff-slider::-moz-range-progress {
+          height: 8px;
+          border-radius: 999px;
+          background: var(--up-blue);
+        }
+
+        #up-token-demo .up-cutoff-slider::-moz-range-thumb {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background: #fff;
+          border: 5px solid var(--up-blue);
+          box-shadow: 0 6px 14px rgba(50, 115, 220, 0.28);
+        }
+
+        #up-token-demo .up-pr-panel {
+          grid-column: 2;
+          grid-row: 4;
+          width: 62%;
+          justify-self: center;
+          margin-top: 20px;
+          padding: 10px 12px;
+          border-radius: 16px;
+          background: var(--up-panel-bg);
+          border: 1px solid var(--up-panel-border);
+        }
+
+        #up-token-demo .up-pr-chart {
+          width: 100%;
+          height: 260px;
+        }
+
+        #up-token-demo .up-pr-svg {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+
+        #up-token-demo .up-pr-axis {
+          stroke: #222;
+          stroke-width: 1.5;
+        }
+
+        #up-token-demo .up-pr-grid {
+          stroke: #d9deef;
+          stroke-width: 1;
+        }
+
+        #up-token-demo .up-pr-line {
+          fill: none;
+          stroke-width: 3;
+        }
+
+        #up-token-demo .up-pr-line-precision {
+          stroke: #3273dc;
+        }
+
+        #up-token-demo .up-pr-line-recall {
+          stroke: #FF5D5D;
+        }
+
+        #up-token-demo .up-pr-point {
+          stroke: #fff;
+          stroke-width: 2;
+        }
+
+        #up-token-demo .up-pr-label {
+          font-size: 11px;
+          fill: #333;
+        }
+
+        #up-token-demo .up-pr-legend {
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        #up-token-demo .up-bar-group {
+          width: var(--up-bar-group-width);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+          position: relative;
+          flex: 0 0 var(--up-bar-group-width);
+        }
+
+        #up-token-demo .up-bar {
+          width: var(--up-bar-width);
+          min-height: 2px;
+          border-radius: 4px 4px 0 0;
+          cursor: pointer;
+          transition:
+            height 0.38s ease,
+            transform 0.18s ease,
+            filter 0.18s ease,
+            opacity 0.18s ease,
+            background-color 0.18s ease;
+          touch-action: manipulation;
+        }
+
+        #up-token-demo .up-bar:hover {
+          transform: scaleX(1.1);
+          filter: brightness(0.88);
+        }
+
+        #up-token-demo .up-error {
+          color: #b00020;
+          font-size: 0.95rem;
+          margin-top: 12px;
+          text-align: center;
+        }
+
+        @media (max-width: 760px) {
+          #up-token-demo {
+            --up-chart-height: clamp(230px, 42vh, 330px);
+          }
+
+          #up-token-demo .title.is-3 {
+            font-size: clamp(1.4rem, 6vw, 2rem);
+          }
+
+          #up-token-demo .subtitle.is-6 {
+            font-size: 0.95rem;
+          }
+
+          #up-token-demo .up-variant-control,
+          #up-token-demo .up-plot-area {
+            grid-template-columns: 30px minmax(0, 1fr);
+          }
+
+          #up-token-demo .up-chart-wrapper {
+            padding-bottom: 24px;
+            overflow-x: hidden;
+          }
+
+          #up-token-demo .up-chart {
+            width: 100%;
+            min-width: 0;
+          }
+
+          #up-token-demo .up-bar-legend {
+            top: 8px;
+            right: 8px;
+            padding: 6px 8px;
+            gap: 4px;
+          }
+
+          #up-token-demo .up-bar-legend-item {
+            font-size: 0.62rem;
+          }
+
+          #up-token-demo .up-bar-legend-color {
+            width: 9px;
+            height: 9px;
+          }
+
+          #up-token-demo .up-cutoff-side-label {
+            left: -38px;
+            font-size: 0.72rem;
+          }
+
+          #up-token-demo .up-pr-panel {
+            grid-column: 1 / -1;
+            grid-row: 4;
+            width: 100%;
+            justify-self: stretch;
+          }
+
+          #up-token-demo .up-variant-control .up-variant-button {
+            grid-column: 1 / -1;
+            justify-self: center;
+          }
+        }
+
+        @media (max-width: 480px) {
+          #up-token-demo .up-model-control {
+            gap: 8px;
+          }
+
+          #up-token-demo .up-model-button,
+          #up-token-demo .up-variant-button {
+            width: 36px;
+            height: 30px;
+          }
+
+          #up-token-demo .up-chart-wrapper {
+            padding-bottom: 24px;
+          }
+
+          #up-token-demo .up-cutoff-side-label {
+            left: -34px;
+            font-size: 0.68rem;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          #up-token-demo *,
+          #up-token-demo *::before,
+          #up-token-demo *::after {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.001ms !important;
+          }
+        }
+  
+  </style>
+
+  <!-- Styles from index_down.html -->
+  <style>
+
+        #down-token-demo {
+          --down-page-pad: clamp(14px, 3vw, 32px);
+          --down-plot-max-width: 1080px;
+          --down-chart-height: clamp(260px, 44vh, 420px);
+          --down-chart-inner-pad-top: clamp(16px, 2.5vw, 26px);
+          --down-bar-gap: 8px;
+          --down-bar-group-width: 36px;
+          --down-bar-width: 24px;
+          --down-panel-bg: #f7f8ff;
+          --down-panel-border: #e2e6ff;
+          --down-blue: #3273dc;
+          --down-blue-bg: #eef3ff;
+          --down-blue-border: #d9e4ff;
+          --down-valid-frequent-color: #53A14A;
+          --down-valid-rare-color: #3D50FF;
+          --down-invalid-color: #FF6843;
+
+          font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+          color: #111;
+          background: #fff;
+          overflow-x: hidden;
+        }
+
+        #down-token-demo * {
+          box-sizing: border-box;
+        }
+
+        #down-token-demo button,
+        #down-token-demo input {
+          font: inherit;
+        }
+
+        #down-token-demo .down-hero-body {
+          padding: clamp(2rem, 6vw, 4rem) var(--down-page-pad);
+        }
+
+        #down-token-demo .down-conf-text {
+          color: #e90b0b;
+          font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+          font-weight: 700;
+          letter-spacing: 0.5px;
+        }
+
+        #down-token-demo .down-publication-title {
+          word-break: break-word;
+          font-size: clamp(2rem, 6vw, 3rem);
+          line-height: 1.1;
+        }
+
+        #down-token-demo .down-underlined-generated-word {
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+          text-underline-offset: 4px;
+        }
+
+        #down-token-demo .down-fake-link {
+          color: var(--down-blue);
+          text-decoration: none;
+          cursor: default;
+        }
+
+        #down-token-demo .down-plot-section {
+          padding: clamp(1rem, 3vw, 1.5rem) var(--down-page-pad) clamp(2rem, 6vw, 3rem);
+        }
+
+        #down-token-demo .down-plot-wrap {
+          width: min(100%, var(--down-plot-max-width));
+          margin: 0 auto;
+        }
+
+        #down-token-demo .down-model-control,
+        #down-token-demo .down-variant-control {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 14px;
+          margin: 0 auto 12px;
+        }
+
+        #down-token-demo .down-variant-control {
+          margin: 8px auto;
+        }
+
+        #down-token-demo .down-variant-control-bottom {
+          margin-top: 5px;
+          margin-bottom: 0;
+        }
+
+        #down-token-demo .down-model-button,
+        #down-token-demo .down-variant-button {
+          width: 40px;
+          height: 32px;
+          border: 1px solid var(--down-blue-border);
+          border-radius: 999px;
+          background: var(--down-blue-bg);
+          color: var(--down-blue);
+          font-size: 1rem;
+          font-weight: 700;
+          cursor: pointer;
+          line-height: 1;
+          transition: background 0.15s ease, transform 0.15s ease;
+          touch-action: manipulation;
+        }
+
+        #down-token-demo .down-variant-button {
+          font-size: 1.1rem;
+        }
+
+        #down-token-demo .down-model-button:hover,
+        #down-token-demo .down-variant-button:hover {
+          background: #e0e9ff;
+          transform: scale(1.04);
+        }
+
+        #down-token-demo .down-model-button:disabled,
+        #down-token-demo .down-variant-button:disabled {
+          opacity: 0.55;
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        #down-token-demo .down-model-name {
+          min-width: min(220px, 58vw);
+          max-width: 70vw;
+          padding: 7px 14px;
+          border-radius: 999px;
+          background: var(--down-panel-bg);
+          border: 1px solid var(--down-panel-border);
+          color: #111;
+          font-size: clamp(0.82rem, 2.5vw, 0.92rem);
+          font-weight: 700;
+          text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        #down-token-demo .down-sentence-box {
+          min-height: 58px;
+          padding: clamp(12px, 3vw, 16px) clamp(14px, 4vw, 24px);
+          margin: 0 auto 24px;
+          border-radius: 14px;
+          background: var(--down-panel-bg);
+          border: 1px solid var(--down-panel-border);
+          line-height: 1.5;
+          font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+          text-align: left;
+          overflow-wrap: anywhere;
+        }
+
+        #down-token-demo .down-fixed-sentence {
+          font-weight: 700;
+          color: #111;
+          white-space: pre-wrap;
+        }
+
+        #down-token-demo .down-completed-part {
+          font-weight: 700;
+          display: inline;
+          white-space: pre-wrap;
+        }
+
+        #down-token-demo .down-completed-part.down-animate-text {
+          opacity: 0;
+          animation: downFadeInText 0.55s ease forwards;
+        }
+
+        #down-token-demo .down-typing-cursor {
+          display: inline-block;
+          width: 2px;
+          height: 1em;
+          margin-left: 2px;
+          background: currentColor;
+          vertical-align: -0.12em;
+          animation: downBlinkCursor 0.75s step-end infinite;
+        }
+
+        @keyframes downBlinkCursor {
+          50% {
+            opacity: 0;
+          }
+        }
+
+        @keyframes downFadeInText {
+          from {
+            opacity: 0;
+          }
+
+          to {
+            opacity: 1;
+          }
+        }
+
+        #down-token-demo .down-variant-animated-area {
+          will-change: transform, opacity;
+        }
+
+        #down-token-demo .down-variant-slide-out-up {
+          animation: downSlideOutUp 0.22s ease forwards;
+        }
+
+        #down-token-demo .down-variant-slide-in-up {
+          animation: downSlideInUp 0.28s ease forwards;
+        }
+
+        #down-token-demo .down-variant-slide-out-down {
+          animation: downSlideOutDown 0.22s ease forwards;
+        }
+
+        #down-token-demo .down-variant-slide-in-down {
+          animation: downSlideInDown 0.28s ease forwards;
+        }
+
+        @keyframes downSlideOutUp {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateY(-18px);
+          }
+        }
+
+        @keyframes downSlideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes downSlideOutDown {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+        }
+
+        @keyframes downSlideInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-18px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        #down-token-demo .down-model-slide-out-left {
+          animation: downModelSlideOutLeft 0.22s ease forwards;
+        }
+
+        #down-token-demo .down-model-slide-in-left {
+          animation: downModelSlideInLeft 0.28s ease forwards;
+        }
+
+        #down-token-demo .down-model-slide-out-right {
+          animation: downModelSlideOutRight 0.22s ease forwards;
+        }
+
+        #down-token-demo .down-model-slide-in-right {
+          animation: downModelSlideInRight 0.28s ease forwards;
+        }
+
+        @keyframes downModelSlideOutLeft {
+          from {
+            opacity: 1;
+            transform: translateX(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateX(-22px);
+          }
+        }
+
+        @keyframes downModelSlideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(22px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes downModelSlideOutRight {
+          from {
+            opacity: 1;
+            transform: translateX(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateX(22px);
+          }
+        }
+
+        @keyframes downModelSlideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(-22px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        #down-token-demo .down-variant-info {
+          margin: 0 auto 10px;
+          font-size: 0.82rem;
+          color: #666;
+          text-align: center;
+        }
+
+        #down-token-demo .down-plot-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 100px;
+          grid-template-rows: auto auto;
+          gap: clamp(14px, 2vw, 22px);
+          align-items: start;
+        }
+
+        #down-token-demo .down-plot-area {
+          grid-column: 1;
+          grid-row: 1;
+          display: grid;
+          grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
+          grid-template-rows: auto auto;
+          column-gap: 8px;
+          align-items: center;
+          min-width: 0;
+        }
+
+        #down-token-demo .down-side-panel {
+          grid-column: 2;
+          grid-row: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          align-self: start;
+          min-width: 0;
+        }
+
+        #down-token-demo .down-y-axis-label {
+          grid-column: 1;
+          grid-row: 1;
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+          text-align: center;
+          font-weight: 700;
+          font-size: clamp(0.72rem, 2vw, 0.9rem);
+          justify-self: center;
+        }
+
+        #down-token-demo .down-chart-wrapper {
+          grid-column: 2;
+          grid-row: 1;
+          width: 100%;
+          min-width: 0;
+          overflow-x: hidden;
+          overflow-y: visible;
+          padding-bottom: 20px;
+          scrollbar-width: none;
+        }
+
+        #down-token-demo .down-chart {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: var(--down-bar-gap);
+          height: var(--down-chart-height);
+          width: 100%;
+          min-width: 0;
+          padding: var(--down-chart-inner-pad-top) 6px 8px;
+          overflow: visible;
+          border-left: 2px solid #222;
+          border-bottom: 2px solid #222;
+          position: relative;
+        }
+
+        #down-token-demo .down-bar-legend {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          z-index: 5;
+          padding: 8px 10px;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.88);
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 5px;
+          pointer-events: none;
+        }
+
+        #down-token-demo .down-bar-legend-item {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #333;
+          white-space: nowrap;
+        }
+
+        #down-token-demo .down-bar-legend-color {
+          width: 11px;
+          height: 11px;
+          border-radius: 3px;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          flex-shrink: 0;
+        }
+
+        #down-token-demo .down-bar-x-title {
+          grid-column: 2;
+          grid-row: 2;
+          text-align: center;
+          font-weight: 700;
+          font-size: clamp(0.76rem, 2vw, 0.92rem);
+          margin-top: -8px;
+          margin-bottom: 4px;
+        }
+
+        #down-token-demo .down-prob-panel {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          width: 62%;
+          justify-self: center;
+          margin-top: 0;
+          padding: 10px 12px;
+          border-radius: 16px;
+          background: var(--down-panel-bg);
+          border: 1px solid var(--down-panel-border);
+        }
+
+        #down-token-demo .down-prob-chart {
+          width: 100%;
+          height: 210px;
+        }
+
+        #down-token-demo .down-prob-svg {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+
+        #down-token-demo .down-prob-axis {
+          stroke: #222;
+          stroke-width: 1.5;
+        }
+
+        #down-token-demo .down-prob-grid {
+          stroke: #d9deef;
+          stroke-width: 1;
+        }
+
+        #down-token-demo .down-prob-line {
+          fill: none;
+          stroke-width: 3;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        #down-token-demo .down-prob-line-valid-frequent {
+          stroke: var(--down-valid-frequent-color);
+        }
+
+        #down-token-demo .down-prob-line-valid-rare {
+          stroke: var(--down-valid-rare-color);
+        }
+
+        #down-token-demo .down-prob-line-invalid {
+          stroke: var(--down-invalid-color);
+        }
+
+        #down-token-demo .down-prob-point {
+          stroke: #fff;
+          stroke-width: 2;
+        }
+
+        #down-token-demo .down-prob-label {
+          font-size: 11px;
+          fill: #333;
+        }
+
+        #down-token-demo .down-prob-legend {
+          font-size: 11px;
+          font-weight: 700;
+        }
+
+        #down-token-demo .down-prob-temperature-label {
+          font-size: 10px;
+          fill: #333;
+        }
+
+        #down-token-demo .down-temperature-panel {
+          width: 100px;
+          height: calc(var(--down-chart-height) + 38px);
+          padding: 14px 12px;
+          border-radius: 22px;
+          background: linear-gradient(180deg, #ffffff 0%, #f5f7ff 100%);
+          border: 1px solid var(--down-panel-border);
+          box-shadow:
+            0 14px 32px rgba(50, 115, 220, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          overflow: hidden;
+        }
+
+        #down-token-demo .down-temperature-header {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          flex-shrink: 0;
+        }
+
+        #down-token-demo .down-temperature-title {
+          font-size: 0.76rem;
+          font-weight: 800;
+          color: #111;
+          text-align: center;
+        }
+
+        #down-token-demo .down-temperature-value {
+          min-width: 62px;
+          padding: 6px 12px;
+          border-radius: 999px;
+          background: var(--down-blue);
+          color: #fff;
+          border: 1px solid var(--down-blue);
+          box-shadow: 0 8px 18px rgba(50, 115, 220, 0.24);
+          font-size: 0.82rem;
+          font-weight: 800;
+          text-align: center;
+          line-height: 1;
+        }
+
+        #down-token-demo .down-temperature-control {
+          width: 100%;
+          flex: 1;
+          min-height: 0;
+          display: flex;
+          justify-content: center;
+          align-items: stretch;
+        }
+
+        #down-token-demo .down-temperature-slider-column {
+          position: relative;
+          width: 56px;
+          min-height: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        #down-token-demo .down-temperature-slider-column::before {
+          content: "";
+          position: absolute;
+          width: 9px;
+          height: calc(100% - 16px);
+          border-radius: 999px;
+          background: #e7ecff;
+          box-shadow: inset 0 0 0 1px rgba(50, 115, 220, 0.12);
+        }
+
+        #down-token-demo .down-temperature-slider-column::after {
+          content: "";
+          position: absolute;
+          bottom: 8px;
+          width: 9px;
+          height: var(--down-temperature-progress, 50%);
+          border-radius: 999px;
+          background: linear-gradient(180deg, #3d50ff 0%, #3273dc 100%);
+          pointer-events: none;
+        }
+
+        #down-token-demo .down-temperature-slider {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: calc(var(--down-chart-height) - 74px);
+          max-width: 260px;
+          min-width: 180px;
+          transform: translate(-50%, -50%) rotate(-90deg);
+          transform-origin: center;
+          appearance: none;
+          background: transparent;
+          cursor: pointer;
+          z-index: 2;
+        }
+
+        #down-token-demo .down-temperature-slider:focus {
+          outline: none;
+        }
+
+        #down-token-demo .down-temperature-slider::-webkit-slider-runnable-track {
+          height: 9px;
+          border-radius: 999px;
+          background: transparent;
+        }
+
+        #down-token-demo .down-temperature-slider::-webkit-slider-thumb {
+          appearance: none;
+          width: 23px;
+          height: 23px;
+          margin-top: -7px;
+          border-radius: 50%;
+          background: #fff;
+          border: 5px solid var(--down-blue);
+          box-shadow:
+            0 7px 16px rgba(50, 115, 220, 0.3),
+            0 0 0 5px rgba(50, 115, 220, 0.12);
+        }
+
+        #down-token-demo .down-temperature-slider::-moz-range-track {
+          height: 9px;
+          border-radius: 999px;
+          background: transparent;
+        }
+
+        #down-token-demo .down-temperature-slider::-moz-range-thumb {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #fff;
+          border: 5px solid var(--down-blue);
+          box-shadow:
+            0 7px 16px rgba(50, 115, 220, 0.3),
+            0 0 0 5px rgba(50, 115, 220, 0.12);
+        }
+
+        #down-token-demo .down-bar-group {
+          width: var(--down-bar-group-width);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+          position: relative;
+          flex: 0 0 var(--down-bar-group-width);
+        }
+
+        #down-token-demo .down-bar {
+          width: var(--down-bar-width);
+          min-height: 2px;
+          border-radius: 4px 4px 0 0;
+          cursor: pointer;
+          transform-origin: bottom center;
+          transition:
+            height 0.42s ease,
+            transform 0.18s ease,
+            filter 0.18s ease,
+            opacity 0.18s ease,
+            background-color 0.18s ease;
+          touch-action: manipulation;
+        }
+
+        #down-token-demo .down-bar:hover {
+          transform: scaleX(1.1);
+          filter: brightness(0.88);
+        }
+
+        #down-token-demo .down-error {
+          color: #b00020;
+          font-size: 0.95rem;
+          margin-top: 12px;
+          text-align: center;
+        }
+
+        @media (max-width: 900px) {
+          #down-token-demo .down-plot-layout {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 16px;
+          }
+
+          #down-token-demo .down-plot-area {
+            grid-column: 1;
+            grid-row: 1;
+          }
+
+          #down-token-demo .down-side-panel {
+            grid-column: 1;
+            grid-row: 2;
+            width: 100%;
+          }
+
+          #down-token-demo .down-prob-panel {
+            grid-column: 1;
+            grid-row: 3;
+            width: 100%;
+          }
+
+          #down-token-demo .down-temperature-panel {
+            width: 100%;
+            height: auto;
+            min-height: auto;
+            padding: 12px 14px;
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 14px;
+            align-items: center;
+          }
+
+          #down-token-demo .down-temperature-header {
+            align-items: flex-start;
+            gap: 6px;
+          }
+
+          #down-token-demo .down-temperature-title {
+            white-space: nowrap;
+          }
+
+          #down-token-demo .down-temperature-control {
+            min-height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          #down-token-demo .down-temperature-slider-column {
+            height: 34px;
+            width: 100%;
+          }
+
+          #down-token-demo .down-temperature-slider-column::before {
+            width: 100%;
+            height: 9px;
+          }
+
+          #down-token-demo .down-temperature-slider-column::after {
+            left: 0;
+            bottom: auto;
+            width: var(--down-temperature-progress, 50%);
+            height: 9px;
+          }
+
+          #down-token-demo .down-temperature-slider {
+            position: relative;
+            left: auto;
+            top: auto;
+            width: 100%;
+            min-width: 0;
+            max-width: none;
+            transform: none;
+          }
+        }
+
+        @media (max-width: 760px) {
+          #down-token-demo {
+            --down-chart-height: clamp(230px, 42vh, 330px);
+          }
+
+          #down-token-demo .title.is-3 {
+            font-size: clamp(1.4rem, 6vw, 2rem);
+          }
+
+          #down-token-demo .subtitle.is-6 {
+            font-size: 0.95rem;
+          }
+
+          #down-token-demo .down-plot-area {
+            grid-template-columns: 30px minmax(0, 1fr);
+          }
+
+          #down-token-demo .down-chart-wrapper {
+            padding-bottom: 24px;
+            overflow-x: hidden;
+          }
+
+          #down-token-demo .down-chart {
+            width: 100%;
+            min-width: 0;
+          }
+
+          #down-token-demo .down-bar-legend {
+            top: 8px;
+            right: 8px;
+            padding: 6px 8px;
+            gap: 4px;
+          }
+
+          #down-token-demo .down-bar-legend-item {
+            font-size: 0.62rem;
+          }
+
+          #down-token-demo .down-bar-legend-color {
+            width: 9px;
+            height: 9px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          #down-token-demo .down-model-control {
+            gap: 8px;
+          }
+
+          #down-token-demo .down-model-button,
+          #down-token-demo .down-variant-button {
+            width: 36px;
+            height: 30px;
+          }
+
+          #down-token-demo .down-chart-wrapper {
+            padding-bottom: 24px;
+          }
+
+          #down-token-demo .down-temperature-panel {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+
+          #down-token-demo .down-temperature-header {
+            align-items: center;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          #down-token-demo *,
+          #down-token-demo *::before,
+          #down-token-demo *::after {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.001ms !important;
+          }
+        }
+  
   </style>
 </head>
 
 <body>
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Interactive Token Probability Visualization</h1>
+  <!-- Upper visualization -->
+  <main id="up-token-demo">
+      <section class="hero up-hero">
+        <div class="hero-body up-hero-body">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <h1 class="title is-1 up-publication-title">Interactive Token Probability Visualization</h1>
 
-            <div class="centered">
-              <span class="conf-text">Conference Demo</span>
-            </div>
+                <div class="up-centered">
+                  <span class="up-conf-text">Conference Demo</span>
+                </div>
 
-            <div class="is-size-5 publication-authors" style="margin-top: 10px;">
-              <span class="author-block fake-link">Token probability barplot from JSON data</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section plot-section" aria-label="Token probability plot">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full">
-          <h2 class="title is-3">Token Probability Barplot</h2>
-          <p class="subtitle is-6">Hover or tap a token to show the completed sentence.</p>
-
-          <div class="plot-wrap">
-            <div class="model-control">
-              <button class="model-button" id="modelLeftButton" type="button" aria-label="Previous model">
-                ◀
-              </button>
-
-              <div class="model-name" id="modelName">
-                Model
-              </div>
-
-              <button class="model-button" id="modelRightButton" type="button" aria-label="Next model">
-                ▶
-              </button>
-            </div>
-
-            <div class="variant-control">
-              <button class="variant-button" id="variantUpButton" type="button" aria-label="Previous variant">
-                ▲
-              </button>
-            </div>
-
-            <div class="variant-animated-area" id="variantAnimatedArea">
-              <div class="sentence-box" id="sentenceBox"></div>
-
-              <div class="variant-info" id="variantInfo">
-                Variant 1 of 1
-              </div>
-
-              <div class="plot-layout">
-                <div class="plot-area">
-                  <div class="y-axis-label">Token Probability (logscale)</div>
-
-                  <div class="chart-wrapper">
-                    <div class="chart" id="chart"></div>
-                  </div>
-
-                  <div class="cutoff-slider-panel">
-                    <div class="cutoff-side-label">cutoff</div>
-
-                    <input
-                      id="cutoffSlider"
-                      class="cutoff-slider"
-                      type="range"
-                      min="0"
-                      max="0"
-                      step="1"
-                      value="0"
-                      aria-label="Cutoff"
-                    >
-                  </div>
-
-                  <div class="pr-panel">
-                    <div class="pr-title">Precision and Recall</div>
-                    <div class="pr-chart" id="prChart"></div>
-                  </div>
+                <div class="is-size-5 up-publication-authors" style="margin-top: 10px;">
+                  <span class="up-author-block up-fake-link">Token probability barplot from JSON data</span>
                 </div>
               </div>
             </div>
-
-            <div class="variant-control variant-control-bottom">
-              <button class="variant-button" id="variantDownButton" type="button" aria-label="Next variant">
-                ▼
-              </button>
-            </div>
-
-            <div class="error" id="errorBox"></div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section class="section up-plot-section" aria-label="Upper token probability plot">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-full">
+              <h2 class="title is-3">Token Probability Barplot</h2>
+              <p class="subtitle is-6">Hover or tap a token to show the completed sentence.</p>
+
+              <div class="up-plot-wrap">
+                <div class="up-model-control">
+                  <button class="up-model-button" id="upModelLeftButton" type="button" aria-label="Previous upper model">
+                    ◀
+                  </button>
+
+                  <div class="up-model-name" id="upModelName">
+                    Model
+                  </div>
+
+                  <button class="up-model-button" id="upModelRightButton" type="button" aria-label="Next upper model">
+                    ▶
+                  </button>
+                </div>
+
+                <div class="up-variant-control">
+                  <button class="up-variant-button" id="upVariantUpButton" type="button" aria-label="Previous upper variant">
+                    ▲
+                  </button>
+                </div>
+
+                <div class="up-variant-animated-area" id="upVariantAnimatedArea">
+                  <div class="up-sentence-box" id="upSentenceBox"></div>
+
+                  <div class="up-variant-info" id="upVariantInfo">
+                    Variant 1 of 1
+                  </div>
+
+                  <div class="up-plot-layout">
+                    <div class="up-plot-area">
+                      <div class="up-y-axis-label">Token Probability (logscale)</div>
+
+                      <div class="up-chart-wrapper">
+                        <div class="up-chart" id="upChart"></div>
+                      </div>
+
+                      <div class="up-bar-x-title">Token Index (sorted by probability)</div>
+
+                      <div class="up-cutoff-slider-panel">
+                        <div class="up-cutoff-side-label">cutoff</div>
+
+                        <input
+                          id="upCutoffSlider"
+                          class="up-cutoff-slider"
+                          type="range"
+                          min="0"
+                          max="0"
+                          step="1"
+                          value="0"
+                          aria-label="Upper cutoff"
+                        >
+                      </div>
+
+                      <div class="up-pr-panel">
+                        <div class="up-pr-chart" id="upPrChart"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="up-variant-control up-variant-control-bottom">
+                  <button class="up-variant-button" id="upVariantDownButton" type="button" aria-label="Next upper variant">
+                    ▼
+                  </button>
+                </div>
+
+                <div class="up-error" id="upErrorBox"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  <hr class="merged-demo-divider">
+
+  <!-- Lower visualization -->
+  <div id="down-token-demo">
+
+      <section class="section down-plot-section" aria-label="Down token probability plot">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-full">
+              <h2 class="title is-3">Down Token Probability Barplot</h2>
+              <p class="subtitle is-6">Hover or tap a token to show the completed sentence.</p>
+
+              <div class="down-plot-wrap">
+                <div class="down-model-control">
+                  <button class="down-model-button" id="downModelLeftButton" type="button" aria-label="Previous down model">
+                    ◀
+                  </button>
+
+                  <div class="down-model-name" id="downModelName">
+                    Model
+                  </div>
+
+                  <button class="down-model-button" id="downModelRightButton" type="button" aria-label="Next down model">
+                    ▶
+                  </button>
+                </div>
+
+                <div class="down-variant-control">
+                  <button class="down-variant-button" id="downVariantUpButton" type="button" aria-label="Previous down variant">
+                    ▲
+                  </button>
+                </div>
+
+                <div class="down-variant-animated-area" id="downVariantAnimatedArea">
+                  <div class="down-sentence-box" id="downSentenceBox"></div>
+
+                  <div class="down-variant-info" id="downVariantInfo">
+                    Variant 1 of 1
+                  </div>
+
+                  <div class="down-plot-layout">
+                    <div class="down-plot-area">
+                      <div class="down-y-axis-label">Token Probability (logscale)</div>
+
+                      <div class="down-chart-wrapper">
+                        <div class="down-chart" id="downChart"></div>
+                      </div>
+
+                      <div class="down-bar-x-title">Token Index (sorted by probability)</div>
+                    </div>
+
+                    <div class="down-side-panel">
+                      <div class="down-temperature-panel">
+                        <div class="down-temperature-header">
+                          <div class="down-temperature-title">Temperature</div>
+                          <div class="down-temperature-value" id="downTemperatureValue">0.5</div>
+                        </div>
+
+                        <div class="down-temperature-control">
+                          <div class="down-temperature-slider-column">
+                            <input
+                              id="downTemperatureSlider"
+                              class="down-temperature-slider"
+                              type="range"
+                              min="0"
+                              max="0"
+                              step="1"
+                              value="0"
+                              aria-label="Down temperature"
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="down-prob-panel">
+                      <div class="down-prob-chart" id="downProbChart"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="down-variant-control down-variant-control-bottom">
+                  <button class="down-variant-button" id="downVariantDownButton" type="button" aria-label="Next down variant">
+                    ▼
+                  </button>
+                </div>
+
+                <div class="down-error" id="downErrorBox"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
 
+  <!-- Scripts from index_up.html -->
   <script>
-    const TEXT_ANIMATION_MODE = "typing";
-    const TYPING_WORD_DELAY_MS = 50;
 
-    const chart = document.getElementById("chart");
-    const chartWrapper = document.querySelector(".chart-wrapper");
-    const sentenceBox = document.getElementById("sentenceBox");
-    const errorBox = document.getElementById("errorBox");
+        const UP_TEXT_ANIMATION_MODE = "typing";
+        const UP_TYPING_WORD_DELAY_MS = 50;
 
-    const cutoffSlider = document.getElementById("cutoffSlider");
-    const prChart = document.getElementById("prChart");
+        const UP_VALID_COLOR = "#ACDB7A";
+        const UP_INVALID_COLOR = "#FF5D5D";
+        const UP_VALID_MUTED_COLOR = "#CFCFCF";
+        const UP_INVALID_MUTED_COLOR = "#A2A2A2";
 
-    const variantUpButton = document.getElementById("variantUpButton");
-    const variantDownButton = document.getElementById("variantDownButton");
-    const variantInfo = document.getElementById("variantInfo");
-    const variantAnimatedArea = document.getElementById("variantAnimatedArea");
+        const upDemoRoot = document.getElementById("up-token-demo");
 
-    const modelLeftButton = document.getElementById("modelLeftButton");
-    const modelRightButton = document.getElementById("modelRightButton");
-    const modelName = document.getElementById("modelName");
+        const upChart = document.getElementById("upChart");
+        const upChartWrapper = upDemoRoot.querySelector(".up-chart-wrapper");
+        const upSentenceBox = document.getElementById("upSentenceBox");
+        const upErrorBox = document.getElementById("upErrorBox");
 
-    const summaryKeySet = new Set([
-      "valid",
-      "invalid"
-    ]);
+        const upCutoffSlider = document.getElementById("upCutoffSlider");
+        const upPrChart = document.getElementById("upPrChart");
 
-    let loadedData = null;
+        const upVariantUpButton = document.getElementById("upVariantUpButton");
+        const upVariantDownButton = document.getElementById("upVariantDownButton");
+        const upVariantInfo = document.getElementById("upVariantInfo");
+        const upVariantAnimatedArea = document.getElementById("upVariantAnimatedArea");
 
-    let modelNames = [];
-    let selectedModelIndex = 0;
-    let selectedModelName = null;
+        const upModelLeftButton = document.getElementById("upModelLeftButton");
+        const upModelRightButton = document.getElementById("upModelRightButton");
+        const upModelName = document.getElementById("upModelName");
 
-    let startTexts = [];
-    let selectedStartIndex = 0;
-    let selectedStartText = null;
+        const upSummaryKeySet = new Set([
+          "valid",
+          "invalid"
+        ]);
 
-    let selectedCutoffIndex = 0;
+        let upLoadedData = null;
 
-    let isChangingVariant = false;
-    let isChangingModel = false;
+        let upModelNames = [];
+        let upSelectedModelIndex = 0;
+        let upSelectedModelName = null;
 
-    let currentTokenOrder = [];
-    let currentDataArray = [];
+        let upStartTexts = [];
+        let upSelectedStartIndex = 0;
+        let upSelectedStartText = null;
 
-    let typingTimerIds = [];
-    let typingRunId = 0;
+        let upSelectedCutoffIndex = 0;
 
-    function normalizeColor(color) {
-      return String(color || "#3273dc").toUpperCase();
-    }
+        let upIsChangingVariant = false;
+        let upIsChangingModel = false;
 
-    function isInvalidToken(item) {
-      if (item.group) {
-        return item.group === "invalid";
-      }
+        let upCurrentTokenOrder = [];
+        let upCurrentDataArray = [];
 
-      return normalizeColor(item.color) === "#FF6843";
-    }
+        let upTypingTimerIds = [];
+        let upTypingRunId = 0;
 
-    function getTokenDisplayColor(item, index) {
-      if (index <= selectedCutoffIndex) {
-        return item.color;
-      }
-
-      if (isInvalidToken(item)) {
-        return "#A2A2A2";
-      }
-
-      return "#CFCFCF";
-    }
-
-    function clearTypingTimers() {
-      typingRunId += 1;
-
-      typingTimerIds.forEach(timerId => {
-        window.clearTimeout(timerId);
-      });
-
-      typingTimerIds = [];
-    }
-
-    function showDefaultSentence() {
-      clearTypingTimers();
-
-      const startText = selectedStartText || "";
-
-      sentenceBox.innerHTML = `
-        <span class="fixed-sentence">${escapeHTML(startText)}</span><span class="completed-part" style="color: black;">...</span>
-      `;
-    }
-
-    async function loadData() {
-      try {
-        const response = await fetch(`data.json?v=${Date.now()}`, {
-          cache: "no-store"
-        });
-
-        if (!response.ok) {
-          throw new Error("Could not load data.json");
+        function upIsInvalidToken(item) {
+          return item.group === "invalid";
         }
 
-        loadedData = await response.json();
-        modelNames = getModelNames(loadedData);
-
-        if (modelNames.length === 0) {
-          showDefaultSentence();
-          clearPRChart();
-          errorBox.textContent = "No valid model keys found in data.json.";
-          return;
-        }
-
-        selectedModelIndex = 0;
-        selectedModelName = modelNames[selectedModelIndex];
-
-        setupModelButtons();
-        setupVariantButtons();
-        setupCurrentModel();
-
-      } catch (error) {
-        showDefaultSentence();
-        clearPRChart();
-        errorBox.textContent = "Could not read data.json. Run this page with a local server, not by directly opening the HTML file.";
-      }
-    }
-
-    function getModelNames(data) {
-      return Object.keys(data)
-        .filter(key => {
-          const value = data[key];
-          return value && typeof value === "object" && !Array.isArray(value);
-        });
-    }
-
-    function getStartTexts() {
-      const modelData = loadedData[selectedModelName];
-
-      return Object.keys(modelData)
-        .filter(key => {
-          const value = modelData[key];
-          return value && typeof value === "object" && !Array.isArray(value);
-        });
-    }
-
-    function setupModelButtons() {
-      modelLeftButton.addEventListener("click", () => {
-        changeModel("left");
-      });
-
-      modelRightButton.addEventListener("click", () => {
-        changeModel("right");
-      });
-    }
-
-    function changeModel(direction) {
-      if (modelNames.length <= 1 || isChangingVariant || isChangingModel) {
-        return;
-      }
-
-      isChangingModel = true;
-      setAllButtonsDisabled(true);
-
-      const outClass = direction === "left"
-        ? "model-slide-out-left"
-        : "model-slide-out-right";
-
-      const inClass = direction === "left"
-        ? "model-slide-in-left"
-        : "model-slide-in-right";
-
-      removeModelAnimationClasses();
-      variantAnimatedArea.classList.add(outClass);
-
-      window.setTimeout(() => {
-        if (direction === "left") {
-          selectedModelIndex -= 1;
-
-          if (selectedModelIndex < 0) {
-            selectedModelIndex = modelNames.length - 1;
+        function upGetBaseTokenColor(item) {
+          if (upIsInvalidToken(item)) {
+            return UP_INVALID_COLOR;
           }
-        } else {
-          selectedModelIndex += 1;
 
-          if (selectedModelIndex >= modelNames.length) {
-            selectedModelIndex = 0;
+          return UP_VALID_COLOR;
+        }
+
+        function upGetTokenDisplayColor(item, index) {
+          if (index <= upSelectedCutoffIndex) {
+            return upGetBaseTokenColor(item);
+          }
+
+          if (upIsInvalidToken(item)) {
+            return UP_INVALID_MUTED_COLOR;
+          }
+
+          return UP_VALID_MUTED_COLOR;
+        }
+
+        function upCreateBarLegend() {
+          const legend = document.createElement("div");
+          legend.className = "up-bar-legend";
+
+          const items = [
+            {
+              label: "Valid / Retained",
+              color: UP_VALID_COLOR
+            },
+            {
+              label: "Valid / Dropped",
+              color: UP_VALID_MUTED_COLOR
+            },
+            {
+              label: "Invalid / Retained",
+              color: UP_INVALID_COLOR
+            },
+            {
+              label: "Invalid / Dropped",
+              color: UP_INVALID_MUTED_COLOR
+            }
+          ];
+
+          items.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "up-bar-legend-item";
+
+            const colorBox = document.createElement("span");
+            colorBox.className = "up-bar-legend-color";
+            colorBox.style.backgroundColor = item.color;
+
+            const label = document.createElement("span");
+            label.textContent = item.label;
+
+            row.appendChild(colorBox);
+            row.appendChild(label);
+            legend.appendChild(row);
+          });
+
+          upChart.appendChild(legend);
+        }
+
+        function upClearTypingTimers() {
+          upTypingRunId += 1;
+
+          upTypingTimerIds.forEach(timerId => {
+            window.clearTimeout(timerId);
+          });
+
+          upTypingTimerIds = [];
+        }
+
+        function upShowDefaultSentence() {
+          upClearTypingTimers();
+
+          const startText = upSelectedStartText || "";
+
+          upSentenceBox.innerHTML = `
+            <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part" style="color: black;">...</span>
+          `;
+        }
+
+        async function upLoadData() {
+          try {
+            const response = await fetch(`data_up.json?v=${Date.now()}`, {
+              cache: "no-store"
+            });
+
+            if (!response.ok) {
+              throw new Error("Could not load data_up.json");
+            }
+
+            upLoadedData = await response.json();
+            upModelNames = upGetModelNames(upLoadedData);
+
+            if (upModelNames.length === 0) {
+              upShowDefaultSentence();
+              upClearPRChart();
+              upErrorBox.textContent = "No valid model keys found in data_up.json.";
+              return;
+            }
+
+            upSelectedModelIndex = 0;
+            upSelectedModelName = upModelNames[upSelectedModelIndex];
+
+            upSetupModelButtons();
+            upSetupVariantButtons();
+            upSetupCurrentModel();
+
+          } catch (error) {
+            upShowDefaultSentence();
+            upClearPRChart();
+            upErrorBox.textContent = "Could not read data_up.json. Run this page with a local server, not by directly opening the HTML file.";
           }
         }
 
-        selectedModelName = modelNames[selectedModelIndex];
-        setupCurrentModel();
-
-        removeModelAnimationClasses();
-        variantAnimatedArea.classList.add(inClass);
-
-        window.setTimeout(() => {
-          removeModelAnimationClasses();
-          isChangingModel = false;
-          setAllButtonsDisabled(false);
-        }, 280);
-      }, 220);
-    }
-
-    function setupCurrentModel() {
-      errorBox.textContent = "";
-      modelName.textContent = selectedModelName;
-
-      startTexts = getStartTexts();
-
-      if (startTexts.length === 0) {
-        chart.innerHTML = "";
-        currentTokenOrder = [];
-        currentDataArray = [];
-        showDefaultSentence();
-        clearPRChart();
-        errorBox.textContent = "No valid starting text keys found for this model.";
-        return;
-      }
-
-      selectedStartIndex = 0;
-      selectedStartText = startTexts[selectedStartIndex];
-
-      setupCurrentVariant();
-    }
-
-    function setupVariantButtons() {
-      variantUpButton.addEventListener("click", () => {
-        changeVariant("up");
-      });
-
-      variantDownButton.addEventListener("click", () => {
-        changeVariant("down");
-      });
-    }
-
-    function changeVariant(direction) {
-      if (startTexts.length <= 1 || isChangingVariant || isChangingModel) {
-        return;
-      }
-
-      isChangingVariant = true;
-      setAllButtonsDisabled(true);
-
-      const outClass = direction === "up"
-        ? "variant-slide-out-up"
-        : "variant-slide-out-down";
-
-      const inClass = direction === "up"
-        ? "variant-slide-in-up"
-        : "variant-slide-in-down";
-
-      removeVariantAnimationClasses();
-      variantAnimatedArea.classList.add(outClass);
-
-      window.setTimeout(() => {
-        if (direction === "up") {
-          selectedStartIndex -= 1;
-
-          if (selectedStartIndex < 0) {
-            selectedStartIndex = startTexts.length - 1;
-          }
-        } else {
-          selectedStartIndex += 1;
-
-          if (selectedStartIndex >= startTexts.length) {
-            selectedStartIndex = 0;
-          }
+        function upGetModelNames(data) {
+          return Object.keys(data)
+            .filter(key => {
+              const value = data[key];
+              return value && typeof value === "object" && !Array.isArray(value);
+            });
         }
 
-        selectedStartText = startTexts[selectedStartIndex];
-        setupCurrentVariant();
+        function upGetStartTexts() {
+          const modelData = upLoadedData[upSelectedModelName];
 
-        removeVariantAnimationClasses();
-        variantAnimatedArea.classList.add(inClass);
-
-        window.setTimeout(() => {
-          removeVariantAnimationClasses();
-          isChangingVariant = false;
-          setAllButtonsDisabled(false);
-        }, 280);
-      }, 220);
-    }
-
-    function removeVariantAnimationClasses() {
-      variantAnimatedArea.classList.remove(
-        "variant-slide-out-up",
-        "variant-slide-in-up",
-        "variant-slide-out-down",
-        "variant-slide-in-down"
-      );
-    }
-
-    function removeModelAnimationClasses() {
-      variantAnimatedArea.classList.remove(
-        "model-slide-out-left",
-        "model-slide-in-left",
-        "model-slide-out-right",
-        "model-slide-in-right"
-      );
-    }
-
-    function setAllButtonsDisabled(disabled) {
-      variantUpButton.disabled = disabled;
-      variantDownButton.disabled = disabled;
-      modelLeftButton.disabled = disabled;
-      modelRightButton.disabled = disabled;
-    }
-
-    function setupCurrentVariant() {
-      errorBox.textContent = "";
-
-      variantInfo.textContent = `Variant ${selectedStartIndex + 1} of ${startTexts.length}`;
-
-      selectedCutoffIndex = 0;
-
-      const currentTokenData = getCurrentTokenData();
-
-      if (!currentTokenData) {
-        chart.innerHTML = "";
-        currentTokenOrder = [];
-        currentDataArray = [];
-        showDefaultSentence();
-        clearPRChart();
-        errorBox.textContent = "No valid data found for this starting text.";
-        return;
-      }
-
-      renderChart(currentTokenData);
-    }
-
-    function getCurrentTokenData() {
-      if (!loadedData || !selectedModelName || !selectedStartText) {
-        return null;
-      }
-
-      return loadedData[selectedModelName][selectedStartText];
-    }
-
-    function toDataArray(data) {
-      return Object.entries(data)
-        .filter(([key]) => !summaryKeySet.has(key))
-        .map(([word, value]) => ({
-          word,
-          probability: Number(value.logit_value),
-          completedSentence: value.completed_sentence,
-          color: value.color || "#3273dc",
-          group: value.group || "",
-          precision: Number(value.precision),
-          recall: Number(value.recall)
-        }))
-        .filter(item => Number.isFinite(item.probability) && item.probability > 0);
-    }
-
-    function getChartMaxBarHeight() {
-      const chartHeight = chart.clientHeight || 280;
-      return Math.max(120, chartHeight - 62);
-    }
-
-    function getLogHeight(probability, minProbability, maxProbability, maxBarHeight) {
-      const minLog = Math.log10(minProbability);
-      const maxLog = Math.log10(maxProbability);
-      const valueLog = Math.log10(probability);
-
-      if (maxLog === minLog) {
-        return maxBarHeight;
-      }
-
-      const ratio = (valueLog - minLog) / (maxLog - minLog);
-      return Math.max(2, ratio * maxBarHeight);
-    }
-
-    function renderChart(data) {
-      chart.innerHTML = "";
-      errorBox.textContent = "";
-      showDefaultSentence();
-
-      const dataArray = toDataArray(data);
-      currentDataArray = dataArray;
-      currentTokenOrder = dataArray.map(item => item.word);
-
-      if (dataArray.length === 0) {
-        clearPRChart();
-        errorBox.textContent = "No valid positive probability values found for this selection.";
-        return;
-      }
-
-      updateBarSizes(dataArray.length);
-      setupCutoffSlider(dataArray);
-      renderPRChart(dataArray);
-
-      const probabilities = dataArray.map(item => item.probability);
-      const minProbability = Math.min(...probabilities);
-      const maxProbability = Math.max(...probabilities);
-      const maxBarHeight = getChartMaxBarHeight();
-
-      dataArray.forEach((item, index) => {
-        const normalizedColor = normalizeColor(item.color);
-
-        const barGroup = document.createElement("div");
-        barGroup.className = "bar-group";
-        barGroup.dataset.word = item.word;
-
-        const value = document.createElement("div");
-        value.className = "bar-value";
-        value.textContent = formatValue(item.probability);
-
-        const bar = document.createElement("div");
-        bar.className = "bar";
-        bar.dataset.word = item.word;
-        bar.dataset.color = normalizedColor;
-        bar.dataset.completedSentence = item.completedSentence;
-        bar.dataset.originalColor = item.color;
-        bar.setAttribute("role", "button");
-        bar.setAttribute("tabindex", "0");
-        bar.setAttribute("aria-label", `${item.word}, probability ${formatValue(item.probability)}`);
-
-        bar.style.height = `${getLogHeight(
-          item.probability,
-          minProbability,
-          maxProbability,
-          maxBarHeight
-        )}px`;
-
-        bar.style.backgroundColor = getTokenDisplayColor(item, index);
-
-        bar.addEventListener("mouseenter", () => {
-          showCompletedSentence(bar);
-        });
-
-        bar.addEventListener("mouseleave", () => {
-          showDefaultSentence();
-        });
-
-        bar.addEventListener("focus", () => {
-          showCompletedSentence(bar);
-        });
-
-        bar.addEventListener("blur", () => {
-          showDefaultSentence();
-        });
-
-        bar.addEventListener("click", () => {
-          showCompletedSentence(bar);
-        });
-
-        barGroup.appendChild(value);
-        barGroup.appendChild(bar);
-        chart.appendChild(barGroup);
-      });
-    }
-
-    function setupCutoffSlider(dataArray) {
-      if (!dataArray || dataArray.length === 0) {
-        cutoffSlider.min = 0;
-        cutoffSlider.max = 0;
-        cutoffSlider.value = 0;
-        return;
-      }
-
-      cutoffSlider.min = 0;
-      cutoffSlider.max = dataArray.length - 1;
-      cutoffSlider.step = 1;
-
-      selectedCutoffIndex = Math.min(selectedCutoffIndex, dataArray.length - 1);
-      cutoffSlider.value = selectedCutoffIndex;
-
-      updateCutoffUI(dataArray);
-    }
-
-    function updateCutoffUI(dataArray) {
-      if (!dataArray || dataArray.length === 0) {
-        return;
-      }
-
-      const maxIndex = Math.max(1, dataArray.length - 1);
-      const progress = selectedCutoffIndex / maxIndex * 100;
-
-      cutoffSlider.style.setProperty("--cutoff-progress", `${progress}%`);
-    }
-
-    cutoffSlider.addEventListener("input", () => {
-      if (isChangingVariant || isChangingModel) {
-        return;
-      }
-
-      selectedCutoffIndex = Number(cutoffSlider.value);
-
-      updateCutoffUI(currentDataArray);
-      updateBarColorsByCutoff();
-      renderPRChart(currentDataArray);
-    });
-
-    function updateBarColorsByCutoff() {
-      const barGroups = Array.from(chart.querySelectorAll(".bar-group"));
-
-      currentDataArray.forEach((item, index) => {
-        const barGroup = barGroups[index];
-
-        if (!barGroup) {
-          return;
+          return Object.keys(modelData)
+            .filter(key => {
+              const value = modelData[key];
+              return value && typeof value === "object" && !Array.isArray(value);
+            });
         }
 
-        const bar = barGroup.querySelector(".bar");
+        function upSetupModelButtons() {
+          upModelLeftButton.addEventListener("click", () => {
+            upChangeModel("left");
+          });
 
-        if (!bar) {
-          return;
+          upModelRightButton.addEventListener("click", () => {
+            upChangeModel("right");
+          });
         }
 
-        bar.style.backgroundColor = getTokenDisplayColor(item, index);
-      });
-    }
-
-    function clearPRChart() {
-      prChart.innerHTML = "";
-    }
-
-    function renderPRChart(dataArray) {
-      prChart.innerHTML = "";
-
-      if (!dataArray || dataArray.length === 0) {
-        return;
-      }
-
-      const validItems = dataArray.filter(item => {
-        return Number.isFinite(item.precision) && Number.isFinite(item.recall);
-      });
-
-      if (validItems.length === 0) {
-        return;
-      }
-
-      const svgNS = "http://www.w3.org/2000/svg";
-
-      const width = 900;
-      const height = 260;
-
-      const margin = {
-        top: 24,
-        right: 28,
-        bottom: 38,
-        left: 76
-      };
-
-      const innerWidth = width - margin.left - margin.right;
-      const innerHeight = height - margin.top - margin.bottom;
-
-      const svg = document.createElementNS(svgNS, "svg");
-      svg.setAttribute("class", "pr-svg");
-      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-
-      const xMax = Math.max(1, validItems.length - 1);
-
-      function xScale(index) {
-        return margin.left + index / xMax * innerWidth;
-      }
-
-      function yScale(value) {
-        return margin.top + (1 - value) * innerHeight;
-      }
-
-      for (let i = 0; i <= 4; i++) {
-        const yValue = i / 4;
-        const y = yScale(yValue);
-
-        const grid = document.createElementNS(svgNS, "line");
-        grid.setAttribute("class", "pr-grid");
-        grid.setAttribute("x1", margin.left);
-        grid.setAttribute("y1", y);
-        grid.setAttribute("x2", width - margin.right);
-        grid.setAttribute("y2", y);
-        svg.appendChild(grid);
-
-        const label = document.createElementNS(svgNS, "text");
-        label.setAttribute("class", "pr-label");
-        label.setAttribute("x", margin.left - 12);
-        label.setAttribute("y", y + 4);
-        label.setAttribute("text-anchor", "end");
-        label.textContent = yValue.toFixed(2);
-        svg.appendChild(label);
-      }
-
-      const xAxis = document.createElementNS(svgNS, "line");
-      xAxis.setAttribute("class", "pr-axis");
-      xAxis.setAttribute("x1", margin.left);
-      xAxis.setAttribute("y1", height - margin.bottom);
-      xAxis.setAttribute("x2", width - margin.right);
-      xAxis.setAttribute("y2", height - margin.bottom);
-      svg.appendChild(xAxis);
-
-      const yAxis = document.createElementNS(svgNS, "line");
-      yAxis.setAttribute("class", "pr-axis");
-      yAxis.setAttribute("x1", margin.left);
-      yAxis.setAttribute("y1", margin.top);
-      yAxis.setAttribute("x2", margin.left);
-      yAxis.setAttribute("y2", height - margin.bottom);
-      svg.appendChild(yAxis);
-
-      const precisionPoints = validItems.map((item, index) => {
-        return `${xScale(index)},${yScale(item.precision)}`;
-      });
-
-      const recallPoints = validItems.map((item, index) => {
-        return `${xScale(index)},${yScale(item.recall)}`;
-      });
-
-      const precisionLine = document.createElementNS(svgNS, "polyline");
-      precisionLine.setAttribute("class", "pr-line pr-line-precision");
-      precisionLine.setAttribute("points", precisionPoints.join(" "));
-      svg.appendChild(precisionLine);
-
-      const recallLine = document.createElementNS(svgNS, "polyline");
-      recallLine.setAttribute("class", "pr-line pr-line-recall");
-      recallLine.setAttribute("points", recallPoints.join(" "));
-      svg.appendChild(recallLine);
-
-      const safeCutoff = Math.max(0, Math.min(selectedCutoffIndex, validItems.length - 1));
-      const selectedItem = validItems[safeCutoff];
-
-      if (selectedItem) {
-        const selectedX = xScale(safeCutoff);
-
-        const verticalLine = document.createElementNS(svgNS, "line");
-        verticalLine.setAttribute("x1", selectedX);
-        verticalLine.setAttribute("y1", margin.top);
-        verticalLine.setAttribute("x2", selectedX);
-        verticalLine.setAttribute("y2", height - margin.bottom);
-        verticalLine.setAttribute("stroke", "#888");
-        verticalLine.setAttribute("stroke-width", "1.5");
-        verticalLine.setAttribute("stroke-dasharray", "5 5");
-        svg.appendChild(verticalLine);
-
-        const precisionPoint = document.createElementNS(svgNS, "circle");
-        precisionPoint.setAttribute("class", "pr-point");
-        precisionPoint.setAttribute("cx", selectedX);
-        precisionPoint.setAttribute("cy", yScale(selectedItem.precision));
-        precisionPoint.setAttribute("r", 6);
-        precisionPoint.setAttribute("fill", "#3273dc");
-        svg.appendChild(precisionPoint);
-
-        const recallPoint = document.createElementNS(svgNS, "circle");
-        recallPoint.setAttribute("class", "pr-point");
-        recallPoint.setAttribute("cx", selectedX);
-        recallPoint.setAttribute("cy", yScale(selectedItem.recall));
-        recallPoint.setAttribute("r", 6);
-        recallPoint.setAttribute("fill", "#FF6843");
-        svg.appendChild(recallPoint);
-      }
-
-      const xLabel = document.createElementNS(svgNS, "text");
-      xLabel.setAttribute("class", "pr-label");
-      xLabel.setAttribute("x", width / 2);
-      xLabel.setAttribute("y", height - 8);
-      xLabel.setAttribute("text-anchor", "middle");
-      xLabel.textContent = "Cutoff position";
-      svg.appendChild(xLabel);
-
-      const yLabel = document.createElementNS(svgNS, "text");
-      yLabel.setAttribute("class", "pr-label");
-      yLabel.setAttribute("x", 18);
-      yLabel.setAttribute("y", height / 2);
-      yLabel.setAttribute("text-anchor", "middle");
-      yLabel.setAttribute("transform", `rotate(-90 18 ${height / 2})`);
-      yLabel.textContent = "Score";
-      svg.appendChild(yLabel);
-
-      const precisionLegend = document.createElementNS(svgNS, "text");
-      precisionLegend.setAttribute("class", "pr-legend");
-      precisionLegend.setAttribute("x", width - margin.right - 170);
-      precisionLegend.setAttribute("y", 18);
-      precisionLegend.setAttribute("fill", "#3273dc");
-      precisionLegend.textContent = "Precision";
-      svg.appendChild(precisionLegend);
-
-      const recallLegend = document.createElementNS(svgNS, "text");
-      recallLegend.setAttribute("class", "pr-legend");
-      recallLegend.setAttribute("x", width - margin.right - 82);
-      recallLegend.setAttribute("y", 18);
-      recallLegend.setAttribute("fill", "#FF6843");
-      recallLegend.textContent = "Recall";
-      svg.appendChild(recallLegend);
-
-      prChart.appendChild(svg);
-    }
-
-    function showCompletedSentence(bar) {
-      clearTypingTimers();
-
-      const completedSentence = bar.dataset.completedSentence || "";
-      const color = bar.dataset.originalColor || "#111";
-      const startText = selectedStartText || "";
-
-      if (TEXT_ANIMATION_MODE === "typing") {
-        showTypingSentence(startText, completedSentence, color);
-        return;
-      }
-
-      showFadeSentence(startText, completedSentence, color);
-    }
-
-    function showFadeSentence(startText, completedSentence, color) {
-      const cleanedSentence = String(completedSentence).trim();
-
-      if (!cleanedSentence) {
-        sentenceBox.innerHTML = `
-          <span class="fixed-sentence">${escapeHTML(startText)}</span>
-        `;
-        return;
-      }
-
-      const words = cleanedSentence.split(/\s+/);
-      const firstWord = words.shift() || "";
-      const restText = words.length > 0 ? ` ${words.join(" ")}` : "";
-
-      sentenceBox.innerHTML = `
-        <span class="fixed-sentence">${escapeHTML(startText)}</span><span class="completed-part animate-text" style="color: ${escapeHTML(color)};"><span class="underlined-generated-word">${escapeHTML(firstWord)}</span>${escapeHTML(restText)}</span>
-      `;
-    }
-
-    function showTypingSentence(startText, completedSentence, color) {
-      const runId = typingRunId;
-
-      sentenceBox.innerHTML = `
-        <span class="fixed-sentence">${escapeHTML(startText)}</span><span class="completed-part" id="typingCompletedPart" style="color: ${escapeHTML(color)};"></span>
-      `;
-
-      const typingCompletedPart = document.getElementById("typingCompletedPart");
-
-      if (!typingCompletedPart) {
-        return;
-      }
-
-      const cleanedSentence = String(completedSentence)
-        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ")
-        .trim();
-
-      const words = cleanedSentence
-        .split(/\s+/)
-        .filter(Boolean);
-
-      if (words.length === 0) {
-        return;
-      }
-
-      const cursor = document.createElement("span");
-      cursor.className = "typing-cursor";
-      cursor.style.color = color;
-
-      typingCompletedPart.appendChild(cursor);
-
-      words.forEach((word, index) => {
-        const timerId = window.setTimeout(() => {
-          if (runId !== typingRunId) {
+        function upChangeModel(direction) {
+          if (upModelNames.length <= 1 || upIsChangingVariant || upIsChangingModel) {
             return;
           }
 
-          typingCompletedPart.innerHTML = "";
+          upIsChangingModel = true;
+          upSetAllButtonsDisabled(true);
 
-          words.slice(0, index + 1).forEach((shownWord, shownIndex) => {
-            if (shownIndex > 0) {
-              typingCompletedPart.appendChild(document.createTextNode(" "));
-            }
+          const outClass = direction === "left"
+            ? "up-model-slide-out-left"
+            : "up-model-slide-out-right";
 
-            if (shownIndex === 0) {
-              const underlinedWord = document.createElement("span");
-              underlinedWord.className = "underlined-generated-word";
-              underlinedWord.textContent = shownWord;
-              typingCompletedPart.appendChild(underlinedWord);
+          const inClass = direction === "left"
+            ? "up-model-slide-in-left"
+            : "up-model-slide-in-right";
+
+          upRemoveModelAnimationClasses();
+          upVariantAnimatedArea.classList.add(outClass);
+
+          window.setTimeout(() => {
+            if (direction === "left") {
+              upSelectedModelIndex -= 1;
+
+              if (upSelectedModelIndex < 0) {
+                upSelectedModelIndex = upModelNames.length - 1;
+              }
             } else {
-              typingCompletedPart.appendChild(document.createTextNode(shownWord));
+              upSelectedModelIndex += 1;
+
+              if (upSelectedModelIndex >= upModelNames.length) {
+                upSelectedModelIndex = 0;
+              }
             }
+
+            upSelectedModelName = upModelNames[upSelectedModelIndex];
+            upSetupCurrentModel();
+
+            upRemoveModelAnimationClasses();
+            upVariantAnimatedArea.classList.add(inClass);
+
+            window.setTimeout(() => {
+              upRemoveModelAnimationClasses();
+              upIsChangingModel = false;
+              upSetAllButtonsDisabled(false);
+            }, 280);
+          }, 220);
+        }
+
+        function upSetupCurrentModel() {
+          upErrorBox.textContent = "";
+          upModelName.textContent = upSelectedModelName;
+
+          upStartTexts = upGetStartTexts();
+
+          if (upStartTexts.length === 0) {
+            upChart.innerHTML = "";
+            upCurrentTokenOrder = [];
+            upCurrentDataArray = [];
+            upShowDefaultSentence();
+            upClearPRChart();
+            upErrorBox.textContent = "No valid starting text keys found for this model.";
+            return;
+          }
+
+          upSelectedStartIndex = 0;
+          upSelectedStartText = upStartTexts[upSelectedStartIndex];
+
+          upSetupCurrentVariant();
+        }
+
+        function upSetupVariantButtons() {
+          upVariantUpButton.addEventListener("click", () => {
+            upChangeVariant("up");
           });
 
-          typingCompletedPart.appendChild(cursor);
+          upVariantDownButton.addEventListener("click", () => {
+            upChangeVariant("down");
+          });
+        }
 
-          if (index === words.length - 1) {
-            const removeCursorTimerId = window.setTimeout(() => {
-              if (runId !== typingRunId) {
+        function upChangeVariant(direction) {
+          if (upStartTexts.length <= 1 || upIsChangingVariant || upIsChangingModel) {
+            return;
+          }
+
+          upIsChangingVariant = true;
+          upSetAllButtonsDisabled(true);
+
+          const outClass = direction === "up"
+            ? "up-variant-slide-out-up"
+            : "up-variant-slide-out-down";
+
+          const inClass = direction === "up"
+            ? "up-variant-slide-in-up"
+            : "up-variant-slide-in-down";
+
+          upRemoveVariantAnimationClasses();
+          upVariantAnimatedArea.classList.add(outClass);
+
+          window.setTimeout(() => {
+            if (direction === "up") {
+              upSelectedStartIndex -= 1;
+
+              if (upSelectedStartIndex < 0) {
+                upSelectedStartIndex = upStartTexts.length - 1;
+              }
+            } else {
+              upSelectedStartIndex += 1;
+
+              if (upSelectedStartIndex >= upStartTexts.length) {
+                upSelectedStartIndex = 0;
+              }
+            }
+
+            upSelectedStartText = upStartTexts[upSelectedStartIndex];
+            upSetupCurrentVariant();
+
+            upRemoveVariantAnimationClasses();
+            upVariantAnimatedArea.classList.add(inClass);
+
+            window.setTimeout(() => {
+              upRemoveVariantAnimationClasses();
+              upIsChangingVariant = false;
+              upSetAllButtonsDisabled(false);
+            }, 280);
+          }, 220);
+        }
+
+        function upRemoveVariantAnimationClasses() {
+          upVariantAnimatedArea.classList.remove(
+            "up-variant-slide-out-up",
+            "up-variant-slide-in-up",
+            "up-variant-slide-out-down",
+            "up-variant-slide-in-down"
+          );
+        }
+
+        function upRemoveModelAnimationClasses() {
+          upVariantAnimatedArea.classList.remove(
+            "up-model-slide-out-left",
+            "up-model-slide-in-left",
+            "up-model-slide-out-right",
+            "up-model-slide-in-right"
+          );
+        }
+
+        function upSetAllButtonsDisabled(disabled) {
+          upVariantUpButton.disabled = disabled;
+          upVariantDownButton.disabled = disabled;
+          upModelLeftButton.disabled = disabled;
+          upModelRightButton.disabled = disabled;
+        }
+
+        function upSetupCurrentVariant() {
+          upErrorBox.textContent = "";
+
+          upVariantInfo.textContent = `Variant ${upSelectedStartIndex + 1} of ${upStartTexts.length}`;
+
+          const currentTokenData = upGetCurrentTokenData();
+
+          if (!currentTokenData) {
+            upChart.innerHTML = "";
+            upCurrentTokenOrder = [];
+            upCurrentDataArray = [];
+            upShowDefaultSentence();
+            upClearPRChart();
+            upErrorBox.textContent = "No valid data found for this starting text.";
+            return;
+          }
+
+          upRenderChart(currentTokenData);
+        }
+
+        function upGetCurrentTokenData() {
+          if (!upLoadedData || !upSelectedModelName || !upSelectedStartText) {
+            return null;
+          }
+
+          return upLoadedData[upSelectedModelName][upSelectedStartText];
+        }
+
+        function upToDataArray(data) {
+          return Object.entries(data)
+            .filter(([key]) => !upSummaryKeySet.has(key))
+            .map(([word, value]) => ({
+              word,
+              probability: Number(value.logit_value),
+              completedSentence: value.completed_sentence,
+              group: value.group || "valid",
+              precision: Number(value.precision),
+              recall: Number(value.recall)
+            }))
+            .filter(item => Number.isFinite(item.probability) && item.probability > 0)
+            .sort((a, b) => b.probability - a.probability);
+        }
+
+        function upGetChartMaxBarHeight() {
+          const chartHeight = upChart.clientHeight || 280;
+          return Math.max(120, chartHeight - 28);
+        }
+
+        function upGetLogHeight(probability, minProbability, maxProbability, maxBarHeight) {
+          const minLog = Math.log10(minProbability);
+          const maxLog = Math.log10(maxProbability);
+          const valueLog = Math.log10(probability);
+
+          if (maxLog === minLog) {
+            return maxBarHeight;
+          }
+
+          const ratio = (valueLog - minLog) / (maxLog - minLog);
+          return Math.max(2, ratio * maxBarHeight);
+        }
+
+        function upRenderChart(data) {
+          upChart.innerHTML = "";
+          upCreateBarLegend();
+
+          upErrorBox.textContent = "";
+          upShowDefaultSentence();
+
+          const dataArray = upToDataArray(data);
+          upCurrentDataArray = dataArray;
+          upCurrentTokenOrder = dataArray.map(item => item.word);
+
+          if (dataArray.length === 0) {
+            upClearPRChart();
+            upErrorBox.textContent = "No valid positive probability values found for this selection.";
+            return;
+          }
+
+          upUpdateBarSizes(dataArray.length);
+          upSetupCutoffSlider(dataArray);
+          upRenderPRChart(dataArray);
+
+          const probabilities = dataArray.map(item => item.probability);
+          const minProbability = Math.min(...probabilities);
+          const maxProbability = Math.max(...probabilities);
+          const maxBarHeight = upGetChartMaxBarHeight();
+
+          dataArray.forEach((item, index) => {
+            const displayColor = upGetTokenDisplayColor(item, index);
+
+            const barGroup = document.createElement("div");
+            barGroup.className = "up-bar-group";
+            barGroup.dataset.word = item.word;
+
+            const bar = document.createElement("div");
+            bar.className = "up-bar";
+            bar.dataset.word = item.word;
+            bar.dataset.completedSentence = item.completedSentence;
+            bar.dataset.displayColor = displayColor;
+            bar.setAttribute("role", "button");
+            bar.setAttribute("tabindex", "0");
+            bar.setAttribute("aria-label", `${item.word}, probability ${upFormatValue(item.probability)}`);
+
+            bar.style.height = `${upGetLogHeight(
+              item.probability,
+              minProbability,
+              maxProbability,
+              maxBarHeight
+            )}px`;
+
+            bar.style.backgroundColor = displayColor;
+
+            bar.addEventListener("mouseenter", () => {
+              upShowCompletedSentence(bar);
+            });
+
+            bar.addEventListener("mouseleave", () => {
+              upShowDefaultSentence();
+            });
+
+            bar.addEventListener("focus", () => {
+              upShowCompletedSentence(bar);
+            });
+
+            bar.addEventListener("blur", () => {
+              upShowDefaultSentence();
+            });
+
+            bar.addEventListener("click", () => {
+              upShowCompletedSentence(bar);
+            });
+
+            barGroup.appendChild(bar);
+            upChart.appendChild(barGroup);
+          });
+        }
+
+        function upSetupCutoffSlider(dataArray) {
+          if (!dataArray || dataArray.length === 0) {
+            upCutoffSlider.min = 0;
+            upCutoffSlider.max = 0;
+            upCutoffSlider.value = 0;
+            upSelectedCutoffIndex = 0;
+            return;
+          }
+
+          upCutoffSlider.min = 0;
+          upCutoffSlider.max = dataArray.length - 1;
+          upCutoffSlider.step = 1;
+
+          upSelectedCutoffIndex = Math.floor((dataArray.length - 1) / 2);
+          upCutoffSlider.value = upSelectedCutoffIndex;
+
+          upUpdateCutoffUI(dataArray);
+          upUpdateBarColorsByCutoff();
+        }
+
+        function upUpdateCutoffUI(dataArray) {
+          if (!dataArray || dataArray.length === 0) {
+            return;
+          }
+
+          const maxIndex = Math.max(1, dataArray.length - 1);
+          const progress = upSelectedCutoffIndex / maxIndex * 100;
+
+          upCutoffSlider.style.setProperty("--up-cutoff-progress", `${progress}%`);
+        }
+
+        upCutoffSlider.addEventListener("input", () => {
+          if (upIsChangingVariant || upIsChangingModel) {
+            return;
+          }
+
+          upSelectedCutoffIndex = Number(upCutoffSlider.value);
+
+          upUpdateCutoffUI(upCurrentDataArray);
+          upUpdateBarColorsByCutoff();
+          upRenderPRChart(upCurrentDataArray);
+        });
+
+        function upUpdateBarColorsByCutoff() {
+          const barGroups = Array.from(upChart.querySelectorAll(".up-bar-group"));
+
+          upCurrentDataArray.forEach((item, index) => {
+            const barGroup = barGroups[index];
+
+            if (!barGroup) {
+              return;
+            }
+
+            const bar = barGroup.querySelector(".up-bar");
+
+            if (!bar) {
+              return;
+            }
+
+            const displayColor = upGetTokenDisplayColor(item, index);
+            bar.style.backgroundColor = displayColor;
+            bar.dataset.displayColor = displayColor;
+          });
+        }
+
+        function upClearPRChart() {
+          upPrChart.innerHTML = "";
+        }
+
+        function upRenderPRChart(dataArray) {
+          upPrChart.innerHTML = "";
+
+          if (!dataArray || dataArray.length === 0) {
+            return;
+          }
+
+          const validItems = dataArray.filter(item => {
+            return Number.isFinite(item.precision) && Number.isFinite(item.recall);
+          });
+
+          if (validItems.length === 0) {
+            return;
+          }
+
+          const svgNS = "http://www.w3.org/2000/svg";
+
+          const width = 540;
+          const height = 260;
+
+          const margin = {
+            top: 34,
+            right: 20,
+            bottom: 38,
+            left: 42
+          };
+
+          const innerWidth = width - margin.left - margin.right;
+          const innerHeight = height - margin.top - margin.bottom;
+          const plotCenterX = margin.left + innerWidth / 2;
+
+          const svg = document.createElementNS(svgNS, "svg");
+          svg.setAttribute("class", "up-pr-svg");
+          svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+          const xMax = Math.max(1, validItems.length - 1);
+
+          function upXScale(index) {
+            return margin.left + index / xMax * innerWidth;
+          }
+
+          function upYScale(value) {
+            return margin.top + (1 - value) * innerHeight;
+          }
+
+          for (let i = 0; i <= 4; i++) {
+            const yValue = i / 4;
+            const y = upYScale(yValue);
+
+            const grid = document.createElementNS(svgNS, "line");
+            grid.setAttribute("class", "up-pr-grid");
+            grid.setAttribute("x1", margin.left);
+            grid.setAttribute("y1", y);
+            grid.setAttribute("x2", width - margin.right);
+            grid.setAttribute("y2", y);
+            svg.appendChild(grid);
+
+            const label = document.createElementNS(svgNS, "text");
+            label.setAttribute("class", "up-pr-label");
+            label.setAttribute("x", margin.left - 10);
+            label.setAttribute("y", y + 4);
+            label.setAttribute("text-anchor", "end");
+            label.textContent = yValue.toFixed(2);
+            svg.appendChild(label);
+          }
+
+          const xAxis = document.createElementNS(svgNS, "line");
+          xAxis.setAttribute("class", "up-pr-axis");
+          xAxis.setAttribute("x1", margin.left);
+          xAxis.setAttribute("y1", height - margin.bottom);
+          xAxis.setAttribute("x2", width - margin.right);
+          xAxis.setAttribute("y2", height - margin.bottom);
+          svg.appendChild(xAxis);
+
+          const yAxis = document.createElementNS(svgNS, "line");
+          yAxis.setAttribute("class", "up-pr-axis");
+          yAxis.setAttribute("x1", margin.left);
+          yAxis.setAttribute("y1", margin.top);
+          yAxis.setAttribute("x2", margin.left);
+          yAxis.setAttribute("y2", height - margin.bottom);
+          svg.appendChild(yAxis);
+
+          const precisionPoints = validItems.map((item, index) => {
+            return `${upXScale(index)},${upYScale(item.precision)}`;
+          });
+
+          const recallPoints = validItems.map((item, index) => {
+            return `${upXScale(index)},${upYScale(item.recall)}`;
+          });
+
+          const precisionLine = document.createElementNS(svgNS, "polyline");
+          precisionLine.setAttribute("class", "up-pr-line up-pr-line-precision");
+          precisionLine.setAttribute("points", precisionPoints.join(" "));
+          svg.appendChild(precisionLine);
+
+          const recallLine = document.createElementNS(svgNS, "polyline");
+          recallLine.setAttribute("class", "up-pr-line up-pr-line-recall");
+          recallLine.setAttribute("points", recallPoints.join(" "));
+          svg.appendChild(recallLine);
+
+          const safeCutoff = Math.max(0, Math.min(upSelectedCutoffIndex, validItems.length - 1));
+          const selectedItem = validItems[safeCutoff];
+
+          if (selectedItem) {
+            const selectedX = upXScale(safeCutoff);
+
+            const verticalLine = document.createElementNS(svgNS, "line");
+            verticalLine.setAttribute("x1", selectedX);
+            verticalLine.setAttribute("y1", margin.top);
+            verticalLine.setAttribute("x2", selectedX);
+            verticalLine.setAttribute("y2", height - margin.bottom);
+            verticalLine.setAttribute("stroke", "#888");
+            verticalLine.setAttribute("stroke-width", "1.5");
+            verticalLine.setAttribute("stroke-dasharray", "5 5");
+            svg.appendChild(verticalLine);
+
+            const precisionPoint = document.createElementNS(svgNS, "circle");
+            precisionPoint.setAttribute("class", "up-pr-point");
+            precisionPoint.setAttribute("cx", selectedX);
+            precisionPoint.setAttribute("cy", upYScale(selectedItem.precision));
+            precisionPoint.setAttribute("r", 6);
+            precisionPoint.setAttribute("fill", "#3273dc");
+            svg.appendChild(precisionPoint);
+
+            const recallPoint = document.createElementNS(svgNS, "circle");
+            recallPoint.setAttribute("class", "up-pr-point");
+            recallPoint.setAttribute("cx", selectedX);
+            recallPoint.setAttribute("cy", upYScale(selectedItem.recall));
+            recallPoint.setAttribute("r", 6);
+            recallPoint.setAttribute("fill", "#FF5D5D");
+            svg.appendChild(recallPoint);
+          }
+
+          const xLabel = document.createElementNS(svgNS, "text");
+          xLabel.setAttribute("class", "up-pr-label");
+          xLabel.setAttribute("x", plotCenterX);
+          xLabel.setAttribute("y", height - 8);
+          xLabel.setAttribute("text-anchor", "middle");
+          xLabel.textContent = "Cutoff position";
+          svg.appendChild(xLabel);
+
+          const legendGroup = document.createElementNS(svgNS, "g");
+          legendGroup.setAttribute("transform", `translate(${plotCenterX - 86}, 18)`);
+
+          const precisionLegend = document.createElementNS(svgNS, "text");
+          precisionLegend.setAttribute("class", "up-pr-legend");
+          precisionLegend.setAttribute("x", 0);
+          precisionLegend.setAttribute("y", 0);
+          precisionLegend.setAttribute("fill", "#3273dc");
+          precisionLegend.textContent = "Precision";
+          legendGroup.appendChild(precisionLegend);
+
+          const recallLegend = document.createElementNS(svgNS, "text");
+          recallLegend.setAttribute("class", "up-pr-legend");
+          recallLegend.setAttribute("x", 96);
+          recallLegend.setAttribute("y", 0);
+          recallLegend.setAttribute("fill", "#FF5D5D");
+          recallLegend.textContent = "Recall";
+          legendGroup.appendChild(recallLegend);
+
+          svg.appendChild(legendGroup);
+          upPrChart.appendChild(svg);
+        }
+
+        function upShowCompletedSentence(bar) {
+          upClearTypingTimers();
+
+          const completedSentence = bar.dataset.completedSentence || "";
+          const color = bar.dataset.displayColor || "#111";
+          const startText = upSelectedStartText || "";
+
+          if (UP_TEXT_ANIMATION_MODE === "typing") {
+            upShowTypingSentence(startText, completedSentence, color);
+            return;
+          }
+
+          upShowFadeSentence(startText, completedSentence, color);
+        }
+
+        function upShowFadeSentence(startText, completedSentence, color) {
+          const cleanedSentence = String(completedSentence).trim();
+
+          if (!cleanedSentence) {
+            upSentenceBox.innerHTML = `
+              <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span>
+            `;
+            return;
+          }
+
+          const words = cleanedSentence.split(/\s+/);
+          const firstWord = words.shift() || "";
+          const restText = words.length > 0 ? ` ${words.join(" ")}` : "";
+
+          upSentenceBox.innerHTML = `
+            <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part up-animate-text" style="color: ${upEscapeHTML(color)};"><span class="up-underlined-generated-word">${upEscapeHTML(firstWord)}</span>${upEscapeHTML(restText)}</span>
+          `;
+        }
+
+        function upShowTypingSentence(startText, completedSentence, color) {
+          const runId = upTypingRunId;
+
+          upSentenceBox.innerHTML = `
+            <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part" id="upTypingCompletedPart" style="color: ${upEscapeHTML(color)};"></span>
+          `;
+
+          const upTypingCompletedPart = document.getElementById("upTypingCompletedPart");
+
+          if (!upTypingCompletedPart) {
+            return;
+          }
+
+          const cleanedSentence = String(completedSentence)
+            .replace(/([.!?])(?=[A-Za-z])/g, "$1 ")
+            .trim();
+
+          const words = cleanedSentence
+            .split(/\s+/)
+            .filter(Boolean);
+
+          if (words.length === 0) {
+            return;
+          }
+
+          const cursor = document.createElement("span");
+          cursor.className = "up-typing-cursor";
+          cursor.style.color = color;
+
+          upTypingCompletedPart.appendChild(cursor);
+
+          words.forEach((word, index) => {
+            const timerId = window.setTimeout(() => {
+              if (runId !== upTypingRunId) {
                 return;
               }
 
-              cursor.remove();
-            }, 350);
+              upTypingCompletedPart.innerHTML = "";
 
-            typingTimerIds.push(removeCursorTimerId);
+              words.slice(0, index + 1).forEach((shownWord, shownIndex) => {
+                if (shownIndex > 0) {
+                  upTypingCompletedPart.appendChild(document.createTextNode(" "));
+                }
+
+                if (shownIndex === 0) {
+                  const underlinedWord = document.createElement("span");
+                  underlinedWord.className = "up-underlined-generated-word";
+                  underlinedWord.textContent = shownWord;
+                  upTypingCompletedPart.appendChild(underlinedWord);
+                } else {
+                  upTypingCompletedPart.appendChild(document.createTextNode(shownWord));
+                }
+              });
+
+              upTypingCompletedPart.appendChild(cursor);
+
+              if (index === words.length - 1) {
+                const removeCursorTimerId = window.setTimeout(() => {
+                  if (runId !== upTypingRunId) {
+                    return;
+                  }
+
+                  cursor.remove();
+                }, 350);
+
+                upTypingTimerIds.push(removeCursorTimerId);
+              }
+            }, index * UP_TYPING_WORD_DELAY_MS);
+
+            upTypingTimerIds.push(timerId);
+          });
+        }
+
+        function upUpdateBarHeights(dataArray) {
+          if (!dataArray || dataArray.length === 0) {
+            return;
           }
-        }, index * TYPING_WORD_DELAY_MS);
 
-        typingTimerIds.push(timerId);
-      });
-    }
+          const probabilities = dataArray.map(item => item.probability);
+          const minProbability = Math.min(...probabilities);
+          const maxProbability = Math.max(...probabilities);
+          const maxBarHeight = upGetChartMaxBarHeight();
 
-    function updateBarHeights(dataArray) {
-      if (!dataArray || dataArray.length === 0) {
-        return;
-      }
+          const barGroups = Array.from(upChart.querySelectorAll(".up-bar-group"));
 
-      const probabilities = dataArray.map(item => item.probability);
-      const minProbability = Math.min(...probabilities);
-      const maxProbability = Math.max(...probabilities);
-      const maxBarHeight = getChartMaxBarHeight();
+          dataArray.forEach((item, index) => {
+            const barGroup = barGroups[index];
 
-      const barGroups = Array.from(chart.querySelectorAll(".bar-group"));
+            if (!barGroup) {
+              return;
+            }
 
-      dataArray.forEach((item, index) => {
-        const barGroup = barGroups[index];
+            const bar = barGroup.querySelector(".up-bar");
 
-        if (!barGroup) {
-          return;
+            if (!bar) {
+              return;
+            }
+
+            const displayColor = upGetTokenDisplayColor(item, index);
+
+            bar.dataset.completedSentence = item.completedSentence;
+            bar.dataset.displayColor = displayColor;
+            bar.style.backgroundColor = displayColor;
+            bar.setAttribute("aria-label", `${item.word}, probability ${upFormatValue(item.probability)}`);
+
+            bar.style.height = `${upGetLogHeight(
+              item.probability,
+              minProbability,
+              maxProbability,
+              maxBarHeight
+            )}px`;
+          });
         }
 
-        const value = barGroup.querySelector(".bar-value");
-        const bar = barGroup.querySelector(".bar");
+        function upUpdateBarSizes(count) {
+          const wrapperWidth = upChartWrapper.clientWidth || 520;
+          const isMobile = window.innerWidth <= 760;
 
-        if (!bar || !value) {
-          return;
+          let gap = 8;
+
+          if (isMobile) {
+            if (count > 36) {
+              gap = 0;
+            } else if (count > 28) {
+              gap = 1;
+            } else if (count > 18) {
+              gap = 2;
+            } else {
+              gap = 3;
+            }
+          } else {
+            if (count > 36) {
+              gap = 1;
+            } else if (count > 28) {
+              gap = 2;
+            } else if (count > 18) {
+              gap = 4;
+            }
+          }
+
+          const availableWidth = Math.max(160, wrapperWidth - 12);
+
+          let groupWidth = Math.floor(
+            (availableWidth - gap * Math.max(0, count - 1)) / Math.max(1, count)
+          );
+
+          if (isMobile) {
+            groupWidth = Math.max(6, groupWidth);
+          } else {
+            const minGroupWidth = count > 36 ? 12 : count > 28 ? 14 : count > 18 ? 18 : 28;
+            groupWidth = Math.max(minGroupWidth, groupWidth);
+          }
+
+          const barWidth = isMobile
+            ? Math.max(3, Math.min(18, Math.floor(groupWidth * 0.72)))
+            : Math.max(5, Math.min(30, Math.floor(groupWidth * 0.7)));
+
+          upChart.style.setProperty("--up-bar-gap", `${gap}px`);
+          upChart.style.setProperty("--up-bar-group-width", `${groupWidth}px`);
+          upChart.style.setProperty("--up-bar-width", `${barWidth}px`);
         }
 
-        value.textContent = formatValue(item.probability);
-        bar.dataset.completedSentence = item.completedSentence;
-        bar.dataset.originalColor = item.color;
-        bar.dataset.color = normalizeColor(item.color);
-        bar.style.backgroundColor = getTokenDisplayColor(item, index);
-        bar.setAttribute("aria-label", `${item.word}, probability ${formatValue(item.probability)}`);
+        function upRefreshResponsiveChart() {
+          if (!upCurrentDataArray || upCurrentDataArray.length === 0) {
+            return;
+          }
 
-        bar.style.height = `${getLogHeight(
-          item.probability,
-          minProbability,
-          maxProbability,
-          maxBarHeight
-        )}px`;
-      });
-    }
-
-    function updateBarSizes(count) {
-      const wrapperWidth = chartWrapper.clientWidth || 520;
-      const isMobile = window.innerWidth <= 760;
-
-      let gap = 8;
-
-      if (isMobile) {
-        if (count > 36) {
-          gap = 0;
-        } else if (count > 28) {
-          gap = 1;
-        } else if (count > 18) {
-          gap = 2;
-        } else {
-          gap = 3;
+          upUpdateBarSizes(upCurrentDataArray.length);
+          upUpdateBarHeights(upCurrentDataArray);
+          upUpdateCutoffUI(upCurrentDataArray);
+          upUpdateBarColorsByCutoff();
+          upRenderPRChart(upCurrentDataArray);
         }
-      } else {
-        if (count > 36) {
-          gap = 1;
-        } else if (count > 28) {
-          gap = 2;
-        } else if (count > 18) {
-          gap = 4;
+
+        const upResizeObserver = new ResizeObserver(() => {
+          window.requestAnimationFrame(upRefreshResponsiveChart);
+        });
+
+        upResizeObserver.observe(upChartWrapper);
+        upResizeObserver.observe(upChart);
+
+        function upFormatValue(number) {
+          if (Number.isInteger(number)) {
+            return String(number);
+          }
+
+          return number
+            .toFixed(6)
+            .replace(/0+$/, "")
+            .replace(/\.$/, "");
         }
-      }
 
-      const availableWidth = Math.max(160, wrapperWidth - 12);
+        function upEscapeHTML(text) {
+          return String(text)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+        }
 
-      let groupWidth = Math.floor(
-        (availableWidth - gap * Math.max(0, count - 1)) / Math.max(1, count)
-      );
+        upLoadData();
+  
+  </script>
 
-      if (isMobile) {
-        groupWidth = Math.max(6, groupWidth);
-      } else {
-        const minGroupWidth = count > 36 ? 12 : count > 28 ? 14 : count > 18 ? 18 : 28;
-        groupWidth = Math.max(minGroupWidth, groupWidth);
-      }
+  <!-- Scripts from index_down.html -->
+  <script>
 
-      const barWidth = isMobile
-        ? Math.max(3, Math.min(18, Math.floor(groupWidth * 0.72)))
-        : Math.max(5, Math.min(30, Math.floor(groupWidth * 0.7)));
+        const DOWN_TEXT_ANIMATION_MODE = "typing";
+        const DOWN_TYPING_WORD_DELAY_MS = 50;
+        const DOWN_POINT_ANIMATION_MS = 420;
 
-      const valueFontSize = isMobile
-        ? groupWidth < 9 ? 5 : groupWidth < 13 ? 6 : 7
-        : groupWidth < 16 ? 7 : groupWidth < 24 ? 8 : 10;
+        const downColors = {
+          valid_and_frequent: "#53A14A",
+          valid_and_rare: "#3D50FF",
+          invalid: "#FF6843"
+        };
 
-      chart.style.setProperty("--bar-gap", `${gap}px`);
-      chart.style.setProperty("--bar-group-width", `${groupWidth}px`);
-      chart.style.setProperty("--bar-width", `${barWidth}px`);
-      chart.style.setProperty("--value-font-size", `${valueFontSize}px`);
-    }
+        const downRoot = document.getElementById("down-token-demo");
 
-    function refreshResponsiveChart() {
-      if (!currentDataArray || currentDataArray.length === 0) {
-        return;
-      }
+        const downChart = document.getElementById("downChart");
+        const downChartWrapper = downRoot.querySelector(".down-chart-wrapper");
+        const downSentenceBox = document.getElementById("downSentenceBox");
+        const downErrorBox = document.getElementById("downErrorBox");
 
-      updateBarSizes(currentDataArray.length);
-      updateBarHeights(currentDataArray);
-      updateCutoffUI(currentDataArray);
-      updateBarColorsByCutoff();
-      renderPRChart(currentDataArray);
-    }
+        const downProbChart = document.getElementById("downProbChart");
 
-    const resizeObserver = new ResizeObserver(() => {
-      window.requestAnimationFrame(refreshResponsiveChart);
-    });
+        const downTemperaturePanel = downRoot.querySelector(".down-temperature-panel");
+        const downTemperatureSlider = document.getElementById("downTemperatureSlider");
+        const downTemperatureValue = document.getElementById("downTemperatureValue");
 
-    resizeObserver.observe(chartWrapper);
-    resizeObserver.observe(chart);
+        const downVariantUpButton = document.getElementById("downVariantUpButton");
+        const downVariantDownButton = document.getElementById("downVariantDownButton");
+        const downVariantInfo = document.getElementById("downVariantInfo");
+        const downVariantAnimatedArea = document.getElementById("downVariantAnimatedArea");
 
-    function formatValue(number) {
-      if (Number.isInteger(number)) {
-        return String(number);
-      }
+        const downModelLeftButton = document.getElementById("downModelLeftButton");
+        const downModelRightButton = document.getElementById("downModelRightButton");
+        const downModelName = document.getElementById("downModelName");
 
-      return number
-        .toFixed(6)
-        .replace(/0+$/, "")
-        .replace(/\.$/, "");
-    }
+        const downIgnoredKeys = new Set(["__temperature_rates"]);
 
-    function escapeHTML(text) {
-      return String(text)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
+        let downLoadedData = null;
 
-    loadData();
+        let downModelNames = [];
+        let downSelectedModelIndex = 0;
+        let downSelectedModelName = null;
+
+        let downStartTexts = [];
+        let downSelectedStartIndex = 0;
+        let downSelectedStartText = null;
+
+        let downTemperatures = [];
+        let downSelectedTemperature = null;
+
+        let downIsChangingVariant = false;
+        let downIsChangingModel = false;
+
+        let downCurrentTokenOrder = [];
+        let downCurrentDataArray = [];
+
+        let downProbabilityChartState = null;
+        let downPointAnimationFrameId = null;
+        let downCurrentProbabilityTemperatureIndex = 0;
+
+        let downTypingTimerIds = [];
+        let downTypingRunId = 0;
+
+        function downGetGroupColor(group) {
+          return downColors[group] || downColors.valid_and_frequent;
+        }
+
+        function downCreateBarLegend() {
+          const legend = document.createElement("div");
+          legend.className = "down-bar-legend";
+
+          const items = [
+            {
+              label: "Valid and Frequent",
+              color: downColors.valid_and_frequent
+            },
+            {
+              label: "Valid and Rare",
+              color: downColors.valid_and_rare
+            },
+            {
+              label: "Invalid",
+              color: downColors.invalid
+            }
+          ];
+
+          items.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "down-bar-legend-item";
+
+            const colorBox = document.createElement("span");
+            colorBox.className = "down-bar-legend-color";
+            colorBox.style.backgroundColor = item.color;
+
+            const label = document.createElement("span");
+            label.textContent = item.label;
+
+            row.appendChild(colorBox);
+            row.appendChild(label);
+            legend.appendChild(row);
+          });
+
+          downChart.appendChild(legend);
+        }
+
+        function downClearTypingTimers() {
+          downTypingRunId += 1;
+
+          downTypingTimerIds.forEach(timerId => {
+            window.clearTimeout(timerId);
+          });
+
+          downTypingTimerIds = [];
+        }
+
+        function downShowDefaultSentence() {
+          downClearTypingTimers();
+
+          const startText = downSelectedStartText || "";
+
+          downSentenceBox.innerHTML = `
+            <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span><span class="down-completed-part" style="color: black;">...</span>
+          `;
+        }
+
+        async function downLoadData() {
+          try {
+            const response = await fetch(`data_down.json?v=${Date.now()}`, {
+              cache: "no-store"
+            });
+
+            if (!response.ok) {
+              throw new Error("Could not load data_down.json");
+            }
+
+            downLoadedData = await response.json();
+            downModelNames = downGetModelNames(downLoadedData);
+
+            if (downModelNames.length === 0) {
+              downShowDefaultSentence();
+              downClearProbabilityChart();
+              downErrorBox.textContent = "No valid model keys found in data_down.json.";
+              return;
+            }
+
+            downSelectedModelIndex = 0;
+            downSelectedModelName = downModelNames[downSelectedModelIndex];
+
+            downSetupModelButtons();
+            downSetupVariantButtons();
+            downSetupCurrentModel();
+
+          } catch (error) {
+            downShowDefaultSentence();
+            downClearProbabilityChart();
+            downErrorBox.textContent = "Could not read data_down.json. Run this page with a local server, not by directly opening the HTML file.";
+          }
+        }
+
+        function downGetModelNames(data) {
+          return Object.keys(data)
+            .filter(key => {
+              const value = data[key];
+              return value && typeof value === "object" && !Array.isArray(value);
+            });
+        }
+
+        function downGetStartTexts() {
+          const modelData = downLoadedData[downSelectedModelName];
+
+          return Object.keys(modelData)
+            .filter(key => {
+              const value = modelData[key];
+              return value && typeof value === "object" && !Array.isArray(value);
+            });
+        }
+
+        function downGetTemperaturesForStartText(startText) {
+          const startTextData = downLoadedData[downSelectedModelName][startText];
+
+          return Object.keys(startTextData)
+            .filter(key => {
+              const value = startTextData[key];
+              return value && typeof value === "object" && !Array.isArray(value);
+            })
+            .sort((a, b) => Number(a) - Number(b));
+        }
+
+        function downSetupModelButtons() {
+          downModelLeftButton.addEventListener("click", () => {
+            downChangeModel("left");
+          });
+
+          downModelRightButton.addEventListener("click", () => {
+            downChangeModel("right");
+          });
+        }
+
+        function downChangeModel(direction) {
+          if (downModelNames.length <= 1 || downIsChangingVariant || downIsChangingModel) {
+            return;
+          }
+
+          downIsChangingModel = true;
+          downSetAllButtonsDisabled(true);
+
+          const outClass = direction === "left"
+            ? "down-model-slide-out-left"
+            : "down-model-slide-out-right";
+
+          const inClass = direction === "left"
+            ? "down-model-slide-in-left"
+            : "down-model-slide-in-right";
+
+          downRemoveModelAnimationClasses();
+          downVariantAnimatedArea.classList.add(outClass);
+
+          window.setTimeout(() => {
+            if (direction === "left") {
+              downSelectedModelIndex -= 1;
+
+              if (downSelectedModelIndex < 0) {
+                downSelectedModelIndex = downModelNames.length - 1;
+              }
+            } else {
+              downSelectedModelIndex += 1;
+
+              if (downSelectedModelIndex >= downModelNames.length) {
+                downSelectedModelIndex = 0;
+              }
+            }
+
+            downSelectedModelName = downModelNames[downSelectedModelIndex];
+            downSetupCurrentModel();
+
+            downRemoveModelAnimationClasses();
+            downVariantAnimatedArea.classList.add(inClass);
+
+            window.setTimeout(() => {
+              downRemoveModelAnimationClasses();
+              downIsChangingModel = false;
+              downSetAllButtonsDisabled(false);
+            }, 280);
+          }, 220);
+        }
+
+        function downSetupCurrentModel() {
+          downErrorBox.textContent = "";
+          downModelName.textContent = downSelectedModelName;
+
+          downStartTexts = downGetStartTexts();
+
+          if (downStartTexts.length === 0) {
+            downChart.innerHTML = "";
+            downCurrentTokenOrder = [];
+            downCurrentDataArray = [];
+            downShowDefaultSentence();
+            downClearProbabilityChart();
+            downErrorBox.textContent = "No valid starting text keys found for this model.";
+            return;
+          }
+
+          downSelectedStartIndex = 0;
+          downSelectedStartText = downStartTexts[downSelectedStartIndex];
+
+          downSetupCurrentVariant();
+        }
+
+        function downSetupVariantButtons() {
+          downVariantUpButton.addEventListener("click", () => {
+            downChangeVariant("up");
+          });
+
+          downVariantDownButton.addEventListener("click", () => {
+            downChangeVariant("down");
+          });
+        }
+
+        function downChangeVariant(direction) {
+          if (downStartTexts.length <= 1 || downIsChangingVariant || downIsChangingModel) {
+            return;
+          }
+
+          downIsChangingVariant = true;
+          downSetAllButtonsDisabled(true);
+
+          const outClass = direction === "up"
+            ? "down-variant-slide-out-up"
+            : "down-variant-slide-out-down";
+
+          const inClass = direction === "up"
+            ? "down-variant-slide-in-up"
+            : "down-variant-slide-in-down";
+
+          downRemoveVariantAnimationClasses();
+          downVariantAnimatedArea.classList.add(outClass);
+
+          window.setTimeout(() => {
+            if (direction === "up") {
+              downSelectedStartIndex -= 1;
+
+              if (downSelectedStartIndex < 0) {
+                downSelectedStartIndex = downStartTexts.length - 1;
+              }
+            } else {
+              downSelectedStartIndex += 1;
+
+              if (downSelectedStartIndex >= downStartTexts.length) {
+                downSelectedStartIndex = 0;
+              }
+            }
+
+            downSelectedStartText = downStartTexts[downSelectedStartIndex];
+            downSetupCurrentVariant();
+
+            downRemoveVariantAnimationClasses();
+            downVariantAnimatedArea.classList.add(inClass);
+
+            window.setTimeout(() => {
+              downRemoveVariantAnimationClasses();
+              downIsChangingVariant = false;
+              downSetAllButtonsDisabled(false);
+            }, 280);
+          }, 220);
+        }
+
+        function downRemoveVariantAnimationClasses() {
+          downVariantAnimatedArea.classList.remove(
+            "down-variant-slide-out-up",
+            "down-variant-slide-in-up",
+            "down-variant-slide-out-down",
+            "down-variant-slide-in-down"
+          );
+        }
+
+        function downRemoveModelAnimationClasses() {
+          downVariantAnimatedArea.classList.remove(
+            "down-model-slide-out-left",
+            "down-model-slide-in-left",
+            "down-model-slide-out-right",
+            "down-model-slide-in-right"
+          );
+        }
+
+        function downSetAllButtonsDisabled(disabled) {
+          downVariantUpButton.disabled = disabled;
+          downVariantDownButton.disabled = disabled;
+          downModelLeftButton.disabled = disabled;
+          downModelRightButton.disabled = disabled;
+        }
+
+        function downSetupCurrentVariant() {
+          downErrorBox.textContent = "";
+          downVariantInfo.textContent = `Variant ${downSelectedStartIndex + 1} of ${downStartTexts.length}`;
+
+          downTemperatures = downGetTemperaturesForStartText(downSelectedStartText);
+
+          if (downTemperatures.length === 0) {
+            downChart.innerHTML = "";
+            downCurrentTokenOrder = [];
+            downCurrentDataArray = [];
+            downShowDefaultSentence();
+            downClearProbabilityChart();
+            downErrorBox.textContent = "No valid temperature keys found for this starting text.";
+            return;
+          }
+
+          const defaultTemperature = "0.5";
+
+          if (downTemperatures.includes(defaultTemperature)) {
+            downSelectedTemperature = defaultTemperature;
+          } else {
+            downSelectedTemperature = downTemperatures[0];
+          }
+
+          downSetupTemperatureControl();
+          downRenderChart(downGetCurrentTokenData(), true);
+          downRenderProbabilityChart();
+        }
+
+        function downSetupTemperatureControl() {
+          downTemperatureSlider.min = 0;
+          downTemperatureSlider.max = downTemperatures.length - 1;
+          downTemperatureSlider.step = 1;
+          downTemperatureSlider.value = Math.max(0, downTemperatures.indexOf(downSelectedTemperature));
+
+          downCurrentProbabilityTemperatureIndex = Number(downTemperatureSlider.value);
+
+          downUpdateTemperatureControl();
+        }
+
+        function downUpdateTemperatureControl() {
+          downTemperatureValue.textContent = downSelectedTemperature;
+
+          const maxIndex = Math.max(1, downTemperatures.length - 1);
+          const currentIndex = Math.max(0, downTemperatures.indexOf(downSelectedTemperature));
+          const progress = currentIndex / maxIndex * 100;
+
+          downTemperaturePanel.style.setProperty("--down-temperature-progress", `${progress}%`);
+        }
+
+        downTemperatureSlider.addEventListener("input", () => {
+          if (downIsChangingVariant || downIsChangingModel) {
+            return;
+          }
+
+          const oldTemperatureIndex = downCurrentProbabilityTemperatureIndex;
+
+          const index = Number(downTemperatureSlider.value);
+          downSelectedTemperature = downTemperatures[index];
+          downCurrentProbabilityTemperatureIndex = index;
+
+          downUpdateTemperatureControl();
+
+          const currentTokenData = downGetCurrentTokenData();
+
+          if (!currentTokenData) {
+            downChart.innerHTML = "";
+            downCurrentTokenOrder = [];
+            downCurrentDataArray = [];
+            downShowDefaultSentence();
+            downClearProbabilityChart();
+            downErrorBox.textContent = "Selected temperature was not found in data_down.json.";
+            return;
+          }
+
+          const newDataArray = downToDataArray(currentTokenData, downCurrentTokenOrder);
+
+          if (downCanUpdateBarsWithoutRebuild(newDataArray)) {
+            downCurrentDataArray = newDataArray;
+            downUpdateBarHeightsSmooth(newDataArray);
+          } else {
+            downRenderChart(currentTokenData, true);
+          }
+
+          downUpdateProbabilitySelectedTemperatureSmooth(oldTemperatureIndex, index);
+        });
+
+        function downGetCurrentTokenData() {
+          if (!downLoadedData || !downSelectedModelName || !downSelectedStartText || downSelectedTemperature === null) {
+            return null;
+          }
+
+          return downLoadedData[downSelectedModelName][downSelectedStartText][downSelectedTemperature];
+        }
+
+        function downGetTemperatureCurveData() {
+          if (!downLoadedData || !downSelectedModelName || !downSelectedStartText) {
+            return [];
+          }
+
+          return downTemperatures.map(temperature => {
+            const temperatureData = downLoadedData[downSelectedModelName][downSelectedStartText][temperature] || {};
+            const rates = temperatureData.__temperature_rates || {};
+
+            return {
+              temperature,
+              validFrequentRate: Number(rates.valid_and_frequent),
+              validRareRate: Number(rates.valid_and_rare),
+              invalidRate: Number(rates.invalid)
+            };
+          });
+        }
+
+        function downToDataArray(data, preferredOrder = null) {
+          let items = Object.entries(data)
+            .filter(([key]) => !downIgnoredKeys.has(key))
+            .map(([word, value]) => ({
+              word,
+              probability: Number(value.logit_value),
+              completedSentence: value.completed_sentence,
+              group: value.group || "valid_and_frequent"
+            }))
+            .filter(item => Number.isFinite(item.probability) && item.probability > 0);
+
+          if (preferredOrder && preferredOrder.length === items.length) {
+            const itemByWord = new Map(items.map(item => [item.word, item]));
+
+            return preferredOrder
+              .map(word => itemByWord.get(word))
+              .filter(Boolean);
+          }
+
+          return items.sort((a, b) => b.probability - a.probability);
+        }
+
+        function downCanUpdateBarsWithoutRebuild(newDataArray) {
+          if (newDataArray.length !== downCurrentTokenOrder.length) {
+            return false;
+          }
+
+          return newDataArray.every((item, index) => item.word === downCurrentTokenOrder[index]);
+        }
+
+        function downGetChartMaxBarHeight() {
+          const chartHeight = downChart.clientHeight || 280;
+          return Math.max(120, chartHeight - 28);
+        }
+
+        function downGetLogHeight(probability, minProbability, maxProbability, maxBarHeight) {
+          const minLog = Math.log10(minProbability);
+          const maxLog = Math.log10(maxProbability);
+          const valueLog = Math.log10(probability);
+
+          if (maxLog === minLog) {
+            return maxBarHeight;
+          }
+
+          const ratio = (valueLog - minLog) / (maxLog - minLog);
+          return Math.max(2, ratio * maxBarHeight);
+        }
+
+        function downRenderChart(data, animate = true) {
+          downChart.innerHTML = "";
+          downCreateBarLegend();
+
+          downErrorBox.textContent = "";
+          downShowDefaultSentence();
+
+          const dataArray = downToDataArray(data);
+          downCurrentDataArray = dataArray;
+          downCurrentTokenOrder = dataArray.map(item => item.word);
+
+          if (dataArray.length === 0) {
+            downClearProbabilityChart();
+            downErrorBox.textContent = "No valid positive probability values found for this selection.";
+            return;
+          }
+
+          downUpdateBarSizes(dataArray.length);
+
+          const probabilities = dataArray.map(item => item.probability);
+          const minProbability = Math.min(...probabilities);
+          const maxProbability = Math.max(...probabilities);
+          const maxBarHeight = downGetChartMaxBarHeight();
+
+          dataArray.forEach(item => {
+            const displayColor = downGetGroupColor(item.group);
+            const targetHeight = downGetLogHeight(
+              item.probability,
+              minProbability,
+              maxProbability,
+              maxBarHeight
+            );
+
+            const barGroup = document.createElement("div");
+            barGroup.className = "down-bar-group";
+            barGroup.dataset.word = item.word;
+
+            const bar = document.createElement("div");
+            bar.className = "down-bar";
+            bar.dataset.word = item.word;
+            bar.dataset.completedSentence = item.completedSentence;
+            bar.dataset.displayColor = displayColor;
+            bar.setAttribute("role", "button");
+            bar.setAttribute("tabindex", "0");
+            bar.setAttribute("aria-label", `${item.word}, probability ${downFormatValue(item.probability)}`);
+
+            bar.style.height = animate ? "2px" : `${targetHeight}px`;
+            bar.style.backgroundColor = displayColor;
+
+            bar.addEventListener("mouseenter", () => {
+              downShowCompletedSentence(bar);
+            });
+
+            bar.addEventListener("mouseleave", () => {
+              downShowDefaultSentence();
+            });
+
+            bar.addEventListener("focus", () => {
+              downShowCompletedSentence(bar);
+            });
+
+            bar.addEventListener("blur", () => {
+              downShowDefaultSentence();
+            });
+
+            bar.addEventListener("click", () => {
+              downShowCompletedSentence(bar);
+            });
+
+            barGroup.appendChild(bar);
+            downChart.appendChild(barGroup);
+
+            if (animate) {
+              window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                  bar.style.height = `${targetHeight}px`;
+                });
+              });
+            }
+          });
+        }
+
+        function downUpdateBarHeightsSmooth(dataArray) {
+          if (!dataArray || dataArray.length === 0) {
+            return;
+          }
+
+          const probabilities = dataArray.map(item => item.probability);
+          const minProbability = Math.min(...probabilities);
+          const maxProbability = Math.max(...probabilities);
+          const maxBarHeight = downGetChartMaxBarHeight();
+
+          const barGroups = Array.from(downChart.querySelectorAll(".down-bar-group"));
+
+          dataArray.forEach((item, index) => {
+            const barGroup = barGroups[index];
+
+            if (!barGroup) {
+              return;
+            }
+
+            const bar = barGroup.querySelector(".down-bar");
+
+            if (!bar) {
+              return;
+            }
+
+            const displayColor = downGetGroupColor(item.group);
+            const targetHeight = downGetLogHeight(
+              item.probability,
+              minProbability,
+              maxProbability,
+              maxBarHeight
+            );
+
+            bar.dataset.completedSentence = item.completedSentence;
+            bar.dataset.displayColor = displayColor;
+            bar.style.backgroundColor = displayColor;
+            bar.setAttribute("aria-label", `${item.word}, probability ${downFormatValue(item.probability)}`);
+            bar.style.height = `${targetHeight}px`;
+          });
+        }
+
+        function downClearProbabilityChart() {
+          downProbChart.innerHTML = "";
+          downProbabilityChartState = null;
+
+          if (downPointAnimationFrameId !== null) {
+            window.cancelAnimationFrame(downPointAnimationFrameId);
+            downPointAnimationFrameId = null;
+          }
+        }
+
+        function downRenderProbabilityChart() {
+          downClearProbabilityChart();
+
+          const curveData = downGetTemperatureCurveData();
+
+          if (!curveData || curveData.length === 0) {
+            return;
+          }
+
+          const svgNS = "http://www.w3.org/2000/svg";
+
+          const width = 540;
+          const height = 210;
+
+          const margin = {
+            top: 28,
+            right: 42,
+            bottom: 36,
+            left: 42
+          };
+
+          const innerWidth = width - margin.left - margin.right;
+          const innerHeight = height - margin.top - margin.bottom;
+          const plotCenterX = margin.left + innerWidth / 2;
+
+          const svg = document.createElementNS(svgNS, "svg");
+          svg.setAttribute("class", "down-prob-svg");
+          svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+          const xMax = Math.max(1, curveData.length - 1);
+
+          function xScale(index) {
+            return margin.left + index / xMax * innerWidth;
+          }
+
+          function yScale(value) {
+            return margin.top + (1 - value) * innerHeight;
+          }
+
+          for (let i = 0; i <= 4; i++) {
+            const yValue = i / 4;
+            const y = yScale(yValue);
+
+            const grid = document.createElementNS(svgNS, "line");
+            grid.setAttribute("class", "down-prob-grid");
+            grid.setAttribute("x1", margin.left);
+            grid.setAttribute("y1", y);
+            grid.setAttribute("x2", width - margin.right);
+            grid.setAttribute("y2", y);
+            svg.appendChild(grid);
+
+            const label = document.createElementNS(svgNS, "text");
+            label.setAttribute("class", "down-prob-label");
+            label.setAttribute("x", margin.left - 10);
+            label.setAttribute("y", y + 4);
+            label.setAttribute("text-anchor", "end");
+            label.textContent = yValue.toFixed(2);
+            svg.appendChild(label);
+          }
+
+          curveData.forEach((item, index) => {
+            const label = document.createElementNS(svgNS, "text");
+            label.setAttribute("class", "down-prob-temperature-label");
+            label.setAttribute("x", xScale(index));
+            label.setAttribute("y", height - margin.bottom + 15);
+            label.setAttribute("text-anchor", "middle");
+            label.textContent = item.temperature;
+            svg.appendChild(label);
+          });
+
+          const xAxis = document.createElementNS(svgNS, "line");
+          xAxis.setAttribute("class", "down-prob-axis");
+          xAxis.setAttribute("x1", margin.left);
+          xAxis.setAttribute("y1", height - margin.bottom);
+          xAxis.setAttribute("x2", width - margin.right);
+          xAxis.setAttribute("y2", height - margin.bottom);
+          svg.appendChild(xAxis);
+
+          const yAxis = document.createElementNS(svgNS, "line");
+          yAxis.setAttribute("class", "down-prob-axis");
+          yAxis.setAttribute("x1", margin.left);
+          yAxis.setAttribute("y1", margin.top);
+          yAxis.setAttribute("x2", margin.left);
+          yAxis.setAttribute("y2", height - margin.bottom);
+          svg.appendChild(yAxis);
+
+          function makePoints(key) {
+            return curveData
+              .map((item, index) => {
+                const value = Number(item[key]);
+
+                if (!Number.isFinite(value)) {
+                  return null;
+                }
+
+                return `${xScale(index)},${yScale(value)}`;
+              })
+              .filter(Boolean)
+              .join(" ");
+          }
+
+          const validFrequentLine = document.createElementNS(svgNS, "polyline");
+          validFrequentLine.setAttribute("class", "down-prob-line down-prob-line-valid-frequent");
+          validFrequentLine.setAttribute("points", makePoints("validFrequentRate"));
+          svg.appendChild(validFrequentLine);
+
+          const validRareLine = document.createElementNS(svgNS, "polyline");
+          validRareLine.setAttribute("class", "down-prob-line down-prob-line-valid-rare");
+          validRareLine.setAttribute("points", makePoints("validRareRate"));
+          svg.appendChild(validRareLine);
+
+          const invalidLine = document.createElementNS(svgNS, "polyline");
+          invalidLine.setAttribute("class", "down-prob-line down-prob-line-invalid");
+          invalidLine.setAttribute("points", makePoints("invalidRate"));
+          svg.appendChild(invalidLine);
+
+          const selectedLine = document.createElementNS(svgNS, "line");
+          selectedLine.setAttribute("stroke", "#888");
+          selectedLine.setAttribute("stroke-width", "1.5");
+          selectedLine.setAttribute("stroke-dasharray", "5 5");
+          svg.appendChild(selectedLine);
+
+          const validFrequentPoint = document.createElementNS(svgNS, "circle");
+          validFrequentPoint.setAttribute("class", "down-prob-point");
+          validFrequentPoint.setAttribute("r", 5.5);
+          validFrequentPoint.setAttribute("fill", downColors.valid_and_frequent);
+          svg.appendChild(validFrequentPoint);
+
+          const validRarePoint = document.createElementNS(svgNS, "circle");
+          validRarePoint.setAttribute("class", "down-prob-point");
+          validRarePoint.setAttribute("r", 5.5);
+          validRarePoint.setAttribute("fill", downColors.valid_and_rare);
+          svg.appendChild(validRarePoint);
+
+          const invalidPoint = document.createElementNS(svgNS, "circle");
+          invalidPoint.setAttribute("class", "down-prob-point");
+          invalidPoint.setAttribute("r", 5.5);
+          invalidPoint.setAttribute("fill", downColors.invalid);
+          svg.appendChild(invalidPoint);
+
+          const xLabel = document.createElementNS(svgNS, "text");
+          xLabel.setAttribute("class", "down-prob-label");
+          xLabel.setAttribute("x", plotCenterX);
+          xLabel.setAttribute("y", height - 5);
+          xLabel.setAttribute("text-anchor", "middle");
+          xLabel.textContent = "Temperature";
+          svg.appendChild(xLabel);
+
+          const legendGroup = document.createElementNS(svgNS, "g");
+          legendGroup.setAttribute("transform", `translate(${plotCenterX - 145}, 18)`);
+
+          const legendItems = [
+            {
+              label: "Valid and Frequent",
+              color: downColors.valid_and_frequent,
+              x: 0
+            },
+            {
+              label: "Valid and Rare",
+              color: downColors.valid_and_rare,
+              x: 110
+            },
+            {
+              label: "Invalid",
+              color: downColors.invalid,
+              x: 205
+            }
+          ];
+
+          legendItems.forEach(item => {
+            const text = document.createElementNS(svgNS, "text");
+            text.setAttribute("class", "down-prob-legend");
+            text.setAttribute("x", item.x);
+            text.setAttribute("y", 0);
+            text.setAttribute("fill", item.color);
+            text.textContent = item.label;
+            legendGroup.appendChild(text);
+          });
+
+          svg.appendChild(legendGroup);
+          downProbChart.appendChild(svg);
+
+          downProbabilityChartState = {
+            curveData,
+            xScale,
+            yScale,
+            selectedLine,
+            validFrequentPoint,
+            validRarePoint,
+            invalidPoint,
+            margin,
+            height
+          };
+
+          downSetProbabilitySelectedTemperature(downCurrentProbabilityTemperatureIndex);
+        }
+
+        function downSetProbabilitySelectedTemperature(indexFloat) {
+          if (!downProbabilityChartState) {
+            return;
+          }
+
+          const state = downProbabilityChartState;
+          const curveData = state.curveData;
+          const maxIndex = curveData.length - 1;
+
+          const safeIndexFloat = Math.max(0, Math.min(indexFloat, maxIndex));
+          const lowerIndex = Math.floor(safeIndexFloat);
+          const upperIndex = Math.ceil(safeIndexFloat);
+          const localT = safeIndexFloat - lowerIndex;
+
+          const lower = curveData[lowerIndex];
+          const upper = curveData[upperIndex];
+
+          const x = state.xScale(safeIndexFloat);
+
+          const validFrequentValue = downLerp(lower.validFrequentRate, upper.validFrequentRate, localT);
+          const validRareValue = downLerp(lower.validRareRate, upper.validRareRate, localT);
+          const invalidValue = downLerp(lower.invalidRate, upper.invalidRate, localT);
+
+          state.selectedLine.setAttribute("x1", x);
+          state.selectedLine.setAttribute("y1", state.margin.top);
+          state.selectedLine.setAttribute("x2", x);
+          state.selectedLine.setAttribute("y2", state.height - state.margin.bottom);
+
+          state.validFrequentPoint.setAttribute("cx", x);
+          state.validFrequentPoint.setAttribute("cy", state.yScale(validFrequentValue));
+
+          state.validRarePoint.setAttribute("cx", x);
+          state.validRarePoint.setAttribute("cy", state.yScale(validRareValue));
+
+          state.invalidPoint.setAttribute("cx", x);
+          state.invalidPoint.setAttribute("cy", state.yScale(invalidValue));
+        }
+
+        function downUpdateProbabilitySelectedTemperatureSmooth(oldIndex, newIndex) {
+          if (!downProbabilityChartState) {
+            downRenderProbabilityChart();
+            return;
+          }
+
+          if (downPointAnimationFrameId !== null) {
+            window.cancelAnimationFrame(downPointAnimationFrameId);
+            downPointAnimationFrameId = null;
+          }
+
+          const startTime = performance.now();
+
+          function step(now) {
+            const rawT = Math.min(1, (now - startTime) / DOWN_POINT_ANIMATION_MS);
+            const easedT = downEaseInOutCubic(rawT);
+            const mixedIndex = downLerp(oldIndex, newIndex, easedT);
+
+            downSetProbabilitySelectedTemperature(mixedIndex);
+
+            if (rawT < 1) {
+              downPointAnimationFrameId = window.requestAnimationFrame(step);
+            } else {
+              downSetProbabilitySelectedTemperature(newIndex);
+              downPointAnimationFrameId = null;
+            }
+          }
+
+          downPointAnimationFrameId = window.requestAnimationFrame(step);
+        }
+
+        function downLerp(a, b, t) {
+          const safeA = Number.isFinite(a) ? a : b;
+          const safeB = Number.isFinite(b) ? b : safeA;
+
+          return safeA + (safeB - safeA) * t;
+        }
+
+        function downEaseInOutCubic(t) {
+          if (t < 0.5) {
+            return 4 * t * t * t;
+          }
+
+          return 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+
+        function downShowCompletedSentence(bar) {
+          downClearTypingTimers();
+
+          const completedSentence = bar.dataset.completedSentence || "";
+          const color = bar.dataset.displayColor || "#111";
+          const startText = downSelectedStartText || "";
+
+          if (DOWN_TEXT_ANIMATION_MODE === "typing") {
+            downShowTypingSentence(startText, completedSentence, color);
+            return;
+          }
+
+          downShowFadeSentence(startText, completedSentence, color);
+        }
+
+        function downShowFadeSentence(startText, completedSentence, color) {
+          const cleanedSentence = String(completedSentence).trim();
+
+          if (!cleanedSentence) {
+            downSentenceBox.innerHTML = `
+              <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span>
+            `;
+            return;
+          }
+
+          const words = cleanedSentence.split(/\s+/);
+          const firstWord = words.shift() || "";
+          const restText = words.length > 0 ? ` ${words.join(" ")}` : "";
+
+          downSentenceBox.innerHTML = `
+            <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span><span class="down-completed-part down-animate-text" style="color: ${downEscapeHTML(color)};"><span class="down-underlined-generated-word">${downEscapeHTML(firstWord)}</span>${downEscapeHTML(restText)}</span>
+          `;
+        }
+
+        function downShowTypingSentence(startText, completedSentence, color) {
+          const runId = downTypingRunId;
+
+          downSentenceBox.innerHTML = `
+            <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span><span class="down-completed-part" id="downTypingCompletedPart" style="color: ${downEscapeHTML(color)};"></span>
+          `;
+
+          const typingCompletedPart = document.getElementById("downTypingCompletedPart");
+
+          if (!typingCompletedPart) {
+            return;
+          }
+
+          const cleanedSentence = String(completedSentence)
+            .replace(/([.!?])(?=[A-Za-z])/g, "$1 ")
+            .trim();
+
+          const words = cleanedSentence
+            .split(/\s+/)
+            .filter(Boolean);
+
+          if (words.length === 0) {
+            return;
+          }
+
+          const cursor = document.createElement("span");
+          cursor.className = "down-typing-cursor";
+          cursor.style.color = color;
+
+          typingCompletedPart.appendChild(cursor);
+
+          words.forEach((word, index) => {
+            const timerId = window.setTimeout(() => {
+              if (runId !== downTypingRunId) {
+                return;
+              }
+
+              typingCompletedPart.innerHTML = "";
+
+              words.slice(0, index + 1).forEach((shownWord, shownIndex) => {
+                if (shownIndex > 0) {
+                  typingCompletedPart.appendChild(document.createTextNode(" "));
+                }
+
+                if (shownIndex === 0) {
+                  const underlinedWord = document.createElement("span");
+                  underlinedWord.className = "down-underlined-generated-word";
+                  underlinedWord.textContent = shownWord;
+                  typingCompletedPart.appendChild(underlinedWord);
+                } else {
+                  typingCompletedPart.appendChild(document.createTextNode(shownWord));
+                }
+              });
+
+              typingCompletedPart.appendChild(cursor);
+
+              if (index === words.length - 1) {
+                const removeCursorTimerId = window.setTimeout(() => {
+                  if (runId !== downTypingRunId) {
+                    return;
+                  }
+
+                  cursor.remove();
+                }, 350);
+
+                downTypingTimerIds.push(removeCursorTimerId);
+              }
+            }, index * DOWN_TYPING_WORD_DELAY_MS);
+
+            downTypingTimerIds.push(timerId);
+          });
+        }
+
+        function downUpdateBarSizes(count) {
+          const wrapperWidth = downChartWrapper.clientWidth || 520;
+          const isMobile = window.innerWidth <= 760;
+
+          let gap = 8;
+
+          if (isMobile) {
+            if (count > 36) {
+              gap = 0;
+            } else if (count > 28) {
+              gap = 1;
+            } else if (count > 18) {
+              gap = 2;
+            } else {
+              gap = 3;
+            }
+          } else {
+            if (count > 36) {
+              gap = 1;
+            } else if (count > 28) {
+              gap = 2;
+            } else if (count > 18) {
+              gap = 4;
+            }
+          }
+
+          const availableWidth = Math.max(160, wrapperWidth - 12);
+
+          let groupWidth = Math.floor(
+            (availableWidth - gap * Math.max(0, count - 1)) / Math.max(1, count)
+          );
+
+          if (isMobile) {
+            groupWidth = Math.max(6, groupWidth);
+          } else {
+            const minGroupWidth = count > 36 ? 12 : count > 28 ? 14 : count > 18 ? 18 : 28;
+            groupWidth = Math.max(minGroupWidth, groupWidth);
+          }
+
+          const barWidth = isMobile
+            ? Math.max(3, Math.min(18, Math.floor(groupWidth * 0.72)))
+            : Math.max(5, Math.min(30, Math.floor(groupWidth * 0.7)));
+
+          downChart.style.setProperty("--down-bar-gap", `${gap}px`);
+          downChart.style.setProperty("--down-bar-group-width", `${groupWidth}px`);
+          downChart.style.setProperty("--down-bar-width", `${barWidth}px`);
+        }
+
+        function downRefreshResponsiveChart() {
+          if (!downCurrentDataArray || downCurrentDataArray.length === 0) {
+            return;
+          }
+
+          downUpdateBarSizes(downCurrentDataArray.length);
+          downUpdateBarHeightsSmooth(downCurrentDataArray);
+          downUpdateTemperatureControl();
+          downRenderProbabilityChart();
+        }
+
+        const downResizeObserver = new ResizeObserver(() => {
+          window.requestAnimationFrame(downRefreshResponsiveChart);
+        });
+
+        downResizeObserver.observe(downChartWrapper);
+        downResizeObserver.observe(downChart);
+
+        function downFormatValue(number) {
+          if (Number.isInteger(number)) {
+            return String(number);
+          }
+
+          return number
+            .toFixed(6)
+            .replace(/0+$/, "")
+            .replace(/\.$/, "");
+        }
+
+        function downEscapeHTML(text) {
+          return String(text)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+        }
+
+        downLoadData();
+  
   </script>
 </body>
 </html>

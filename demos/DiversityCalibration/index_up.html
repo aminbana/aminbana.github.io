@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Up Token Probability Demo</title>
+  <meta name="description" content="A small interactive upper token probability barplot demo.">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <style>
+    #up-token-demo {
+      --up-page-pad: clamp(14px, 3vw, 32px);
+      --up-plot-max-width: 1080px;
+      --up-chart-height: clamp(260px, 44vh, 420px);
+      --up-chart-inner-pad-top: clamp(16px, 2.5vw, 26px);
+      --up-bar-gap: 8px;
+      --up-bar-group-width: 36px;
+      --up-bar-width: 24px;
+      --up-panel-bg: #f7f8ff;
+      --up-panel-border: #e2e6ff;
+      --up-blue: #3273dc;
+      --up-blue-bg: #eef3ff;
+      --up-blue-border: #d9e4ff;
+      --up-valid-color: #ACDB7A;
+      --up-invalid-color: #FF5D5D;
+      --up-valid-muted-color: #CFCFCF;
+      --up-invalid-muted-color: #A2A2A2;
+
+      margin: 0;
+      font-family: "Google Sans", "Noto Sans", Arial, sans-serif;
+      color: #111;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    #up-token-demo * {
+      box-sizing: border-box;
+    }
+
+    #up-token-demo button,
+    #up-token-demo input {
+      font: inherit;
+    }
+
+    #up-token-demo .up-hero-body {
+      padding: clamp(2rem, 6vw, 4rem) var(--up-page-pad);
+    }
+
+    #up-token-demo .up-conf-text {
+      color: #e90b0b;
+      font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    #up-token-demo .up-publication-title {
+      word-break: break-word;
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1.1;
+    }
+
+    #up-token-demo .up-underlined-generated-word {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    #up-token-demo .up-fake-link {
+      color: var(--up-blue);
+      text-decoration: none;
+      cursor: default;
+    }
+
+    #up-token-demo .up-plot-section {
+      padding: clamp(1rem, 3vw, 1.5rem) var(--up-page-pad) clamp(2rem, 6vw, 3rem);
+    }
+
+    #up-token-demo .up-plot-wrap {
+      width: min(100%, var(--up-plot-max-width));
+      margin: 0 auto;
+    }
+
+    #up-token-demo .up-model-control {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin: 0 auto 12px;
+    }
+
+    #up-token-demo .up-variant-control {
+      display: grid;
+      grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
+      column-gap: 8px;
+      align-items: center;
+      width: 100%;
+      margin: 8px auto;
+    }
+
+    #up-token-demo .up-variant-control-bottom {
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+
+    #up-token-demo .up-variant-control .up-variant-button {
+      grid-column: 2;
+      justify-self: center;
+    }
+
+    #up-token-demo .up-model-button,
+    #up-token-demo .up-variant-button {
+      width: 40px;
+      height: 32px;
+      border: 1px solid var(--up-blue-border);
+      border-radius: 999px;
+      background: var(--up-blue-bg);
+      color: var(--up-blue);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      line-height: 1;
+      transition: background 0.15s ease, transform 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    #up-token-demo .up-variant-button {
+      font-size: 1.1rem;
+    }
+
+    #up-token-demo .up-model-button:hover,
+    #up-token-demo .up-variant-button:hover {
+      background: #e0e9ff;
+      transform: scale(1.04);
+    }
+
+    #up-token-demo .up-model-button:disabled,
+    #up-token-demo .up-variant-button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    #up-token-demo .up-model-name {
+      min-width: min(220px, 58vw);
+      max-width: 70vw;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--up-panel-bg);
+      border: 1px solid var(--up-panel-border);
+      color: #111;
+      font-size: clamp(0.82rem, 2.5vw, 0.92rem);
+      font-weight: 700;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #up-token-demo .up-sentence-box {
+      min-height: 58px;
+      padding: clamp(12px, 3vw, 16px) clamp(14px, 4vw, 24px);
+      margin: 0 auto 24px;
+      border-radius: 14px;
+      background: var(--up-panel-bg);
+      border: 1px solid var(--up-panel-border);
+      line-height: 1.5;
+      font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    #up-token-demo .up-fixed-sentence {
+      font-weight: 700;
+      color: #111;
+      white-space: pre-wrap;
+    }
+
+    #up-token-demo .up-completed-part {
+      font-weight: 700;
+      display: inline;
+      white-space: pre-wrap;
+    }
+
+    #up-token-demo .up-completed-part.up-animate-text {
+      opacity: 0;
+      animation: upFadeInText 0.55s ease forwards;
+    }
+
+    #up-token-demo .up-typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      margin-left: 2px;
+      background: currentColor;
+      vertical-align: -0.12em;
+      animation: upBlinkCursor 0.75s step-end infinite;
+    }
+
+    @keyframes upBlinkCursor {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes upFadeInText {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    #up-token-demo .up-variant-animated-area {
+      will-change: transform, opacity;
+    }
+
+    #up-token-demo .up-variant-slide-out-up {
+      animation: upVariantSlideOutUp 0.22s ease forwards;
+    }
+
+    #up-token-demo .up-variant-slide-in-up {
+      animation: upVariantSlideInUp 0.28s ease forwards;
+    }
+
+    #up-token-demo .up-variant-slide-out-down {
+      animation: upVariantSlideOutDown 0.22s ease forwards;
+    }
+
+    #up-token-demo .up-variant-slide-in-down {
+      animation: upVariantSlideInDown 0.28s ease forwards;
+    }
+
+    @keyframes upVariantSlideOutUp {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(-18px);
+      }
+    }
+
+    @keyframes upVariantSlideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes upVariantSlideOutDown {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+    }
+
+    @keyframes upVariantSlideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #up-token-demo .up-model-slide-out-left {
+      animation: upModelSlideOutLeft 0.22s ease forwards;
+    }
+
+    #up-token-demo .up-model-slide-in-left {
+      animation: upModelSlideInLeft 0.28s ease forwards;
+    }
+
+    #up-token-demo .up-model-slide-out-right {
+      animation: upModelSlideOutRight 0.22s ease forwards;
+    }
+
+    #up-token-demo .up-model-slide-in-right {
+      animation: upModelSlideInRight 0.28s ease forwards;
+    }
+
+    @keyframes upModelSlideOutLeft {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(-22px);
+      }
+    }
+
+    @keyframes upModelSlideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes upModelSlideOutRight {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(22px);
+      }
+    }
+
+    @keyframes upModelSlideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    #up-token-demo .up-variant-info {
+      margin: 0 auto 10px;
+      font-size: 0.82rem;
+      color: #666;
+      text-align: center;
+    }
+
+    #up-token-demo .up-plot-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(14px, 2vw, 22px);
+      align-items: start;
+    }
+
+    #up-token-demo .up-plot-area {
+      display: grid;
+      grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
+      grid-template-rows: auto auto auto auto;
+      column-gap: 8px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    #up-token-demo .up-y-axis-label {
+      grid-column: 1;
+      grid-row: 1;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: center;
+      font-weight: 700;
+      font-size: clamp(0.72rem, 2vw, 0.9rem);
+      justify-self: center;
+    }
+
+    #up-token-demo .up-chart-wrapper {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+      min-width: 0;
+      overflow-x: hidden;
+      overflow-y: visible;
+      padding-bottom: 20px;
+      scrollbar-width: none;
+    }
+
+    #up-token-demo .up-chart {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--up-bar-gap);
+      height: var(--up-chart-height);
+      width: 100%;
+      min-width: 0;
+      padding: var(--up-chart-inner-pad-top) 6px 8px;
+      overflow: visible;
+      border-left: 2px solid #222;
+      border-bottom: 2px solid #222;
+      position: relative;
+    }
+
+    #up-token-demo .up-bar-legend {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 5;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 5px;
+      pointer-events: none;
+    }
+
+    #up-token-demo .up-bar-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    #up-token-demo .up-bar-legend-color {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      flex-shrink: 0;
+    }
+
+    #up-token-demo .up-bar-x-title {
+      grid-column: 2;
+      grid-row: 2;
+      text-align: center;
+      font-weight: 700;
+      font-size: clamp(0.76rem, 2vw, 0.92rem);
+      margin-top: -8px;
+      margin-bottom: 4px;
+    }
+
+    #up-token-demo .up-cutoff-slider-panel {
+      grid-column: 2;
+      grid-row: 3;
+      width: 100%;
+      margin-top: 0;
+      padding: 12px 6px 4px;
+      position: relative;
+    }
+
+    #up-token-demo .up-cutoff-side-label {
+      position: absolute;
+      left: -42px;
+      top: 50%;
+      transform: translateY(-50%) rotate(270deg);
+      transform-origin: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    #up-token-demo .up-cutoff-slider {
+      width: 100%;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+      display: block;
+    }
+
+    #up-token-demo .up-cutoff-slider:focus {
+      outline: none;
+    }
+
+    #up-token-demo .up-cutoff-slider::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        var(--up-blue) 0%,
+        var(--up-blue) var(--up-cutoff-progress, 0%),
+        #e7ecff var(--up-cutoff-progress, 0%),
+        #e7ecff 100%
+      );
+    }
+
+    #up-token-demo .up-cutoff-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      margin-top: -7px;
+      border-radius: 50%;
+      background: #fff;
+      border: 5px solid var(--up-blue);
+      box-shadow: 0 6px 14px rgba(50, 115, 220, 0.28);
+    }
+
+    #up-token-demo .up-cutoff-slider::-moz-range-track {
+      height: 8px;
+      border-radius: 999px;
+      background: #e7ecff;
+    }
+
+    #up-token-demo .up-cutoff-slider::-moz-range-progress {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--up-blue);
+    }
+
+    #up-token-demo .up-cutoff-slider::-moz-range-thumb {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #fff;
+      border: 5px solid var(--up-blue);
+      box-shadow: 0 6px 14px rgba(50, 115, 220, 0.28);
+    }
+
+    #up-token-demo .up-pr-panel {
+      grid-column: 2;
+      grid-row: 4;
+      width: 62%;
+      justify-self: center;
+      margin-top: 20px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: var(--up-panel-bg);
+      border: 1px solid var(--up-panel-border);
+    }
+
+    #up-token-demo .up-pr-chart {
+      width: 100%;
+      height: 260px;
+    }
+
+    #up-token-demo .up-pr-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #up-token-demo .up-pr-axis {
+      stroke: #222;
+      stroke-width: 1.5;
+    }
+
+    #up-token-demo .up-pr-grid {
+      stroke: #d9deef;
+      stroke-width: 1;
+    }
+
+    #up-token-demo .up-pr-line {
+      fill: none;
+      stroke-width: 3;
+    }
+
+    #up-token-demo .up-pr-line-precision {
+      stroke: #3273dc;
+    }
+
+    #up-token-demo .up-pr-line-recall {
+      stroke: #FF5D5D;
+    }
+
+    #up-token-demo .up-pr-point {
+      stroke: #fff;
+      stroke-width: 2;
+    }
+
+    #up-token-demo .up-pr-label {
+      font-size: 11px;
+      fill: #333;
+    }
+
+    #up-token-demo .up-pr-legend {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    #up-token-demo .up-bar-group {
+      width: var(--up-bar-group-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      flex: 0 0 var(--up-bar-group-width);
+    }
+
+    #up-token-demo .up-bar {
+      width: var(--up-bar-width);
+      min-height: 2px;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      transition:
+        height 0.38s ease,
+        transform 0.18s ease,
+        filter 0.18s ease,
+        opacity 0.18s ease,
+        background-color 0.18s ease;
+      touch-action: manipulation;
+    }
+
+    #up-token-demo .up-bar:hover {
+      transform: scaleX(1.1);
+      filter: brightness(0.88);
+    }
+
+    #up-token-demo .up-error {
+      color: #b00020;
+      font-size: 0.95rem;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      #up-token-demo {
+        --up-chart-height: clamp(230px, 42vh, 330px);
+      }
+
+      #up-token-demo .title.is-3 {
+        font-size: clamp(1.4rem, 6vw, 2rem);
+      }
+
+      #up-token-demo .subtitle.is-6 {
+        font-size: 0.95rem;
+      }
+
+      #up-token-demo .up-variant-control,
+      #up-token-demo .up-plot-area {
+        grid-template-columns: 30px minmax(0, 1fr);
+      }
+
+      #up-token-demo .up-chart-wrapper {
+        padding-bottom: 24px;
+        overflow-x: hidden;
+      }
+
+      #up-token-demo .up-chart {
+        width: 100%;
+        min-width: 0;
+      }
+
+      #up-token-demo .up-bar-legend {
+        top: 8px;
+        right: 8px;
+        padding: 6px 8px;
+        gap: 4px;
+      }
+
+      #up-token-demo .up-bar-legend-item {
+        font-size: 0.62rem;
+      }
+
+      #up-token-demo .up-bar-legend-color {
+        width: 9px;
+        height: 9px;
+      }
+
+      #up-token-demo .up-cutoff-side-label {
+        left: -38px;
+        font-size: 0.72rem;
+      }
+
+      #up-token-demo .up-pr-panel {
+        grid-column: 1 / -1;
+        grid-row: 4;
+        width: 100%;
+        justify-self: stretch;
+      }
+
+      #up-token-demo .up-variant-control .up-variant-button {
+        grid-column: 1 / -1;
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #up-token-demo .up-model-control {
+        gap: 8px;
+      }
+
+      #up-token-demo .up-model-button,
+      #up-token-demo .up-variant-button {
+        width: 36px;
+        height: 30px;
+      }
+
+      #up-token-demo .up-chart-wrapper {
+        padding-bottom: 24px;
+      }
+
+      #up-token-demo .up-cutoff-side-label {
+        left: -34px;
+        font-size: 0.68rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #up-token-demo *,
+      #up-token-demo *::before,
+      #up-token-demo *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="up-token-demo">
+    <section class="hero up-hero">
+      <div class="hero-body up-hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 up-publication-title">Interactive Token Probability Visualization</h1>
+
+              <div class="up-centered">
+                <span class="up-conf-text">Conference Demo</span>
+              </div>
+
+              <div class="is-size-5 up-publication-authors" style="margin-top: 10px;">
+                <span class="up-author-block up-fake-link">Token probability barplot from JSON data</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section up-plot-section" aria-label="Upper token probability plot">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full">
+            <h2 class="title is-3">Token Probability Barplot</h2>
+            <p class="subtitle is-6">Hover or tap a token to show the completed sentence.</p>
+
+            <div class="up-plot-wrap">
+              <div class="up-model-control">
+                <button class="up-model-button" id="upModelLeftButton" type="button" aria-label="Previous upper model">
+                  ◀
+                </button>
+
+                <div class="up-model-name" id="upModelName">
+                  Model
+                </div>
+
+                <button class="up-model-button" id="upModelRightButton" type="button" aria-label="Next upper model">
+                  ▶
+                </button>
+              </div>
+
+              <div class="up-variant-control">
+                <button class="up-variant-button" id="upVariantUpButton" type="button" aria-label="Previous upper variant">
+                  ▲
+                </button>
+              </div>
+
+              <div class="up-variant-animated-area" id="upVariantAnimatedArea">
+                <div class="up-sentence-box" id="upSentenceBox"></div>
+
+                <div class="up-variant-info" id="upVariantInfo">
+                  Variant 1 of 1
+                </div>
+
+                <div class="up-plot-layout">
+                  <div class="up-plot-area">
+                    <div class="up-y-axis-label">Token Probability (logscale)</div>
+
+                    <div class="up-chart-wrapper">
+                      <div class="up-chart" id="upChart"></div>
+                    </div>
+
+                    <div class="up-bar-x-title">Token Index (sorted by probability)</div>
+
+                    <div class="up-cutoff-slider-panel">
+                      <div class="up-cutoff-side-label">cutoff</div>
+
+                      <input
+                        id="upCutoffSlider"
+                        class="up-cutoff-slider"
+                        type="range"
+                        min="0"
+                        max="0"
+                        step="1"
+                        value="0"
+                        aria-label="Upper cutoff"
+                      >
+                    </div>
+
+                    <div class="up-pr-panel">
+                      <div class="up-pr-chart" id="upPrChart"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="up-variant-control up-variant-control-bottom">
+                <button class="up-variant-button" id="upVariantDownButton" type="button" aria-label="Next upper variant">
+                  ▼
+                </button>
+              </div>
+
+              <div class="up-error" id="upErrorBox"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const UP_TEXT_ANIMATION_MODE = "typing";
+    const UP_TYPING_WORD_DELAY_MS = 50;
+
+    const UP_VALID_COLOR = "#ACDB7A";
+    const UP_INVALID_COLOR = "#FF5D5D";
+    const UP_VALID_MUTED_COLOR = "#CFCFCF";
+    const UP_INVALID_MUTED_COLOR = "#A2A2A2";
+
+    const upDemoRoot = document.getElementById("up-token-demo");
+
+    const upChart = document.getElementById("upChart");
+    const upChartWrapper = upDemoRoot.querySelector(".up-chart-wrapper");
+    const upSentenceBox = document.getElementById("upSentenceBox");
+    const upErrorBox = document.getElementById("upErrorBox");
+
+    const upCutoffSlider = document.getElementById("upCutoffSlider");
+    const upPrChart = document.getElementById("upPrChart");
+
+    const upVariantUpButton = document.getElementById("upVariantUpButton");
+    const upVariantDownButton = document.getElementById("upVariantDownButton");
+    const upVariantInfo = document.getElementById("upVariantInfo");
+    const upVariantAnimatedArea = document.getElementById("upVariantAnimatedArea");
+
+    const upModelLeftButton = document.getElementById("upModelLeftButton");
+    const upModelRightButton = document.getElementById("upModelRightButton");
+    const upModelName = document.getElementById("upModelName");
+
+    const upSummaryKeySet = new Set([
+      "valid",
+      "invalid"
+    ]);
+
+    let upLoadedData = null;
+
+    let upModelNames = [];
+    let upSelectedModelIndex = 0;
+    let upSelectedModelName = null;
+
+    let upStartTexts = [];
+    let upSelectedStartIndex = 0;
+    let upSelectedStartText = null;
+
+    let upSelectedCutoffIndex = 0;
+
+    let upIsChangingVariant = false;
+    let upIsChangingModel = false;
+
+    let upCurrentTokenOrder = [];
+    let upCurrentDataArray = [];
+
+    let upTypingTimerIds = [];
+    let upTypingRunId = 0;
+
+    function upIsInvalidToken(item) {
+      return item.group === "invalid";
+    }
+
+    function upGetBaseTokenColor(item) {
+      if (upIsInvalidToken(item)) {
+        return UP_INVALID_COLOR;
+      }
+
+      return UP_VALID_COLOR;
+    }
+
+    function upGetTokenDisplayColor(item, index) {
+      if (index <= upSelectedCutoffIndex) {
+        return upGetBaseTokenColor(item);
+      }
+
+      if (upIsInvalidToken(item)) {
+        return UP_INVALID_MUTED_COLOR;
+      }
+
+      return UP_VALID_MUTED_COLOR;
+    }
+
+    function upCreateBarLegend() {
+      const legend = document.createElement("div");
+      legend.className = "up-bar-legend";
+
+      const items = [
+        {
+          label: "Valid / Retained",
+          color: UP_VALID_COLOR
+        },
+        {
+          label: "Valid / Dropped",
+          color: UP_VALID_MUTED_COLOR
+        },
+        {
+          label: "Invalid / Retained",
+          color: UP_INVALID_COLOR
+        },
+        {
+          label: "Invalid / Dropped",
+          color: UP_INVALID_MUTED_COLOR
+        }
+      ];
+
+      items.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "up-bar-legend-item";
+
+        const colorBox = document.createElement("span");
+        colorBox.className = "up-bar-legend-color";
+        colorBox.style.backgroundColor = item.color;
+
+        const label = document.createElement("span");
+        label.textContent = item.label;
+
+        row.appendChild(colorBox);
+        row.appendChild(label);
+        legend.appendChild(row);
+      });
+
+      upChart.appendChild(legend);
+    }
+
+    function upClearTypingTimers() {
+      upTypingRunId += 1;
+
+      upTypingTimerIds.forEach(timerId => {
+        window.clearTimeout(timerId);
+      });
+
+      upTypingTimerIds = [];
+    }
+
+    function upShowDefaultSentence() {
+      upClearTypingTimers();
+
+      const startText = upSelectedStartText || "";
+
+      upSentenceBox.innerHTML = `
+        <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part" style="color: black;">...</span>
+      `;
+    }
+
+    async function upLoadData() {
+      try {
+        const response = await fetch(`data_up.json?v=${Date.now()}`, {
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error("Could not load data_up.json");
+        }
+
+        upLoadedData = await response.json();
+        upModelNames = upGetModelNames(upLoadedData);
+
+        if (upModelNames.length === 0) {
+          upShowDefaultSentence();
+          upClearPRChart();
+          upErrorBox.textContent = "No valid model keys found in data_up.json.";
+          return;
+        }
+
+        upSelectedModelIndex = 0;
+        upSelectedModelName = upModelNames[upSelectedModelIndex];
+
+        upSetupModelButtons();
+        upSetupVariantButtons();
+        upSetupCurrentModel();
+
+      } catch (error) {
+        upShowDefaultSentence();
+        upClearPRChart();
+        upErrorBox.textContent = "Could not read data_up.json. Run this page with a local server, not by directly opening the HTML file.";
+      }
+    }
+
+    function upGetModelNames(data) {
+      return Object.keys(data)
+        .filter(key => {
+          const value = data[key];
+          return value && typeof value === "object" && !Array.isArray(value);
+        });
+    }
+
+    function upGetStartTexts() {
+      const modelData = upLoadedData[upSelectedModelName];
+
+      return Object.keys(modelData)
+        .filter(key => {
+          const value = modelData[key];
+          return value && typeof value === "object" && !Array.isArray(value);
+        });
+    }
+
+    function upSetupModelButtons() {
+      upModelLeftButton.addEventListener("click", () => {
+        upChangeModel("left");
+      });
+
+      upModelRightButton.addEventListener("click", () => {
+        upChangeModel("right");
+      });
+    }
+
+    function upChangeModel(direction) {
+      if (upModelNames.length <= 1 || upIsChangingVariant || upIsChangingModel) {
+        return;
+      }
+
+      upIsChangingModel = true;
+      upSetAllButtonsDisabled(true);
+
+      const outClass = direction === "left"
+        ? "up-model-slide-out-left"
+        : "up-model-slide-out-right";
+
+      const inClass = direction === "left"
+        ? "up-model-slide-in-left"
+        : "up-model-slide-in-right";
+
+      upRemoveModelAnimationClasses();
+      upVariantAnimatedArea.classList.add(outClass);
+
+      window.setTimeout(() => {
+        if (direction === "left") {
+          upSelectedModelIndex -= 1;
+
+          if (upSelectedModelIndex < 0) {
+            upSelectedModelIndex = upModelNames.length - 1;
+          }
+        } else {
+          upSelectedModelIndex += 1;
+
+          if (upSelectedModelIndex >= upModelNames.length) {
+            upSelectedModelIndex = 0;
+          }
+        }
+
+        upSelectedModelName = upModelNames[upSelectedModelIndex];
+        upSetupCurrentModel();
+
+        upRemoveModelAnimationClasses();
+        upVariantAnimatedArea.classList.add(inClass);
+
+        window.setTimeout(() => {
+          upRemoveModelAnimationClasses();
+          upIsChangingModel = false;
+          upSetAllButtonsDisabled(false);
+        }, 280);
+      }, 220);
+    }
+
+    function upSetupCurrentModel() {
+      upErrorBox.textContent = "";
+      upModelName.textContent = upSelectedModelName;
+
+      upStartTexts = upGetStartTexts();
+
+      if (upStartTexts.length === 0) {
+        upChart.innerHTML = "";
+        upCurrentTokenOrder = [];
+        upCurrentDataArray = [];
+        upShowDefaultSentence();
+        upClearPRChart();
+        upErrorBox.textContent = "No valid starting text keys found for this model.";
+        return;
+      }
+
+      upSelectedStartIndex = 0;
+      upSelectedStartText = upStartTexts[upSelectedStartIndex];
+
+      upSetupCurrentVariant();
+    }
+
+    function upSetupVariantButtons() {
+      upVariantUpButton.addEventListener("click", () => {
+        upChangeVariant("up");
+      });
+
+      upVariantDownButton.addEventListener("click", () => {
+        upChangeVariant("down");
+      });
+    }
+
+    function upChangeVariant(direction) {
+      if (upStartTexts.length <= 1 || upIsChangingVariant || upIsChangingModel) {
+        return;
+      }
+
+      upIsChangingVariant = true;
+      upSetAllButtonsDisabled(true);
+
+      const outClass = direction === "up"
+        ? "up-variant-slide-out-up"
+        : "up-variant-slide-out-down";
+
+      const inClass = direction === "up"
+        ? "up-variant-slide-in-up"
+        : "up-variant-slide-in-down";
+
+      upRemoveVariantAnimationClasses();
+      upVariantAnimatedArea.classList.add(outClass);
+
+      window.setTimeout(() => {
+        if (direction === "up") {
+          upSelectedStartIndex -= 1;
+
+          if (upSelectedStartIndex < 0) {
+            upSelectedStartIndex = upStartTexts.length - 1;
+          }
+        } else {
+          upSelectedStartIndex += 1;
+
+          if (upSelectedStartIndex >= upStartTexts.length) {
+            upSelectedStartIndex = 0;
+          }
+        }
+
+        upSelectedStartText = upStartTexts[upSelectedStartIndex];
+        upSetupCurrentVariant();
+
+        upRemoveVariantAnimationClasses();
+        upVariantAnimatedArea.classList.add(inClass);
+
+        window.setTimeout(() => {
+          upRemoveVariantAnimationClasses();
+          upIsChangingVariant = false;
+          upSetAllButtonsDisabled(false);
+        }, 280);
+      }, 220);
+    }
+
+    function upRemoveVariantAnimationClasses() {
+      upVariantAnimatedArea.classList.remove(
+        "up-variant-slide-out-up",
+        "up-variant-slide-in-up",
+        "up-variant-slide-out-down",
+        "up-variant-slide-in-down"
+      );
+    }
+
+    function upRemoveModelAnimationClasses() {
+      upVariantAnimatedArea.classList.remove(
+        "up-model-slide-out-left",
+        "up-model-slide-in-left",
+        "up-model-slide-out-right",
+        "up-model-slide-in-right"
+      );
+    }
+
+    function upSetAllButtonsDisabled(disabled) {
+      upVariantUpButton.disabled = disabled;
+      upVariantDownButton.disabled = disabled;
+      upModelLeftButton.disabled = disabled;
+      upModelRightButton.disabled = disabled;
+    }
+
+    function upSetupCurrentVariant() {
+      upErrorBox.textContent = "";
+
+      upVariantInfo.textContent = `Variant ${upSelectedStartIndex + 1} of ${upStartTexts.length}`;
+
+      const currentTokenData = upGetCurrentTokenData();
+
+      if (!currentTokenData) {
+        upChart.innerHTML = "";
+        upCurrentTokenOrder = [];
+        upCurrentDataArray = [];
+        upShowDefaultSentence();
+        upClearPRChart();
+        upErrorBox.textContent = "No valid data found for this starting text.";
+        return;
+      }
+
+      upRenderChart(currentTokenData);
+    }
+
+    function upGetCurrentTokenData() {
+      if (!upLoadedData || !upSelectedModelName || !upSelectedStartText) {
+        return null;
+      }
+
+      return upLoadedData[upSelectedModelName][upSelectedStartText];
+    }
+
+    function upToDataArray(data) {
+      return Object.entries(data)
+        .filter(([key]) => !upSummaryKeySet.has(key))
+        .map(([word, value]) => ({
+          word,
+          probability: Number(value.logit_value),
+          completedSentence: value.completed_sentence,
+          group: value.group || "valid",
+          precision: Number(value.precision),
+          recall: Number(value.recall)
+        }))
+        .filter(item => Number.isFinite(item.probability) && item.probability > 0)
+        .sort((a, b) => b.probability - a.probability);
+    }
+
+    function upGetChartMaxBarHeight() {
+      const chartHeight = upChart.clientHeight || 280;
+      return Math.max(120, chartHeight - 28);
+    }
+
+    function upGetLogHeight(probability, minProbability, maxProbability, maxBarHeight) {
+      const minLog = Math.log10(minProbability);
+      const maxLog = Math.log10(maxProbability);
+      const valueLog = Math.log10(probability);
+
+      if (maxLog === minLog) {
+        return maxBarHeight;
+      }
+
+      const ratio = (valueLog - minLog) / (maxLog - minLog);
+      return Math.max(2, ratio * maxBarHeight);
+    }
+
+    function upRenderChart(data) {
+      upChart.innerHTML = "";
+      upCreateBarLegend();
+
+      upErrorBox.textContent = "";
+      upShowDefaultSentence();
+
+      const dataArray = upToDataArray(data);
+      upCurrentDataArray = dataArray;
+      upCurrentTokenOrder = dataArray.map(item => item.word);
+
+      if (dataArray.length === 0) {
+        upClearPRChart();
+        upErrorBox.textContent = "No valid positive probability values found for this selection.";
+        return;
+      }
+
+      upUpdateBarSizes(dataArray.length);
+      upSetupCutoffSlider(dataArray);
+      upRenderPRChart(dataArray);
+
+      const probabilities = dataArray.map(item => item.probability);
+      const minProbability = Math.min(...probabilities);
+      const maxProbability = Math.max(...probabilities);
+      const maxBarHeight = upGetChartMaxBarHeight();
+
+      dataArray.forEach((item, index) => {
+        const displayColor = upGetTokenDisplayColor(item, index);
+
+        const barGroup = document.createElement("div");
+        barGroup.className = "up-bar-group";
+        barGroup.dataset.word = item.word;
+
+        const bar = document.createElement("div");
+        bar.className = "up-bar";
+        bar.dataset.word = item.word;
+        bar.dataset.completedSentence = item.completedSentence;
+        bar.dataset.displayColor = displayColor;
+        bar.setAttribute("role", "button");
+        bar.setAttribute("tabindex", "0");
+        bar.setAttribute("aria-label", `${item.word}, probability ${upFormatValue(item.probability)}`);
+
+        bar.style.height = `${upGetLogHeight(
+          item.probability,
+          minProbability,
+          maxProbability,
+          maxBarHeight
+        )}px`;
+
+        bar.style.backgroundColor = displayColor;
+
+        bar.addEventListener("mouseenter", () => {
+          upShowCompletedSentence(bar);
+        });
+
+        bar.addEventListener("mouseleave", () => {
+          upShowDefaultSentence();
+        });
+
+        bar.addEventListener("focus", () => {
+          upShowCompletedSentence(bar);
+        });
+
+        bar.addEventListener("blur", () => {
+          upShowDefaultSentence();
+        });
+
+        bar.addEventListener("click", () => {
+          upShowCompletedSentence(bar);
+        });
+
+        barGroup.appendChild(bar);
+        upChart.appendChild(barGroup);
+      });
+    }
+
+    function upSetupCutoffSlider(dataArray) {
+      if (!dataArray || dataArray.length === 0) {
+        upCutoffSlider.min = 0;
+        upCutoffSlider.max = 0;
+        upCutoffSlider.value = 0;
+        upSelectedCutoffIndex = 0;
+        return;
+      }
+
+      upCutoffSlider.min = 0;
+      upCutoffSlider.max = dataArray.length - 1;
+      upCutoffSlider.step = 1;
+
+      upSelectedCutoffIndex = Math.floor((dataArray.length - 1) / 2);
+      upCutoffSlider.value = upSelectedCutoffIndex;
+
+      upUpdateCutoffUI(dataArray);
+      upUpdateBarColorsByCutoff();
+    }
+
+    function upUpdateCutoffUI(dataArray) {
+      if (!dataArray || dataArray.length === 0) {
+        return;
+      }
+
+      const maxIndex = Math.max(1, dataArray.length - 1);
+      const progress = upSelectedCutoffIndex / maxIndex * 100;
+
+      upCutoffSlider.style.setProperty("--up-cutoff-progress", `${progress}%`);
+    }
+
+    upCutoffSlider.addEventListener("input", () => {
+      if (upIsChangingVariant || upIsChangingModel) {
+        return;
+      }
+
+      upSelectedCutoffIndex = Number(upCutoffSlider.value);
+
+      upUpdateCutoffUI(upCurrentDataArray);
+      upUpdateBarColorsByCutoff();
+      upRenderPRChart(upCurrentDataArray);
+    });
+
+    function upUpdateBarColorsByCutoff() {
+      const barGroups = Array.from(upChart.querySelectorAll(".up-bar-group"));
+
+      upCurrentDataArray.forEach((item, index) => {
+        const barGroup = barGroups[index];
+
+        if (!barGroup) {
+          return;
+        }
+
+        const bar = barGroup.querySelector(".up-bar");
+
+        if (!bar) {
+          return;
+        }
+
+        const displayColor = upGetTokenDisplayColor(item, index);
+        bar.style.backgroundColor = displayColor;
+        bar.dataset.displayColor = displayColor;
+      });
+    }
+
+    function upClearPRChart() {
+      upPrChart.innerHTML = "";
+    }
+
+    function upRenderPRChart(dataArray) {
+      upPrChart.innerHTML = "";
+
+      if (!dataArray || dataArray.length === 0) {
+        return;
+      }
+
+      const validItems = dataArray.filter(item => {
+        return Number.isFinite(item.precision) && Number.isFinite(item.recall);
+      });
+
+      if (validItems.length === 0) {
+        return;
+      }
+
+      const svgNS = "http://www.w3.org/2000/svg";
+
+      const width = 540;
+      const height = 260;
+
+      const margin = {
+        top: 34,
+        right: 20,
+        bottom: 38,
+        left: 42
+      };
+
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+      const plotCenterX = margin.left + innerWidth / 2;
+
+      const svg = document.createElementNS(svgNS, "svg");
+      svg.setAttribute("class", "up-pr-svg");
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+      const xMax = Math.max(1, validItems.length - 1);
+
+      function upXScale(index) {
+        return margin.left + index / xMax * innerWidth;
+      }
+
+      function upYScale(value) {
+        return margin.top + (1 - value) * innerHeight;
+      }
+
+      for (let i = 0; i <= 4; i++) {
+        const yValue = i / 4;
+        const y = upYScale(yValue);
+
+        const grid = document.createElementNS(svgNS, "line");
+        grid.setAttribute("class", "up-pr-grid");
+        grid.setAttribute("x1", margin.left);
+        grid.setAttribute("y1", y);
+        grid.setAttribute("x2", width - margin.right);
+        grid.setAttribute("y2", y);
+        svg.appendChild(grid);
+
+        const label = document.createElementNS(svgNS, "text");
+        label.setAttribute("class", "up-pr-label");
+        label.setAttribute("x", margin.left - 10);
+        label.setAttribute("y", y + 4);
+        label.setAttribute("text-anchor", "end");
+        label.textContent = yValue.toFixed(2);
+        svg.appendChild(label);
+      }
+
+      const xAxis = document.createElementNS(svgNS, "line");
+      xAxis.setAttribute("class", "up-pr-axis");
+      xAxis.setAttribute("x1", margin.left);
+      xAxis.setAttribute("y1", height - margin.bottom);
+      xAxis.setAttribute("x2", width - margin.right);
+      xAxis.setAttribute("y2", height - margin.bottom);
+      svg.appendChild(xAxis);
+
+      const yAxis = document.createElementNS(svgNS, "line");
+      yAxis.setAttribute("class", "up-pr-axis");
+      yAxis.setAttribute("x1", margin.left);
+      yAxis.setAttribute("y1", margin.top);
+      yAxis.setAttribute("x2", margin.left);
+      yAxis.setAttribute("y2", height - margin.bottom);
+      svg.appendChild(yAxis);
+
+      const precisionPoints = validItems.map((item, index) => {
+        return `${upXScale(index)},${upYScale(item.precision)}`;
+      });
+
+      const recallPoints = validItems.map((item, index) => {
+        return `${upXScale(index)},${upYScale(item.recall)}`;
+      });
+
+      const precisionLine = document.createElementNS(svgNS, "polyline");
+      precisionLine.setAttribute("class", "up-pr-line up-pr-line-precision");
+      precisionLine.setAttribute("points", precisionPoints.join(" "));
+      svg.appendChild(precisionLine);
+
+      const recallLine = document.createElementNS(svgNS, "polyline");
+      recallLine.setAttribute("class", "up-pr-line up-pr-line-recall");
+      recallLine.setAttribute("points", recallPoints.join(" "));
+      svg.appendChild(recallLine);
+
+      const safeCutoff = Math.max(0, Math.min(upSelectedCutoffIndex, validItems.length - 1));
+      const selectedItem = validItems[safeCutoff];
+
+      if (selectedItem) {
+        const selectedX = upXScale(safeCutoff);
+
+        const verticalLine = document.createElementNS(svgNS, "line");
+        verticalLine.setAttribute("x1", selectedX);
+        verticalLine.setAttribute("y1", margin.top);
+        verticalLine.setAttribute("x2", selectedX);
+        verticalLine.setAttribute("y2", height - margin.bottom);
+        verticalLine.setAttribute("stroke", "#888");
+        verticalLine.setAttribute("stroke-width", "1.5");
+        verticalLine.setAttribute("stroke-dasharray", "5 5");
+        svg.appendChild(verticalLine);
+
+        const precisionPoint = document.createElementNS(svgNS, "circle");
+        precisionPoint.setAttribute("class", "up-pr-point");
+        precisionPoint.setAttribute("cx", selectedX);
+        precisionPoint.setAttribute("cy", upYScale(selectedItem.precision));
+        precisionPoint.setAttribute("r", 6);
+        precisionPoint.setAttribute("fill", "#3273dc");
+        svg.appendChild(precisionPoint);
+
+        const recallPoint = document.createElementNS(svgNS, "circle");
+        recallPoint.setAttribute("class", "up-pr-point");
+        recallPoint.setAttribute("cx", selectedX);
+        recallPoint.setAttribute("cy", upYScale(selectedItem.recall));
+        recallPoint.setAttribute("r", 6);
+        recallPoint.setAttribute("fill", "#FF5D5D");
+        svg.appendChild(recallPoint);
+      }
+
+      const xLabel = document.createElementNS(svgNS, "text");
+      xLabel.setAttribute("class", "up-pr-label");
+      xLabel.setAttribute("x", plotCenterX);
+      xLabel.setAttribute("y", height - 8);
+      xLabel.setAttribute("text-anchor", "middle");
+      xLabel.textContent = "Cutoff position";
+      svg.appendChild(xLabel);
+
+      const legendGroup = document.createElementNS(svgNS, "g");
+      legendGroup.setAttribute("transform", `translate(${plotCenterX - 86}, 18)`);
+
+      const precisionLegend = document.createElementNS(svgNS, "text");
+      precisionLegend.setAttribute("class", "up-pr-legend");
+      precisionLegend.setAttribute("x", 0);
+      precisionLegend.setAttribute("y", 0);
+      precisionLegend.setAttribute("fill", "#3273dc");
+      precisionLegend.textContent = "Precision";
+      legendGroup.appendChild(precisionLegend);
+
+      const recallLegend = document.createElementNS(svgNS, "text");
+      recallLegend.setAttribute("class", "up-pr-legend");
+      recallLegend.setAttribute("x", 96);
+      recallLegend.setAttribute("y", 0);
+      recallLegend.setAttribute("fill", "#FF5D5D");
+      recallLegend.textContent = "Recall";
+      legendGroup.appendChild(recallLegend);
+
+      svg.appendChild(legendGroup);
+      upPrChart.appendChild(svg);
+    }
+
+    function upShowCompletedSentence(bar) {
+      upClearTypingTimers();
+
+      const completedSentence = bar.dataset.completedSentence || "";
+      const color = bar.dataset.displayColor || "#111";
+      const startText = upSelectedStartText || "";
+
+      if (UP_TEXT_ANIMATION_MODE === "typing") {
+        upShowTypingSentence(startText, completedSentence, color);
+        return;
+      }
+
+      upShowFadeSentence(startText, completedSentence, color);
+    }
+
+    function upShowFadeSentence(startText, completedSentence, color) {
+      const cleanedSentence = String(completedSentence).trim();
+
+      if (!cleanedSentence) {
+        upSentenceBox.innerHTML = `
+          <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span>
+        `;
+        return;
+      }
+
+      const words = cleanedSentence.split(/\s+/);
+      const firstWord = words.shift() || "";
+      const restText = words.length > 0 ? ` ${words.join(" ")}` : "";
+
+      upSentenceBox.innerHTML = `
+        <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part up-animate-text" style="color: ${upEscapeHTML(color)};"><span class="up-underlined-generated-word">${upEscapeHTML(firstWord)}</span>${upEscapeHTML(restText)}</span>
+      `;
+    }
+
+    function upShowTypingSentence(startText, completedSentence, color) {
+      const runId = upTypingRunId;
+
+      upSentenceBox.innerHTML = `
+        <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part" id="upTypingCompletedPart" style="color: ${upEscapeHTML(color)};"></span>
+      `;
+
+      const upTypingCompletedPart = document.getElementById("upTypingCompletedPart");
+
+      if (!upTypingCompletedPart) {
+        return;
+      }
+
+      const cleanedSentence = String(completedSentence)
+        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ")
+        .trim();
+
+      const words = cleanedSentence
+        .split(/\s+/)
+        .filter(Boolean);
+
+      if (words.length === 0) {
+        return;
+      }
+
+      const cursor = document.createElement("span");
+      cursor.className = "up-typing-cursor";
+      cursor.style.color = color;
+
+      upTypingCompletedPart.appendChild(cursor);
+
+      words.forEach((word, index) => {
+        const timerId = window.setTimeout(() => {
+          if (runId !== upTypingRunId) {
+            return;
+          }
+
+          upTypingCompletedPart.innerHTML = "";
+
+          words.slice(0, index + 1).forEach((shownWord, shownIndex) => {
+            if (shownIndex > 0) {
+              upTypingCompletedPart.appendChild(document.createTextNode(" "));
+            }
+
+            if (shownIndex === 0) {
+              const underlinedWord = document.createElement("span");
+              underlinedWord.className = "up-underlined-generated-word";
+              underlinedWord.textContent = shownWord;
+              upTypingCompletedPart.appendChild(underlinedWord);
+            } else {
+              upTypingCompletedPart.appendChild(document.createTextNode(shownWord));
+            }
+          });
+
+          upTypingCompletedPart.appendChild(cursor);
+
+          if (index === words.length - 1) {
+            const removeCursorTimerId = window.setTimeout(() => {
+              if (runId !== upTypingRunId) {
+                return;
+              }
+
+              cursor.remove();
+            }, 350);
+
+            upTypingTimerIds.push(removeCursorTimerId);
+          }
+        }, index * UP_TYPING_WORD_DELAY_MS);
+
+        upTypingTimerIds.push(timerId);
+      });
+    }
+
+    function upUpdateBarHeights(dataArray) {
+      if (!dataArray || dataArray.length === 0) {
+        return;
+      }
+
+      const probabilities = dataArray.map(item => item.probability);
+      const minProbability = Math.min(...probabilities);
+      const maxProbability = Math.max(...probabilities);
+      const maxBarHeight = upGetChartMaxBarHeight();
+
+      const barGroups = Array.from(upChart.querySelectorAll(".up-bar-group"));
+
+      dataArray.forEach((item, index) => {
+        const barGroup = barGroups[index];
+
+        if (!barGroup) {
+          return;
+        }
+
+        const bar = barGroup.querySelector(".up-bar");
+
+        if (!bar) {
+          return;
+        }
+
+        const displayColor = upGetTokenDisplayColor(item, index);
+
+        bar.dataset.completedSentence = item.completedSentence;
+        bar.dataset.displayColor = displayColor;
+        bar.style.backgroundColor = displayColor;
+        bar.setAttribute("aria-label", `${item.word}, probability ${upFormatValue(item.probability)}`);
+
+        bar.style.height = `${upGetLogHeight(
+          item.probability,
+          minProbability,
+          maxProbability,
+          maxBarHeight
+        )}px`;
+      });
+    }
+
+    function upUpdateBarSizes(count) {
+      const wrapperWidth = upChartWrapper.clientWidth || 520;
+      const isMobile = window.innerWidth <= 760;
+
+      let gap = 8;
+
+      if (isMobile) {
+        if (count > 36) {
+          gap = 0;
+        } else if (count > 28) {
+          gap = 1;
+        } else if (count > 18) {
+          gap = 2;
+        } else {
+          gap = 3;
+        }
+      } else {
+        if (count > 36) {
+          gap = 1;
+        } else if (count > 28) {
+          gap = 2;
+        } else if (count > 18) {
+          gap = 4;
+        }
+      }
+
+      const availableWidth = Math.max(160, wrapperWidth - 12);
+
+      let groupWidth = Math.floor(
+        (availableWidth - gap * Math.max(0, count - 1)) / Math.max(1, count)
+      );
+
+      if (isMobile) {
+        groupWidth = Math.max(6, groupWidth);
+      } else {
+        const minGroupWidth = count > 36 ? 12 : count > 28 ? 14 : count > 18 ? 18 : 28;
+        groupWidth = Math.max(minGroupWidth, groupWidth);
+      }
+
+      const barWidth = isMobile
+        ? Math.max(3, Math.min(18, Math.floor(groupWidth * 0.72)))
+        : Math.max(5, Math.min(30, Math.floor(groupWidth * 0.7)));
+
+      upChart.style.setProperty("--up-bar-gap", `${gap}px`);
+      upChart.style.setProperty("--up-bar-group-width", `${groupWidth}px`);
+      upChart.style.setProperty("--up-bar-width", `${barWidth}px`);
+    }
+
+    function upRefreshResponsiveChart() {
+      if (!upCurrentDataArray || upCurrentDataArray.length === 0) {
+        return;
+      }
+
+      upUpdateBarSizes(upCurrentDataArray.length);
+      upUpdateBarHeights(upCurrentDataArray);
+      upUpdateCutoffUI(upCurrentDataArray);
+      upUpdateBarColorsByCutoff();
+      upRenderPRChart(upCurrentDataArray);
+    }
+
+    const upResizeObserver = new ResizeObserver(() => {
+      window.requestAnimationFrame(upRefreshResponsiveChart);
+    });
+
+    upResizeObserver.observe(upChartWrapper);
+    upResizeObserver.observe(upChart);
+
+    function upFormatValue(number) {
+      if (Number.isInteger(number)) {
+        return String(number);
+      }
+
+      return number
+        .toFixed(6)
+        .replace(/0+$/, "")
+        .replace(/\.$/, "");
+    }
+
+    function upEscapeHTML(text) {
+      return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    upLoadData();
+  </script>
+</body>
+</html>
