@@ -92,10 +92,10 @@
     }
 
     #up-token-demo .up-variant-control {
-      display: grid;
-      grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
-      column-gap: 8px;
+      display: flex;
+      justify-content: center;
       align-items: center;
+      gap: 14px;
       width: 100%;
       margin: 8px auto;
     }
@@ -103,11 +103,6 @@
     #up-token-demo .up-variant-control-bottom {
       margin-top: 5px;
       margin-bottom: 0;
-    }
-
-    #up-token-demo .up-variant-control .up-variant-button {
-      grid-column: 2;
-      justify-self: center;
     }
 
     #up-token-demo .up-model-button,
@@ -529,7 +524,7 @@
     }
 
     #up-token-demo .up-pr-panel {
-      grid-column: 2;
+      grid-column: 1 / -1;
       grid-row: 4;
       width: 62%;
       justify-self: center;
@@ -638,7 +633,6 @@
         font-size: 0.95rem;
       }
 
-      #up-token-demo .up-variant-control,
       #up-token-demo .up-plot-area {
         grid-template-columns: 30px minmax(0, 1fr);
       }
@@ -686,11 +680,6 @@
 
       #up-token-demo .up-pr-chart {
         height: 165px;
-      }
-
-      #up-token-demo .up-variant-control .up-variant-button {
-        grid-column: 1 / -1;
-        justify-self: center;
       }
     }
 
