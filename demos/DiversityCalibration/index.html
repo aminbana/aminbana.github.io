@@ -19,7 +19,6 @@
       --bar-gap: 8px;
       --bar-group-width: 36px;
       --bar-width: 24px;
-      --label-font-size: 9px;
       --value-font-size: 10px;
       --panel-bg: #f7f8ff;
       --panel-border: #e2e6ff;
@@ -70,10 +69,6 @@
       text-decoration: underline;
       text-decoration-thickness: 2px;
       text-underline-offset: 4px;
-    }
-
-    .bar-label.is-hovered {
-      font-weight: 700;
     }
 
     .fake-link {
@@ -355,7 +350,7 @@
 
     .plot-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 100px;
+      grid-template-columns: minmax(0, 1fr);
       gap: clamp(14px, 2vw, 22px);
       align-items: start;
     }
@@ -387,7 +382,7 @@
       min-width: 0;
       overflow-x: hidden;
       overflow-y: visible;
-      padding-bottom: clamp(96px, 14vw, 130px);
+      padding-bottom: 36px;
       scrollbar-width: none;
     }
 
@@ -406,276 +401,148 @@
       position: relative;
     }
 
-    .x-axis-label {
+    .cutoff-slider-panel {
       grid-column: 2;
       grid-row: 2;
-      text-align: center;
-      font-weight: 700;
-      font-size: clamp(0.75rem, 2vw, 0.9rem);
-      margin-top: -72px;
-    }
-
-    .side-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-self: start;
-      min-width: 0;
-    }
-
-    .temperature-panel {
-      width: 100px;
-      height: calc(var(--chart-height) + 38px);
-      padding: 14px 12px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, #ffffff 0%, #f5f7ff 100%);
-      /* background: linear-gradient(180deg, #ffffff 0%, #f5f7ff 100%); */
-      border: 1px solid var(--panel-border);
-      box-shadow:
-        0 14px 32px rgba(50, 115, 220, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      overflow: hidden;
-    }
-
-    .temperature-header {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .temperature-title {
-      font-size: 0.76rem;
-      font-weight: 800;
-      color: #111;
-      text-align: center;
-    }
-
-    .temperature-value {
-      min-width: 62px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--blue);
-      color: #fff;
-      border: 1px solid var(--blue);
-      box-shadow: 0 8px 18px rgba(50, 115, 220, 0.24);
-      font-size: 0.82rem;
-      font-weight: 800;
-      text-align: center;
-      line-height: 1;
-    }
-
-    .temperature-control {
-      width: 100%;
-      flex: 1;
-      min-height: 0;
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-    }
-
-    .temperature-slider-column {
+      margin-top: 0;
+      padding: 12px 6px 4px;
       position: relative;
-      width: 56px;
-      min-height: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
-    .temperature-slider-column::before {
-      content: "";
+    .cutoff-side-label {
       position: absolute;
-      width: 9px;
-      height: calc(100% - 16px);
-      border-radius: 999px;
-      background: #e7ecff;
-      box-shadow: inset 0 0 0 1px rgba(50, 115, 220, 0.12);
-    }
-
-    .temperature-slider-column::after {
-      content: "";
-      position: absolute;
-      bottom: 8px;
-      width: 9px;
-      height: var(--temperature-progress, 50%);
-      border-radius: 999px;
-      background: linear-gradient(180deg, #3d50ff 0%, #3273dc 100%);
-      pointer-events: none;
-    }
-
-    .temperature-slider {
-      position: absolute;
-      left: 50%;
+      left: -42px;
       top: 50%;
-      width: calc(var(--chart-height) - 74px);
-      max-width: 260px;
-      min-width: 180px;
-      transform: translate(-50%, -50%) rotate(-90deg);
+      transform: translateY(-50%) rotate(270deg);
       transform-origin: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    .cutoff-slider {
+      width: 100%;
       appearance: none;
       background: transparent;
       cursor: pointer;
-      z-index: 2;
+      display: block;
     }
 
-    .temperature-slider:focus {
+    .cutoff-slider:focus {
       outline: none;
     }
 
-    .temperature-slider::-webkit-slider-runnable-track {
-      height: 9px;
+    .cutoff-slider::-webkit-slider-runnable-track {
+      height: 8px;
       border-radius: 999px;
-      background: transparent;
+      background: linear-gradient(
+        90deg,
+        var(--blue) 0%,
+        var(--blue) var(--cutoff-progress, 0%),
+        #e7ecff var(--cutoff-progress, 0%),
+        #e7ecff 100%
+      );
     }
 
-    .temperature-slider::-webkit-slider-thumb {
+    .cutoff-slider::-webkit-slider-thumb {
       appearance: none;
-      width: 23px;
-      height: 23px;
+      width: 22px;
+      height: 22px;
       margin-top: -7px;
       border-radius: 50%;
       background: #fff;
       border: 5px solid var(--blue);
-      box-shadow:
-        0 7px 16px rgba(50, 115, 220, 0.3),
-        0 0 0 5px rgba(50, 115, 220, 0.12);
+      box-shadow: 0 6px 14px rgba(50, 115, 220, 0.28);
     }
 
-    .temperature-slider::-moz-range-track {
-      height: 9px;
+    .cutoff-slider::-moz-range-track {
+      height: 8px;
       border-radius: 999px;
-      background: transparent;
+      background: #e7ecff;
     }
 
-    .temperature-slider::-moz-range-thumb {
-      width: 14px;
-      height: 14px;
+    .cutoff-slider::-moz-range-progress {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+
+    .cutoff-slider::-moz-range-thumb {
+      width: 13px;
+      height: 13px;
       border-radius: 50%;
       background: #fff;
       border: 5px solid var(--blue);
-      box-shadow:
-        0 7px 16px rgba(50, 115, 220, 0.3),
-        0 0 0 5px rgba(50, 115, 220, 0.12);
+      box-shadow: 0 6px 14px rgba(50, 115, 220, 0.28);
     }
 
-    .temperature-caption {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.66rem;
-      color: #737d99;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .color-pie-panel {
+    .pr-panel {
       grid-column: 2;
       grid-row: 3;
-      margin-top: -18px;
-      padding: clamp(12px, 2.5vw, 14px) clamp(12px, 3vw, 18px);
+      width: 100%;
+      margin-top: 10px;
+      padding: clamp(12px, 2.5vw, 14px);
       border-radius: 16px;
       background: var(--panel-bg);
       border: 1px solid var(--panel-border);
-      display: grid;
-      grid-template-columns: minmax(120px, 175px) minmax(150px, 220px);
-      gap: clamp(10px, 2vw, 16px);
-      align-items: center;
-      width: fit-content;
-      max-width: 100%;
-      justify-self: center;
     }
 
-    .color-pie-left {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 9px;
-      min-width: 0;
-    }
-
-    .color-pie-title {
-      font-size: 0.86rem;
-      font-weight: 700;
-      color: #111;
+    .pr-title {
       text-align: center;
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin-bottom: 8px;
     }
 
-    .pie-chart {
-      width: clamp(118px, 18vw, 154px);
-      height: clamp(118px, 18vw, 154px);
-      flex-shrink: 0;
+    .pr-chart {
+      width: 100%;
+      height: 260px;
     }
 
-    .pie-svg {
+    .pr-svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .pie-slice {
-      cursor: pointer;
-      transition: opacity 0.15s ease, transform 0.15s ease, filter 0.15s ease;
-      transform-origin: center;
+    .pr-axis {
+      stroke: #222;
+      stroke-width: 1.5;
     }
 
-    .pie-slice:hover,
-    .pie-slice.selected {
-      filter: brightness(0.9);
-      transform: scale(1.03);
+    .pr-grid {
+      stroke: #d9deef;
+      stroke-width: 1;
     }
 
-    .pie-center-hole {
-      fill: #fff;
-      pointer-events: none;
+    .pr-line {
+      fill: none;
+      stroke-width: 3;
     }
 
-    .pie-legend {
-      width: min(220px, 100%);
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      min-width: 0;
+    .pr-line-precision {
+      stroke: #3273dc;
     }
 
-    .pie-legend-item {
-      display: grid;
-      grid-template-columns: 14px minmax(0, 1fr) auto;
-      gap: 8px;
-      align-items: center;
-      font-size: clamp(0.72rem, 2vw, 0.82rem);
-      color: #555;
-      padding: 3px 4px;
-      border-radius: 8px;
-      transition: background 0.15s ease;
+    .pr-line-recall {
+      stroke: #FF6843;
     }
 
-    .pie-legend-item.selected {
-      background: var(--blue-bg);
+    .pr-point {
+      stroke: #fff;
+      stroke-width: 2;
     }
 
-    .pie-legend-color {
-      width: 12px;
-      height: 12px;
-      border-radius: 3px;
-      border: 1px solid rgba(0, 0, 0, 0.12);
+    .pr-label {
+      font-size: 11px;
+      fill: #333;
     }
 
-    .pie-legend-label {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .pie-legend-value {
+    .pr-legend {
+      font-size: 12px;
       font-weight: 700;
-      color: #333;
     }
 
     .bar-group {
@@ -708,7 +575,8 @@
         height 0.38s ease,
         transform 0.18s ease,
         filter 0.18s ease,
-        opacity 0.18s ease;
+        opacity 0.18s ease,
+        background-color 0.18s ease;
       touch-action: manipulation;
     }
 
@@ -717,105 +585,11 @@
       filter: brightness(0.88);
     }
 
-    .bar.dimmed {
-      opacity: 0.18;
-    }
-
-    .bar.selected-from-pie {
-      opacity: 1;
-      transform: scaleX(1.18);
-      filter: brightness(0.86);
-    }
-
-    .bar-label {
-      position: absolute;
-      top: calc(100% + 16px);
-      left: 50%;
-      width: max-content;
-      max-width: 90px;
-      text-align: center;
-      font-size: var(--label-font-size);
-      color: #222;
-      transform: translateX(calc(-50% - 4px)) rotate(-90deg);
-      transform-origin: center top;
-      white-space: nowrap;
-      margin-top: 28px;
-    }
-
     .error {
       color: #b00020;
       font-size: 0.95rem;
       margin-top: 12px;
       text-align: center;
-    }
-
-    @media (max-width: 900px) {
-      .plot-layout {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .side-panel {
-        width: 100%;
-      }
-
-      .temperature-panel {
-        width: 100%;
-        height: auto;
-        min-height: auto;
-        padding: 12px 14px;
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr);
-        gap: 14px;
-        align-items: center;
-      }
-
-      .temperature-header {
-        align-items: flex-start;
-        gap: 6px;
-      }
-
-      .temperature-title {
-        white-space: nowrap;
-      }
-
-      .temperature-control {
-        min-height: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .temperature-slider-column {
-        height: 34px;
-        width: 100%;
-      }
-
-      .temperature-slider-column::before {
-        width: 100%;
-        height: 9px;
-      }
-
-      .temperature-slider-column::after {
-        left: 0;
-        bottom: auto;
-        width: var(--temperature-progress, 50%);
-        height: 9px;
-      }
-
-      .temperature-slider {
-        position: relative;
-        left: auto;
-        top: auto;
-        width: 100%;
-        min-width: 0;
-        max-width: none;
-        transform: none;
-      }
-
-      .temperature-caption {
-        display: none;
-      }
     }
 
     @media (max-width: 760px) {
@@ -836,7 +610,7 @@
       }
 
       .chart-wrapper {
-        padding-bottom: 120px;
+        padding-bottom: 42px;
         overflow-x: hidden;
       }
 
@@ -845,31 +619,14 @@
         min-width: 0;
       }
 
-      .x-axis-label {
-        margin-top: -82px;
+      .cutoff-side-label {
+        left: -38px;
+        font-size: 0.72rem;
       }
 
-      .color-pie-panel {
+      .pr-panel {
         grid-column: 1 / -1;
         grid-row: 3;
-        grid-template-columns: 1fr;
-        margin-top: 0;
-        width: 100%;
-        justify-self: stretch;
-      }
-
-      .pie-chart {
-        width: 136px;
-        height: 136px;
-        margin: 0 auto;
-      }
-
-      .pie-legend {
-        width: 100%;
-      }
-
-      .bar-label {
-        max-width: 56px;
       }
     }
 
@@ -884,25 +641,13 @@
         height: 30px;
       }
 
-      .temperature-panel {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .temperature-header {
-        align-items: center;
-      }
-
       .chart-wrapper {
-        padding-bottom: 128px;
+        padding-bottom: 42px;
       }
 
-      .x-axis-label {
-        margin-top: -88px;
-      }
-
-      .bar-label {
-        max-width: 72px;
+      .cutoff-side-label {
+        left: -34px;
+        font-size: 0.68rem;
       }
     }
 
@@ -983,44 +728,24 @@
                     <div class="chart" id="chart"></div>
                   </div>
 
-                  <div class="x-axis-label">Token order from JSON</div>
+                  <div class="cutoff-slider-panel">
+                    <div class="cutoff-side-label">cutoff</div>
 
-                  <div class="color-pie-panel">
-                    <div class="color-pie-left">
-                      <div class="color-pie-title">Color share</div>
-                      <div class="pie-chart" id="colorPieChart"></div>
-                    </div>
-
-                    <div class="pie-legend" id="colorPieLegend"></div>
+                    <input
+                      id="cutoffSlider"
+                      class="cutoff-slider"
+                      type="range"
+                      min="0"
+                      max="0"
+                      step="1"
+                      value="0"
+                      aria-label="Cutoff"
+                    >
                   </div>
-                </div>
 
-                <div class="side-panel">
-                  <div class="temperature-panel">
-                    <div class="temperature-header">
-                      <div class="temperature-title">Temperature</div>
-                      <div class="temperature-value" id="temperatureValue">0.5</div>
-                    </div>
-
-                    <div class="temperature-control">
-                      <div class="temperature-slider-column">
-                        <input
-                          id="temperatureSlider"
-                          class="temperature-slider"
-                          type="range"
-                          min="0"
-                          max="0"
-                          step="1"
-                          value="0"
-                          aria-label="Temperature"
-                        >
-                      </div>
-                    </div>
-
-                    <div class="temperature-caption">
-                      <!-- <span>Low</span>
-                      <span>High</span> -->
-                    </div>
+                  <div class="pr-panel">
+                    <div class="pr-title">Precision and Recall</div>
+                    <div class="pr-chart" id="prChart"></div>
                   </div>
                 </div>
               </div>
@@ -1048,9 +773,8 @@
     const sentenceBox = document.getElementById("sentenceBox");
     const errorBox = document.getElementById("errorBox");
 
-    const temperaturePanel = document.querySelector(".temperature-panel");
-    const temperatureSlider = document.getElementById("temperatureSlider");
-    const temperatureValue = document.getElementById("temperatureValue");
+    const cutoffSlider = document.getElementById("cutoffSlider");
+    const prChart = document.getElementById("prChart");
 
     const variantUpButton = document.getElementById("variantUpButton");
     const variantDownButton = document.getElementById("variantDownButton");
@@ -1061,31 +785,10 @@
     const modelRightButton = document.getElementById("modelRightButton");
     const modelName = document.getElementById("modelName");
 
-    const colorPieChart = document.getElementById("colorPieChart");
-    const colorPieLegend = document.getElementById("colorPieLegend");
-
-    const summaryKeys = {
-      valid_and_frequent: {
-        label: "Valid and Frequent",
-        color: "#53A14A"
-      },
-      valid_and_rare: {
-        label: "Valid and Rare",
-        color: "#3D50FF"
-      },
-      invalid: {
-        label: "Invalid",
-        color: "#FF6843"
-      }
-    };
-
-    const summaryKeySet = new Set(Object.keys(summaryKeys));
-
-    const colorLabelMap = {
-      "#53A14A": "Valid and Frequent",
-      "#3D50FF": "Valid and Rare",
-      "#FF6843": "Invalid"
-    };
+    const summaryKeySet = new Set([
+      "valid",
+      "invalid"
+    ]);
 
     let loadedData = null;
 
@@ -1097,16 +800,13 @@
     let selectedStartIndex = 0;
     let selectedStartText = null;
 
-    let temperatures = [];
-    let selectedTemperature = null;
+    let selectedCutoffIndex = 0;
 
     let isChangingVariant = false;
     let isChangingModel = false;
 
     let currentTokenOrder = [];
     let currentDataArray = [];
-    let pieSlicesByColor = new Map();
-    let pieLegendItemsByColor = new Map();
 
     let typingTimerIds = [];
     let typingRunId = 0;
@@ -1115,9 +815,24 @@
       return String(color || "#3273dc").toUpperCase();
     }
 
-    function getColorLabel(color) {
-      const normalizedColor = normalizeColor(color);
-      return colorLabelMap[normalizedColor] || color;
+    function isInvalidToken(item) {
+      if (item.group) {
+        return item.group === "invalid";
+      }
+
+      return normalizeColor(item.color) === "#FF6843";
+    }
+
+    function getTokenDisplayColor(item, index) {
+      if (index <= selectedCutoffIndex) {
+        return item.color;
+      }
+
+      if (isInvalidToken(item)) {
+        return "#A2A2A2";
+      }
+
+      return "#CFCFCF";
     }
 
     function clearTypingTimers() {
@@ -1155,7 +870,7 @@
 
         if (modelNames.length === 0) {
           showDefaultSentence();
-          clearColorPie();
+          clearPRChart();
           errorBox.textContent = "No valid model keys found in data.json.";
           return;
         }
@@ -1169,7 +884,7 @@
 
       } catch (error) {
         showDefaultSentence();
-        clearColorPie();
+        clearPRChart();
         errorBox.textContent = "Could not read data.json. Run this page with a local server, not by directly opening the HTML file.";
       }
     }
@@ -1190,17 +905,6 @@
           const value = modelData[key];
           return value && typeof value === "object" && !Array.isArray(value);
         });
-    }
-
-    function getTemperaturesForStartText(startText) {
-      const startTextData = loadedData[selectedModelName][startText];
-
-      return Object.keys(startTextData)
-        .filter(key => {
-          const value = startTextData[key];
-          return value && typeof value === "object" && !Array.isArray(value);
-        })
-        .sort((a, b) => Number(a) - Number(b));
     }
 
     function setupModelButtons() {
@@ -1272,7 +976,7 @@
         currentTokenOrder = [];
         currentDataArray = [];
         showDefaultSentence();
-        clearColorPie();
+        clearPRChart();
         errorBox.textContent = "No valid starting text keys found for this model.";
         return;
       }
@@ -1368,61 +1072,10 @@
 
     function setupCurrentVariant() {
       errorBox.textContent = "";
-      temperatures = getTemperaturesForStartText(selectedStartText);
 
       variantInfo.textContent = `Variant ${selectedStartIndex + 1} of ${startTexts.length}`;
 
-      if (temperatures.length === 0) {
-        chart.innerHTML = "";
-        currentTokenOrder = [];
-        currentDataArray = [];
-        showDefaultSentence();
-        clearColorPie();
-        errorBox.textContent = "No valid temperature keys found for this starting text.";
-        return;
-      }
-
-      const defaultTemperature = "0.5";
-
-      if (temperatures.includes(defaultTemperature)) {
-        selectedTemperature = defaultTemperature;
-      } else {
-        selectedTemperature = temperatures[0];
-      }
-
-      setupTemperatureControl();
-
-      renderChart(getCurrentTokenData());
-    }
-
-    function setupTemperatureControl() {
-      temperatureSlider.min = 0;
-      temperatureSlider.max = temperatures.length - 1;
-      temperatureSlider.step = 1;
-      temperatureSlider.value = Math.max(0, temperatures.indexOf(selectedTemperature));
-
-      updateTemperatureControl();
-    }
-
-    function updateTemperatureControl() {
-      temperatureValue.textContent = selectedTemperature;
-
-      const maxIndex = Math.max(1, temperatures.length - 1);
-      const currentIndex = Math.max(0, temperatures.indexOf(selectedTemperature));
-      const progress = currentIndex / maxIndex * 100;
-
-      temperaturePanel.style.setProperty("--temperature-progress", `${progress}%`);
-    }
-
-    temperatureSlider.addEventListener("input", () => {
-      if (isChangingVariant || isChangingModel) {
-        return;
-      }
-
-      const index = Number(temperatureSlider.value);
-      selectedTemperature = temperatures[index];
-
-      updateTemperatureControl();
+      selectedCutoffIndex = 0;
 
       const currentTokenData = getCurrentTokenData();
 
@@ -1431,20 +1084,20 @@
         currentTokenOrder = [];
         currentDataArray = [];
         showDefaultSentence();
-        clearColorPie();
-        errorBox.textContent = "Selected temperature was not found in data.json.";
+        clearPRChart();
+        errorBox.textContent = "No valid data found for this starting text.";
         return;
       }
 
-      updateChartForTemperature(currentTokenData);
-    });
+      renderChart(currentTokenData);
+    }
 
     function getCurrentTokenData() {
-      if (!loadedData || !selectedModelName || !selectedStartText || selectedTemperature === null) {
+      if (!loadedData || !selectedModelName || !selectedStartText) {
         return null;
       }
 
-      return loadedData[selectedModelName][selectedStartText][selectedTemperature];
+      return loadedData[selectedModelName][selectedStartText];
     }
 
     function toDataArray(data) {
@@ -1454,7 +1107,10 @@
           word,
           probability: Number(value.logit_value),
           completedSentence: value.completed_sentence,
-          color: value.color || "#3273dc"
+          color: value.color || "#3273dc",
+          group: value.group || "",
+          precision: Number(value.precision),
+          recall: Number(value.recall)
         }))
         .filter(item => Number.isFinite(item.probability) && item.probability > 0);
     }
@@ -1477,41 +1133,31 @@
       return Math.max(2, ratio * maxBarHeight);
     }
 
-    function canUpdateBarsWithoutRebuild(newDataArray) {
-      if (newDataArray.length !== currentTokenOrder.length) {
-        return false;
-      }
-
-      return newDataArray.every((item, index) => item.word === currentTokenOrder[index]);
-    }
-
     function renderChart(data) {
       chart.innerHTML = "";
       errorBox.textContent = "";
       showDefaultSentence();
-
-      pieSlicesByColor = new Map();
-      pieLegendItemsByColor = new Map();
 
       const dataArray = toDataArray(data);
       currentDataArray = dataArray;
       currentTokenOrder = dataArray.map(item => item.word);
 
       if (dataArray.length === 0) {
-        clearColorPie();
+        clearPRChart();
         errorBox.textContent = "No valid positive probability values found for this selection.";
         return;
       }
 
       updateBarSizes(dataArray.length);
-      updateColorPie(data);
+      setupCutoffSlider(dataArray);
+      renderPRChart(dataArray);
 
       const probabilities = dataArray.map(item => item.probability);
       const minProbability = Math.min(...probabilities);
       const maxProbability = Math.max(...probabilities);
       const maxBarHeight = getChartMaxBarHeight();
 
-      dataArray.forEach(item => {
+      dataArray.forEach((item, index) => {
         const normalizedColor = normalizeColor(item.color);
 
         const barGroup = document.createElement("div");
@@ -1538,29 +1184,22 @@
           maxProbability,
           maxBarHeight
         )}px`;
-        bar.style.backgroundColor = item.color;
 
-        const label = document.createElement("div");
-        label.className = "bar-label";
-        label.textContent = item.word;
+        bar.style.backgroundColor = getTokenDisplayColor(item, index);
 
         bar.addEventListener("mouseenter", () => {
-          label.classList.add("is-hovered");
           showCompletedSentence(bar);
         });
 
         bar.addEventListener("mouseleave", () => {
-          label.classList.remove("is-hovered");
           showDefaultSentence();
         });
 
         bar.addEventListener("focus", () => {
-          label.classList.add("is-hovered");
           showCompletedSentence(bar);
         });
 
         bar.addEventListener("blur", () => {
-          label.classList.remove("is-hovered");
           showDefaultSentence();
         });
 
@@ -1568,21 +1207,243 @@
           showCompletedSentence(bar);
         });
 
-        label.addEventListener("mouseenter", () => {
-          label.classList.add("is-hovered");
-          showCompletedSentence(bar);
-        });
-
-        label.addEventListener("mouseleave", () => {
-          label.classList.remove("is-hovered");
-          showDefaultSentence();
-        });
-
         barGroup.appendChild(value);
         barGroup.appendChild(bar);
-        barGroup.appendChild(label);
         chart.appendChild(barGroup);
       });
+    }
+
+    function setupCutoffSlider(dataArray) {
+      if (!dataArray || dataArray.length === 0) {
+        cutoffSlider.min = 0;
+        cutoffSlider.max = 0;
+        cutoffSlider.value = 0;
+        return;
+      }
+
+      cutoffSlider.min = 0;
+      cutoffSlider.max = dataArray.length - 1;
+      cutoffSlider.step = 1;
+
+      selectedCutoffIndex = Math.min(selectedCutoffIndex, dataArray.length - 1);
+      cutoffSlider.value = selectedCutoffIndex;
+
+      updateCutoffUI(dataArray);
+    }
+
+    function updateCutoffUI(dataArray) {
+      if (!dataArray || dataArray.length === 0) {
+        return;
+      }
+
+      const maxIndex = Math.max(1, dataArray.length - 1);
+      const progress = selectedCutoffIndex / maxIndex * 100;
+
+      cutoffSlider.style.setProperty("--cutoff-progress", `${progress}%`);
+    }
+
+    cutoffSlider.addEventListener("input", () => {
+      if (isChangingVariant || isChangingModel) {
+        return;
+      }
+
+      selectedCutoffIndex = Number(cutoffSlider.value);
+
+      updateCutoffUI(currentDataArray);
+      updateBarColorsByCutoff();
+      renderPRChart(currentDataArray);
+    });
+
+    function updateBarColorsByCutoff() {
+      const barGroups = Array.from(chart.querySelectorAll(".bar-group"));
+
+      currentDataArray.forEach((item, index) => {
+        const barGroup = barGroups[index];
+
+        if (!barGroup) {
+          return;
+        }
+
+        const bar = barGroup.querySelector(".bar");
+
+        if (!bar) {
+          return;
+        }
+
+        bar.style.backgroundColor = getTokenDisplayColor(item, index);
+      });
+    }
+
+    function clearPRChart() {
+      prChart.innerHTML = "";
+    }
+
+    function renderPRChart(dataArray) {
+      prChart.innerHTML = "";
+
+      if (!dataArray || dataArray.length === 0) {
+        return;
+      }
+
+      const validItems = dataArray.filter(item => {
+        return Number.isFinite(item.precision) && Number.isFinite(item.recall);
+      });
+
+      if (validItems.length === 0) {
+        return;
+      }
+
+      const svgNS = "http://www.w3.org/2000/svg";
+
+      const width = 900;
+      const height = 260;
+
+      const margin = {
+        top: 24,
+        right: 28,
+        bottom: 38,
+        left: 76
+      };
+
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+
+      const svg = document.createElementNS(svgNS, "svg");
+      svg.setAttribute("class", "pr-svg");
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+      const xMax = Math.max(1, validItems.length - 1);
+
+      function xScale(index) {
+        return margin.left + index / xMax * innerWidth;
+      }
+
+      function yScale(value) {
+        return margin.top + (1 - value) * innerHeight;
+      }
+
+      for (let i = 0; i <= 4; i++) {
+        const yValue = i / 4;
+        const y = yScale(yValue);
+
+        const grid = document.createElementNS(svgNS, "line");
+        grid.setAttribute("class", "pr-grid");
+        grid.setAttribute("x1", margin.left);
+        grid.setAttribute("y1", y);
+        grid.setAttribute("x2", width - margin.right);
+        grid.setAttribute("y2", y);
+        svg.appendChild(grid);
+
+        const label = document.createElementNS(svgNS, "text");
+        label.setAttribute("class", "pr-label");
+        label.setAttribute("x", margin.left - 12);
+        label.setAttribute("y", y + 4);
+        label.setAttribute("text-anchor", "end");
+        label.textContent = yValue.toFixed(2);
+        svg.appendChild(label);
+      }
+
+      const xAxis = document.createElementNS(svgNS, "line");
+      xAxis.setAttribute("class", "pr-axis");
+      xAxis.setAttribute("x1", margin.left);
+      xAxis.setAttribute("y1", height - margin.bottom);
+      xAxis.setAttribute("x2", width - margin.right);
+      xAxis.setAttribute("y2", height - margin.bottom);
+      svg.appendChild(xAxis);
+
+      const yAxis = document.createElementNS(svgNS, "line");
+      yAxis.setAttribute("class", "pr-axis");
+      yAxis.setAttribute("x1", margin.left);
+      yAxis.setAttribute("y1", margin.top);
+      yAxis.setAttribute("x2", margin.left);
+      yAxis.setAttribute("y2", height - margin.bottom);
+      svg.appendChild(yAxis);
+
+      const precisionPoints = validItems.map((item, index) => {
+        return `${xScale(index)},${yScale(item.precision)}`;
+      });
+
+      const recallPoints = validItems.map((item, index) => {
+        return `${xScale(index)},${yScale(item.recall)}`;
+      });
+
+      const precisionLine = document.createElementNS(svgNS, "polyline");
+      precisionLine.setAttribute("class", "pr-line pr-line-precision");
+      precisionLine.setAttribute("points", precisionPoints.join(" "));
+      svg.appendChild(precisionLine);
+
+      const recallLine = document.createElementNS(svgNS, "polyline");
+      recallLine.setAttribute("class", "pr-line pr-line-recall");
+      recallLine.setAttribute("points", recallPoints.join(" "));
+      svg.appendChild(recallLine);
+
+      const safeCutoff = Math.max(0, Math.min(selectedCutoffIndex, validItems.length - 1));
+      const selectedItem = validItems[safeCutoff];
+
+      if (selectedItem) {
+        const selectedX = xScale(safeCutoff);
+
+        const verticalLine = document.createElementNS(svgNS, "line");
+        verticalLine.setAttribute("x1", selectedX);
+        verticalLine.setAttribute("y1", margin.top);
+        verticalLine.setAttribute("x2", selectedX);
+        verticalLine.setAttribute("y2", height - margin.bottom);
+        verticalLine.setAttribute("stroke", "#888");
+        verticalLine.setAttribute("stroke-width", "1.5");
+        verticalLine.setAttribute("stroke-dasharray", "5 5");
+        svg.appendChild(verticalLine);
+
+        const precisionPoint = document.createElementNS(svgNS, "circle");
+        precisionPoint.setAttribute("class", "pr-point");
+        precisionPoint.setAttribute("cx", selectedX);
+        precisionPoint.setAttribute("cy", yScale(selectedItem.precision));
+        precisionPoint.setAttribute("r", 6);
+        precisionPoint.setAttribute("fill", "#3273dc");
+        svg.appendChild(precisionPoint);
+
+        const recallPoint = document.createElementNS(svgNS, "circle");
+        recallPoint.setAttribute("class", "pr-point");
+        recallPoint.setAttribute("cx", selectedX);
+        recallPoint.setAttribute("cy", yScale(selectedItem.recall));
+        recallPoint.setAttribute("r", 6);
+        recallPoint.setAttribute("fill", "#FF6843");
+        svg.appendChild(recallPoint);
+      }
+
+      const xLabel = document.createElementNS(svgNS, "text");
+      xLabel.setAttribute("class", "pr-label");
+      xLabel.setAttribute("x", width / 2);
+      xLabel.setAttribute("y", height - 8);
+      xLabel.setAttribute("text-anchor", "middle");
+      xLabel.textContent = "Cutoff position";
+      svg.appendChild(xLabel);
+
+      const yLabel = document.createElementNS(svgNS, "text");
+      yLabel.setAttribute("class", "pr-label");
+      yLabel.setAttribute("x", 18);
+      yLabel.setAttribute("y", height / 2);
+      yLabel.setAttribute("text-anchor", "middle");
+      yLabel.setAttribute("transform", `rotate(-90 18 ${height / 2})`);
+      yLabel.textContent = "Score";
+      svg.appendChild(yLabel);
+
+      const precisionLegend = document.createElementNS(svgNS, "text");
+      precisionLegend.setAttribute("class", "pr-legend");
+      precisionLegend.setAttribute("x", width - margin.right - 170);
+      precisionLegend.setAttribute("y", 18);
+      precisionLegend.setAttribute("fill", "#3273dc");
+      precisionLegend.textContent = "Precision";
+      svg.appendChild(precisionLegend);
+
+      const recallLegend = document.createElementNS(svgNS, "text");
+      recallLegend.setAttribute("class", "pr-legend");
+      recallLegend.setAttribute("x", width - margin.right - 82);
+      recallLegend.setAttribute("y", 18);
+      recallLegend.setAttribute("fill", "#FF6843");
+      recallLegend.textContent = "Recall";
+      svg.appendChild(recallLegend);
+
+      prChart.appendChild(svg);
     }
 
     function showCompletedSentence(bar) {
@@ -1692,19 +1553,6 @@
       });
     }
 
-    function updateChartForTemperature(data) {
-      const dataArray = toDataArray(data);
-
-      if (!canUpdateBarsWithoutRebuild(dataArray)) {
-        renderChart(data);
-        return;
-      }
-
-      currentDataArray = dataArray;
-      updateColorPie(data);
-      updateBarHeights(dataArray);
-    }
-
     function updateBarHeights(dataArray) {
       if (!dataArray || dataArray.length === 0) {
         return;
@@ -1735,7 +1583,7 @@
         bar.dataset.completedSentence = item.completedSentence;
         bar.dataset.originalColor = item.color;
         bar.dataset.color = normalizeColor(item.color);
-        bar.style.backgroundColor = item.color;
+        bar.style.backgroundColor = getTokenDisplayColor(item, index);
         bar.setAttribute("aria-label", `${item.word}, probability ${formatValue(item.probability)}`);
 
         bar.style.height = `${getLogHeight(
@@ -1745,188 +1593,6 @@
           maxBarHeight
         )}px`;
       });
-    }
-
-    function updateColorPie(rawData) {
-      const entries = Object.entries(summaryKeys)
-        .map(([key, meta]) => ({
-          key,
-          color: meta.color,
-          label: meta.label,
-          value: Number(rawData[key])
-        }))
-        .filter(item => Number.isFinite(item.value) && item.value >= 0);
-
-      const total = entries.reduce((sum, item) => sum + item.value, 0);
-
-      if (!Number.isFinite(total) || total <= 0) {
-        clearColorPie();
-        return;
-      }
-
-      colorPieChart.innerHTML = "";
-      colorPieLegend.innerHTML = "";
-      pieSlicesByColor = new Map();
-      pieLegendItemsByColor = new Map();
-
-      const svgNS = "http://www.w3.org/2000/svg";
-      const size = 154;
-      const center = size / 2;
-      const radius = 70;
-      const holeRadius = 24;
-
-      const svg = document.createElementNS(svgNS, "svg");
-      svg.setAttribute("class", "pie-svg");
-      svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
-
-      let startAngle = -90;
-
-      entries.forEach(item => {
-        const percent = item.value / total;
-        const endAngle = startAngle + percent * 360;
-
-        const path = document.createElementNS(svgNS, "path");
-        path.setAttribute(
-          "d",
-          describeArc(center, center, radius, startAngle, endAngle)
-        );
-        path.setAttribute("fill", item.color);
-        path.setAttribute("class", "pie-slice");
-        path.dataset.color = item.color;
-
-        path.addEventListener("mouseenter", () => {
-          highlightBarsFromPie(item.color);
-        });
-
-        path.addEventListener("mouseleave", () => {
-          clearPieBarHighlight();
-        });
-
-        path.addEventListener("click", () => {
-          highlightBarsFromPie(item.color);
-        });
-
-        svg.appendChild(path);
-        pieSlicesByColor.set(item.color, path);
-
-        startAngle = endAngle;
-      });
-
-      const hole = document.createElementNS(svgNS, "circle");
-      hole.setAttribute("cx", center);
-      hole.setAttribute("cy", center);
-      hole.setAttribute("r", holeRadius);
-      hole.setAttribute("class", "pie-center-hole");
-      svg.appendChild(hole);
-
-      colorPieChart.appendChild(svg);
-
-      entries.forEach(item => {
-        const percent = item.value / total * 100;
-
-        const legendItem = document.createElement("div");
-        legendItem.className = "pie-legend-item";
-        legendItem.dataset.color = item.color;
-
-        const colorBox = document.createElement("div");
-        colorBox.className = "pie-legend-color";
-        colorBox.style.backgroundColor = item.color;
-
-        const label = document.createElement("div");
-        label.className = "pie-legend-label";
-        label.textContent = item.label;
-
-        const value = document.createElement("div");
-        value.className = "pie-legend-value";
-        value.textContent = `${percent.toFixed(1)}%`;
-
-        legendItem.appendChild(colorBox);
-        legendItem.appendChild(label);
-        legendItem.appendChild(value);
-
-        colorPieLegend.appendChild(legendItem);
-        pieLegendItemsByColor.set(item.color, legendItem);
-      });
-    }
-
-    function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-      const angleInRadians = angleInDegrees * Math.PI / 180.0;
-
-      return {
-        x: centerX + radius * Math.cos(angleInRadians),
-        y: centerY + radius * Math.sin(angleInRadians)
-      };
-    }
-
-    function describeArc(x, y, radius, startAngle, endAngle) {
-      const start = polarToCartesian(x, y, radius, endAngle);
-      const end = polarToCartesian(x, y, radius, startAngle);
-      const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-
-      return [
-        "M", x, y,
-        "L", start.x, start.y,
-        "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y,
-        "Z"
-      ].join(" ");
-    }
-
-    function highlightBarsFromPie(color) {
-      const normalizedColor = normalizeColor(color);
-
-      document.querySelectorAll(".bar").forEach(bar => {
-        const barColor = normalizeColor(bar.dataset.color);
-
-        if (barColor === normalizedColor) {
-          bar.classList.add("selected-from-pie");
-          bar.classList.remove("dimmed");
-        } else {
-          bar.classList.remove("selected-from-pie");
-          bar.classList.add("dimmed");
-        }
-      });
-
-      pieSlicesByColor.forEach((slice, sliceColor) => {
-        if (normalizeColor(sliceColor) === normalizedColor) {
-          slice.classList.add("selected");
-          slice.style.opacity = "1";
-        } else {
-          slice.classList.remove("selected");
-          slice.style.opacity = "0.25";
-        }
-      });
-
-      pieLegendItemsByColor.forEach((legendItem, legendColor) => {
-        if (normalizeColor(legendColor) === normalizedColor) {
-          legendItem.classList.add("selected");
-        } else {
-          legendItem.classList.remove("selected");
-        }
-      });
-    }
-
-    function clearPieBarHighlight() {
-      document.querySelectorAll(".bar").forEach(bar => {
-        bar.classList.remove("selected-from-pie");
-        bar.classList.remove("dimmed");
-      });
-
-      pieSlicesByColor.forEach(slice => {
-        slice.classList.remove("selected");
-        slice.style.opacity = "1";
-      });
-
-      pieLegendItemsByColor.forEach(legendItem => {
-        legendItem.classList.remove("selected");
-      });
-    }
-
-    function clearColorPie() {
-      colorPieChart.innerHTML = "";
-      colorPieChart.style.background = "#e7eaf5";
-      colorPieLegend.innerHTML = "";
-      pieSlicesByColor = new Map();
-      pieLegendItemsByColor = new Map();
     }
 
     function updateBarSizes(count) {
@@ -1972,10 +1638,6 @@
         ? Math.max(3, Math.min(18, Math.floor(groupWidth * 0.72)))
         : Math.max(5, Math.min(30, Math.floor(groupWidth * 0.7)));
 
-      const labelFontSize = isMobile
-        ? groupWidth < 9 ? 5 : groupWidth < 13 ? 6 : 7
-        : groupWidth < 16 ? 7 : groupWidth < 24 ? 8 : 10;
-
       const valueFontSize = isMobile
         ? groupWidth < 9 ? 5 : groupWidth < 13 ? 6 : 7
         : groupWidth < 16 ? 7 : groupWidth < 24 ? 8 : 10;
@@ -1983,7 +1645,6 @@
       chart.style.setProperty("--bar-gap", `${gap}px`);
       chart.style.setProperty("--bar-group-width", `${groupWidth}px`);
       chart.style.setProperty("--bar-width", `${barWidth}px`);
-      chart.style.setProperty("--label-font-size", `${labelFontSize}px`);
       chart.style.setProperty("--value-font-size", `${valueFontSize}px`);
     }
 
@@ -1994,7 +1655,9 @@
 
       updateBarSizes(currentDataArray.length);
       updateBarHeights(currentDataArray);
-      updateTemperatureControl();
+      updateCutoffUI(currentDataArray);
+      updateBarColorsByCutoff();
+      renderPRChart(currentDataArray);
     }
 
     const resizeObserver = new ResizeObserver(() => {
