@@ -824,6 +824,17 @@
         width: 9px;
         height: 9px;
       }
+
+      #down-token-demo .down-prob-panel {
+        width: 100%;
+        margin-top: 8px;
+        padding: 2px 6px;
+        border-radius: 14px;
+      }
+
+      #down-token-demo .down-prob-chart {
+        height: 175px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -849,6 +860,15 @@
       #down-token-demo .down-temperature-header {
         align-items: center;
       }
+
+      #down-token-demo .down-prob-panel {
+        margin-top: 6px;
+        padding: 2px 5px;
+      }
+
+      #down-token-demo .down-prob-chart {
+        height: 170px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -866,7 +886,6 @@
 
 <body>
   <div id="down-token-demo">
-
     <section class="section down-plot-section" aria-label="Down token probability plot">
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
@@ -1611,15 +1630,32 @@
 
       const svgNS = "http://www.w3.org/2000/svg";
 
-      const width = 540;
-      const height = 210;
+      const isMobileProb = window.innerWidth <= 760;
+      const isSmallMobileProb = window.innerWidth <= 480;
 
-      const margin = {
-        top: 28,
-        right: 42,
-        bottom: 36,
-        left: 42
-      };
+      const width = Math.max(320, Math.round(downProbChart.clientWidth || 540));
+      const height = isSmallMobileProb ? 150 : isMobileProb ? 165 : 210;
+
+      const margin = isSmallMobileProb
+        ? {
+            top: 8,
+            right: 12,
+            bottom: 34,
+            left: 32
+          }
+        : isMobileProb
+          ? {
+              top: 10,
+              right: 14,
+              bottom: 36,
+              left: 34
+            }
+          : {
+              top: 28,
+              right: 42,
+              bottom: 36,
+              left: 42
+            };
 
       const innerWidth = width - margin.left - margin.right;
       const innerHeight = height - margin.top - margin.bottom;
@@ -1628,6 +1664,7 @@
       const svg = document.createElementNS(svgNS, "svg");
       svg.setAttribute("class", "down-prob-svg");
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("preserveAspectRatio", "none");
 
       const xMax = Math.max(1, curveData.length - 1);
 
@@ -1653,7 +1690,7 @@
 
         const label = document.createElementNS(svgNS, "text");
         label.setAttribute("class", "down-prob-label");
-        label.setAttribute("x", margin.left - 10);
+        label.setAttribute("x", margin.left - 8);
         label.setAttribute("y", y + 4);
         label.setAttribute("text-anchor", "end");
         label.textContent = yValue.toFixed(2);
@@ -1664,7 +1701,7 @@
         const label = document.createElementNS(svgNS, "text");
         label.setAttribute("class", "down-prob-temperature-label");
         label.setAttribute("x", xScale(index));
-        label.setAttribute("y", height - margin.bottom + 15);
+        label.setAttribute("y", height - margin.bottom + 12);
         label.setAttribute("text-anchor", "middle");
         label.textContent = item.temperature;
         svg.appendChild(label);
@@ -1724,32 +1761,34 @@
 
       const validFrequentPoint = document.createElementNS(svgNS, "circle");
       validFrequentPoint.setAttribute("class", "down-prob-point");
-      validFrequentPoint.setAttribute("r", 5.5);
+      validFrequentPoint.setAttribute("r", isMobileProb ? 5 : 5.5);
       validFrequentPoint.setAttribute("fill", downColors.valid_and_frequent);
       svg.appendChild(validFrequentPoint);
 
       const validRarePoint = document.createElementNS(svgNS, "circle");
       validRarePoint.setAttribute("class", "down-prob-point");
-      validRarePoint.setAttribute("r", 5.5);
+      validRarePoint.setAttribute("r", isMobileProb ? 5 : 5.5);
       validRarePoint.setAttribute("fill", downColors.valid_and_rare);
       svg.appendChild(validRarePoint);
 
       const invalidPoint = document.createElementNS(svgNS, "circle");
       invalidPoint.setAttribute("class", "down-prob-point");
-      invalidPoint.setAttribute("r", 5.5);
+      invalidPoint.setAttribute("r", isMobileProb ? 5 : 5.5);
       invalidPoint.setAttribute("fill", downColors.invalid);
       svg.appendChild(invalidPoint);
 
       const xLabel = document.createElementNS(svgNS, "text");
       xLabel.setAttribute("class", "down-prob-label");
       xLabel.setAttribute("x", plotCenterX);
-      xLabel.setAttribute("y", height - 5);
+      xLabel.setAttribute("y", height - 7);
       xLabel.setAttribute("text-anchor", "middle");
       xLabel.textContent = "Temperature";
       svg.appendChild(xLabel);
 
+      const legendY = isMobileProb ? 9 : 18;
+
       const legendGroup = document.createElementNS(svgNS, "g");
-      legendGroup.setAttribute("transform", `translate(${plotCenterX - 145}, 18)`);
+      legendGroup.setAttribute("transform", `translate(${plotCenterX - 145}, ${legendY})`);
 
       const legendItems = [
         {
