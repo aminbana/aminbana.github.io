@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Merged Token Probability Demo</title>
-  <meta name="description" content="Merged upper and lower token probability visualizations.">
+  <title>Diversity Calibration Demo</title>
+  <meta name="description" content="Diversity Calibration Demo">
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -747,11 +747,11 @@
         }
 
         #up-token-demo .up-pr-line-precision {
-          stroke: #3273dc;
+          stroke: #00008B;
         }
 
         #up-token-demo .up-pr-line-recall {
-          stroke: #FF5D5D;
+          stroke: #FF8C00;
         }
 
         #up-token-demo .up-pr-point {
@@ -765,7 +765,7 @@
         }
 
         #up-token-demo .up-pr-legend {
-          font-size: 12px;
+          font-size: 16px;
           font-weight: 700;
         }
 
@@ -2088,15 +2088,21 @@
           <div class="container is-max-desktop">
             <div class="columns is-centered">
               <div class="column has-text-centered">
-                <h1 class="title is-1 up-publication-title">Interactive Token Probability Visualization</h1>
+                <h1 class="title is-1 up-publication-title">Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs</h1>
 
                 <div class="up-centered">
-                  <span class="up-conf-text">Conference Demo</span>
+                  <span class="up-conf-text">Playground Demo</span>
                 </div>
 
                 <div class="is-size-5 up-publication-authors" style="margin-top: 10px;">
-                  <span class="up-author-block up-fake-link">Token probability barplot from JSON data</span>
+                  <span class="up-author-block up-fake-link">What are the distributional properties of LLMs that constrain their ability to generate outputs that are both valid and diverse?</span>
                 </div>
+                <div>
+                  <p>
+                    We introduce two bottlenecks:
+                  </p>
+                </div>
+
               </div>
             </div>
           </div>
@@ -2107,8 +2113,8 @@
         <div class="container is-max-desktop">
           <div class="columns is-centered has-text-centered">
             <div class="column is-full">
-              <h2 class="title is-3">Token Probability Barplot</h2>
-              <p class="subtitle is-6">Explore how each token changes the model response.</p>
+              <h2 class="title is-3">1. Order Calibration</h2>
+              <p class="subtitle is-6">Valid tokens are not reliably ranked above invalid tokens. Any cutoff strategy inevitably drops many valid tokens (low recall) or includes many invalid ones (low precision).</p>
 
               <div class="up-plot-wrap">
                 <div class="up-model-control">
@@ -2328,10 +2334,10 @@
         const UP_TEXT_ANIMATION_MODE = "typing";
         const UP_TYPING_WORD_DELAY_MS = 50;
 
-        const UP_VALID_COLOR = "#ACDB7A";
-        const UP_INVALID_COLOR = "#FF5D5D";
-        const UP_VALID_MUTED_COLOR = "#CFCFCF";
-        const UP_INVALID_MUTED_COLOR = "#A2A2A2";
+        const UP_VALID_COLOR = "#54a24b";
+        const UP_INVALID_COLOR = "#ff6944";
+        const UP_VALID_MUTED_COLOR = "#999999";
+        const UP_INVALID_MUTED_COLOR = "#7f7f7f";
 
         const upDemoRoot = document.getElementById("up-token-demo");
 
@@ -2416,12 +2422,12 @@
               color: UP_VALID_COLOR
             },
             {
-              label: "Valid / Dropped",
-              color: UP_VALID_MUTED_COLOR
-            },
-            {
               label: "Invalid / Retained",
               color: UP_INVALID_COLOR
+            },            
+            {
+              label: "Valid / Dropped",
+              color: UP_VALID_MUTED_COLOR
             },
             {
               label: "Invalid / Dropped",
@@ -3071,7 +3077,7 @@
             precisionPoint.setAttribute("cx", selectedX);
             precisionPoint.setAttribute("cy", upYScale(selectedItem.precision));
             precisionPoint.setAttribute("r", isMobilePR ? 5 : 6);
-            precisionPoint.setAttribute("fill", "#3273dc");
+            precisionPoint.setAttribute("fill", "#00008B");
             svg.appendChild(precisionPoint);
 
             const recallPoint = document.createElementNS(svgNS, "circle");
@@ -3079,7 +3085,7 @@
             recallPoint.setAttribute("cx", selectedX);
             recallPoint.setAttribute("cy", upYScale(selectedItem.recall));
             recallPoint.setAttribute("r", isMobilePR ? 5 : 6);
-            recallPoint.setAttribute("fill", "#FF5D5D");
+            recallPoint.setAttribute("fill", "#FF8C00");
             svg.appendChild(recallPoint);
           }
 
@@ -3100,7 +3106,7 @@
           precisionLegend.setAttribute("class", "up-pr-legend");
           precisionLegend.setAttribute("x", 0);
           precisionLegend.setAttribute("y", 0);
-          precisionLegend.setAttribute("fill", "#3273dc");
+          precisionLegend.setAttribute("fill", "#00008B");
           precisionLegend.textContent = "Precision";
           legendGroup.appendChild(precisionLegend);
 
@@ -3108,7 +3114,7 @@
           recallLegend.setAttribute("class", "up-pr-legend");
           recallLegend.setAttribute("x", 96);
           recallLegend.setAttribute("y", 0);
-          recallLegend.setAttribute("fill", "#FF5D5D");
+          recallLegend.setAttribute("fill", "#FF8C00");
           recallLegend.textContent = "Recall";
           legendGroup.appendChild(recallLegend);
 
