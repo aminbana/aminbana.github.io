@@ -9,10 +9,16 @@ output_path = Path("data_down.json")
 models = ["Qwen2.5-VL", "LLaVA", "InternVL"]
 
 samples = [
-    "Hello I am",
+    "Hello I am ",
     "Today I saw ",
     "The image shows ",
 ]
+
+down_questions = {
+    "Hello I am": "What is the model likely to generate after this text?",
+    "Today I saw ": "How does temperature change the next possible responses?",
+    "The image shows ": "Which object words become more likely at each temperature?",
+}
 
 temperatures = ["0.1", "0.5", "1.0"]
 
@@ -37,7 +43,7 @@ def choose_group(index):
     return "invalid"
 
 
-def make_completed_sentence(token, num_sentences=6):
+def make_completed_sentence(token, temperature, num_sentences=6):
     sentences = []
 
     for _ in range(num_sentences):
@@ -91,6 +97,11 @@ for model in models:
     for sample in samples:
         data[model][sample] = {}
 
+        data[model][sample]["down_question"] = down_questions.get(
+            sample,
+            "How does temperature change the model response?"
+        )
+
         for temperature in temperatures:
             temperature_data = {}
 
@@ -111,7 +122,7 @@ for model in models:
 
                 temperature_data[token] = {
                     "logit_value": round(logit_value, 4),
-                    "completed_sentence": make_completed_sentence(token),
+                    "completed_sentence": make_completed_sentence(token, temperature),
                     "group": group,
                 }
 

@@ -1,6 +1,7 @@
 {
   "Qwen2.5-VL": {
-    "Hello I am": {
+    "Hello I am ": {
+      "down_question": "How does temperature change the model response?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.6862,
@@ -624,6 +625,7 @@
       }
     },
     "Today I saw ": {
+      "down_question": "How does temperature change the next possible responses?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.6397,
@@ -1247,6 +1249,7 @@
       }
     },
     "The image shows ": {
+      "down_question": "Which object words become more likely at each temperature?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.6539,
@@ -1871,7 +1874,8 @@
     }
   },
   "LLaVA": {
-    "Hello I am": {
+    "Hello I am ": {
+      "down_question": "How does temperature change the model response?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.6742,
@@ -2495,6 +2499,7 @@
       }
     },
     "Today I saw ": {
+      "down_question": "How does temperature change the next possible responses?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.647,
@@ -3118,6 +3123,7 @@
       }
     },
     "The image shows ": {
+      "down_question": "Which object words become more likely at each temperature?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.6645,
@@ -3742,7 +3748,8 @@
     }
   },
   "InternVL": {
-    "Hello I am": {
+    "Hello I am ": {
+      "down_question": "How does temperature change the model response?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.6622,
@@ -4366,6 +4373,7 @@
       }
     },
     "Today I saw ": {
+      "down_question": "How does temperature change the next possible responses?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.6653,
@@ -4989,6 +4997,7 @@
       }
     },
     "The image shows ": {
+      "down_question": "Which object words become more likely at each temperature?",
       "0.1": {
         "__temperature_rates": {
           "valid_and_frequent": 0.6489,

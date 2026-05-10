@@ -148,6 +148,188 @@
       white-space: nowrap;
     }
 
+    #down-token-demo .down-question-box {
+      position: relative;
+      min-height: 50px;
+      padding: clamp(12px, 2.5vw, 15px) clamp(14px, 4vw, 22px);
+      margin: 0 auto 12px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid var(--down-panel-border);
+      line-height: 1.45;
+      font-size: clamp(0.92rem, 2.6vw, 1rem);
+      text-align: left;
+      overflow-wrap: anywhere;
+      box-shadow: 0 10px 24px rgba(50, 115, 220, 0.06);
+    }
+
+    #down-token-demo .down-question-box::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 4px;
+      border-radius: 0 999px 999px 0;
+      background: var(--down-blue);
+    }
+
+    #down-token-demo .down-question-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      color: var(--down-blue);
+      margin-right: 6px;
+    }
+
+    #down-token-demo .down-question-label::before {
+      content: "?";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: var(--down-blue-bg);
+      border: 1px solid var(--down-blue-border);
+      color: var(--down-blue);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    #down-token-demo .down-question-text {
+      font-weight: 700;
+      color: #111;
+    }
+
+    #down-token-demo .down-response-card {
+      position: relative;
+      margin: 0 auto 24px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(50, 115, 220, 0.08), rgba(255, 255, 255, 0.95)),
+        var(--down-panel-bg);
+      border: 1px solid var(--down-panel-border);
+      box-shadow: 0 14px 32px rgba(50, 115, 220, 0.11);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    #down-token-demo .down-response-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--down-blue), #8eb2ff);
+    }
+
+    #down-token-demo .down-response-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px clamp(14px, 4vw, 24px) 8px clamp(18px, 4vw, 28px);
+      border-bottom: 1px solid rgba(226, 230, 255, 0.8);
+    }
+
+    #down-token-demo .down-response-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #111;
+      font-size: clamp(0.82rem, 2.3vw, 0.92rem);
+      font-weight: 900;
+      letter-spacing: 0.2px;
+    }
+
+    #down-token-demo .down-response-title-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--down-blue);
+      box-shadow: 0 0 0 5px rgba(50, 115, 220, 0.12);
+      flex: 0 0 auto;
+    }
+
+    #down-token-demo .down-response-badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--down-blue-border);
+      color: var(--down-blue);
+      font-size: 0.72rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    #down-token-demo .down-response-body {
+      min-height: 62px;
+      padding: clamp(13px, 3vw, 18px) clamp(14px, 4vw, 24px) clamp(14px, 3vw, 18px) clamp(18px, 4vw, 28px);
+      line-height: 1.55;
+      font-size: clamp(0.96rem, 2.8vw, 1.06rem);
+      overflow-wrap: anywhere;
+    }
+
+    #down-token-demo .down-interaction-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: fit-content;
+      max-width: 100%;
+      margin: -8px auto 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--down-blue-border);
+      color: #333;
+      font-size: clamp(0.78rem, 2.2vw, 0.9rem);
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(50, 115, 220, 0.09);
+    }
+
+    #down-token-demo .down-interaction-hint-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--down-blue-bg);
+      color: var(--down-blue);
+      font-size: 0.82rem;
+      font-weight: 900;
+      animation: downHintPulse 1.6s ease-in-out infinite;
+    }
+
+    #down-token-demo .down-interaction-hint-text {
+      color: #333;
+    }
+
+    #down-token-demo .down-interaction-hint-text strong {
+      color: var(--down-blue);
+    }
+
+    @keyframes downHintPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(50, 115, 220, 0.25);
+      }
+
+      70% {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 8px rgba(50, 115, 220, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(50, 115, 220, 0);
+      }
+    }
+
     #down-token-demo .down-sentence-box {
       min-height: 58px;
       padding: clamp(12px, 3vw, 16px) clamp(14px, 4vw, 24px);
@@ -578,13 +760,13 @@
       min-height: 0;
       display: flex;
       justify-content: center;
-      align-items: stretch;
+      align-items: center;
     }
 
     #down-token-demo .down-temperature-slider-column {
       position: relative;
       width: 56px;
-      min-height: 0;
+      height: calc(var(--down-chart-height) - 74px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -594,7 +776,7 @@
       content: "";
       position: absolute;
       width: 9px;
-      height: calc(100% - 16px);
+      height: 100%;
       border-radius: 999px;
       background: #e7ecff;
       box-shadow: inset 0 0 0 1px rgba(50, 115, 220, 0.12);
@@ -603,7 +785,7 @@
     #down-token-demo .down-temperature-slider-column::after {
       content: "";
       position: absolute;
-      bottom: 8px;
+      bottom: 0;
       width: 9px;
       height: var(--down-temperature-progress, 50%);
       border-radius: 999px;
@@ -616,8 +798,8 @@
       left: 50%;
       top: 50%;
       width: calc(var(--down-chart-height) - 74px);
-      max-width: 260px;
-      min-width: 180px;
+      max-width: none;
+      min-width: 0;
       transform: translate(-50%, -50%) rotate(-90deg);
       transform-origin: center;
       appearance: none;
@@ -795,6 +977,36 @@
         font-size: 0.95rem;
       }
 
+      #down-token-demo .down-question-box {
+        margin-bottom: 10px;
+        padding: 10px 12px 10px 16px;
+      }
+
+      #down-token-demo .down-response-card {
+        margin-bottom: 18px;
+        border-radius: 16px;
+      }
+
+      #down-token-demo .down-response-header {
+        padding: 10px 12px 7px 18px;
+      }
+
+      #down-token-demo .down-response-badge {
+        font-size: 0.66rem;
+        padding: 4px 8px;
+      }
+
+      #down-token-demo .down-response-body {
+        padding: 12px 12px 13px 18px;
+      }
+
+      #down-token-demo .down-interaction-hint {
+        margin: -6px auto 14px;
+        padding: 7px 12px;
+        border-radius: 14px;
+        text-align: center;
+      }
+
       #down-token-demo .down-plot-area {
         grid-template-columns: 30px minmax(0, 1fr);
       }
@@ -846,6 +1058,26 @@
       #down-token-demo .down-variant-button {
         width: 36px;
         height: 30px;
+      }
+
+      #down-token-demo .down-response-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      #down-token-demo .down-response-badge {
+        align-self: flex-start;
+      }
+
+      #down-token-demo .down-interaction-hint {
+        align-items: flex-start;
+        width: 100%;
+        border-radius: 14px;
+      }
+
+      #down-token-demo .down-interaction-hint-icon {
+        margin-top: 1px;
       }
 
       #down-token-demo .down-chart-wrapper {
@@ -915,7 +1147,29 @@
               </div>
 
               <div class="down-variant-animated-area" id="downVariantAnimatedArea">
-                <div class="down-sentence-box" id="downSentenceBox"></div>
+                <div class="down-question-box" id="downQuestionBox"></div>
+
+                <div class="down-response-card">
+                  <div class="down-response-header">
+                    <div class="down-response-title">
+                      <span class="down-response-title-dot"></span>
+                      <span>Model response</span>
+                    </div>
+
+                    <div class="down-response-badge">
+                      Generated continuation
+                    </div>
+                  </div>
+
+                  <div class="down-response-body" id="downSentenceBox"></div>
+                </div>
+
+                <div class="down-interaction-hint">
+                  <span class="down-interaction-hint-icon">↧</span>
+                  <span class="down-interaction-hint-text">
+                    Hover or click a <strong>bar</strong> to preview different responses.
+                  </span>
+                </div>
 
                 <div class="down-variant-info" id="downVariantInfo">
                   Variant 1 of 1
@@ -992,6 +1246,7 @@
     const downChart = document.getElementById("downChart");
     const downChartWrapper = downRoot.querySelector(".down-chart-wrapper");
     const downSentenceBox = document.getElementById("downSentenceBox");
+    const downQuestionBox = document.getElementById("downQuestionBox");
     const downErrorBox = document.getElementById("downErrorBox");
 
     const downProbChart = document.getElementById("downProbChart");
@@ -1009,7 +1264,9 @@
     const downModelRightButton = document.getElementById("downModelRightButton");
     const downModelName = document.getElementById("downModelName");
 
-    const downIgnoredKeys = new Set(["__temperature_rates"]);
+    const downInteractionHintText = downRoot.querySelector(".down-interaction-hint-text");
+
+    const downIgnoredKeys = new Set(["__temperature_rates", "down_question"]);
 
     let downLoadedData = null;
 
@@ -1089,6 +1346,45 @@
       downTypingTimerIds = [];
     }
 
+    function downShowDefaultQuestion() {
+      if (!downQuestionBox) {
+        return;
+      }
+
+      downQuestionBox.innerHTML = `
+        <span class="down-question-label">Question</span>
+        <span class="down-question-text">...</span>
+      `;
+    }
+
+    function downShowCurrentQuestion(data) {
+      if (!downQuestionBox) {
+        return;
+      }
+
+      let question = "";
+
+      if (data && typeof data.down_question === "string") {
+        question = data.down_question;
+      } else if (
+        downLoadedData &&
+        downSelectedModelName &&
+        downSelectedStartText &&
+        downLoadedData[downSelectedModelName] &&
+        downLoadedData[downSelectedModelName][downSelectedStartText] &&
+        typeof downLoadedData[downSelectedModelName][downSelectedStartText].down_question === "string"
+      ) {
+        question = downLoadedData[downSelectedModelName][downSelectedStartText].down_question;
+      } else {
+        question = "What is the model likely to generate next?";
+      }
+
+      downQuestionBox.innerHTML = `
+        <span class="down-question-label">Question</span>
+        <span class="down-question-text">${downEscapeHTML(question)}</span>
+      `;
+    }
+
     function downShowDefaultSentence() {
       downClearTypingTimers();
 
@@ -1097,6 +1393,18 @@
       downSentenceBox.innerHTML = `
         <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span><span class="down-completed-part" style="color: black;">...</span>
       `;
+    }
+
+    function downUpdateInteractionHintText() {
+      if (!downInteractionHintText) {
+        return;
+      }
+
+      const isMobile = window.innerWidth <= 760;
+
+      downInteractionHintText.innerHTML = isMobile
+        ? 'Tap a <strong>bar</strong> to preview different responses'
+        : 'Hover or click a <strong>bar</strong> to preview different responses';
     }
 
     async function downLoadData() {
@@ -1113,6 +1421,7 @@
         downModelNames = downGetModelNames(downLoadedData);
 
         if (downModelNames.length === 0) {
+          downShowDefaultQuestion();
           downShowDefaultSentence();
           downClearProbabilityChart();
           downErrorBox.textContent = "No valid model keys found in data_down.json.";
@@ -1127,6 +1436,7 @@
         downSetupCurrentModel();
 
       } catch (error) {
+        downShowDefaultQuestion();
         downShowDefaultSentence();
         downClearProbabilityChart();
         downErrorBox.textContent = "Could not read data_down.json. Run this page with a local server, not by directly opening the HTML file.";
@@ -1230,6 +1540,7 @@
         downChart.innerHTML = "";
         downCurrentTokenOrder = [];
         downCurrentDataArray = [];
+        downShowDefaultQuestion();
         downShowDefaultSentence();
         downClearProbabilityChart();
         downErrorBox.textContent = "No valid starting text keys found for this model.";
@@ -1335,6 +1646,7 @@
         downChart.innerHTML = "";
         downCurrentTokenOrder = [];
         downCurrentDataArray = [];
+        downShowDefaultQuestion();
         downShowDefaultSentence();
         downClearProbabilityChart();
         downErrorBox.textContent = "No valid temperature keys found for this starting text.";
@@ -1394,11 +1706,14 @@
         downChart.innerHTML = "";
         downCurrentTokenOrder = [];
         downCurrentDataArray = [];
+        downShowDefaultQuestion();
         downShowDefaultSentence();
         downClearProbabilityChart();
         downErrorBox.textContent = "Selected temperature was not found in data_down.json.";
         return;
       }
+
+      downShowCurrentQuestion(currentTokenData);
 
       const newDataArray = downToDataArray(currentTokenData, downCurrentTokenOrder);
 
@@ -1491,6 +1806,7 @@
       downCreateBarLegend();
 
       downErrorBox.textContent = "";
+      downShowCurrentQuestion(data);
       downShowDefaultSentence();
 
       const dataArray = downToDataArray(data);
@@ -2080,6 +2396,7 @@
         return;
       }
 
+      downUpdateInteractionHintText();
       downUpdateBarSizes(downCurrentDataArray.length);
       downUpdateBarHeightsSmooth(downCurrentDataArray);
       downUpdateTemperatureControl();
@@ -2092,6 +2409,8 @@
 
     downResizeObserver.observe(downChartWrapper);
     downResizeObserver.observe(downChart);
+
+    window.addEventListener("resize", downUpdateInteractionHintText);
 
     function downFormatValue(number) {
       if (Number.isInteger(number)) {
@@ -2113,6 +2432,7 @@
         .replaceAll("'", "&#039;");
     }
 
+    downUpdateInteractionHintText();
     downLoadData();
   </script>
 </body>

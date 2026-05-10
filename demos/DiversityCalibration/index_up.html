@@ -154,27 +154,196 @@
       white-space: nowrap;
     }
 
-    #up-token-demo .up-sentence-box {
-      min-height: 58px;
-      padding: clamp(12px, 3vw, 16px) clamp(14px, 4vw, 24px);
-      margin: 0 auto 24px;
-      border-radius: 14px;
-      background: var(--up-panel-bg);
+    #up-token-demo .up-question-box {
+      position: relative;
+      min-height: 50px;
+      padding: clamp(12px, 2.5vw, 15px) clamp(14px, 4vw, 22px);
+      margin: 0 auto 12px;
+      border-radius: 16px;
+      background: #ffffff;
       border: 1px solid var(--up-panel-border);
-      line-height: 1.5;
-      font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+      line-height: 1.45;
+      font-size: clamp(0.92rem, 2.6vw, 1rem);
       text-align: left;
+      overflow-wrap: anywhere;
+      box-shadow: 0 10px 24px rgba(50, 115, 220, 0.06);
+    }
+
+    #up-token-demo .up-question-box::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 4px;
+      border-radius: 0 999px 999px 0;
+      background: var(--up-blue);
+    }
+
+    #up-token-demo .up-question-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      color: var(--up-blue);
+      margin-right: 6px;
+    }
+
+    #up-token-demo .up-question-label::before {
+      content: "?";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: var(--up-blue-bg);
+      border: 1px solid var(--up-blue-border);
+      color: var(--up-blue);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    #up-token-demo .up-question-text {
+      font-weight: 700;
+      color: #111;
+    }
+
+    #up-token-demo .up-response-card {
+      position: relative;
+      margin: 0 auto 24px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(50, 115, 220, 0.08), rgba(255, 255, 255, 0.95)),
+        var(--up-panel-bg);
+      border: 1px solid var(--up-panel-border);
+      box-shadow: 0 14px 32px rgba(50, 115, 220, 0.11);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    #up-token-demo .up-response-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--up-blue), #8eb2ff);
+    }
+
+    #up-token-demo .up-response-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px clamp(14px, 4vw, 24px) 8px clamp(18px, 4vw, 28px);
+      border-bottom: 1px solid rgba(226, 230, 255, 0.8);
+    }
+
+    #up-token-demo .up-response-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #111;
+      font-size: clamp(0.82rem, 2.3vw, 0.92rem);
+      font-weight: 900;
+      letter-spacing: 0.2px;
+    }
+
+    #up-token-demo .up-response-title-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--up-blue);
+      box-shadow: 0 0 0 5px rgba(50, 115, 220, 0.12);
+      flex: 0 0 auto;
+    }
+
+    #up-token-demo .up-response-badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--up-blue-border);
+      color: var(--up-blue);
+      font-size: 0.72rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    #up-token-demo .up-response-body {
+      min-height: 62px;
+      padding: clamp(13px, 3vw, 18px) clamp(14px, 4vw, 24px) clamp(14px, 3vw, 18px) clamp(18px, 4vw, 28px);
+      line-height: 1.55;
+      font-size: clamp(0.96rem, 2.8vw, 1.06rem);
       overflow-wrap: anywhere;
     }
 
+    #up-token-demo .up-interaction-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: fit-content;
+      max-width: 100%;
+      margin: -8px auto 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--up-blue-border);
+      color: #333;
+      font-size: clamp(0.78rem, 2.2vw, 0.9rem);
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(50, 115, 220, 0.09);
+    }
+
+    #up-token-demo .up-interaction-hint-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--up-blue-bg);
+      color: var(--up-blue);
+      font-size: 0.82rem;
+      font-weight: 900;
+      animation: upHintPulse 1.6s ease-in-out infinite;
+    }
+
+    #up-token-demo .up-interaction-hint-text {
+      color: #333;
+    }
+
+    #up-token-demo .up-interaction-hint-text strong {
+      color: var(--up-blue);
+    }
+
+    @keyframes upHintPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(50, 115, 220, 0.25);
+      }
+
+      70% {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 8px rgba(50, 115, 220, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(50, 115, 220, 0);
+      }
+    }
+
     #up-token-demo .up-fixed-sentence {
-      font-weight: 700;
+      font-weight: 800;
       color: #111;
       white-space: pre-wrap;
     }
 
     #up-token-demo .up-completed-part {
-      font-weight: 700;
+      font-weight: 800;
       display: inline;
       white-space: pre-wrap;
     }
@@ -604,13 +773,23 @@
         transform 0.18s ease,
         filter 0.18s ease,
         opacity 0.18s ease,
-        background-color 0.18s ease;
+        background-color 0.18s ease,
+        box-shadow 0.18s ease;
       touch-action: manipulation;
     }
 
     #up-token-demo .up-bar:hover {
-      transform: scaleX(1.1);
-      filter: brightness(0.88);
+      transform: scaleX(1.15) translateY(-3px);
+      filter: brightness(0.86);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+    }
+
+    #up-token-demo .up-bar:focus {
+      outline: 3px solid rgba(50, 115, 220, 0.25);
+      outline-offset: 3px;
+      transform: scaleX(1.15) translateY(-3px);
+      filter: brightness(0.86);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
     }
 
     #up-token-demo .up-error {
@@ -631,6 +810,36 @@
 
       #up-token-demo .subtitle.is-6 {
         font-size: 0.95rem;
+      }
+
+      #up-token-demo .up-question-box {
+        margin-bottom: 10px;
+        padding: 10px 12px 10px 16px;
+      }
+
+      #up-token-demo .up-response-card {
+        margin-bottom: 18px;
+        border-radius: 16px;
+      }
+
+      #up-token-demo .up-response-header {
+        padding: 10px 12px 7px 18px;
+      }
+
+      #up-token-demo .up-response-badge {
+        font-size: 0.66rem;
+        padding: 4px 8px;
+      }
+
+      #up-token-demo .up-response-body {
+        padding: 12px 12px 13px 18px;
+      }
+
+      #up-token-demo .up-interaction-hint {
+        margin: -6px auto 14px;
+        padding: 7px 12px;
+        border-radius: 14px;
+        text-align: center;
       }
 
       #up-token-demo .up-plot-area {
@@ -694,6 +903,26 @@
         height: 30px;
       }
 
+      #up-token-demo .up-response-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      #up-token-demo .up-response-badge {
+        align-self: flex-start;
+      }
+
+      #up-token-demo .up-interaction-hint {
+        align-items: flex-start;
+        width: 100%;
+        border-radius: 14px;
+      }
+
+      #up-token-demo .up-interaction-hint-icon {
+        margin-top: 1px;
+      }
+
       #up-token-demo .up-chart-wrapper {
         padding-bottom: 24px;
       }
@@ -753,7 +982,7 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-full">
             <h2 class="title is-3">Token Probability Barplot</h2>
-            <p class="subtitle is-6">Hover or tap a token to show the completed sentence.</p>
+            <p class="subtitle is-6">Explore how each token changes the model response.</p>
 
             <div class="up-plot-wrap">
               <div class="up-model-control">
@@ -777,7 +1006,29 @@
               </div>
 
               <div class="up-variant-animated-area" id="upVariantAnimatedArea">
-                <div class="up-sentence-box" id="upSentenceBox"></div>
+                <div class="up-question-box" id="upQuestionBox"></div>
+
+                <div class="up-response-card">
+                  <div class="up-response-header">
+                    <div class="up-response-title">
+                      <span class="up-response-title-dot"></span>
+                      <span>Model response</span>
+                    </div>
+
+                    <div class="up-response-badge">
+                      Generated continuation
+                    </div>
+                  </div>
+
+                  <div class="up-response-body" id="upSentenceBox"></div>
+                </div>
+
+                <div class="up-interaction-hint">
+                  <span class="up-interaction-hint-icon">↧</span>
+                  <span class="up-interaction-hint-text">
+                    Hover or click a <strong>bar</strong> to preview different responses.
+                  </span>
+                </div>
 
                 <div class="up-variant-info" id="upVariantInfo">
                   Variant 1 of 1
@@ -843,6 +1094,7 @@
     const upChart = document.getElementById("upChart");
     const upChartWrapper = upDemoRoot.querySelector(".up-chart-wrapper");
     const upSentenceBox = document.getElementById("upSentenceBox");
+    const upQuestionBox = document.getElementById("upQuestionBox");
     const upErrorBox = document.getElementById("upErrorBox");
 
     const upCutoffSlider = document.getElementById("upCutoffSlider");
@@ -857,9 +1109,12 @@
     const upModelRightButton = document.getElementById("upModelRightButton");
     const upModelName = document.getElementById("upModelName");
 
+    const upInteractionHintText = upDemoRoot.querySelector(".up-interaction-hint-text");
+
     const upSummaryKeySet = new Set([
       "valid",
-      "invalid"
+      "invalid",
+      "up_question"
     ]);
 
     let upLoadedData = null;
@@ -959,6 +1214,32 @@
       upTypingTimerIds = [];
     }
 
+    function upShowDefaultQuestion() {
+      if (!upQuestionBox) {
+        return;
+      }
+
+      upQuestionBox.innerHTML = `
+        <span class="up-question-label">Question</span>
+        <span class="up-question-text">...</span>
+      `;
+    }
+
+    function upShowCurrentQuestion(data) {
+      if (!upQuestionBox) {
+        return;
+      }
+
+      const question = data && typeof data.up_question === "string"
+        ? data.up_question
+        : "What is the model likely to generate next?";
+
+      upQuestionBox.innerHTML = `
+        <span class="up-question-label">Question</span>
+        <span class="up-question-text">${upEscapeHTML(question)}</span>
+      `;
+    }
+
     function upShowDefaultSentence() {
       upClearTypingTimers();
 
@@ -967,6 +1248,18 @@
       upSentenceBox.innerHTML = `
         <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part" style="color: black;">...</span>
       `;
+    }
+
+    function upUpdateInteractionHintText() {
+      if (!upInteractionHintText) {
+        return;
+      }
+
+      const isMobile = window.innerWidth <= 760;
+
+      upInteractionHintText.innerHTML = isMobile
+        ? 'Tap a <strong>bar</strong> to preview different responses'
+        : 'Hover or click a <strong>bar</strong> to preview different responses';
     }
 
     async function upLoadData() {
@@ -983,6 +1276,7 @@
         upModelNames = upGetModelNames(upLoadedData);
 
         if (upModelNames.length === 0) {
+          upShowDefaultQuestion();
           upShowDefaultSentence();
           upClearPRChart();
           upErrorBox.textContent = "No valid model keys found in data_up.json.";
@@ -997,6 +1291,7 @@
         upSetupCurrentModel();
 
       } catch (error) {
+        upShowDefaultQuestion();
         upShowDefaultSentence();
         upClearPRChart();
         upErrorBox.textContent = "Could not read data_up.json. Run this page with a local server, not by directly opening the HTML file.";
@@ -1089,6 +1384,7 @@
         upChart.innerHTML = "";
         upCurrentTokenOrder = [];
         upCurrentDataArray = [];
+        upShowDefaultQuestion();
         upShowDefaultSentence();
         upClearPRChart();
         upErrorBox.textContent = "No valid starting text keys found for this model.";
@@ -1195,12 +1491,14 @@
         upChart.innerHTML = "";
         upCurrentTokenOrder = [];
         upCurrentDataArray = [];
+        upShowDefaultQuestion();
         upShowDefaultSentence();
         upClearPRChart();
         upErrorBox.textContent = "No valid data found for this starting text.";
         return;
       }
 
+      upShowCurrentQuestion(currentTokenData);
       upRenderChart(currentTokenData);
     }
 
@@ -1775,6 +2073,7 @@
         return;
       }
 
+      upUpdateInteractionHintText();
       upUpdateBarSizes(upCurrentDataArray.length);
       upUpdateBarHeights(upCurrentDataArray);
       upUpdateCutoffUI(upCurrentDataArray);
@@ -1788,6 +2087,8 @@
 
     upResizeObserver.observe(upChartWrapper);
     upResizeObserver.observe(upChart);
+
+    window.addEventListener("resize", upUpdateInteractionHintText);
 
     function upFormatValue(number) {
       if (Number.isInteger(number)) {
@@ -1809,6 +2110,7 @@
         .replaceAll("'", "&#039;");
     }
 
+    upUpdateInteractionHintText();
     upLoadData();
   </script>
 </body>

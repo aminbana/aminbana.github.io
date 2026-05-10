@@ -9,10 +9,16 @@ output_path = Path("data_up.json")
 models = ["Qwen2.5-VL", "LLaVA", "InternVL"]
 
 samples = [
-    "Hello I am",
+    "Hello I am ",
     "Today I saw ",
     "The image shows ",
 ]
+
+up_questions = {
+    "Hello I am": "What is the model likely to generate after this text?",
+    "Today I saw ": "Which next tokens are most likely after this sentence?",
+    "The image shows ": "What objects or words can the model continue with?",
+}
 
 tokens = [str(i) for i in range(50)]
 
@@ -66,6 +72,11 @@ for model in models:
 
     for sample in samples:
         sample_data = {}
+
+        sample_data["up_question"] = up_questions.get(
+            sample,
+            "What is the model likely to generate next?"
+        )
 
         group_counts = {
             "valid": 0,

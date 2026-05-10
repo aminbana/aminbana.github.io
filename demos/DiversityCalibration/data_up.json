@@ -1,6 +1,7 @@
 {
   "Qwen2.5-VL": {
-    "Hello I am": {
+    "Hello I am ": {
+      "up_question": "What is the model likely to generate next?",
       "0": {
         "logit_value": 50.5577,
         "completed_sentence": "0 appears in the scene. 0 appears in the scene. 0 is clearly visible. 0 is part of the scene. 0 is clearly visible. 0 is part of the scene.",
@@ -355,6 +356,7 @@
       "invalid": 0.24
     },
     "Today I saw ": {
+      "up_question": "Which next tokens are most likely after this sentence?",
       "0": {
         "logit_value": 49.7671,
         "completed_sentence": "0 appears in the scene. 0 is clearly visible. 0 is near the center. 0 is part of the scene. 0 is part of the scene. 0 is near the center.",
@@ -709,6 +711,7 @@
       "invalid": 0.24
     },
     "The image shows ": {
+      "up_question": "What objects or words can the model continue with?",
       "0": {
         "logit_value": 48.7624,
         "completed_sentence": "0 appears in the scene. 0 is clearly visible. 0 is near the center. 0 can be seen in the image. 0 is near the center. 0 is part of the scene.",
@@ -1064,7 +1067,8 @@
     }
   },
   "LLaVA": {
-    "Hello I am": {
+    "Hello I am ": {
+      "up_question": "What is the model likely to generate next?",
       "0": {
         "logit_value": 49.7449,
         "completed_sentence": "0 is near the center. 0 is part of the scene. 0 can be seen in the image. 0 is part of the scene. 0 can be seen in the image. 0 can be seen in the image.",
@@ -1419,6 +1423,7 @@
       "invalid": 0.24
     },
     "Today I saw ": {
+      "up_question": "Which next tokens are most likely after this sentence?",
       "0": {
         "logit_value": 50.5592,
         "completed_sentence": "0 can be seen in the image. 0 is part of the scene. 0 is clearly visible. 0 is clearly visible. 0 is part of the scene. 0 appears in the scene.",
@@ -1773,6 +1778,7 @@
       "invalid": 0.24
     },
     "The image shows ": {
+      "up_question": "What objects or words can the model continue with?",
       "0": {
         "logit_value": 50.1277,
         "completed_sentence": "0 is near the center. 0 appears in the scene. 0 is near the center. 0 appears in the scene. 0 is clearly visible. 0 is clearly visible.",
@@ -2128,7 +2134,8 @@
     }
   },
   "InternVL": {
-    "Hello I am": {
+    "Hello I am ": {
+      "up_question": "What is the model likely to generate next?",
       "0": {
         "logit_value": 50.0845,
         "completed_sentence": "0 can be seen in the image. 0 is near the center. 0 is clearly visible. 0 is near the center. 0 is clearly visible. 0 is clearly visible.",
@@ -2483,6 +2490,7 @@
       "invalid": 0.24
     },
     "Today I saw ": {
+      "up_question": "Which next tokens are most likely after this sentence?",
       "0": {
         "logit_value": 48.0956,
         "completed_sentence": "0 is clearly visible. 0 is near the center. 0 is clearly visible. 0 can be seen in the image. 0 is near the center. 0 is clearly visible.",
@@ -2837,6 +2845,7 @@
       "invalid": 0.24
     },
     "The image shows ": {
+      "up_question": "What objects or words can the model continue with?",
       "0": {
         "logit_value": 49.2438,
         "completed_sentence": "0 is clearly visible. 0 appears in the scene. 0 appears in the scene. 0 is near the center. 0 can be seen in the image. 0 is near the center.",
