@@ -1,6 +1,6 @@
 {
   "Qwen2.5-VL": {
-    "Hello I am ": {
+    "Hello I am": {
       "down_question": "How does temperature change the model response?",
       "0.1": {
         "__temperature_rates": {
@@ -10,17 +10,17 @@
         },
         "0": {
           "logit_value": 40.2232,
-          "completed_sentence": "0 is clearly visible. 0 is part of the scene. 0 is clearly visible. 0 is part of the scene. 0 can be seen in the image. 0 is clearly visible.",
+          "completed_sentence": "     0 is clearly visible. 0 is part of the scene. 0 is clearly visible. 0 is part of the scene. 0 can be seen in the image. 0 is clearly visible.",
           "group": "valid_and_frequent"
         },
         "1": {
           "logit_value": 39.0298,
-          "completed_sentence": "1 appears in the scene. 1 appears in the scene. 1 is part of the scene. 1 is part of the scene. 1 is clearly visible. 1 is part of the scene.",
+          "completed_sentence": "    1 appears in the scene. 1 appears in the scene. 1 is part of the scene. 1 is part of the scene. 1 is clearly visible. 1 is part of the scene.",
           "group": "valid_and_frequent"
         },
         "2": {
           "logit_value": 38.1988,
-          "completed_sentence": "2 is part of the scene. 2 can be seen in the image. 2 appears in the scene. 2 can be seen in the image. 2 is part of the scene. 2 is near the center.",
+          "completed_sentence": "    2 is part of the scene. 2 can be seen in the image. 2 appears in the scene. 2 can be seen in the image. 2 is part of the scene. 2 is near the center.",
           "group": "valid_and_frequent"
         },
         "3": {

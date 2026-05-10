@@ -4,13 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Up Token Probability Demo</title>
-  <meta name="description" content="A small interactive upper token probability barplot demo.">
+  <title>Diversity Calibration Demo</title>
+  <meta name="description" content="Diversity Calibration Demo">
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
   <style>
+    body {
+      margin: 0;
+      background: #fff;
+    }
+
     #up-token-demo {
       --up-page-pad: clamp(14px, 3vw, 32px);
       --up-plot-max-width: 1080px;
@@ -272,51 +277,34 @@
     }
 
     #up-token-demo .up-response-body {
-      min-height: 62px;
+      min-height: calc(1.55em * 4 + 32px);
+      max-height: calc(1.55em * 4 + 32px);
       padding: clamp(13px, 3vw, 18px) clamp(14px, 4vw, 24px) clamp(14px, 3vw, 18px) clamp(18px, 4vw, 28px);
       line-height: 1.55;
       font-size: clamp(0.96rem, 2.8vw, 1.06rem);
       overflow-wrap: anywhere;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
     }
 
-    #up-token-demo .up-interaction-hint {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      width: fit-content;
-      max-width: 100%;
-      margin: -8px auto 16px;
-      padding: 8px 14px;
+    #up-token-demo .up-response-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #up-token-demo .up-response-body::-webkit-scrollbar-track {
+      background: rgba(226, 230, 255, 0.55);
       border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--up-blue-border);
-      color: #333;
-      font-size: clamp(0.78rem, 2.2vw, 0.9rem);
-      font-weight: 800;
-      box-shadow: 0 10px 24px rgba(50, 115, 220, 0.09);
     }
 
-    #up-token-demo .up-interaction-hint-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 22px;
+    #up-token-demo .up-response-body::-webkit-scrollbar-thumb {
+      background: rgba(50, 115, 220, 0.45);
       border-radius: 999px;
-      background: var(--up-blue-bg);
-      color: var(--up-blue);
-      font-size: 0.82rem;
-      font-weight: 900;
-      animation: upHintPulse 1.6s ease-in-out infinite;
     }
 
-    #up-token-demo .up-interaction-hint-text {
-      color: #333;
-    }
-
-    #up-token-demo .up-interaction-hint-text strong {
-      color: var(--up-blue);
+    #up-token-demo .up-response-body::-webkit-scrollbar-thumb:hover {
+      background: rgba(50, 115, 220, 0.65);
     }
 
     @keyframes upHintPulse {
@@ -731,11 +719,11 @@
     }
 
     #up-token-demo .up-pr-line-precision {
-      stroke: #3273dc;
+      stroke: #00008B;
     }
 
     #up-token-demo .up-pr-line-recall {
-      stroke: #FF5D5D;
+      stroke: #FF8C00;
     }
 
     #up-token-demo .up-pr-point {
@@ -749,7 +737,7 @@
     }
 
     #up-token-demo .up-pr-legend {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 700;
     }
 
@@ -778,10 +766,12 @@
       touch-action: manipulation;
     }
 
-    #up-token-demo .up-bar:hover {
+    #up-token-demo .up-bar.up-selected-bar {
       transform: scaleX(1.15) translateY(-3px);
       filter: brightness(0.86);
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+      outline: 3px solid rgba(50, 115, 220, 0.25);
+      outline-offset: 3px;
     }
 
     #up-token-demo .up-bar:focus {
@@ -832,6 +822,8 @@
       }
 
       #up-token-demo .up-response-body {
+        min-height: calc(1.55em * 4 + 25px);
+        max-height: calc(1.55em * 4 + 25px);
         padding: 12px 12px 13px 18px;
       }
 
@@ -962,14 +954,20 @@
         <div class="container is-max-desktop">
           <div class="columns is-centered">
             <div class="column has-text-centered">
-              <h1 class="title is-1 up-publication-title">Interactive Token Probability Visualization</h1>
+              <h1 class="title is-1 up-publication-title">Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs</h1>
 
               <div class="up-centered">
-                <span class="up-conf-text">Conference Demo</span>
+                <span class="up-conf-text">Playground Demo</span>
               </div>
 
               <div class="is-size-5 up-publication-authors" style="margin-top: 10px;">
-                <span class="up-author-block up-fake-link">Token probability barplot from JSON data</span>
+                <span class="up-author-block up-fake-link">What are the distributional properties of LLMs that constrain their ability to generate outputs that are both valid and diverse?</span>
+              </div>
+
+              <div>
+                <p>
+                  We introduce two bottlenecks:
+                </p>
               </div>
             </div>
           </div>
@@ -981,8 +979,8 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
           <div class="column is-full">
-            <h2 class="title is-3">Token Probability Barplot</h2>
-            <p class="subtitle is-6">Explore how each token changes the model response.</p>
+            <h2 class="title is-3">1. Order Calibration</h2>
+            <p class="subtitle is-6">Valid tokens are not reliably ranked above invalid tokens. Any cutoff strategy inevitably drops many valid tokens (low recall) or includes many invalid ones (low precision).</p>
 
             <div class="up-plot-wrap">
               <div class="up-model-control">
@@ -1084,10 +1082,10 @@
     const UP_TEXT_ANIMATION_MODE = "typing";
     const UP_TYPING_WORD_DELAY_MS = 50;
 
-    const UP_VALID_COLOR = "#ACDB7A";
-    const UP_INVALID_COLOR = "#FF5D5D";
-    const UP_VALID_MUTED_COLOR = "#CFCFCF";
-    const UP_INVALID_MUTED_COLOR = "#A2A2A2";
+    const UP_VALID_COLOR = "#54a24b";
+    const UP_INVALID_COLOR = "#ff6944";
+    const UP_VALID_MUTED_COLOR = "#999999";
+    const UP_INVALID_MUTED_COLOR = "#7f7f7f";
 
     const upDemoRoot = document.getElementById("up-token-demo");
 
@@ -1172,12 +1170,12 @@
           color: UP_VALID_COLOR
         },
         {
-          label: "Valid / Dropped",
-          color: UP_VALID_MUTED_COLOR
-        },
-        {
           label: "Invalid / Retained",
           color: UP_INVALID_COLOR
+        },
+        {
+          label: "Valid / Dropped",
+          color: UP_VALID_MUTED_COLOR
         },
         {
           label: "Invalid / Dropped",
@@ -1214,6 +1212,14 @@
       upTypingTimerIds = [];
     }
 
+
+    function upScrollResponseToBottom() {
+      if (!upSentenceBox) {
+        return;
+      }
+
+      upSentenceBox.scrollTop = upSentenceBox.scrollHeight;
+    }
     function upShowDefaultQuestion() {
       if (!upQuestionBox) {
         return;
@@ -1246,8 +1252,10 @@
       const startText = upSelectedStartText || "";
 
       upSentenceBox.innerHTML = `
-        <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part" style="color: black;">...</span>
+        <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span>
       `;
+
+      upSentenceBox.scrollTop = 0;
     }
 
     function upUpdateInteractionHintText() {
@@ -1543,6 +1551,16 @@
       return Math.max(2, ratio * maxBarHeight);
     }
 
+    function upSelectBar(selectedBar) {
+      const allBars = upChart.querySelectorAll(".up-bar");
+
+      allBars.forEach(bar => {
+        bar.classList.remove("up-selected-bar");
+      });
+
+      selectedBar.classList.add("up-selected-bar");
+    }
+
     function upRenderChart(data) {
       upChart.innerHTML = "";
       upCreateBarLegend();
@@ -1594,23 +1612,26 @@
 
         bar.style.backgroundColor = displayColor;
 
-        bar.addEventListener("mouseenter", () => {
-          upShowCompletedSentence(bar);
-        });
+        // bar.addEventListener("mouseleave", () => {
+        //   upShowDefaultSentence();
+        // });
 
-        bar.addEventListener("mouseleave", () => {
-          upShowDefaultSentence();
+        // bar.addEventListener("blur", () => {
+        //   upShowDefaultSentence();
+        // });
+
+        bar.addEventListener("mouseenter", () => {
+          upSelectBar(bar);
+          upShowCompletedSentence(bar);
         });
 
         bar.addEventListener("focus", () => {
+          upSelectBar(bar);
           upShowCompletedSentence(bar);
         });
 
-        bar.addEventListener("blur", () => {
-          upShowDefaultSentence();
-        });
-
         bar.addEventListener("click", () => {
+          upSelectBar(bar);
           upShowCompletedSentence(bar);
         });
 
@@ -1827,7 +1848,7 @@
         precisionPoint.setAttribute("cx", selectedX);
         precisionPoint.setAttribute("cy", upYScale(selectedItem.precision));
         precisionPoint.setAttribute("r", isMobilePR ? 5 : 6);
-        precisionPoint.setAttribute("fill", "#3273dc");
+        precisionPoint.setAttribute("fill", "#00008B");
         svg.appendChild(precisionPoint);
 
         const recallPoint = document.createElementNS(svgNS, "circle");
@@ -1835,7 +1856,7 @@
         recallPoint.setAttribute("cx", selectedX);
         recallPoint.setAttribute("cy", upYScale(selectedItem.recall));
         recallPoint.setAttribute("r", isMobilePR ? 5 : 6);
-        recallPoint.setAttribute("fill", "#FF5D5D");
+        recallPoint.setAttribute("fill", "#FF8C00");
         svg.appendChild(recallPoint);
       }
 
@@ -1856,7 +1877,7 @@
       precisionLegend.setAttribute("class", "up-pr-legend");
       precisionLegend.setAttribute("x", 0);
       precisionLegend.setAttribute("y", 0);
-      precisionLegend.setAttribute("fill", "#3273dc");
+      precisionLegend.setAttribute("fill", "#00008B");
       precisionLegend.textContent = "Precision";
       legendGroup.appendChild(precisionLegend);
 
@@ -1864,7 +1885,7 @@
       recallLegend.setAttribute("class", "up-pr-legend");
       recallLegend.setAttribute("x", 96);
       recallLegend.setAttribute("y", 0);
-      recallLegend.setAttribute("fill", "#FF5D5D");
+      recallLegend.setAttribute("fill", "#FF8C00");
       recallLegend.textContent = "Recall";
       legendGroup.appendChild(recallLegend);
 
@@ -1888,7 +1909,8 @@
     }
 
     function upShowFadeSentence(startText, completedSentence, color) {
-      const cleanedSentence = String(completedSentence).trim();
+      const cleanedSentence = String(completedSentence)
+        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ");
 
       if (!cleanedSentence) {
         upSentenceBox.innerHTML = `
@@ -1897,13 +1919,26 @@
         return;
       }
 
-      const words = cleanedSentence.split(/\s+/);
-      const firstWord = words.shift() || "";
-      const restText = words.length > 0 ? ` ${words.join(" ")}` : "";
+      const firstWordMatch = cleanedSentence.match(/\S+/);
+
+      if (!firstWordMatch) {
+        upSentenceBox.innerHTML = `
+          <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part up-animate-text" style="color: ${upEscapeHTML(color)};">${upEscapeHTML(cleanedSentence)}</span>
+        `;
+        upScrollResponseToBottom();
+        return;
+      }
+
+      const firstWord = firstWordMatch[0];
+      const firstWordStart = firstWordMatch.index;
+      const beforeFirstWord = cleanedSentence.slice(0, firstWordStart);
+      const afterFirstWord = cleanedSentence.slice(firstWordStart + firstWord.length);
 
       upSentenceBox.innerHTML = `
-        <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part up-animate-text" style="color: ${upEscapeHTML(color)};"><span class="up-underlined-generated-word">${upEscapeHTML(firstWord)}</span>${upEscapeHTML(restText)}</span>
+        <span class="up-fixed-sentence">${upEscapeHTML(startText)}</span><span class="up-completed-part up-animate-text" style="color: ${upEscapeHTML(color)};">${upEscapeHTML(beforeFirstWord)}<span class="up-underlined-generated-word">${upEscapeHTML(firstWord)}</span>${upEscapeHTML(afterFirstWord)}</span>
       `;
+
+      upScrollResponseToBottom();
     }
 
     function upShowTypingSentence(startText, completedSentence, color) {
@@ -1920,14 +1955,11 @@
       }
 
       const cleanedSentence = String(completedSentence)
-        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ")
-        .trim();
+        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ");
 
-      const words = cleanedSentence
-        .split(/\s+/)
-        .filter(Boolean);
+      const parts = cleanedSentence.match(/\s+|\S+/g) || [];
 
-      if (words.length === 0) {
+      if (parts.length === 0) {
         return;
       }
 
@@ -1936,47 +1968,52 @@
       cursor.style.color = color;
 
       upTypingCompletedPart.appendChild(cursor);
+      upScrollResponseToBottom();
 
-      words.forEach((word, index) => {
-        const timerId = window.setTimeout(() => {
-          if (runId !== upTypingRunId) {
-            return;
+    let firstWordWasUnderlined = false;
+
+    parts.forEach((part, index) => {
+      const timerId = window.setTimeout(() => {
+        if (runId !== upTypingRunId) {
+          return;
+        }
+
+        upTypingCompletedPart.innerHTML = "";
+
+        firstWordWasUnderlined = false;
+
+        parts.slice(0, index + 1).forEach(shownPart => {
+          const isWord = /\S/.test(shownPart);
+
+          if (isWord && !firstWordWasUnderlined) {
+            const underlinedWord = document.createElement("span");
+            underlinedWord.className = "up-underlined-generated-word";
+            underlinedWord.textContent = shownPart;
+            upTypingCompletedPart.appendChild(underlinedWord);
+            firstWordWasUnderlined = true;
+          } else {
+            upTypingCompletedPart.appendChild(document.createTextNode(shownPart));
           }
+        });
 
-          upTypingCompletedPart.innerHTML = "";
+        upTypingCompletedPart.appendChild(cursor);
+        upScrollResponseToBottom();
 
-          words.slice(0, index + 1).forEach((shownWord, shownIndex) => {
-            if (shownIndex > 0) {
-              upTypingCompletedPart.appendChild(document.createTextNode(" "));
+        if (index === parts.length - 1) {
+          const removeCursorTimerId = window.setTimeout(() => {
+            if (runId !== upTypingRunId) {
+              return;
             }
 
-            if (shownIndex === 0) {
-              const underlinedWord = document.createElement("span");
-              underlinedWord.className = "up-underlined-generated-word";
-              underlinedWord.textContent = shownWord;
-              upTypingCompletedPart.appendChild(underlinedWord);
-            } else {
-              upTypingCompletedPart.appendChild(document.createTextNode(shownWord));
-            }
-          });
+            cursor.remove();
+          }, 350);
 
-          upTypingCompletedPart.appendChild(cursor);
+          upTypingTimerIds.push(removeCursorTimerId);
+        }
+      }, index * UP_TYPING_WORD_DELAY_MS);
 
-          if (index === words.length - 1) {
-            const removeCursorTimerId = window.setTimeout(() => {
-              if (runId !== upTypingRunId) {
-                return;
-              }
-
-              cursor.remove();
-            }, 350);
-
-            upTypingTimerIds.push(removeCursorTimerId);
-          }
-        }, index * UP_TYPING_WORD_DELAY_MS);
-
-        upTypingTimerIds.push(timerId);
-      });
+      upTypingTimerIds.push(timerId);
+    });
     }
 
     function upUpdateBarHeights(dataArray) {

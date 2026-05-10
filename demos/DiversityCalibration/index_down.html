@@ -266,11 +266,34 @@
     }
 
     #down-token-demo .down-response-body {
-      min-height: 62px;
+      min-height: calc(1.55em * 4 + 32px);
+      max-height: calc(1.55em * 4 + 32px);
       padding: clamp(13px, 3vw, 18px) clamp(14px, 4vw, 24px) clamp(14px, 3vw, 18px) clamp(18px, 4vw, 28px);
       line-height: 1.55;
       font-size: clamp(0.96rem, 2.8vw, 1.06rem);
       overflow-wrap: anywhere;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+    }
+
+    #down-token-demo .down-response-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #down-token-demo .down-response-body::-webkit-scrollbar-track {
+      background: rgba(226, 230, 255, 0.55);
+      border-radius: 999px;
+    }
+
+    #down-token-demo .down-response-body::-webkit-scrollbar-thumb {
+      background: rgba(50, 115, 220, 0.45);
+      border-radius: 999px;
+    }
+
+    #down-token-demo .down-response-body::-webkit-scrollbar-thumb:hover {
+      background: rgba(50, 115, 220, 0.65);
     }
 
     #down-token-demo .down-interaction-hint {
@@ -869,13 +892,19 @@
         transform 0.18s ease,
         filter 0.18s ease,
         opacity 0.18s ease,
-        background-color 0.18s ease;
+        background-color 0.18s ease,
+        box-shadow 0.18s ease;
       touch-action: manipulation;
     }
 
-    #down-token-demo .down-bar:hover {
-      transform: scaleX(1.1);
+    #down-token-demo .down-bar:hover,
+    #down-token-demo .down-bar:focus,
+    #down-token-demo .down-bar.down-selected-bar {
+      transform: scaleX(1.1) translateY(-3px);
       filter: brightness(0.88);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+      outline: 3px solid rgba(50, 115, 220, 0.25);
+      outline-offset: 3px;
     }
 
     #down-token-demo .down-error {
@@ -997,6 +1026,8 @@
       }
 
       #down-token-demo .down-response-body {
+        min-height: calc(1.55em * 4 + 25px);
+        max-height: calc(1.55em * 4 + 25px);
         padding: 12px 12px 13px 18px;
       }
 
@@ -1346,6 +1377,24 @@
       downTypingTimerIds = [];
     }
 
+    function downScrollResponseToBottom() {
+      if (!downSentenceBox) {
+        return;
+      }
+
+      downSentenceBox.scrollTop = downSentenceBox.scrollHeight;
+    }
+
+    function downSelectBar(selectedBar) {
+      const allBars = downChart.querySelectorAll(".down-bar");
+
+      allBars.forEach(bar => {
+        bar.classList.remove("down-selected-bar");
+      });
+
+      selectedBar.classList.add("down-selected-bar");
+    }
+
     function downShowDefaultQuestion() {
       if (!downQuestionBox) {
         return;
@@ -1391,8 +1440,10 @@
       const startText = downSelectedStartText || "";
 
       downSentenceBox.innerHTML = `
-        <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span><span class="down-completed-part" style="color: black;">...</span>
+        <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span>
       `;
+
+      downSentenceBox.scrollTop = 0;
     }
 
     function downUpdateInteractionHintText() {
@@ -1852,22 +1903,17 @@
         bar.style.backgroundColor = displayColor;
 
         bar.addEventListener("mouseenter", () => {
+          downSelectBar(bar);
           downShowCompletedSentence(bar);
-        });
-
-        bar.addEventListener("mouseleave", () => {
-          downShowDefaultSentence();
         });
 
         bar.addEventListener("focus", () => {
+          downSelectBar(bar);
           downShowCompletedSentence(bar);
         });
 
-        bar.addEventListener("blur", () => {
-          downShowDefaultSentence();
-        });
-
         bar.addEventListener("click", () => {
+          downSelectBar(bar);
           downShowCompletedSentence(bar);
         });
 
@@ -2252,22 +2298,37 @@
     }
 
     function downShowFadeSentence(startText, completedSentence, color) {
-      const cleanedSentence = String(completedSentence).trim();
+      const cleanedSentence = String(completedSentence)
+        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ");
 
       if (!cleanedSentence) {
         downSentenceBox.innerHTML = `
           <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span>
         `;
+        downScrollResponseToBottom();
         return;
       }
 
-      const words = cleanedSentence.split(/\s+/);
-      const firstWord = words.shift() || "";
-      const restText = words.length > 0 ? ` ${words.join(" ")}` : "";
+      const firstWordMatch = cleanedSentence.match(/\S+/);
+
+      if (!firstWordMatch) {
+        downSentenceBox.innerHTML = `
+          <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span><span class="down-completed-part down-animate-text" style="color: ${downEscapeHTML(color)};">${downEscapeHTML(cleanedSentence)}</span>
+        `;
+        downScrollResponseToBottom();
+        return;
+      }
+
+      const firstWord = firstWordMatch[0];
+      const firstWordStart = firstWordMatch.index;
+      const beforeFirstWord = cleanedSentence.slice(0, firstWordStart);
+      const afterFirstWord = cleanedSentence.slice(firstWordStart + firstWord.length);
 
       downSentenceBox.innerHTML = `
-        <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span><span class="down-completed-part down-animate-text" style="color: ${downEscapeHTML(color)};"><span class="down-underlined-generated-word">${downEscapeHTML(firstWord)}</span>${downEscapeHTML(restText)}</span>
+        <span class="down-fixed-sentence">${downEscapeHTML(startText)}</span><span class="down-completed-part down-animate-text" style="color: ${downEscapeHTML(color)};">${downEscapeHTML(beforeFirstWord)}<span class="down-underlined-generated-word">${downEscapeHTML(firstWord)}</span>${downEscapeHTML(afterFirstWord)}</span>
       `;
+
+      downScrollResponseToBottom();
     }
 
     function downShowTypingSentence(startText, completedSentence, color) {
@@ -2284,14 +2345,12 @@
       }
 
       const cleanedSentence = String(completedSentence)
-        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ")
-        .trim();
+        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ");
 
-      const words = cleanedSentence
-        .split(/\s+/)
-        .filter(Boolean);
+      const parts = cleanedSentence.match(/\s+|\S+/g) || [];
 
-      if (words.length === 0) {
+      if (parts.length === 0) {
+        downScrollResponseToBottom();
         return;
       }
 
@@ -2300,8 +2359,9 @@
       cursor.style.color = color;
 
       typingCompletedPart.appendChild(cursor);
+      downScrollResponseToBottom();
 
-      words.forEach((word, index) => {
+      parts.forEach((part, index) => {
         const timerId = window.setTimeout(() => {
           if (runId !== downTypingRunId) {
             return;
@@ -2309,30 +2369,33 @@
 
           typingCompletedPart.innerHTML = "";
 
-          words.slice(0, index + 1).forEach((shownWord, shownIndex) => {
-            if (shownIndex > 0) {
-              typingCompletedPart.appendChild(document.createTextNode(" "));
-            }
+          let firstWordWasUnderlined = false;
 
-            if (shownIndex === 0) {
+          parts.slice(0, index + 1).forEach(shownPart => {
+            const isWord = /\S/.test(shownPart);
+
+            if (isWord && !firstWordWasUnderlined) {
               const underlinedWord = document.createElement("span");
               underlinedWord.className = "down-underlined-generated-word";
-              underlinedWord.textContent = shownWord;
+              underlinedWord.textContent = shownPart;
               typingCompletedPart.appendChild(underlinedWord);
+              firstWordWasUnderlined = true;
             } else {
-              typingCompletedPart.appendChild(document.createTextNode(shownWord));
+              typingCompletedPart.appendChild(document.createTextNode(shownPart));
             }
           });
 
           typingCompletedPart.appendChild(cursor);
+          downScrollResponseToBottom();
 
-          if (index === words.length - 1) {
+          if (index === parts.length - 1) {
             const removeCursorTimerId = window.setTimeout(() => {
               if (runId !== downTypingRunId) {
                 return;
               }
 
               cursor.remove();
+              downScrollResponseToBottom();
             }, 350);
 
             downTypingTimerIds.push(removeCursorTimerId);
@@ -2401,6 +2464,7 @@
       downUpdateBarHeightsSmooth(downCurrentDataArray);
       downUpdateTemperatureControl();
       downRenderProbabilityChart();
+      downScrollResponseToBottom();
     }
 
     const downResizeObserver = new ResizeObserver(() => {
