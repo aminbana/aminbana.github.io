@@ -7,6 +7,10 @@
   <title>Down Token Probability Demo</title>
   <meta name="description" content="A small interactive lower token probability barplot demo.">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
@@ -557,7 +561,7 @@
     }
 
     #down-token-demo .down-plot-area {
-      grid-column: 1;
+      grid-column: 1 / -1;
       grid-row: 1;
       display: grid;
       grid-template-columns: clamp(30px, 5vw, 42px) minmax(0, 1fr);
@@ -569,11 +573,11 @@
 
     #down-token-demo .down-side-panel {
       grid-column: 2;
-      grid-row: 1;
+      grid-row: 2;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      align-self: start;
+      align-self: stretch;
       min-width: 0;
     }
 
@@ -659,10 +663,10 @@
     }
 
     #down-token-demo .down-prob-panel {
-      grid-column: 1 / -1;
+      grid-column: 1;
       grid-row: 2;
-      width: 62%;
-      justify-self: center;
+      width: 100%;
+      justify-self: stretch;
       margin-top: 0;
       padding: 10px 12px;
       border-radius: 16px;
@@ -672,7 +676,7 @@
 
     #down-token-demo .down-prob-chart {
       width: 100%;
-      height: 210px;
+      height: 230px;
     }
 
     #down-token-demo .down-prob-svg {
@@ -721,8 +725,8 @@
     }
 
     #down-token-demo .down-prob-legend {
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 800;
     }
 
     #down-token-demo .down-prob-temperature-label {
@@ -732,7 +736,8 @@
 
     #down-token-demo .down-temperature-panel {
       width: 100px;
-      height: calc(var(--down-chart-height) + 38px);
+      height: 100%;
+      min-height: 250px;
       padding: 14px 12px;
       border-radius: 22px;
       background: linear-gradient(180deg, #ffffff 0%, #f5f7ff 100%);
@@ -789,7 +794,7 @@
     #down-token-demo .down-temperature-slider-column {
       position: relative;
       width: 56px;
-      height: calc(var(--down-chart-height) - 74px);
+      height: 145px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -820,7 +825,7 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      width: calc(var(--down-chart-height) - 74px);
+      width: 145px;
       max-width: none;
       min-width: 0;
       transform: translate(-50%, -50%) rotate(-90deg);
@@ -928,13 +933,13 @@
 
       #down-token-demo .down-side-panel {
         grid-column: 1;
-        grid-row: 2;
+        grid-row: 3;
         width: 100%;
       }
 
       #down-token-demo .down-prob-panel {
         grid-column: 1;
-        grid-row: 3;
+        grid-row: 2;
         width: 100%;
       }
 
@@ -966,7 +971,7 @@
       }
 
       #down-token-demo .down-temperature-slider-column {
-        height: 34px;
+        height: 40px;
         width: 100%;
       }
 
@@ -994,6 +999,11 @@
     }
 
     @media (max-width: 760px) {
+
+      #down-token-demo .down-prob-legend {
+        font-size: 12px;
+      }
+
       #down-token-demo {
         --down-chart-height: clamp(230px, 42vh, 330px);
       }
@@ -1076,11 +1086,16 @@
       }
 
       #down-token-demo .down-prob-chart {
-        height: 175px;
+        height: 190px;
       }
     }
 
     @media (max-width: 480px) {
+
+      #down-token-demo .down-prob-legend {
+        font-size: 11px;
+      }
+
       #down-token-demo .down-model-control {
         gap: 8px;
       }
@@ -1130,7 +1145,7 @@
       }
 
       #down-token-demo .down-prob-chart {
-        height: 170px;
+        height: 185px;
       }
     }
 
@@ -1460,9 +1475,7 @@
 
     async function downLoadData() {
       try {
-        const response = await fetch(`data_down.json?v=${Date.now()}`, {
-          cache: "no-store"
-        });
+        const response = await fetch("data_down.json");
 
         if (!response.ok) {
           throw new Error("Could not load data_down.json");
@@ -1996,29 +2009,28 @@
       const isSmallMobileProb = window.innerWidth <= 480;
 
       const width = Math.max(320, Math.round(downProbChart.clientWidth || 540));
-      const height = isSmallMobileProb ? 150 : isMobileProb ? 165 : 210;
+      const height = isSmallMobileProb ? 185 : isMobileProb ? 190 : 230;
 
       const margin = isSmallMobileProb
         ? {
-            top: 8,
+            top: 34,
             right: 12,
             bottom: 34,
             left: 32
           }
         : isMobileProb
           ? {
-              top: 10,
+              top: 36,
               right: 14,
               bottom: 36,
               left: 34
             }
           : {
-              top: 28,
+              top: 38,
               right: 42,
               bottom: 36,
               left: 42
             };
-
       const innerWidth = width - margin.left - margin.right;
       const innerHeight = height - margin.top - margin.bottom;
       const plotCenterX = margin.left + innerWidth / 2;
@@ -2147,35 +2159,83 @@
       xLabel.textContent = "Temperature";
       svg.appendChild(xLabel);
 
-      const legendY = isMobileProb ? 9 : 18;
+      const legendY = isSmallMobileProb ? 16 : isMobileProb ? 17 : 20;
 
       const legendGroup = document.createElementNS(svgNS, "g");
-      legendGroup.setAttribute("transform", `translate(${plotCenterX - 145}, ${legendY})`);
 
-      const legendItems = [
-        {
-          label: "Valid and Frequent",
-          color: downColors.valid_and_frequent,
-          x: 0
-        },
-        {
-          label: "Valid and Rare",
-          color: downColors.valid_and_rare,
-          x: 110
-        },
-        {
-          label: "Invalid",
-          color: downColors.invalid,
-          x: 205
-        }
-      ];
+      const legendItems = isSmallMobileProb
+        ? [
+            {
+              label: "Valid and Frequent",
+              color: downColors.valid_and_frequent,
+              x: -92,
+              y: 0
+            },
+            {
+              label: "Valid and Rare",
+              color: downColors.valid_and_rare,
+              x: 26,
+              y: 0
+            },
+            {
+              label: "Invalid",
+              color: downColors.invalid,
+              x: -24,
+              y: 15
+            }
+          ]
+        : isMobileProb
+          ? [
+              {
+                label: "Valid and Frequent",
+                color: downColors.valid_and_frequent,
+                x: -126,
+                y: 0
+              },
+              {
+                label: "Valid and Rare",
+                color: downColors.valid_and_rare,
+                x: 0,
+                y: 0
+              },
+              {
+                label: "Invalid",
+                color: downColors.invalid,
+                x: 100,
+                y: 0
+              }
+            ]
+          : [
+              {
+                label: "Valid and Frequent",
+                color: downColors.valid_and_frequent,
+                x: -150,
+                y: 0
+              },
+              {
+                label: "Valid and Rare",
+                color: downColors.valid_and_rare,
+                x: -20,
+                y: 0
+              },
+              {
+                label: "Invalid",
+                color: downColors.invalid,
+                x: 92,
+                y: 0
+              }
+            ];
+
+      legendGroup.setAttribute("transform", `translate(${plotCenterX}, ${legendY})`);
 
       legendItems.forEach(item => {
         const text = document.createElementNS(svgNS, "text");
         text.setAttribute("class", "down-prob-legend");
         text.setAttribute("x", item.x);
-        text.setAttribute("y", 0);
+        text.setAttribute("y", item.y);
         text.setAttribute("fill", item.color);
+        text.setAttribute("text-anchor", "start");
+        text.setAttribute("dominant-baseline", "middle");
         text.textContent = item.label;
         legendGroup.appendChild(text);
       });

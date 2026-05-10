@@ -22,7 +22,7 @@ down_questions = {
 
 temperatures = ["0.1", "0.5", "1.0"]
 
-tokens = [str(i) for i in range(40)]
+tokens = [str(i) for i in range(70)]
 
 sentence_templates = [
     "{token} is clearly visible.",
@@ -108,7 +108,7 @@ for model in models:
             temperature_data["__temperature_rates"] = make_temperature_rates(temperature)
 
             for i, token in enumerate(tokens):
-                base_value = 40 - i
+                base_value = 70 - i
 
                 if temperature == "0.1":
                     noise = random.uniform(0.0, 1.0)

@@ -7,9 +7,12 @@
   <title>Diversity Calibration Demo</title>
   <meta name="description" content="Diversity Calibration Demo">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-
   <style>
     body {
       margin: 0;
@@ -305,6 +308,46 @@
 
     #up-token-demo .up-response-body::-webkit-scrollbar-thumb:hover {
       background: rgba(50, 115, 220, 0.65);
+    }
+
+    #up-token-demo .up-interaction-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: fit-content;
+      max-width: 100%;
+      margin: -8px auto 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--up-blue-border);
+      color: #333;
+      font-size: clamp(0.78rem, 2.2vw, 0.9rem);
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(50, 115, 220, 0.09);
+    }
+
+    #up-token-demo .up-interaction-hint-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--up-blue-bg);
+      color: var(--up-blue);
+      font-size: 0.82rem;
+      font-weight: 900;
+      animation: upHintPulse 1.6s ease-in-out infinite;
+    }
+
+    #up-token-demo .up-interaction-hint-text {
+      color: #333;
+    }
+
+    #up-token-demo .up-interaction-hint-text strong {
+      color: var(--up-blue);
     }
 
     @keyframes upHintPulse {
@@ -1272,9 +1315,7 @@
 
     async function upLoadData() {
       try {
-        const response = await fetch(`data_up.json?v=${Date.now()}`, {
-          cache: "no-store"
-        });
+        const response = await fetch("data_up.json");
 
         if (!response.ok) {
           throw new Error("Could not load data_up.json");
@@ -1734,14 +1775,14 @@
 
       const margin = isSmallMobilePR
         ? {
-            top: 8,
+            top: 24,
             right: 10,
             bottom: 22,
             left: 32
           }
         : isMobilePR
           ? {
-              top: 10,
+              top: 26,
               right: 12,
               bottom: 24,
               left: 34
@@ -1752,7 +1793,6 @@
               bottom: 38,
               left: 42
             };
-
       const innerWidth = width - margin.left - margin.right;
       const innerHeight = height - margin.top - margin.bottom;
       const plotCenterX = margin.left + innerWidth / 2;
@@ -1868,7 +1908,7 @@
       xLabel.textContent = "Cutoff position";
       svg.appendChild(xLabel);
 
-      const legendY = isMobilePR ? 9 : 18;
+      const legendY = isMobilePR ? 18 : 18;
 
       const legendGroup = document.createElementNS(svgNS, "g");
       legendGroup.setAttribute("transform", `translate(${plotCenterX - 86}, ${legendY})`);
