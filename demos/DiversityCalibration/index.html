@@ -1548,10 +1548,11 @@
 
         #down-token-demo .down-plot-layout {
           display: grid;
-          grid-template-columns: minmax(0, 1fr) 100px;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 62%) 100px minmax(0, 1fr);
           grid-template-rows: auto auto;
           gap: clamp(14px, 2vw, 22px);
           align-items: start;
+          justify-content: stretch;
         }
 
         #down-token-demo .down-plot-area {
@@ -1566,12 +1567,12 @@
         }
 
         #down-token-demo .down-side-panel {
-          grid-column: 2;
+          grid-column: 3;
           grid-row: 2;
           display: flex;
           flex-direction: column;
           gap: 12px;
-          align-self: stretch;
+          align-self: start;
           min-width: 0;
         }
 
@@ -1657,10 +1658,11 @@
         }
 
         #down-token-demo .down-prob-panel {
-          grid-column: 1;
+          grid-column: 2;
           grid-row: 2;
           width: 100%;
-          justify-self: stretch;
+          justify-self: center;
+          align-self: start;
           margin-top: 0;
           padding: 10px 12px;
           border-radius: 16px;
@@ -1670,7 +1672,7 @@
 
         #down-token-demo .down-prob-chart {
           width: 100%;
-          height: 230px;
+          height: 260px;
         }
 
         #down-token-demo .down-prob-svg {
@@ -1719,8 +1721,8 @@
         }
 
         #down-token-demo .down-prob-legend {
-          font-size: 14px;
-          font-weight: 800;
+          font-size: 16px;
+          font-weight: 700;
         }
 
         #down-token-demo .down-prob-temperature-label {
@@ -1731,7 +1733,7 @@
         #down-token-demo .down-temperature-panel {
           width: 100px;
           height: 100%;
-          min-height: 250px;
+          min-height: 282px;
           padding: 14px 12px;
           border-radius: 22px;
           background: linear-gradient(180deg, #ffffff 0%, #f5f7ff 100%);
@@ -1788,7 +1790,7 @@
         #down-token-demo .down-temperature-slider-column {
           position: relative;
           width: 56px;
-          height: 145px;
+          height: 155px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -1819,7 +1821,7 @@
           position: absolute;
           left: 50%;
           top: 50%;
-          width: 145px;
+          width: 155px;
           max-width: none;
           min-width: 0;
           transform: translate(-50%, -50%) rotate(-90deg);
@@ -1925,15 +1927,16 @@
             grid-row: 1;
           }
 
-          #down-token-demo .down-side-panel {
-            grid-column: 1;
-            grid-row: 3;
-            width: 100%;
-          }
-
           #down-token-demo .down-prob-panel {
             grid-column: 1;
             grid-row: 2;
+            width: 100%;
+            justify-self: stretch;
+          }
+
+          #down-token-demo .down-side-panel {
+            grid-column: 1;
+            grid-row: 3;
             width: 100%;
           }
 
@@ -1991,7 +1994,6 @@
             transform: none;
           }
         }
-
         @media (max-width: 760px) {
 
           #down-token-demo .down-prob-legend {
@@ -2139,7 +2141,7 @@
           }
 
           #down-token-demo .down-prob-chart {
-            height: 185px;
+            height: 150px;
           }
         }
 
@@ -2409,7 +2411,7 @@
   <script>
 
         const UP_TEXT_ANIMATION_MODE = "typing";
-        const UP_TYPING_WORD_DELAY_MS = 30;
+        const UP_TYPING_WORD_DELAY_MS = 10;
 
         const UP_VALID_COLOR = "#54a24b";
         const UP_INVALID_COLOR = "#ff6944";
@@ -2846,35 +2848,65 @@
         }
 
         function upToDataArray(data) {
-          return Object.entries(data)
-            .filter(([key]) => !upSummaryKeySet.has(key))
-            .map(([word, value]) => ({
-              word,
-              probability: Number(value.logit_value),
-              completedSentence: value.completed_sentence,
-              group: value.group || "valid",
-              precision: Number(value.precision),
-              recall: Number(value.recall)
-            }))
-            .filter(item => Number.isFinite(item.probability) && item.probability > 0)
-            .sort((a, b) => b.probability - a.probability);
+              return Object.entries(data)
+                .filter(([key]) => !upSummaryKeySet.has(key))
+                .map(([word, value]) => ({
+                  word,
+                  probability: Number(value.logit_value),
+                  completedSentence: value.completed_sentence,
+                  group: value.group || "valid",
+                  precision: Number(value.precision),
+                  recall: Number(value.recall)
+                }))
+                .filter(item => Number.isFinite(item.probability) && item.probability > 0)
+                .sort((a, b) => b.probability - a.probability);
+            }
+
+            function upGetChartMaxBarHeight() {
+              const chartHeight = upChart.clientHeight || 280;
+              return Math.max(120, chartHeight - 28);
+            }
+
+
+            function upGetProbabilityRangeWithPadding(dataArray) {
+          const values = dataArray
+            .map(item => item.probability)
+            .filter(value => Number.isFinite(value));
+
+          if (values.length === 0) {
+            return {
+              minProbability: 0,
+              maxProbability: 1
+            };
+          }
+
+          const rawMin = Math.min(...values);
+          const rawMax = Math.max(...values);
+
+          if (rawMin === rawMax) {
+            return {
+              minProbability: rawMin - 1,
+              maxProbability: rawMax + 1
+            };
+          }
+
+          const paddingRatio = 0.08;
+          const padding = (rawMax - rawMin) * paddingRatio;
+
+          return {
+            minProbability: rawMin - padding,
+            maxProbability: rawMax + padding
+          };
         }
 
-        function upGetChartMaxBarHeight() {
-          const chartHeight = upChart.clientHeight || 280;
-          return Math.max(120, chartHeight - 28);
-        }
-
-        function upGetLogHeight(probability, minProbability, maxProbability, maxBarHeight) {
-          const minLog = Math.log10(minProbability);
-          const maxLog = Math.log10(maxProbability);
-          const valueLog = Math.log10(probability);
-
-          if (maxLog === minLog) {
+    
+        function upGetLinearHeight(value, minValue, maxValue, maxBarHeight) {
+          if (maxValue === minValue) {
             return maxBarHeight;
           }
 
-          const ratio = (valueLog - minLog) / (maxLog - minLog);
+          const ratio = (value - minValue) / (maxValue - minValue);
+
           return Math.max(2, ratio * maxBarHeight);
         }
 
@@ -2909,9 +2941,9 @@
           upSetupCutoffSlider(dataArray);
           upRenderPRChart(dataArray);
 
-          const probabilities = dataArray.map(item => item.probability);
-          const minProbability = Math.min(...probabilities);
-          const maxProbability = Math.max(...probabilities);
+          const range = upGetProbabilityRangeWithPadding(dataArray);
+          const minProbability = range.minProbability;
+          const maxProbability = range.maxProbability;
           const maxBarHeight = upGetChartMaxBarHeight();
 
           dataArray.forEach((item, index) => {
@@ -2930,7 +2962,7 @@
             bar.setAttribute("tabindex", "0");
             bar.setAttribute("aria-label", `${item.word}, probability ${upFormatValue(item.probability)}`);
 
-            bar.style.height = `${upGetLogHeight(
+            bar.style.height = `${upGetLinearHeight(
               item.probability,
               minProbability,
               maxProbability,
@@ -3347,9 +3379,9 @@
             return;
           }
 
-          const probabilities = dataArray.map(item => item.probability);
-          const minProbability = Math.min(...probabilities);
-          const maxProbability = Math.max(...probabilities);
+          const range = upGetProbabilityRangeWithPadding(dataArray);
+          const minProbability = range.minProbability;
+          const maxProbability = range.maxProbability;
           const maxBarHeight = upGetChartMaxBarHeight();
 
           const barGroups = Array.from(upChart.querySelectorAll(".up-bar-group"));
@@ -3374,7 +3406,7 @@
             bar.style.backgroundColor = displayColor;
             bar.setAttribute("aria-label", `${item.word}, probability ${upFormatValue(item.probability)}`);
 
-            bar.style.height = `${upGetLogHeight(
+            bar.style.height = `${upGetLinearHeight(
               item.probability,
               minProbability,
               maxProbability,
@@ -3482,7 +3514,7 @@
   <script>
 
         const DOWN_TEXT_ANIMATION_MODE = "typing";
-        const DOWN_TYPING_WORD_DELAY_MS = 30;
+        const DOWN_TYPING_WORD_DELAY_MS = 10;
         const DOWN_POINT_ANIMATION_MS = 420;
 
         const downColors = {
@@ -3934,6 +3966,52 @@
           downRenderProbabilityChart();
         }
 
+        function downGetGlobalProbabilityRange() {
+          let allProbabilities = [];
+
+          downTemperatures.forEach(temperature => {
+            const temperatureData =
+              downLoadedData[downSelectedModelName][downSelectedStartText][temperature];
+
+            if (!temperatureData) {
+              return;
+            }
+
+            const dataArray = downToDataArray(temperatureData);
+
+            dataArray.forEach(item => {
+              if (Number.isFinite(item.probability)) {
+                allProbabilities.push(item.probability);
+              }
+            });
+          });
+
+          if (allProbabilities.length === 0) {
+            return {
+              minProbability: 0,
+              maxProbability: 1
+            };
+          }
+
+          const rawMin = Math.min(...allProbabilities);
+          const rawMax = Math.max(...allProbabilities);
+
+          if (rawMin === rawMax) {
+            return {
+              minProbability: rawMin - 1,
+              maxProbability: rawMax + 1
+            };
+          }
+
+          const paddingRatio = 0.08;
+          const padding = (rawMax - rawMin) * paddingRatio;
+
+          return {
+            minProbability: rawMin - padding,
+            maxProbability: rawMax + padding
+          };
+        }
+
         function downSetupTemperatureControl() {
           downTemperatureSlider.min = 0;
           downTemperatureSlider.max = downTemperatures.length - 1;
@@ -4056,19 +4134,15 @@
           return Math.max(120, chartHeight - 28);
         }
 
-        function downGetLogHeight(probability, minProbability, maxProbability, maxBarHeight) {
-          const minLog = Math.log10(minProbability);
-          const maxLog = Math.log10(maxProbability);
-          const valueLog = Math.log10(probability);
-
-          if (maxLog === minLog) {
+        function downGetLinearHeight(value, minValue, maxValue, maxBarHeight) {
+          if (maxValue === minValue) {
             return maxBarHeight;
           }
 
-          const ratio = (valueLog - minLog) / (maxLog - minLog);
+          const ratio = (value - minValue) / (maxValue - minValue);
+
           return Math.max(2, ratio * maxBarHeight);
         }
-
         function downRenderChart(data, animate = true) {
           downChart.innerHTML = "";
           downCreateBarLegend();
@@ -4089,14 +4163,14 @@
 
           downUpdateBarSizes(dataArray.length);
 
-          const probabilities = dataArray.map(item => item.probability);
-          const minProbability = Math.min(...probabilities);
-          const maxProbability = Math.max(...probabilities);
+          const globalRange = downGetGlobalProbabilityRange();
+          const minProbability = globalRange.minProbability;
+          const maxProbability = globalRange.maxProbability;
           const maxBarHeight = downGetChartMaxBarHeight();
 
           dataArray.forEach(item => {
             const displayColor = downGetGroupColor(item.group);
-            const targetHeight = downGetLogHeight(
+            const targetHeight = downGetLinearHeight(
               item.probability,
               minProbability,
               maxProbability,
@@ -4150,11 +4224,11 @@
         function downUpdateBarHeightsSmooth(dataArray) {
           if (!dataArray || dataArray.length === 0) {
             return;
-          }
+          } 
 
-          const probabilities = dataArray.map(item => item.probability);
-          const minProbability = Math.min(...probabilities);
-          const maxProbability = Math.max(...probabilities);
+          const globalRange = downGetGlobalProbabilityRange();
+          const minProbability = globalRange.minProbability;
+          const maxProbability = globalRange.maxProbability;
           const maxBarHeight = downGetChartMaxBarHeight();
 
           const barGroups = Array.from(downChart.querySelectorAll(".down-bar-group"));
@@ -4173,21 +4247,30 @@
             }
 
             const displayColor = downGetGroupColor(item.group);
-            const targetHeight = downGetLogHeight(
+
+            const targetHeight = downGetLinearHeight(
               item.probability,
               minProbability,
               maxProbability,
               maxBarHeight
             );
 
+            const currentHeight = bar.getBoundingClientRect().height;
+
             bar.dataset.completedSentence = item.completedSentence;
             bar.dataset.displayColor = displayColor;
             bar.style.backgroundColor = displayColor;
             bar.setAttribute("aria-label", `${item.word}, probability ${downFormatValue(item.probability)}`);
-            bar.style.height = `${targetHeight}px`;
+
+            bar.style.height = `${currentHeight}px`;
+
+            bar.offsetHeight;
+
+            window.requestAnimationFrame(() => {
+              bar.style.height = `${targetHeight}px`;
+            });
           });
         }
-
         function downClearProbabilityChart() {
           downProbChart.innerHTML = "";
           downProbabilityChartState = null;
@@ -4242,7 +4325,7 @@
           const svg = document.createElementNS(svgNS, "svg");
           svg.setAttribute("class", "down-prob-svg");
           svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-          svg.setAttribute("preserveAspectRatio", "none");
+          svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
           const xMax = Math.max(1, curveData.length - 1);
 
@@ -4413,19 +4496,19 @@
                   {
                     label: "Valid and Frequent",
                     color: downColors.valid_and_frequent,
-                    x: -150,
+                    x: -190,
                     y: 0
                   },
                   {
                     label: "Valid and Rare",
                     color: downColors.valid_and_rare,
-                    x: -20,
+                    x: -25,
                     y: 0
                   },
                   {
                     label: "Invalid",
                     color: downColors.invalid,
-                    x: 92,
+                    x: 120,
                     y: 0
                   }
                 ];
@@ -4439,7 +4522,7 @@
             text.setAttribute("y", item.y);
             text.setAttribute("fill", item.color);
             text.setAttribute("text-anchor", "start");
-            text.setAttribute("dominant-baseline", "middle");
+            // text.setAttribute("dominant-baseline", "middle");
             text.textContent = item.label;
             legendGroup.appendChild(text);
           });

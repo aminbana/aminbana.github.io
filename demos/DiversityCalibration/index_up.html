@@ -1123,7 +1123,7 @@
 
   <script>
     const UP_TEXT_ANIMATION_MODE = "typing";
-    const UP_TYPING_WORD_DELAY_MS = 30;
+    const UP_TYPING_WORD_DELAY_MS = 10;
 
     const UP_VALID_COLOR = "#54a24b";
     const UP_INVALID_COLOR = "#ff6944";
@@ -1560,35 +1560,65 @@
     }
 
     function upToDataArray(data) {
-      return Object.entries(data)
-        .filter(([key]) => !upSummaryKeySet.has(key))
-        .map(([word, value]) => ({
-          word,
-          probability: Number(value.logit_value),
-          completedSentence: value.completed_sentence,
-          group: value.group || "valid",
-          precision: Number(value.precision),
-          recall: Number(value.recall)
-        }))
-        .filter(item => Number.isFinite(item.probability) && item.probability > 0)
-        .sort((a, b) => b.probability - a.probability);
+          return Object.entries(data)
+            .filter(([key]) => !upSummaryKeySet.has(key))
+            .map(([word, value]) => ({
+              word,
+              probability: Number(value.logit_value),
+              completedSentence: value.completed_sentence,
+              group: value.group || "valid",
+              precision: Number(value.precision),
+              recall: Number(value.recall)
+            }))
+            .filter(item => Number.isFinite(item.probability) && item.probability > 0)
+            .sort((a, b) => b.probability - a.probability);
+        }
+
+        function upGetChartMaxBarHeight() {
+          const chartHeight = upChart.clientHeight || 280;
+          return Math.max(120, chartHeight - 28);
+        }
+
+
+        function upGetProbabilityRangeWithPadding(dataArray) {
+      const values = dataArray
+        .map(item => item.probability)
+        .filter(value => Number.isFinite(value));
+
+      if (values.length === 0) {
+        return {
+          minProbability: 0,
+          maxProbability: 1
+        };
+      }
+
+      const rawMin = Math.min(...values);
+      const rawMax = Math.max(...values);
+
+      if (rawMin === rawMax) {
+        return {
+          minProbability: rawMin - 1,
+          maxProbability: rawMax + 1
+        };
+      }
+
+      const paddingRatio = 0.08;
+      const padding = (rawMax - rawMin) * paddingRatio;
+
+      return {
+        minProbability: rawMin - padding,
+        maxProbability: rawMax + padding
+      };
     }
 
-    function upGetChartMaxBarHeight() {
-      const chartHeight = upChart.clientHeight || 280;
-      return Math.max(120, chartHeight - 28);
-    }
-
-    function upGetLogHeight(probability, minProbability, maxProbability, maxBarHeight) {
-      const minLog = Math.log10(minProbability);
-      const maxLog = Math.log10(maxProbability);
-      const valueLog = Math.log10(probability);
-
-      if (maxLog === minLog) {
+    
+    function upGetLinearHeight(value, minValue, maxValue, maxBarHeight) {
+      if (maxValue === minValue) {
         return maxBarHeight;
       }
 
-      const ratio = (valueLog - minLog) / (maxLog - minLog);
+      const ratio = (value - minValue) / (maxValue - minValue);
+
       return Math.max(2, ratio * maxBarHeight);
     }
 
@@ -1623,9 +1653,9 @@
       upSetupCutoffSlider(dataArray);
       upRenderPRChart(dataArray);
 
-      const probabilities = dataArray.map(item => item.probability);
-      const minProbability = Math.min(...probabilities);
-      const maxProbability = Math.max(...probabilities);
+      const range = upGetProbabilityRangeWithPadding(dataArray);
+      const minProbability = range.minProbability;
+      const maxProbability = range.maxProbability;
       const maxBarHeight = upGetChartMaxBarHeight();
 
       dataArray.forEach((item, index) => {
@@ -1644,7 +1674,7 @@
         bar.setAttribute("tabindex", "0");
         bar.setAttribute("aria-label", `${item.word}, probability ${upFormatValue(item.probability)}`);
 
-        bar.style.height = `${upGetLogHeight(
+        bar.style.height = `${upGetLinearHeight(
           item.probability,
           minProbability,
           maxProbability,
@@ -2061,9 +2091,9 @@
         return;
       }
 
-      const probabilities = dataArray.map(item => item.probability);
-      const minProbability = Math.min(...probabilities);
-      const maxProbability = Math.max(...probabilities);
+      const range = upGetProbabilityRangeWithPadding(dataArray);
+      const minProbability = range.minProbability;
+      const maxProbability = range.maxProbability;
       const maxBarHeight = upGetChartMaxBarHeight();
 
       const barGroups = Array.from(upChart.querySelectorAll(".up-bar-group"));
@@ -2088,7 +2118,7 @@
         bar.style.backgroundColor = displayColor;
         bar.setAttribute("aria-label", `${item.word}, probability ${upFormatValue(item.probability)}`);
 
-        bar.style.height = `${upGetLogHeight(
+        bar.style.height = `${upGetLinearHeight(
           item.probability,
           minProbability,
           maxProbability,
