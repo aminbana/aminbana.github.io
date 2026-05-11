@@ -1286,7 +1286,7 @@
 
   <script>
     const DOWN_TEXT_ANIMATION_MODE = "typing";
-    const DOWN_TYPING_WORD_DELAY_MS = 10;
+    const DOWN_TYPING_WORD_DELAY_MS = 25;
     const DOWN_POINT_ANIMATION_MS = 420;
 
     const downColors = {
@@ -1434,29 +1434,17 @@
         return;
       }
 
-      let question = "";
+      const variantData = downGetCurrentVariantData();
 
-      if (data && typeof data.down_question === "string") {
-        question = data.down_question;
-      } else if (
-        downLoadedData &&
-        downSelectedModelName &&
-        downSelectedStartText &&
-        downLoadedData[downSelectedModelName] &&
-        downLoadedData[downSelectedModelName][downSelectedStartText] &&
-        typeof downLoadedData[downSelectedModelName][downSelectedStartText].down_question === "string"
-      ) {
-        question = downLoadedData[downSelectedModelName][downSelectedStartText].down_question;
-      } else {
-        question = "What is the model likely to generate next?";
-      }
+      const question = variantData && typeof variantData.down_question === "string"
+        ? variantData.down_question
+        : "What is the model likely to generate next?";
 
       downQuestionBox.innerHTML = `
         <span class="down-question-label">Question</span>
         <span class="down-question-text">${downEscapeHTML(question)}</span>
       `;
     }
-
     function downShowDefaultSentence() {
       downClearTypingTimers();
 
@@ -1519,28 +1507,46 @@
       return Object.keys(data)
         .filter(key => {
           const value = data[key];
-          return value && typeof value === "object" && !Array.isArray(value);
+          return Array.isArray(value);
         });
     }
 
     function downGetStartTexts() {
+          const modelData = downLoadedData[downSelectedModelName];
+
+          if (!Array.isArray(modelData)) {
+            return [];
+          }
+
+          return modelData.map((_, index) => String(index));
+        }
+
+        function downGetCurrentVariantData() {
+      if (!downLoadedData || !downSelectedModelName) {
+        return null;
+      }
+
       const modelData = downLoadedData[downSelectedModelName];
 
-      return Object.keys(modelData)
-        .filter(key => {
-          const value = modelData[key];
-          return value && typeof value === "object" && !Array.isArray(value);
-        });
+      if (!Array.isArray(modelData)) {
+        return null;
+      }
+
+      return modelData[downSelectedStartIndex] || null;
     }
 
-    function downGetTemperaturesForStartText(startText) {
-      const startTextData = downLoadedData[downSelectedModelName][startText];
+    function downGetTemperaturesForStartText() {
+      const variantData = downGetCurrentVariantData();
 
-      return Object.keys(startTextData)
-        .filter(key => {
-          const value = startTextData[key];
-          return value && typeof value === "object" && !Array.isArray(value);
-        })
+      if (
+        !variantData ||
+        !variantData.temperatures ||
+        typeof variantData.temperatures !== "object"
+      ) {
+        return [];
+      }
+
+      return Object.keys(variantData.temperatures)
         .sort((a, b) => Number(a) - Number(b));
     }
 
@@ -1712,16 +1718,33 @@
       downErrorBox.textContent = "";
       downVariantInfo.textContent = `Variant ${downSelectedStartIndex + 1} of ${downStartTexts.length}`;
 
-      downTemperatures = downGetTemperaturesForStartText(downSelectedStartText);
+      const variantData = downGetCurrentVariantData();
 
-      if (downTemperatures.length === 0) {
+      if (!variantData) {
         downChart.innerHTML = "";
         downCurrentTokenOrder = [];
         downCurrentDataArray = [];
         downShowDefaultQuestion();
         downShowDefaultSentence();
         downClearProbabilityChart();
-        downErrorBox.textContent = "No valid temperature keys found for this starting text.";
+        downErrorBox.textContent = "No valid variant data found for this model.";
+        return;
+      }
+
+      downSelectedStartText = typeof variantData.down_answer === "string"
+        ? variantData.down_answer
+        : "";
+
+      downTemperatures = downGetTemperaturesForStartText();
+
+      if (downTemperatures.length === 0) {
+        downChart.innerHTML = "";
+        downCurrentTokenOrder = [];
+        downCurrentDataArray = [];
+        downShowCurrentQuestion();
+        downShowDefaultSentence();
+        downClearProbabilityChart();
+        downErrorBox.textContent = "No valid temperature keys found for this variant.";
         return;
       }
 
@@ -1738,52 +1761,26 @@
       downRenderProbabilityChart();
     }
 
-    function downGetGlobalProbabilityRange() {
-      let allProbabilities = [];
+    function downGetTemperatureYRange(data) {
+      const ylimMin = Number(data && data.ylim_min);
+      const ylimMax = Number(data && data.ylim_max);
 
-      downTemperatures.forEach(temperature => {
-        const temperatureData =
-          downLoadedData[downSelectedModelName][downSelectedStartText][temperature];
-
-        if (!temperatureData) {
-          return;
-        }
-
-        const dataArray = downToDataArray(temperatureData);
-
-        dataArray.forEach(item => {
-          if (Number.isFinite(item.probability)) {
-            allProbabilities.push(item.probability);
-          }
-        });
-      });
-
-      if (allProbabilities.length === 0) {
+      if (
+        Number.isFinite(ylimMin) &&
+        Number.isFinite(ylimMax) &&
+        ylimMax > ylimMin
+      ) {
         return {
-          minProbability: 0,
-          maxProbability: 1
+          minProbability: ylimMin,
+          maxProbability: ylimMax
         };
       }
-
-      const rawMin = Math.min(...allProbabilities);
-      const rawMax = Math.max(...allProbabilities);
-
-      if (rawMin === rawMax) {
-        return {
-          minProbability: rawMin - 1,
-          maxProbability: rawMax + 1
-        };
-      }
-
-      const paddingRatio = 0.08;
-      const padding = (rawMax - rawMin) * paddingRatio;
 
       return {
-        minProbability: rawMin - padding,
-        maxProbability: rawMax + padding
+        minProbability: 0,
+        maxProbability: 1
       };
     }
-
     function downSetupTemperatureControl() {
       downTemperatureSlider.min = 0;
       downTemperatureSlider.max = downTemperatures.length - 1;
@@ -1846,20 +1843,32 @@
     });
 
     function downGetCurrentTokenData() {
-      if (!downLoadedData || !downSelectedModelName || !downSelectedStartText || downSelectedTemperature === null) {
+      const variantData = downGetCurrentVariantData();
+
+      if (
+        !variantData ||
+        !variantData.temperatures ||
+        downSelectedTemperature === null
+      ) {
         return null;
       }
 
-      return downLoadedData[downSelectedModelName][downSelectedStartText][downSelectedTemperature];
+      return variantData.temperatures[downSelectedTemperature] || null;
     }
 
     function downGetTemperatureCurveData() {
-      if (!downLoadedData || !downSelectedModelName || !downSelectedStartText) {
+      const variantData = downGetCurrentVariantData();
+
+      if (
+        !variantData ||
+        !variantData.temperatures ||
+        !Array.isArray(downTemperatures)
+      ) {
         return [];
       }
 
       return downTemperatures.map(temperature => {
-        const temperatureData = downLoadedData[downSelectedModelName][downSelectedStartText][temperature] || {};
+        const temperatureData = variantData.temperatures[temperature] || {};
         const rates = temperatureData.__temperature_rates || {};
 
         return {
@@ -1872,15 +1881,18 @@
     }
 
     function downToDataArray(data, preferredOrder = null) {
-      let items = Object.entries(data)
-        .filter(([key]) => !downIgnoredKeys.has(key))
+      if (!data || !data.tokens || typeof data.tokens !== "object") {
+        return [];
+      }
+
+      let items = Object.entries(data.tokens)
         .map(([word, value]) => ({
           word,
           probability: Number(value.logit_value),
-          completedSentence: value.completed_sentence,
+          completedSentence: value.completed_sentence || "",
           group: value.group || "valid_and_frequent"
         }))
-        .filter(item => Number.isFinite(item.probability) && item.probability > 0);
+        .filter(item => Number.isFinite(item.probability));
 
       if (preferredOrder && preferredOrder.length === items.length) {
         const itemByWord = new Map(items.map(item => [item.word, item]));
@@ -1892,7 +1904,6 @@
 
       return items.sort((a, b) => b.probability - a.probability);
     }
-
     function downCanUpdateBarsWithoutRebuild(newDataArray) {
       if (newDataArray.length !== downCurrentTokenOrder.length) {
         return false;
@@ -1907,14 +1918,42 @@
     }
 
     function downGetLinearHeight(value, minValue, maxValue, maxBarHeight) {
+      if (!Number.isFinite(value)) {
+        return 0;
+      }
+
+      if (value < minValue) {
+        return 0;
+      }
+
       if (maxValue === minValue) {
         return maxBarHeight;
       }
 
-      const ratio = (value - minValue) / (maxValue - minValue);
+      const clippedValue = Math.min(value, maxValue);
+      const ratio = (clippedValue - minValue) / (maxValue - minValue);
 
       return Math.max(2, ratio * maxBarHeight);
     }
+
+    function downApplyBarVisibility(bar, height) {
+      if (height === 0) {
+        bar.style.height = "0px";
+        bar.style.minHeight = "0";
+        bar.style.opacity = "0";
+        bar.style.pointerEvents = "none";
+        bar.setAttribute("aria-hidden", "true");
+        bar.setAttribute("tabindex", "-1");
+      } else {
+        bar.style.height = `${height}px`;
+        bar.style.minHeight = "2px";
+        bar.style.opacity = "1";
+        bar.style.pointerEvents = "auto";
+        bar.setAttribute("aria-hidden", "false");
+        bar.setAttribute("tabindex", "0");
+      }
+    }
+
     function downRenderChart(data, animate = true) {
       downChart.innerHTML = "";
       downCreateBarLegend();
@@ -1929,25 +1968,46 @@
 
       if (dataArray.length === 0) {
         downClearProbabilityChart();
-        downErrorBox.textContent = "No valid positive probability values found for this selection.";
+        downErrorBox.textContent = "No valid probability values found for this selection.";
         return;
       }
 
       downUpdateBarSizes(dataArray.length);
 
-      const globalRange = downGetGlobalProbabilityRange();
-      const minProbability = globalRange.minProbability;
-      const maxProbability = globalRange.maxProbability;
+      const range = downGetTemperatureYRange(data);
+      const minProbability = range.minProbability;
+      const maxProbability = range.maxProbability;
       const maxBarHeight = downGetChartMaxBarHeight();
+
+
+      // console.log("Current temperature bar range:", {
+      //   model: downSelectedModelName,
+      //   variantIndex: downSelectedStartIndex,
+      //   temperature: downSelectedTemperature,
+      //   ylim_min: minProbability,
+      //   ylim_max: maxProbability,
+      //   maxBarHeight
+      // });
 
       dataArray.forEach(item => {
         const displayColor = downGetGroupColor(item.group);
+
         const targetHeight = downGetLinearHeight(
           item.probability,
           minProbability,
           maxProbability,
           maxBarHeight
         );
+
+        // console.log("Bar value check:", {
+        //   token: item.word,
+        //   value: item.probability,
+        //   ylim_min: minProbability,
+        //   ylim_max: maxProbability,
+        //   hidden: item.probability < minProbability,
+        //   clipped_at_top: item.probability > maxProbability,
+        //   targetHeight
+        // });
 
         const barGroup = document.createElement("div");
         barGroup.className = "down-bar-group";
@@ -1959,11 +2019,15 @@
         bar.dataset.completedSentence = item.completedSentence;
         bar.dataset.displayColor = displayColor;
         bar.setAttribute("role", "button");
-        bar.setAttribute("tabindex", "0");
         bar.setAttribute("aria-label", `${item.word}, probability ${downFormatValue(item.probability)}`);
 
-        bar.style.height = animate ? "2px" : `${targetHeight}px`;
         bar.style.backgroundColor = displayColor;
+
+        if (animate && targetHeight > 0) {
+          downApplyBarVisibility(bar, 2);
+        } else {
+          downApplyBarVisibility(bar, targetHeight);
+        }
 
         bar.addEventListener("mouseenter", () => {
           downSelectBar(bar);
@@ -1986,21 +2050,27 @@
         if (animate) {
           window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => {
-              bar.style.height = `${targetHeight}px`;
+              downApplyBarVisibility(bar, targetHeight);
             });
           });
         }
       });
     }
-
+    
     function downUpdateBarHeightsSmooth(dataArray) {
       if (!dataArray || dataArray.length === 0) {
         return;
-      } 
+      }
 
-      const globalRange = downGetGlobalProbabilityRange();
-      const minProbability = globalRange.minProbability;
-      const maxProbability = globalRange.maxProbability;
+      const currentTokenData = downGetCurrentTokenData();
+
+      if (!currentTokenData) {
+        return;
+      }
+
+      const range = downGetTemperatureYRange(currentTokenData);
+      const minProbability = range.minProbability;
+      const maxProbability = range.maxProbability;
       const maxBarHeight = downGetChartMaxBarHeight();
 
       const barGroups = Array.from(downChart.querySelectorAll(".down-bar-group"));
@@ -2039,10 +2109,11 @@
         bar.offsetHeight;
 
         window.requestAnimationFrame(() => {
-          bar.style.height = `${targetHeight}px`;
+          downApplyBarVisibility(bar, targetHeight);
         });
       });
     }
+
     function downClearProbabilityChart() {
       downProbChart.innerHTML = "";
       downProbabilityChartState = null;
