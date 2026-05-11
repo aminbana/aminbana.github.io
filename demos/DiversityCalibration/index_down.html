@@ -1170,8 +1170,8 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
           <div class="column is-full">
-            <h2 class="title is-3">2. Shape Calibration</h2>
-            <p class="subtitle is-6">Model has a sharp drop in the head, and a heavy, long tail. Increasing temperature flows the distribution mass towards the tail; but since the number of invalid tokens dominate, most of valid tokens always get suppressed.</p>
+            <h2 class="title is-3", style="margin-top: 10px; font-size: 30px;">2. Shape Calibration</h2>
+            <p class="subtitle is-6", style="text-align: left; margin-top: 10px; font-size: 20px;">Model has a sharp drop in the head, and a heavy, long tail. Increasing temperature flows the distribution mass towards the tail; but since the number of invalid tokens dominate, most of valid tokens always get suppressed.</p>
 
             <div class="down-plot-wrap">
               <div class="down-model-control">
@@ -1268,6 +1268,12 @@
                 <button class="down-variant-button" id="downVariantDownButton" type="button" aria-label="Next down variant">
                   ▼
                 </button>
+              </div>
+              
+              
+              <hr style="margin: 32px auto; border: none; border-top: 1px solid var(--down-panel-border); width: 60%;">
+              <div class="subtitle is-6", style="margin-top: 12px; font-size: 16px; text-align: left; color:#8a8a8a;">
+                Note: The probability values are shown in log scale. Also the x-axis in both plots is subsampled non-uniformly for enhanced visualization.
               </div>
 
               <div class="down-error" id="downErrorBox"></div>

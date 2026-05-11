@@ -73,7 +73,7 @@ def main() -> None:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Merged Token Probability Demo</title>
+  <title>LLM Diversity Calibration</title>
   <meta name="description" content="Merged upper and lower token probability visualizations.">
 
 {indent(chr(10).join(links), 2)}
