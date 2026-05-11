@@ -12,7 +12,7 @@ def read_file(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def get_tag_contents(html: str, tag: str) -> list[str]:
+def get_tag_contents(html: str, tag: str):
     pattern = rf"<{tag}\b[^>]*>(.*?)</{tag}>"
     return re.findall(pattern, html, flags=re.IGNORECASE | re.DOTALL)
 

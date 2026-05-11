@@ -2297,8 +2297,8 @@
         <div class="container is-max-desktop">
           <div class="columns is-centered has-text-centered">
             <div class="column is-full">
-              <h2 class="title is-3">Down Token Probability Barplot</h2>
-              <p class="subtitle is-6">Hover or tap a token to show the completed sentence.</p>
+              <h2 class="title is-3">2. Shape Calibration</h2>
+              <p class="subtitle is-6">Model has a sharp drop in the head, and a heavy, long tail. Increasing temperature flows the distribution towards the tail; but since invalid tokens dominate, some valid tokens always get suppressed.</p>
 
               <div class="down-plot-wrap">
                 <div class="down-model-control">
@@ -2409,7 +2409,7 @@
   <script>
 
         const UP_TEXT_ANIMATION_MODE = "typing";
-        const UP_TYPING_WORD_DELAY_MS = 50;
+        const UP_TYPING_WORD_DELAY_MS = 30;
 
         const UP_VALID_COLOR = "#54a24b";
         const UP_INVALID_COLOR = "#ff6944";
@@ -3482,13 +3482,13 @@
   <script>
 
         const DOWN_TEXT_ANIMATION_MODE = "typing";
-        const DOWN_TYPING_WORD_DELAY_MS = 50;
+        const DOWN_TYPING_WORD_DELAY_MS = 30;
         const DOWN_POINT_ANIMATION_MS = 420;
 
         const downColors = {
-          valid_and_frequent: "#53A14A",
+          valid_and_frequent: "#54a24b",
           valid_and_rare: "#3D50FF",
-          invalid: "#FF6843"
+          invalid: "#ff6944"
         };
 
         const downRoot = document.getElementById("down-token-demo");
@@ -3921,7 +3921,7 @@
             return;
           }
 
-          const defaultTemperature = "0.5";
+          const defaultTemperature = "1.0";
 
           if (downTemperatures.includes(defaultTemperature)) {
             downSelectedTemperature = defaultTemperature;
