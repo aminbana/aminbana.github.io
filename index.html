@@ -1,264 +1,370 @@
-
-    <!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <title>Amin's Homepage</title>
-  <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
+  <title>About me | Amin Banayeeanzade</title>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #222;
+      background: #fff;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    a {
+      color: #1a6bbf;
+    }
+
+    a:hover {
+      color: #0d4a8a;
+      text-decoration: none;
+    }
+
+    .navbar {
+      border-bottom: 1px solid #e8e8e8;
+      background: #fff !important;
+      padding: 0.9rem 1.5rem;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: #222 !important;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-link {
+      color: #555 !important;
+      font-size: 0.9rem;
+    }
+
+    .nav-link:hover {
+      color: #222 !important;
+    }
+
+    .profile-name {
+      font-size: 1.55rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .profile-img {
+      width: 185px;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .bio-text {
+      color: #333;
+      font-size: 0.93rem;
+      text-align: justify;
+      margin-bottom: 0.85rem;
+    }
+
+    .social-links {
+      margin-top: 0.9rem;
+    }
+
+    .social-links a {
+      color: #555;
+      text-decoration: none;
+      margin-right: 1.1rem;
+      font-size: 0.88rem;
+    }
+
+    .social-links a:hover {
+      color: #222;
+    }
+
+    .social-links i {
+      margin-right: 4px;
+    }
+
+    .section-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #999;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .pub-entry {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    .pub-entry:last-of-type {
+      border-bottom: none;
+    }
+
+    .pub-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 0.1rem;
+    }
+
+    .pub-authors {
+      font-size: 0.83rem;
+      color: #555;
+      margin-bottom: 0.05rem;
+    }
+
+    .pub-venue {
+      font-size: 0.83rem;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-links a {
+      font-size: 0.78rem;
+      color: #1a6bbf;
+      text-decoration: none;
+      margin-right: 0.7rem;
+      font-weight: 500;
+    }
+
+    .pub-links a:hover {
+      text-decoration: underline;
+    }
+
+    .equal-contrib {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 1.5rem 0 2.5rem;
+      border-top: 1px solid #e8e8e8;
+      font-size: 0.78rem;
+      color: #bbb;
+    }
+
+    footer a {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #888;
+    }
+  </style>
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="Home" data-scroll-id="Home" tabindex="-1" style="outline: none;">
-		<a class="navbar-brand" href="#Home">Amin</a>
+  <!-- <nav class="navbar navbar-expand-md fixed-top" id="Home">
+    <a class="navbar-brand" href="#Home">About me</a>
+    <div class="collapse navbar-collapse" id="navbarToggle">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#Publications">Publications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#Projects">Projects</a>
+        </li>
+      </ul>
+    </div>
+  </nav> -->
 
-		<!--TODO fix the refrences-->
-		<div class="collapse navbar-collapse" id="navbarToggle" >
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="#Publications">Publications</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#Projects">Projects</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
-
-    <div class="container" style="padding-top: 20px;">
-        <div class="row" style="margin-top: 3em;">
-            <div class="col-sm-12" style="margin-bottom: 1em;">
-            <h3 class="display-5"><span style="font-weight: bold;">Mohammadamin (Amin) Banayeeanzade</span></h3>
-            </div>
-            <br>
-			<div class="col-md-4" style="">
-                <img src="assets/img/profile.jpg" class="img-thumbnail" width="280px" alt="Profile picture">
-            </div>
-            <div class="col-md-8" style="text-align: justify;">
-                
-                <p>
-					        I'm a fourth-year Ph.D. student in Computer Science at the University of Southern California (USC), advised by <a href="https://spkreddy.org/" target="_blank">Sai Praneeth Karimireddy</a>. I study the trustworthiness of AI systems with a particular focus on diversity in large language models (LLMs) and agentic systems. My research investigates the diversity problem in current models, which often produce homogeneous outputs, follow narrow exploration traces, and rely on limited or biased inputs during decision-making. By systematically characterizing and improving diversity in these aspects, my work aims to enhance the robustness, fairness, and reliability of AI systems, ultimately strengthening their trustworthiness in real-world deployment.
-							<br><br>
-							Prior to USC, I received my Master's at Computer Engineering department of Sharif University of Technology under the supervision of <a href="https://scholar.google.com/citations?user=S1U0KlgAAAAJ&hl=en/" target="_blank">Mahdieh Soleymani</a>, where I did research on developing brain-inspired algorithms for the meta-continual learning problem.
-							Additionally, I got my B.Sc. in Electrical Engineering from the same university where I was jointly supervised by <a href="https://scholar.google.ca/citations?user=lWSKYd4AAAAJ&hl=en" target="_blank">Mahdi Shabany</a> and <a href="https://scholar.google.com/citations?user=bxbPDckAAAAJ&hl=en" target="_blank">Zahra Kavehvash</a>.
-					
-                </p>
-                <p>
-                    <!-- <a href="https://m-niemeyer.github.io/assets/pdf/CV_Niemeyer_Michael.pdf" target="_blank" style="margin-right: 15px"><i class="fa fa-address-card fa-lg"></i> CV</a> -->
-                    <a href="mailto:banayeea@usc.edu" style="margin-right: 15px"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
-                    <a href="https://twitter.com/MBanayeean" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
-                    <a href="https://scholar.google.com/citations?user=QnujJhEAAAAJ&hl=en" target="_blank" style="margin-right: 15px"><i class="fa-solid fa-book"></i> Scholar</a>
-                    <a href="https://github.com/aminbana" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> Github</a>
-                    <a href="https://www.linkedin.com/in/aminbana/" target="_blank" style="margin-right: 15px"><i class="fab fa-linkedin fa-lg"></i> LinkedIn</a>
-                </p>
+  <div class="container" style="max-width: 860px; padding-top: 80px;">
     
-            </div>
-
+    <!-- Profile -->
+    <div class="row" style="margin-top: 3rem; margin-bottom: 3.5rem;">
+      <div class="col-md-3" style="margin-top: 4rem">
+        <img src="assets/img/profile.png" class="profile-img" alt="Amin Banayeeanzade">
+      </div>
+      <div class="col-md-9">
+        <div class="profile-name" style="text-align: left;">Mohammadamin (Amin) Banayeeanzade</div>
+        <p class="bio-text">
+          I'm a fourth-year CS Ph.D. student at the University of Southern California (USC), advised
+          by <a href="https://spkreddy.org/" target="_blank">Sai Praneeth Karimireddy</a>. I study the trustworthiness
+          of AI systems with a particular focus on diversity in large language models (LLMs) and agentic systems. My
+          research investigates the diversity problem in current models, which often produce homogeneous outputs, follow
+          narrow exploration traces, and rely on limited or biased inputs during decision-making. By systematically
+          characterizing and improving diversity in these aspects, my work aims to enhance the robustness, fairness, and
+          reliability of AI systems, ultimately strengthening their trustworthiness in real-world deployment.
+        </p>
+        <p class="bio-text">
+          Prior to USC, I finished my Master's at the Computer Engineering department of Sharif University of Technology
+          advised by <a href="https://scholar.google.com/citations?user=S1U0KlgAAAAJ&hl=en/"
+            target="_blank">Mahdieh Soleymani</a>, where I worked on brain-inspired algorithms for the meta-continual
+          learning problem. I also received my B.Sc. in Electrical Engineering from the same university, advised by
+          <a href="https://scholar.google.ca/citations?user=lWSKYd4AAAAJ&hl=en" target="_blank">Mahdi Shabany</a> and
+          <a href="https://scholar.google.com/citations?user=bxbPDckAAAAJ&hl=en" target="_blank">Zahra Kavehvash</a>.
+        </p>
+        <div class="social-links">
+          <a href="mailto:banayeea@usc.edu"><i class="far fa-envelope"></i></a>
+          <a href="https://x.com/MBanayeean" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://scholar.google.com/citations?user=QnujJhEAAAAJ&hl=en" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>
+          <a href="https://github.com/aminbana" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/aminbana/" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
-
-        <div class="row" style="margin-top: -2em;">
-            <div class="col-sm-12">
-				<h4 id="Publications" style="padding-top: 3em; padding-bottom: 1em;">Publications</h4>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/sparks.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5>Sparks of Rationality: Do Reasoning LLMs Align with Human Judgment and Choice?</h5>
-						<h6>A. N. Tak *, <b>A. Banayeeanzade</b>*, A. Bolourani *, F. Bahrani, A. Chaubey, S. P. Karimireddy, N. Schwarz, J. Gratch</h6>
-						<h6>underreview at ICML 2026.</h6>
-						<h6><a href="https://www.arxiv.org/abs/2601.22329" target="_blank"> [Paper] </a><a href="https://github.com/AlaNekTak/DLLM/" target="_blank"> [Code] </a></h6>
-						
-					</div>
-				</div>	
-				
-				<hr>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/epsvec.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5>EPSVec: Efficient and Private Synthetic Data Generation via Dataset Vectors</h5>
-						
-						<h6><b>A. Banayeeanzade</b>*, Q. Yang*, D. Fu, S. Hong, E. Babinsky, A. Samuel, A. Kumar, R. Jia, S. P. Karimireddy</h6>
-						<h6>underreview at ICML 2026.</h6>
-						<h6><a href="https://arxiv.org/abs/2602.21218" target="_blank"> [Paper] </a><a href="https://github.com/Polymerase-2/EPSVec/" target="_blank"> [Code] </a></h6>
-						
-					</div>
-				</div>	
-				
-				<hr>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/autofocus.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5>AutoFocus-IL: VLM-based Saliency Maps for Data-Efficient Visual Imitation Learning without Extra Human Annotations </h5>
-						<h6>L. Gong, F. Bahrani, Y. Zhou, <b>A Banayeeanzade</b>, J. Li, E. Bıyık,</h6>
-						<h6>ICRA, 2026.</h6>
-						<h6><a href="https://arxiv.org/abs/2511.18617" target="_blank"> [Paper] </a> <a href="https://autofocus-il.github.io/" target="_blank"> [Project Page] </a> </h6>
-					</div>
-				</div>	
-				
-				<hr>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/emotion.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5>Psychological Steering in LLMs: An Evaluation of Effectiveness and Trustworthiness </h5>
-						<h6><b>A. Banayeeanzade</b>*, A. N. Tak*, F. Bahrani, A. Bolourani, L. Blas, E. Ferrara, J. Gratch, S. P. Karimireddy</h6>
-						<h6>arXiv, 2025.</h6>
-						<h6><a href="https://arxiv.org/abs/2510.04484" target="_blank"> [Paper] </a><a href="https://github.com/aminbana/PsySet" target="_blank"> [Code] </a></h6>
-						
-					</div>
-				</div>	
-				
-				<hr>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/emo llm.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5>Mechanistic Interpretability of Emotion Inference in Large Language Models </h5>
-						<h6>A. N. Tak*, <b>A. Banayeeanzade</b>*, A. Bolourani, M. Kian, R. Jia, J. Gratch.</h6>
-						<h6>ACL, 2025.</h6>
-						<h6><a href="https://arxiv.org/abs/2502.05489" target="_blank"> [Paper] </a><a href="https://github.com/aminbana/emo-llm" target="_blank"> [Code] </a></h6>
-						
-					</div>
-				</div>	
-				
-				<hr>
-				
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/pub10.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5>Theoretical Insights into Overparameterized Models in Multi-Task and Replay-Based Continual Learning</h5>
-						<h6><b>A. Banayeeanzade</b>, M. Soltanolkotabi, M. Rostami.</h6>
-						<h6>TMLR, 2025.</h6>
-						<h6><a href="https://openreview.net/forum?id=4zGPT0ZwnU" target="_blank"> [Paper] </a><a href="https://github.com/aminbana/MTL-Theory" target="_blank"> [Code] </a></h6>
-						
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/GABRIL.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5> GABRIL: Gaze-Based Regularization for Mitigating Causal Confusion in Imitation Learning </h5> 
-						<h6><b>A. Banayeeanzade</b>*, F. Bahrani*, Y. Zhou, E. Bıyık.</h6>
-						<h6>IROS, 2025.</h6>
-						<h6><a href="https://arxiv.org/abs/2507.19647" target="_blank"> [Paper] </a> <a href="https://liralab.usc.edu/gabril/" target="_blank"> [Project Page] </a> </h6>
-						
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/nyscl.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5> Hybrid Learners Do Not Forget: A Brain-Inspired Neuro-Symbolic Approach to Continual Learning</a></h5> 
-						<h6><b>A. Banayeeanzade</b>, M. Rostami.</h6>
-						<h6>arXiv, 2025.</h6>
-						<h6><a href="https://arxiv.org/abs/2503.12635" target="_blank">[Paper]</a></h6>
-						
-
-						
-					</div>
-				</div>	
-				
-				<hr>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/pub02.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5>A Distinct Unsupervised Reference Model from The Environment Helps Continual Learning</h5>
-						<h6>A. Ameli, <b>A. Banayeeanzade</b>, M. Samiei, M. Soleymani.</h6>
-						<h6>arXiv, 2023.</h6>
-						<h6><a href="https://arxiv.org/abs/2301.04506" target="_blank">[Paper]</a></h6>
-						
-					</div>
-				</div>
-
-				<hr>
-
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<img style="border:1px solid rgb(209, 176, 252);" src="assets/img/publications/pub01.png" alt="" class="img-fluid img-thumbnail"/>
-					</div>
-					<div class="col-sm-9">
-						<h5>Generative vs. Discriminative: Rethinking The Meta-Continual Learning</h5>
-						<h6><b>A. Banayeeanzade</b>*, R. Mirzaiezadeh*, H. Hasani, M. Soleymani.</h6>
-						<h6>NeurIPS, 2021.</h6>
-						<h6><a href="https://proceedings.neurips.cc/paper/2021/hash/b4e267d84075f66ebd967d95331fcc03-Abstract.html" target="_blank">[Paper]</a> <a href="https://github.com/aminbana/GeMCL/" target="_blank">[Code]</a></h6>
-						
-				</div>
-
-				<h6>* Equal Contributions.</h6>
-			</div>		                
-        </div>
-        
-
-		
-		<div class="row" style="margin-top: -2em;">
-            <div class="col-sm-12">
-                <h4 id="Projects" style="padding-top: 3em; padding-bottom: 1em;">Other Projects</h4>
-
-				<div class="row" >
-					<div class="col-sm-3" style="margin-bottom: 3em;">
-						<a href="https://www.youtube.com/watch?v=434Ss-yTvuo" target="_blank" class="image"><img style="border:1px solid rgb(209, 176, 252);" class="img-fluid img-thumbnail" src="assets/img/publications/pic01.png" alt="" /></a>
-					</div>
-					<div class="col-sm-9">
-						<h5>Automatic Object Detection Under Clothing in Millimeter-Wave Images</h5>
-						<h6>Accomplished project as senior AI researcher at Basir Wave Tech</h6>
-						<h6><a href="https://www.youtube.com/watch?v=434Ss-yTvuo" target="_blank"> [Video] </a> </h6>
-					</div>
-				</div>             
-
-			</div>
-        </div>
-
-
-
-
-
-        <div class="row" style="margin-top: 4em; margin-bottom: 1em;">
-            <div class="col-sm-12" style="">
-                <p><a href="https://github.com/m-niemeyer/m-niemeyer.github.io" target="_blank">Credits for the template.</a></p>
-                
-                
-            </div>
-    
-        </div>
+      </div>
     </div>
 
+    <!-- Publications -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="section-title" id="Publications">Publications</div>
+
+        <div class="pub-entry">
+          <div class="pub-title">Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs</div>
+          <div class="pub-authors"><b>A. Banayeeanzade</b>*, Q. Yang, D. Tarsadiya, F. Bahrani, L. Blas, A. Samuel, R. Jia, M. Razaviyayn, S. P. Karimireddy</div>
+          <div class="pub-venue">arXiv 2026</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2605.11128" target="_blank">Paper</a>
+            <a href="https://diversitycalibration.github.io/" target="_blank">Demo</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">EPSVec: Efficient and Private Synthetic Data Generation via Dataset Vectors</div>
+          <div class="pub-authors"><b>A. Banayeeanzade</b>*, Q. Yang*, D. Fu, S. Hong, E. Babinsky, A. Samuel, A. Kumar, R. Jia, S. P. Karimireddy</div>
+          <div class="pub-venue">ICML 2026</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2602.21218" target="_blank">Paper</a>
+            <a href="https://github.com/Polymerase-2/EPSVec/" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">Sparks of Rationality: Do Reasoning LLMs Align with Human Judgment and Choice?</div>
+          <div class="pub-authors">A. N. Tak*, <b>A. Banayeeanzade</b>*, A. Bolourani*, F. Bahrani, A. Chaubey, S. P. Karimireddy, N. Schwarz, J. Gratch</div>
+          <div class="pub-venue">ICLR 2026 Workshop on Representational Alignment</div>
+          <div class="pub-links">
+            <a href="https://www.arxiv.org/abs/2601.22329" target="_blank">Paper</a>
+            <a href="https://github.com/AlaNekTak/DLLM/" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">AutoFocus-IL: VLM-based Saliency Maps for Data-Efficient Visual Imitation Learning without Extra Human Annotations</div>
+          <div class="pub-authors">L. Gong, F. Bahrani, Y. Zhou, <b>A. Banayeeanzade</b>, J. Li, E. Bıyık</div>
+          <div class="pub-venue">ICRA 2026</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2511.18617" target="_blank">Paper</a>
+            <a href="https://autofocus-il.github.io/" target="_blank">Project Page</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">Psychological Steering in LLMs: An Evaluation of Effectiveness and Trustworthiness</div>
+          <div class="pub-authors"><b>A. Banayeeanzade</b>*, A. N. Tak*, F. Bahrani, A. Bolourani, L. Blas, E. Ferrara, J. Gratch, S. P. Karimireddy</div>
+          <div class="pub-venue">ACL 2026</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2510.04484" target="_blank">Paper</a>
+            <a href="https://github.com/aminbana/PsySet" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">Mechanistic Interpretability of Emotion Inference in Large Language Models</div>
+          <div class="pub-authors">A. N. Tak*, <b>A. Banayeeanzade</b>*, A. Bolourani, M. Kian, R. Jia, J. Gratch</div>
+          <div class="pub-venue">ACL 2025</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2502.05489" target="_blank">Paper</a>
+            <a href="https://github.com/aminbana/emo-llm" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">Theoretical Insights into Overparameterized Models in Multi-Task and Replay-Based Continual Learning</div>
+          <div class="pub-authors"><b>A. Banayeeanzade</b>, M. Soltanolkotabi, M. Rostami</div>
+          <div class="pub-venue">TMLR 2025</div>
+          <div class="pub-links">
+            <a href="https://openreview.net/forum?id=4zGPT0ZwnU" target="_blank">Paper</a>
+            <a href="https://github.com/aminbana/MTL-Theory" target="_blank">Code</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">GABRIL: Gaze-Based Regularization for Mitigating Causal Confusion in Imitation Learning</div>
+          <div class="pub-authors"><b>A. Banayeeanzade</b>*, F. Bahrani*, Y. Zhou, E. Bıyık</div>
+          <div class="pub-venue">IROS 2025</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2507.19647" target="_blank">Paper</a>
+            <a href="https://liralab.usc.edu/gabril/" target="_blank">Project Page</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">Hybrid Learners Do Not Forget: A Brain-Inspired Neuro-Symbolic Approach to Continual Learning</div>
+          <div class="pub-authors"><b>A. Banayeeanzade</b>, M. Rostami</div>
+          <div class="pub-venue">arXiv 2025</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2503.12635" target="_blank">Paper</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">A Distinct Unsupervised Reference Model from The Environment Helps Continual Learning</div>
+          <div class="pub-authors">A. Ameli, <b>A. Banayeeanzade</b>, M. Samiei, M. Soleymani</div>
+          <div class="pub-venue">arXiv 2023</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2301.04506" target="_blank">Paper</a>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-title">Generative vs. Discriminative: Rethinking The Meta-Continual Learning</div>
+          <div class="pub-authors"><b>A. Banayeeanzade</b>*, R. Mirzaiezadeh*, H. Hasani, M. Soleymani</div>
+          <div class="pub-venue">NeurIPS 2021</div>
+          <div class="pub-links">
+            <a href="https://proceedings.neurips.cc/paper/2021/hash/b4e267d84075f66ebd967d95331fcc03-Abstract.html" target="_blank">Paper</a>
+            <a href="https://github.com/aminbana/GeMCL/" target="_blank">Code</a>
+          </div>
+        </div>
+        <p class="equal-contrib">* Equal contributions.</p>
+
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="row" style="margin-top: 2.5rem;">
+      <div class="col-sm-12">
+
+        <div class="section-title" id="Projects">Other Projects</div>
+
+        <div class="pub-entry">
+          <div class="pub-title">
+            Automatic Object Detection Under Clothing in Millimeter-Wave Images
+          </div>
+
+          <div class="pub-authors">
+            Senior AI Researcher, Basir Wave Tech
+          </div>
+
+          <div class="pub-links">
+            <a href="https://www.youtube.com/watch?v=434Ss-yTvuo" target="_blank">Video</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 </body>
 
 </html>
-    
