@@ -1488,7 +1488,7 @@
           return;
         }
 
-        downSelectedModelIndex = 0;
+        downSelectedModelIndex = Math.floor(Math.random() * downModelNames.length);
         downSelectedModelName = downModelNames[downSelectedModelIndex];
 
         downSetupModelButtons();
@@ -1625,7 +1625,7 @@
         return;
       }
 
-      downSelectedStartIndex = 0;
+      downSelectedStartIndex = Math.floor(Math.random() * downStartTexts.length);
       downSelectedStartText = downStartTexts[downSelectedStartIndex];
 
       downSetupCurrentVariant();

@@ -2627,7 +2627,7 @@
               return;
             }
 
-            upSelectedModelIndex = 0;
+            upSelectedModelIndex = Math.floor(Math.random() * upModelNames.length);
             upSelectedModelName = upModelNames[upSelectedModelIndex];
 
             upSetupModelButtons();
@@ -2735,7 +2735,7 @@
             return;
           }
 
-          upSelectedStartIndex = 0;
+          upSelectedStartIndex = Math.floor(Math.random() * upStartTexts.length);
           upSelectedStartText = upStartTexts[upSelectedStartIndex];
 
           upSetupCurrentVariant();
@@ -3782,7 +3782,7 @@
               return;
             }
 
-            downSelectedModelIndex = 0;
+            downSelectedModelIndex = Math.floor(Math.random() * downModelNames.length);
             downSelectedModelName = downModelNames[downSelectedModelIndex];
 
             downSetupModelButtons();
@@ -3919,7 +3919,7 @@
             return;
           }
 
-          downSelectedStartIndex = 0;
+          downSelectedStartIndex = Math.floor(Math.random() * downStartTexts.length);
           downSelectedStartText = downStartTexts[downSelectedStartIndex];
 
           downSetupCurrentVariant();
