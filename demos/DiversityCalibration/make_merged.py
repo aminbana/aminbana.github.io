@@ -12,12 +12,12 @@ def read_file(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def get_tag_contents(html: str, tag: str) -> list[str]:
+def get_tag_contents(html: str, tag: str):
     pattern = rf"<{tag}\b[^>]*>(.*?)</{tag}>"
     return re.findall(pattern, html, flags=re.IGNORECASE | re.DOTALL)
 
 
-def get_links(html: str) -> list[str]:
+def get_links(html: str):
     return re.findall(r"<link\b[^>]*>", html, flags=re.IGNORECASE | re.DOTALL)
 
 
@@ -34,7 +34,7 @@ def get_body_inner(html: str) -> str:
     return body.strip()
 
 
-def unique_links(*html_files: str) -> list[str]:
+def unique_links(*html_files: str):
     seen = set()
     output = []
 
@@ -74,7 +74,18 @@ def main() -> None:
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>LLM Diversity Calibration</title>
-  <meta name="description" content="Merged upper and lower token probability visualizations.">
+  <meta name="description" content="LLMs collapse to a narrow set of outputs even when many valid alternatives exist. We identify two root causes — order and shape miscalibration — that make diversity and validity fundamentally at odds for any top-token filtering strategy.">
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs">
+  <meta property="og:description" content="LLMs collapse to a narrow set of outputs even when many valid alternatives exist. We identify two distributional bottlenecks: order and shape calibration.">
+  <meta property="og:url" content="https://diversitycalibration.github.io/">
+  <meta property="og:image" content="figs/Open Graph.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs">
+  <meta name="twitter:description" content="LLMs collapse to a narrow set of outputs even when many valid alternatives exist. We identify two distributional bottlenecks: order and shape calibration.">
+  <meta name="twitter:image" content="figs/Open Graph.png">
 
 {indent(chr(10).join(links), 2)}
 
@@ -104,7 +115,7 @@ def main() -> None:
 </head>
 
 <body>
-  <!-- Upper visualization -->
+  <!-- Upper visualization -->  
 {indent(up_body, 2)}
 
   <hr class="merged-demo-divider">

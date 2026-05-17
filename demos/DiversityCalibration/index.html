@@ -5,7 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>LLM Diversity Calibration</title>
-  <meta name="description" content="Merged upper and lower token probability visualizations.">
+  <meta name="description" content="LLMs collapse to a narrow set of outputs even when many valid alternatives exist. We identify two root causes — order and shape miscalibration — that make diversity and validity fundamentally at odds for any top-token filtering strategy.">
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs">
+  <meta property="og:description" content="LLMs collapse to a narrow set of outputs even when many valid alternatives exist. We identify two distributional bottlenecks: order and shape calibration.">
+  <meta property="og:url" content="https://diversitycalibration.github.io/">
+  <meta property="og:image" content="figs/Open Graph.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs">
+  <meta name="twitter:description" content="LLMs collapse to a narrow set of outputs even when many valid alternatives exist. We identify two distributional bottlenecks: order and shape calibration.">
+  <meta name="twitter:image" content="figs/Open Graph.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2160,34 +2171,68 @@
 </head>
 
 <body>
-  <!-- Upper visualization -->
+  <!-- Upper visualization -->  
   <main id="up-token-demo">
-      <section class="hero up-hero">
+      <section class="hero up-hero" style="margin-bottom: -30px;">
         <div class="hero-body up-hero-body">
           <div class="container is-max-desktop">
             <div class="columns is-centered">
               <div class="column has-text-centered">
                 <h1 class="title is-1 up-publication-title">Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs</h1>
                 <div class="is-size-5 up-publication-authors" style="margin-top: 10px;">
-                  <span class="up-author-block up-fake-link"> Amin Banayeeanzade, Qingchuan Yang, Dhruv Tarsadiya, Fatemeh Bahrani, Leonardo Blas, Alfy Samuel, Robin Jia, Meisam Razaviyayn, Sai Praneeth Karimireddy.</span>
+                  <span class="up-author-block up-fake-link">Amin Banayeeanzade*, Qingchuan Yang*, Dhruv Tarsadiya, Fatemeh Bahrani, Leonardo Blas, Alfy Samuel, Robin Jia, Meisam Razaviyayn, Sai Praneeth Karimireddy.</span>
                 </div>
 
-              </br>
-              </br>
-              </br>
-
-                <div class="up-centered">
-                  <span class="up-conf-text", style="margin-top: 20px; font-size: 30px; font-style: italic;"> What are the distributional properties of LLMs that constrain their ability to generate outputs that are both valid and diverse?</span>
-                </div>
-                <div class="up-centered">
-                  <p class="subtitle is-6" style="margin-top: 10px; font-size: 25px"> We introduce two bottlenecks:</p>
+                <div style="margin-top:6px;color:#666;font-size:0.95rem;">
+                    University of Southern California &nbsp;·&nbsp; Capital One &nbsp;·&nbsp; <em>*Equal contribution</em>
                 </div>
 
+                <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                  <a href="https://arxiv.org/abs/2605.11128" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;background:#eef3ff;border:1px solid #d9e4ff;color:#3273dc;font-weight:700;font-size:0.88rem;text-decoration:none;">
+                    📄 Paper (arXiv)
+                  </a>
+                  <button onclick="document.getElementById('bibtex-modal').style.display='flex'" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;background:#eef3ff;border:1px solid #d9e4ff;color:#3273dc;font-weight:700;font-size:0.88rem;cursor:pointer;font-family:inherit;">
+                    📋 BibTeX
+                  </button>
+                  <a href="mailto:banayeea@usc.edu" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;background:#eef3ff;border:1px solid #d9e4ff;color:#3273dc;font-weight:700;font-size:0.88rem;text-decoration:none;">
+                    ✉ Contact
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+                <!-- <div class="up-centered">
+                  <span class="up-conf-text", style="margin-top: 20px; font-size: 30px; font-style: italic;"> What are the distributional properties of LLMs that constrain their ability to generate outputs that are both valid and diverse?</span>
+                </div>
+                <div class="up-centered">
+                  <p class="subtitle is-6" style="margin-top: 10px; font-size: 25px"> We identify two bottlenecks:</p>
+                </div> -->
+    
+      <hr class="merged-demo-divider">
+    
+      <section class="section up-plot-section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-full">
+              <h2 class="title is-3" style="font-size: 30px;">Motivation</h2>
+              <div style="margin:0;padding-left:20px;color:#333;font-size:20px;line-height:1.75;text-align: justify;">
+                <p> LLMs lack diversity: They collapse to a narrow set of outputs even when many valid alternatives exist. Ask GPT-5.5 to name a random city in the world. It repeatedly outputs “Valparaíso, Chile”. (<a href="https://chatgpt.com/s/t_6a090a7d49ac8191bc237826a58c30f3" target="_blank" rel="noopener">Try it!</a>)</p>
+                <p style="padding-top: 10px;"> Increasing temperature does not solve the issue: It produces invalid or nonsensical continuations before sufficient diversity is recovered. 
+                  Top-token filtering methods such as min-p either drop many valid alternatives or include invalid tokens. We therefore ask: </p>
+                  </br>
+                  <p style="text-align: center;font-size:20px;"><i><strong>What are the distributional properties of LLMs that constrain their ability to generate outputs that are both valid and diverse? </strong></i></p>
+                  </br>
+                <p>We identify two bottlenecks: (1) <strong>order calibration</strong>, and (2) <strong>shape calibration</strong>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="merged-demo-divider">
 
       <section class="section up-plot-section" aria-label="Upper token probability plot">
         <div class="container is-max-desktop">
@@ -2285,12 +2330,43 @@
                 </div>
 
                 <div class="up-error" id="upErrorBox"></div>
+
+
+                <div style="margin:28px auto 0;padding:18px 24px;background:#fffbea;border:1.5px solid #ffe58f;border-radius:14px;text-align:left;max-width:auto;">
+                  <div style="font-weight:800;font-size:0.95rem;margin-bottom:8px;color:#7a4f00;">Takeaways</div>
+                    <ul style="margin:0;padding-left:20px;color:#333;font-size:0.95rem;line-height:1.75;list-style-type: square;">
+                      <li> Valid and invalid tokens are interleaved throughout the distribution.</li>
+                      <li>No matter how the cutoff is adjusted, the model fails to recover both validity and diversity at the same time.</li>
+                      <li>The effect compounds multiplicatively over generation steps; longer sequences show more severe trade-offs.</li>
+                    </ul>
+                </div>
+
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
+
+    <div id="bibtex-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)this.style.display='none'">
+      <div style="background:#fff;border-radius:16px;padding:28px;max-width:640px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,0.22);position:relative;">
+        <button onclick="document.getElementById('bibtex-modal').style.display='none'" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#888;line-height:1;" aria-label="Close">✕</button>
+        <div style="font-weight:800;font-size:1rem;margin-bottom:14px;color:#333;">BibTeX</div>
+        <pre id="bibtex-text" style="background:#f4f6ff;border:1px solid #d9e4ff;border-radius:10px;padding:16px;font-size:0.82rem;overflow-x:auto;white-space:pre;line-height:1.6;color:#222;margin:0;">@article{banayeeanzade2026sampling,
+    title   = {Sampling More, Getting Less: Calibration is the
+               Diversity Bottleneck in LLMs},
+    author  = {Banayeeanzade, Amin and Yang, Qingchuan and
+               Tarsadiya, Dhruv and Bahrani, Fatemeh and
+               Blas, Leonardo and Samuel, Alfy and Jia, Robin and
+               Razaviyayn, Meisam and Karimireddy, Sai Praneeth},
+    journal = {arXiv preprint arXiv:2605.11128},
+    year    = {2026}
+  }</pre>
+        <button onclick="navigator.clipboard.writeText(document.getElementById('bibtex-text').innerText).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1800)})" style="margin-top:12px;padding:8px 18px;border-radius:999px;background:#eef3ff;border:1px solid #d9e4ff;color:#3273dc;font-weight:700;font-size:0.88rem;cursor:pointer;font-family:inherit;">
+          Copy
+        </button>
+      </div>
+    </div>
 
   <hr class="merged-demo-divider">
 
@@ -2301,7 +2377,7 @@
           <div class="columns is-centered has-text-centered">
             <div class="column is-full">
               <h2 class="title is-3", style="margin-top: 10px; font-size: 30px;">2. Shape Calibration</h2>
-              <p class="subtitle is-6", style="text-align: left; margin-top: 10px; font-size: 20px;">Model has a sharp drop in the head, and a heavy, long tail. Increasing temperature flows the distribution mass towards the tail; but since the number of invalid tokens dominate, most of valid tokens always get suppressed.</p>
+              <p class="subtitle is-6", style="text-align: left; margin-top: 10px; font-size: 20px;">Model has a sharp drop in the head, and a heavy, long tail. At low temperature, only a few tokens are dominant. Increasing temperature shifts the distribution mass towards the tail, but since invalid tokens vastly outnumber valid ones, they grow much faster with temperature and other valid tokens remain suppressed.</p>
 
               <div class="down-plot-wrap">
                 <div class="down-model-control">
@@ -2399,11 +2475,22 @@
                     ▼
                   </button>
                 </div>
+
+
+
+                <div style="margin:28px auto 0;padding:18px 24px;background:#fffbea;border:1.5px solid #ffe58f;border-radius:14px;text-align:left;max-width:auto;">
+                  <div style="font-weight:800;font-size:0.95rem;margin-bottom:8px;color:#7a4f00;">Takeaways</div>
+                    <ul style="margin:0;padding-left:20px;color:#333;font-size:0.95rem;line-height:1.75;list-style-type: square;">
+                      <li>Few valid tokens have large logit values, many other valid tokens have small logit values, and a large number of invalid tokens constitute the majority of the tail.</li>
+                      <li>Increasing the temperature reduces the gap between the head and the tail, but since the tail is dominated by invalid tokens, it leads to a much higher growth in probabilities of invalid tokens compared to most valid tokens.</li>
+                      <li>The effect compunds when generating longer sequences.
+                    </ul>
+                </div>              
               
               
                 <hr style="margin: 32px auto; border: none; border-top: 1px solid var(--down-panel-border); width: 60%;">
                 <div class="subtitle is-6", style="margin-top: 12px; font-size: 16px; text-align: left; color:#8a8a8a;">
-                  Note: The probability values are shown in log scale. Also the x-axis in both plots is subsampled non-uniformly for enhanced visualization.
+                  Note: The probability values are shown in log scale. Additionally, the x-axis in both plots is subsampled non-uniformly for enhanced visualization.
                 </div>
 
                 <div class="down-error" id="downErrorBox"></div>

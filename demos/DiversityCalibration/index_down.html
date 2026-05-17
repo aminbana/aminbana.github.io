@@ -1171,7 +1171,7 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-full">
             <h2 class="title is-3", style="margin-top: 10px; font-size: 30px;">2. Shape Calibration</h2>
-            <p class="subtitle is-6", style="text-align: left; margin-top: 10px; font-size: 20px;">Model has a sharp drop in the head, and a heavy, long tail. Increasing temperature flows the distribution mass towards the tail; but since the number of invalid tokens dominate, most of valid tokens always get suppressed.</p>
+            <p class="subtitle is-6", style="text-align: left; margin-top: 10px; font-size: 20px;">Model has a sharp drop in the head, and a heavy, long tail. At low temperature, only a few tokens are dominant. Increasing temperature shifts the distribution mass towards the tail, but since invalid tokens vastly outnumber valid ones, they grow much faster with temperature and other valid tokens remain suppressed.</p>
 
             <div class="down-plot-wrap">
               <div class="down-model-control">
@@ -1269,11 +1269,22 @@
                   ▼
                 </button>
               </div>
+
+
+
+              <div style="margin:28px auto 0;padding:18px 24px;background:#fffbea;border:1.5px solid #ffe58f;border-radius:14px;text-align:left;max-width:auto;">
+                <div style="font-weight:800;font-size:0.95rem;margin-bottom:8px;color:#7a4f00;">Takeaways</div>
+                  <ul style="margin:0;padding-left:20px;color:#333;font-size:0.95rem;line-height:1.75;list-style-type: square;">
+                    <li>Few valid tokens have large logit values, many other valid tokens have small logit values, and a large number of invalid tokens constitute the majority of the tail.</li>
+                    <li>Increasing the temperature reduces the gap between the head and the tail, but since the tail is dominated by invalid tokens, it leads to a much higher growth in probabilities of invalid tokens compared to most valid tokens.</li>
+                    <li>The effect compunds when generating longer sequences.
+                  </ul>
+              </div>              
               
               
               <hr style="margin: 32px auto; border: none; border-top: 1px solid var(--down-panel-border); width: 60%;">
               <div class="subtitle is-6", style="margin-top: 12px; font-size: 16px; text-align: left; color:#8a8a8a;">
-                Note: The probability values are shown in log scale. Also the x-axis in both plots is subsampled non-uniformly for enhanced visualization.
+                Note: The probability values are shown in log scale. Additionally, the x-axis in both plots is subsampled non-uniformly for enhanced visualization.
               </div>
 
               <div class="down-error" id="downErrorBox"></div>
