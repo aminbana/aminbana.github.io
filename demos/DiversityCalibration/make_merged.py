@@ -81,11 +81,12 @@ def main() -> None:
   <meta property="og:title" content="Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs">
   <meta property="og:description" content="LLMs collapse to a narrow set of outputs even when many valid alternatives exist. We identify two distributional bottlenecks: order and shape calibration.">
   <meta property="og:url" content="https://diversitycalibration.github.io/">
-  <meta property="og:image" content="figs/Open Graph.png">
+  <meta property="og:image" content="https://diversitycalibration.github.io/figs/Open%20Graph.png">
+  <meta property="og:image:secure_url" content="https://diversitycalibration.github.io/figs/Open%20Graph.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs">
   <meta name="twitter:description" content="LLMs collapse to a narrow set of outputs even when many valid alternatives exist. We identify two distributional bottlenecks: order and shape calibration.">
-  <meta name="twitter:image" content="figs/Open Graph.png">
+  <meta name="twitter:image" content="https://diversitycalibration.github.io/figs/Open%20Graph.png">
 
 {indent(chr(10).join(links), 2)}
 
