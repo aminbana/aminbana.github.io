@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Down Token Probability Demo</title>
-  <meta name="description" content="A small interactive lower token probability barplot demo.">
+  <title>Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs</title>
+  <meta name="description" content="Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1499,7 +1499,7 @@
           return;
         }
 
-        downSelectedModelIndex = Math.floor(Math.random() * downModelNames.length);
+        downSelectedModelIndex = 0;
         downSelectedModelName = downModelNames[downSelectedModelIndex];
 
         downSetupModelButtons();
@@ -1636,7 +1636,7 @@
         return;
       }
 
-      downSelectedStartIndex = Math.floor(Math.random() * downStartTexts.length);
+      downSelectedStartIndex = 0;
       downSelectedStartText = downStartTexts[downSelectedStartIndex];
 
       downSetupCurrentVariant();

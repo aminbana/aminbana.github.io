@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Diversity Calibration Demo</title>
-  <meta name="description" content="Diversity Calibration Demo">
+  <title>Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs</title>
+  <meta name="description" content="Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1398,7 +1398,7 @@
           return;
         }
 
-        upSelectedModelIndex = Math.floor(Math.random() * upModelNames.length);
+        upSelectedModelIndex = 0;
         upSelectedModelName = upModelNames[upSelectedModelIndex];
 
         upSetupModelButtons();
@@ -1506,7 +1506,7 @@
         return;
       }
 
-      upSelectedStartIndex = Math.floor(Math.random() * upStartTexts.length);
+      upSelectedStartIndex = 0;
       upSelectedStartText = upStartTexts[upSelectedStartIndex];
 
       upSetupCurrentVariant();
