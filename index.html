@@ -139,6 +139,11 @@
       letter-spacing: 0.01em;
     }
 
+    .profile-photo-col {
+      display: flex;
+      flex-direction: column;
+    }
+
     .profile-img {
       width: 185px;
       border-radius: 6px;
@@ -148,12 +153,16 @@
     @media (max-width: 767.98px) {
       .profile-photo-col {
         margin-top: 1.5rem !important;
+        align-items: center;
         text-align: center;
       }
       .profile-img {
         margin: 0 auto;
       }
       .profile-name {
+        text-align: center;
+      }
+      .profile-subtitle {
         text-align: center;
       }
     }
@@ -173,14 +182,22 @@
     }
 
     .social-links {
-      margin-top: 0.9rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      white-space: nowrap;
+      width: 185px;
+      text-align: center;
     }
 
     .social-links a {
       color: #555;
       text-decoration: none;
-      margin-right: 1.1rem;
-      font-size: 0.88rem;
+      margin-right: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .social-links a:last-child {
+      margin-right: 0;
     }
 
     .social-links a:hover {
@@ -342,9 +359,16 @@
   <div class="container" style="max-width: 860px;;">
     
     <!-- Profile -->
-    <div class="row" id="About" style="margin-top: 3rem; margin-bottom: 3.5rem;">
-      <div class="col-md-3 profile-photo-col" style="margin-top: 4rem">
+    <div class="row" id="About" style="margin-top: 3rem; margin-bottom: 2rem;">
+      <div class="col-md-3 profile-photo-col">
         <img src="assets/img/profile.png" class="profile-img" alt="Amin Banayeeanzade">
+        <div class="social-links">
+          <a href="mailto:banayeea@usc.edu"><i class="far fa-envelope"></i></a>
+          <a href="https://x.com/MBanayeean" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://scholar.google.com/citations?user=QnujJhEAAAAJ&hl=en" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>
+          <a href="https://github.com/aminbana" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/aminbana/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
       </div>
       <div class="col-md-9">
         <div class="profile-name">Mohammadamin (Amin) Banayeeanzade</div>
@@ -365,13 +389,6 @@
           <a href="https://scholar.google.ca/citations?user=lWSKYd4AAAAJ&hl=en" target="_blank">Mahdi Shabany</a> and
           <a href="https://scholar.google.com/citations?user=bxbPDckAAAAJ&hl=en" target="_blank">Zahra Kavehvash</a>.
         </p>
-        <div class="social-links">
-          <a href="mailto:banayeea@usc.edu"><i class="far fa-envelope"></i></a>
-          <a href="https://x.com/MBanayeean" target="_blank"><i class="fab fa-x-twitter"></i></a>
-          <a href="https://scholar.google.com/citations?user=QnujJhEAAAAJ&hl=en" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>
-          <a href="https://github.com/aminbana" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/aminbana/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
       </div>
     </div>
 
